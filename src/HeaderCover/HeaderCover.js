@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {createGradient} from '../utils';
 import style from './HeaderCover.module.css';
 
 
@@ -6,52 +7,16 @@ class HeaderCover extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            gradient1: this.createGradient(),
-            gradient2: this.createGradient(),
+            gradient1: createGradient(),
+            gradient2: createGradient(),
             opacity: 1,
             delta: -0.025
         }
+        this.timer = null;
     }
 
-    randomChoice(arr) {
-        let pos = Math.floor(Math.random() * arr.length);
-        return arr[pos];
-    }
-
-    createGradient() {
-        let colors = [
-            'LightSkyBlue',
-            'LightPink',
-            'PaleGreen',
-            'Turquoise',
-            'DarkOrchid',
-            'GreenYellow',
-            'LightSalmon',
-            'Cyan',
-            'Violet',
-            'DeepSkyBlue',
-            'OrangeRed',
-            'SlateBlue',
-            'LightSlateGray'
-
-        ];
-        let horizontalPositions = ['left', 'right'];
-        let verticalPositions = ['top', 'bottom'];
-
-        let color1, color2;
-        color1 = color2 = null;
-        while (color1 === color2) {
-            color1 = this.randomChoice(colors);
-            color2 = this.randomChoice(colors);
-        }
-        let hPos = this.randomChoice(horizontalPositions);
-        let vPos = this.randomChoice(verticalPositions)
-
-        return {backgroundImage: `linear-gradient(to ${hPos} ${vPos}, ${color1}, ${color2})`}
-    }
-
-    componentDidMount() {
-        setInterval(() => {
+    startTimer() {
+        this.timer = setInterval(() => {
             let {opacity, delta, gradient1, gradient2} = this.state;
             opacity += delta;
 
@@ -59,7 +24,7 @@ class HeaderCover extends Component {
                 delta *= (-1);
                 let gradient = gradient2;
                 while (gradient === gradient2) {
-                    gradient = this.createGradient();
+                    gradient = createGradient();
                 }
                 this.setState({
                     delta,
@@ -72,7 +37,7 @@ class HeaderCover extends Component {
                 delta *= (-1);
                 let gradient = gradient1;
                 while (gradient === gradient1) {
-                    gradient = this.createGradient();
+                    gradient = createGradient();
                 }
                 this.setState({
                     delta,
@@ -83,6 +48,14 @@ class HeaderCover extends Component {
 
             this.setState({opacity});
         }, 250);
+    }
+
+    stopTimer() {
+        clearInterval(this.timer)
+    }
+
+    componentDidMount() {
+        this.startTimer();
     }
 
     render() {
