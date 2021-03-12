@@ -22,7 +22,7 @@ class HeaderCanvas extends Component {
 
     render() {
         let {headerHeight} = this.props;
-        let innerStyle = {width: '100%', height: `${headerHeight}px`};
+        let innerStyle = {width: '100%', height: `${headerHeight - 1}px`};
         return <canvas className={style.main_canvas} style={innerStyle} ref="myCanvas"/>;
     }
 }

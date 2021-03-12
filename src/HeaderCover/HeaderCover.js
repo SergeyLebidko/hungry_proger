@@ -9,7 +9,7 @@ class HeaderCover extends Component {
             gradient1: this.createGradient(),
             gradient2: this.createGradient(),
             opacity: 1,
-            delta: -0.05
+            delta: -0.025
         }
     }
 
@@ -24,18 +24,24 @@ class HeaderCover extends Component {
             'LightPink',
             'PaleGreen',
             'Turquoise',
-            'SpringGreen',
+            'DarkOrchid',
             'GreenYellow',
             'LightSalmon',
             'Cyan',
             'Violet',
-            'DeepSkyBlue'
+            'DeepSkyBlue',
+            'OrangeRed',
+            'SlateBlue'
         ];
         let horizontalPositions = ['left', 'right'];
         let verticalPositions = ['top', 'bottom'];
 
-        let color1 = this.randomChoice(colors);
-        let color2 = this.randomChoice(colors);
+        let color1, color2;
+        color1 = color2 = null;
+        while (color1 === color2) {
+            color1 = this.randomChoice(colors);
+            color2 = this.randomChoice(colors);
+        }
         let hPos = this.randomChoice(horizontalPositions);
         let vPos = this.randomChoice(verticalPositions)
 
@@ -44,29 +50,37 @@ class HeaderCover extends Component {
 
     componentDidMount() {
         setInterval(() => {
-            let {opacity, delta} = this.state;
+            let {opacity, delta, gradient1, gradient2} = this.state;
             opacity += delta;
 
             if (opacity <= 0) {
                 delta *= (-1);
+                let gradient = gradient2;
+                while (gradient === gradient2) {
+                    gradient = this.createGradient();
+                }
                 this.setState({
                     delta,
-                    gradient2: this.createGradient()
+                    gradient2: gradient
                 });
                 return
             }
 
             if (opacity >= 1) {
                 delta *= (-1);
+                let gradient = gradient1;
+                while (gradient === gradient1) {
+                    gradient = this.createGradient();
+                }
                 this.setState({
                     delta,
-                    gradient1: this.createGradient()
+                    gradient1: gradient
                 });
                 return;
             }
 
             this.setState({opacity});
-        }, 200);
+        }, 250);
     }
 
     render() {
