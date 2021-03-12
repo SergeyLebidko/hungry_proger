@@ -1,4 +1,4 @@
-import CanvasControl from './CanvasControl';
+import CanvasControl from './CanvasControl/CanvasControl';
 import './App.css';
 
 function App() {

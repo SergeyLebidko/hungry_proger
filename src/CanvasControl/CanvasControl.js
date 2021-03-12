@@ -1,6 +1,6 @@
 import {Component} from 'react';
-
 import paper from 'paper';
+import style from './CanvasControl.module.css';
 
 
 class CanvasControl extends Component {
@@ -12,13 +12,14 @@ class CanvasControl extends Component {
         path.strokeColor = 'black';
         view.onMouseDown = function (e) {
             path.add(e.point);
+            path.smooth();
         }
     }
 
     render() {
         return (
             <div>
-                <canvas width="600" height="600" style={{border: "1px solid black"}} ref={"myCanvas"}/>
+                <canvas width="600" height="600" className={style.main_canvas} ref={"myCanvas"}/>
             </div>
         )
     }
