@@ -31,7 +31,9 @@ class HeaderCover extends Component {
             'Violet',
             'DeepSkyBlue',
             'OrangeRed',
-            'SlateBlue'
+            'SlateBlue',
+            'LightSlateGray'
+
         ];
         let horizontalPositions = ['left', 'right'];
         let verticalPositions = ['top', 'bottom'];
