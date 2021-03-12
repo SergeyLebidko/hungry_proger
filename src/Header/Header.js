@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import HeaderCover from '../HeaderCover/HeaderCover';
 import HeaderCanvas from '../HeaderCanvas/HeaderCanvas';
-import {headerHeight} from '../settings';
+import {headerHeight} from '../App';
 
 
 class Header extends Component {

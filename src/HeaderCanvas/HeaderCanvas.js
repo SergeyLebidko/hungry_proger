@@ -14,8 +14,9 @@ class HeaderCanvas extends Component {
 
         let circle;
         for (let index = 0; index < 10; index++) {
-            circle = Path.Circle(Point.random().multiply(view.size), 10);
-            circle.strokeColor = 'black';
+            circle = Path.Circle(Point.random().multiply(view.size), Math.random() * 100);
+            circle.fillColor = 'white';
+            circle.opacity = 0.4
         }
     }
 

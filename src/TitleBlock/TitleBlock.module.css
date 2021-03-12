@@ -1,0 +1,21 @@
+.title_block {
+    position: absolute;
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    z-index: 4;
+}
+
+.title_block div {
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 40px 100px;
+    border-radius: 10px;
+    margin: 20px;
+}
+
+.title_block p {
+    font-size: 2em;
+}
