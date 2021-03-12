@@ -1,11 +1,16 @@
-import CanvasControl from './CanvasControl/CanvasControl';
-import './App.css';
+import React from 'react';
+import HeaderCanvas from './HeaderCanvas/HeaderCanvas';
+import HeaderCover from './HeaderCover/HeaderCover';
+import {headerHeight} from './settings';
+import style from './App.module.css';
+
 
 function App() {
     return (
-        <div>
-            <CanvasControl/>
-        </div>
+        <>
+            <HeaderCover headerHeight={headerHeight}/>
+            <HeaderCanvas headerHeight={headerHeight}/>
+        </>
     );
 }
 
