@@ -26,11 +26,11 @@ export function createGradient() {
     let color1, color2;
     color1 = color2 = null;
     while (color1 === color2) {
-        color1 = this.randomChoice(colors);
-        color2 = this.randomChoice(colors);
+        color1 = randomChoice(colors);
+        color2 = randomChoice(colors);
     }
-    let hPos = this.randomChoice(horizontalPositions);
-    let vPos = this.randomChoice(verticalPositions)
+    let hPos = randomChoice(horizontalPositions);
+    let vPos = randomChoice(verticalPositions)
 
     return {backgroundImage: `linear-gradient(to ${hPos} ${vPos}, ${color1}, ${color2})`}
 }

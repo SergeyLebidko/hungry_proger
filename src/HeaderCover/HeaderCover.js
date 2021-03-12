@@ -65,9 +65,9 @@ class HeaderCover extends Component {
         let innerStyle2 = {height: `${headerHeight}px`};
 
         Object.assign(innerStyle1, gradient1);
-        Object.assign(innerStyle2, gradient2);
+        Object.assign(innerStyle2, gradient2, {opacity});
 
-        Object.assign(innerStyle2, {opacity});
+        // Object.assign(innerStyle2, {opacity});
         return (
             <>
                 <div className={style.cover1} style={innerStyle1}/>
