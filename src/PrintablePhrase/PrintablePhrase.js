@@ -1,44 +1,34 @@
-import React, {Component} from 'react'
+import React, {useState, useEffect} from 'react'
 import style from './PrintablePhrase.module.css';
 
 
-class PrintablePhrase extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            text: '',
-            hasCursor: false
-        }
-    }
+function PrintablePhrase({phrase, delay}) {
+    let [text, setText] = useState('');
+    let [hasCursor, setHasCursor] = useState(false);
 
-    startPrintProcess() {
-        this.setState({hasCursor: true})
-        let {phrase} = this.props;
+    function startPrintProcess() {
+        setHasCursor(true);
         let pos = 1;
         let timer = setInterval(() => {
             if (pos === (phrase.length + 1)) {
                 clearInterval(timer);
-                this.setState({hasCursor: false});
+                setHasCursor(false);
                 return;
             }
-            this.setState({
-                text: phrase.slice(0, pos)
-            });
+            setText(phrase.slice(0, pos));
             pos++;
         }, 70);
     }
 
-    componentDidMount() {
-        let {delay} = this.props;
-        setTimeout(() => this.startPrintProcess(), delay);
-    }
+    useEffect(() => {
+        if (delay > 0) {
+            setTimeout(startPrintProcess, delay);
+        } else {
+            setText(phrase);
+        }
+    }, [phrase]);
 
-    render() {
-        let {text, hasCursor} = this.state;
-        return (
-            <p className={style.phrase}>{text}<span style={hasCursor ? {opacity: 1} : {opacity: 0}}>|</span></p>
-        )
-    }
+    return <p className={style.phrase}>{text}<span style={hasCursor ? {opacity: 1} : {opacity: 0}}>|</span></p>;
 }
 
 export default PrintablePhrase;
