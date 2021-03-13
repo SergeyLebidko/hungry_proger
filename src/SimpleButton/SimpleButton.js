@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import style from './SimpleButton.module.css';
+import style from './SimpleButton.module.scss';
 
 
 function SimpleButton({text, delay}) {

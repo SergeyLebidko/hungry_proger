@@ -1,0 +1,24 @@
+@import "../variables";
+
+.simple_button {
+  position: relative;
+  display: inline-block;
+  padding: 5px 15px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: $btn-border-color;
+  border-radius: 5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  overflow: hidden;
+  color: $btn-font-color;
+  font-family: $main-font-family;
+  letter-spacing: 2px;
+  transition: all 500ms;
+
+  &:hover {
+    color: $btn-font-alternate-color;
+    background-color: $btn-fill-color;
+    transition: all 500ms;
+  }
+}
