@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import style from './PrintablePhrase.module.css';
+import style from './PrintablePhrase.module.scss';
 
 
 function PrintablePhrase({phrase, delay}) {

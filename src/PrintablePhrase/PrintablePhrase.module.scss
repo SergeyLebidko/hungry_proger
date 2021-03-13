@@ -1,5 +1,7 @@
+@import "../variables";
+
 .phrase {
-    color: rgb(60, 60, 80);
+    color: $main-font-color;
     font-family: "Roboto Light";
     font-size: 2em;
 }
