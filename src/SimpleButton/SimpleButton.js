@@ -25,7 +25,7 @@ class SimpleButton extends Component {
     componentDidMount() {
         let {delay} = this.props;
         if (delay === 0) {
-            this.setState({opacity: 0});
+            this.setState({opacity: 1});
             return;
         }
         setTimeout(() => this.startAppearance(), delay);
