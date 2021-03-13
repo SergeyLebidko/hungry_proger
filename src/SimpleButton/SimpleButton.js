@@ -27,7 +27,7 @@ function SimpleButton({text, delay}) {
 
     return (
         <span className={style.simple_button} style={{opacity}}>{text}</span>
-    )
+    );
 }
 
 export default SimpleButton;

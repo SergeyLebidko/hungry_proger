@@ -1,23 +1,16 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import {createGradient} from '../utils';
 import style from './HeaderCover.module.css';
 
 
-class HeaderCover extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            gradient1: createGradient(),
-            gradient2: createGradient(),
-            opacity: 1,
-            delta: -0.025
-        }
-        this.timer = null;
-    }
+function HeaderCover({headerHeight}) {
+    let [gradient1, setGradient1] = useState(createGradient());
+    let [gradient2, setGradient2] = useState(createGradient());
+    let [opacity, setOpacity] = useState(1);
+    let [delta, setDelta] = useState(-0.025);
 
-    startTimer() {
-        this.timer = setInterval(() => {
-            let {opacity, delta, gradient1, gradient2} = this.state;
+    function startTimer() {
+        setInterval(() => {
             opacity += delta;
 
             if (opacity <= 0) {
@@ -26,11 +19,9 @@ class HeaderCover extends Component {
                 while (gradient === gradient2) {
                     gradient = createGradient();
                 }
-                this.setState({
-                    delta,
-                    gradient2: gradient
-                });
-                return
+                setDelta(delta);
+                setGradient2(gradient2);
+                return;
             }
 
             if (opacity >= 1) {
@@ -39,42 +30,29 @@ class HeaderCover extends Component {
                 while (gradient === gradient1) {
                     gradient = createGradient();
                 }
-                this.setState({
-                    delta,
-                    gradient1: gradient
-                });
+                setDelta(delta);
+                setGradient1(gradient1);
                 return;
             }
 
-            this.setState({opacity});
+            setOpacity(opacity);
         }, 250);
     }
 
-    stopTimer() {
-        clearInterval(this.timer)
-    }
+    useEffect(() => startTimer(), [headerHeight]);
 
-    componentDidMount() {
-        this.startTimer();
-    }
+    let innerStyle1 = {height: `${headerHeight}px`};
+    let innerStyle2 = {height: `${headerHeight}px`};
 
-    render() {
-        let {headerHeight} = this.props;
-        let {gradient1, gradient2, opacity} = this.state;
-        let innerStyle1 = {height: `${headerHeight}px`};
-        let innerStyle2 = {height: `${headerHeight}px`};
+    Object.assign(innerStyle1, gradient1);
+    Object.assign(innerStyle2, gradient2, {opacity});
 
-        Object.assign(innerStyle1, gradient1);
-        Object.assign(innerStyle2, gradient2, {opacity});
-
-        // Object.assign(innerStyle2, {opacity});
-        return (
-            <>
-                <div className={style.cover1} style={innerStyle1}/>
-                <div className={style.cover2} style={innerStyle2}/>
-            </>
-        )
-    }
+    return (
+        <>
+            <div className={style.cover1} style={innerStyle1}/>
+            <div className={style.cover2} style={innerStyle2}/>
+        </>
+    );
 }
 
 export default HeaderCover;
