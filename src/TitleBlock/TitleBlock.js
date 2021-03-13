@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import SimpleButton from '../SimpleButton/SimpleButton';
 import style from './TitleBlock.module.css';
 import {headerHeight} from '../App';
 
@@ -8,11 +9,12 @@ class TitleBlock extends Component {
         super(props);
         this.state = {
             title: '',
-            hasCursor: true
+            hasCursor: false
         }
     }
 
-    componentDidMount() {
+    startPrintProcess() {
+        this.setState({hasCursor: true})
         let phrase = 'Сергей Лебидко. Junior web-developer';
         let pos = 1;
         let timer = setInterval(() => {
@@ -28,14 +30,18 @@ class TitleBlock extends Component {
         }, 70);
     }
 
+    componentDidMount() {
+        setTimeout(() => this.startPrintProcess(), 900);
+    }
+
     render() {
         let titleBlockStyle = {height: headerHeight}
         let {title, hasCursor} = this.state;
         return (
             <div className={style.title_block} style={titleBlockStyle}>
                 <div>
-                    <p>{title}{hasCursor ? '|' : ''}</p>
-                    <span>Узнать больше</span>
+                    <p>{title}<span style={hasCursor ? {opacity: 1} : {opacity: 0}}>|</span></p>
+                    <SimpleButton text={"Узнать больше"} delay={3400}/>
                 </div>
             </div>
         )
