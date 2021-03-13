@@ -1,43 +1,33 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import style from './SimpleButton.module.css';
 
 
-class SimpleButton extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            opacity: 0
-        }
-    }
+function SimpleButton({text, delay}) {
 
-    startAppearance() {
+    let [opacity, setOpacity] = useState(0);
+
+    function startAppearance() {
         let timer = setInterval(() => {
-            let {opacity} = this.state;
             opacity += 0.1;
             if (opacity > 1) {
                 clearInterval(timer);
-                return
+                return;
             }
-            this.setState({opacity});
+            setOpacity(opacity);
         }, 120);
     }
 
-    componentDidMount() {
-        let {delay} = this.props;
+    useEffect(() => {
         if (delay === 0) {
-            this.setState({opacity: 1});
+            setOpacity(1);
             return;
         }
-        setTimeout(() => this.startAppearance(), delay);
-    }
+        setTimeout(startAppearance, delay);
+    }, [text]);
 
-    render() {
-        let {text} = this.props;
-        let {opacity} = this.state;
-        return (
-            <span className={style.simple_button} style={{opacity}}>{text}</span>
-        )
-    }
+    return (
+        <span className={style.simple_button} style={{opacity}}>{text}</span>
+    )
 }
 
 export default SimpleButton;

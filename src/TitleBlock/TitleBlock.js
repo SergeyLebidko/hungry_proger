@@ -11,7 +11,7 @@ function TitleBlock() {
         <div className={style.title_block} style={titleBlockStyle}>
             <div>
                 <PrintablePhrase phrase="Сергей Лебидко. Junior web-developer" delay={900}/>
-                <SimpleButton text={"Узнать больше"} delay={3400}/>
+                <SimpleButton text="Узнать больше" delay={3400}/>
             </div>
         </div>
     );
