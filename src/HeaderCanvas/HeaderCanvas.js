@@ -13,10 +13,10 @@ class HeaderCanvas extends Component {
         let {Path, Point, view} = paper;
 
         let circle;
-        for (let index = 0; index < 10; index++) {
+        for (let index = 0; index < 30; index++) {
             circle = Path.Circle(Point.random().multiply(view.size), Math.random() * 100);
             circle.fillColor = 'white';
-            circle.opacity = 0.4
+            circle.opacity = Math.random() * 0.4;
         }
     }
 

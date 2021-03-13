@@ -25,7 +25,7 @@ class TitleBlock extends Component {
                 title: phrase.slice(0, pos)
             });
             pos++;
-        }, 100);
+        }, 70);
     }
 
     render() {
