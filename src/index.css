@@ -38,3 +38,11 @@ canvas {
     margin: 0;
     padding: 0;
 }
+
+/* Подключение необходимых шрифтов */
+
+@font-face {
+    font-family: 'Roboto Light';
+    src: local('Roboto Light'), url('./fonts/Roboto-Light.ttf') format('truetype');
+}
+
