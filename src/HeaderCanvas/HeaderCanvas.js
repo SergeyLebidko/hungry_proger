@@ -11,10 +11,11 @@ class HeaderCanvas extends Component {
     componentDidMount() {
         paper.setup(this.refs.myCanvas);
         let {Path, Point, view} = paper;
+        let {Circle} = Path;
 
         let circle;
         for (let index = 0; index < 30; index++) {
-            circle = Path.Circle(Point.random().multiply(view.size), Math.random() * 100);
+            circle = new Circle(Point.random().multiply(view.size), Math.random() * 100);
             circle.fillColor = 'white';
             circle.opacity = Math.random() * 0.4;
         }
