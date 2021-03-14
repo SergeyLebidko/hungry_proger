@@ -5,13 +5,29 @@ import style from './TitleBlock.module.scss';
 import {headerHeight} from '../App';
 
 
+function scrollToAbout() {
+    let current = window.pageYOffset;
+    let stop = headerHeight + 5;
+    let delta = 50;
+    let timer = setInterval(() => {
+        current += delta;
+        if (current >= stop) {
+            current = stop;
+            clearInterval(timer);
+        }
+        window.scrollTo(0, current);
+    }, 12);
+
+}
+
+
 function TitleBlock() {
     let titleBlockStyle = {height: headerHeight}
     return (
         <div className={style.title_block} style={titleBlockStyle}>
             <div>
                 <PrintablePhrase phrase="Сергей Лебидко. Junior web-developer" delay={700}/>
-                <SimpleButton text="Узнать больше" delay={1900}/>
+                <SimpleButton text="Узнать больше" delay={1900} action={scrollToAbout}/>
             </div>
         </div>
     );

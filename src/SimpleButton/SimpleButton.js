@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import style from './SimpleButton.module.scss';
 
 
-function SimpleButton({text, delay}) {
+function SimpleButton({text, delay, action}) {
 
     let [opacity, setOpacity] = useState(0);
 
@@ -26,7 +26,7 @@ function SimpleButton({text, delay}) {
     }, [text]);
 
     return (
-        <span className={style.simple_button} style={{opacity}}>{text}</span>
+        <span className={style.simple_button} style={{opacity}} onClick={() => action()}>{text}</span>
     );
 }
 
