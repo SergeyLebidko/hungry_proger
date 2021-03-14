@@ -8,29 +8,9 @@
 
 .content_block {
     position: relative;
-    top: 130px;
+    top: 40px;
     max-width: 1000px;
     margin-left: auto;
     margin-right: auto;
-    z-index: 7;
-}
-
-.cap1 {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 120px;
-    background-image: linear-gradient(to right, mediumorchid, royalblue);
-    clip-path: polygon(0% 0%, 100% 0%, 100% 65%, 0% 85%);
     z-index: 5;
-}
-
-.cap2 {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 120px;
-    background-image: linear-gradient(to right, deepskyblue, royalblue);
-    clip-path: polygon(0% 84%, 100% 44%, 100% 65%, 0% 87%);
-    z-index: 6;
 }

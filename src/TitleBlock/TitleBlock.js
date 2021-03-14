@@ -7,7 +7,7 @@ import {headerHeight} from '../App';
 
 function scrollToAbout() {
     let current = window.pageYOffset;
-    let stop = headerHeight + 5;
+    let stop = headerHeight + 3;
     let delta = 50;
     let timer = setInterval(() => {
         current += delta;
