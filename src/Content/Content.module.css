@@ -7,6 +7,15 @@
     box-shadow: 0 -5px 30px 5px rgba(50, 50, 50, 0.25);
 }
 
+.content_block {
+    position: relative;
+    top: 100px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 7;
+}
+
 .cap1 {
     position: absolute;
     top: 0;
@@ -14,6 +23,7 @@
     height: 500px;
     background-image: linear-gradient(to right, mediumorchid, royalblue);
     clip-path: polygon(0% 0%, 100% 0%, 100% 20%, 0% 35%);
+    z-index: 5;
 }
 
 .cap2 {
@@ -23,4 +33,5 @@
     height: 500px;
     background-image: linear-gradient(to right, deepskyblue, dodgerblue);
     clip-path: polygon(0% 34%, 100% 19%, 100% 22%, 0% 37%);
+    z-index: 6;
 }

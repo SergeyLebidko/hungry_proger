@@ -1,0 +1,19 @@
+@import "../variables";
+
+.avatar {
+    display: inline-block;
+    width: 350px;
+    height: 350px;
+    object-fit: contain;
+    border-radius: $large-radius;
+    filter: grayscale(0.2);
+    transition: all 400ms;
+
+    &:hover {
+        transform: scale(1.05);
+        filter: grayscale(0);
+        transition: all 400ms;
+        box-shadow: 0 0 15px 5px rgba(50, 50, 50, 0.2);
+    }
+}
+
