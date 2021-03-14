@@ -1,5 +1,21 @@
 @import "../variables";
 
+.container {
+  position: relative;
+  background-color: azure;
+  box-shadow: 0 -5px 30px 5px rgba(50, 50, 50, 0.25);
+  padding-top: 40px;
+  padding-bottom: 40px;
+  width: 100%;
+  z-index: 4;
+}
+
+.container > div {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .header {
   h1 {
     font-family: $headers-font-family;
@@ -9,10 +25,11 @@
     padding-bottom: 0;
     margin-bottom: 20px;
     color: $headers-font-color;
+    max-width: 1000px;
   }
 
   div {
-    width: 100%;
+    max-width: 1000px;
     height: 2px;
     background-image: linear-gradient(to right, transparent, teal, transparent);
     margin-bottom: 40px;
