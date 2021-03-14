@@ -1,7 +1,7 @@
 import React from 'react';
 import SimpleButton from '../SimpleButton/SimpleButton';
 import PrintablePhrase from '../PrintablePhrase/PrintablePhrase';
-import style from './TitleBlock.module.css';
+import style from './TitleBlock.module.scss';
 import {headerHeight} from '../App';
 
 
