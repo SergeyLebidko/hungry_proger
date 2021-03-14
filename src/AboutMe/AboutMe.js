@@ -13,7 +13,7 @@ function AboutMe() {
                 <div/>
             </div>
             <div className={style.content}>
-                <img className={style.avatar} src="/images/avatar.jpg"/>
+                <img src="/images/avatar.jpg"/>
                 <div>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
