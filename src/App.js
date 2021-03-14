@@ -4,7 +4,7 @@ import TitleBlock from './TitleBlock/TitleBlock';
 import Content from './Content/Content';
 import style from './App.module.css';
 
-export const headerHeight = window.innerHeight + 20;
+export const headerHeight = window.innerHeight + 50;
 
 
 function App() {
