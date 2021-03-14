@@ -20,7 +20,7 @@ function HeaderCover({headerHeight}) {
                     gradient = createGradient();
                 }
                 setDelta(delta);
-                setGradient2(gradient2);
+                setGradient2(gradient);
                 return;
             }
 
@@ -31,7 +31,7 @@ function HeaderCover({headerHeight}) {
                     gradient = createGradient();
                 }
                 setDelta(delta);
-                setGradient1(gradient1);
+                setGradient1(gradient);
                 return;
             }
 
