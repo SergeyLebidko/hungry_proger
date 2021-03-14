@@ -10,8 +10,8 @@ function TitleBlock() {
     return (
         <div className={style.title_block} style={titleBlockStyle}>
             <div>
-                <PrintablePhrase phrase="Сергей Лебидко. Junior web-developer" delay={900}/>
-                <SimpleButton text="Узнать больше" delay={3400}/>
+                <PrintablePhrase phrase="Сергей Лебидко. Junior web-developer" delay={700}/>
+                <SimpleButton text="Узнать больше" delay={1900}/>
             </div>
         </div>
     );

@@ -17,7 +17,7 @@ function PrintablePhrase({phrase, delay}) {
             }
             setText(phrase.slice(0, pos));
             pos++;
-        }, 70);
+        }, 55);
     }
 
     useEffect(() => {
