@@ -6,19 +6,19 @@
   padding: 5px 15px;
   border-width: 2px;
   border-style: solid;
-  border-color: $btn-border-color;
+  border-color: teal;
   border-radius: $small-radius;
   text-transform: uppercase;
   cursor: pointer;
   overflow: hidden;
-  color: $btn-font-color;
+  color: teal;
   font-family: $main-font-family;
   letter-spacing: 2px;
   transition: all 500ms;
 
   &:hover {
-    color: $btn-font-alternate-color;
-    background-color: $btn-fill-color;
+    color: white;
+    background-color: teal;
     transition: all 500ms;
   }
 }
