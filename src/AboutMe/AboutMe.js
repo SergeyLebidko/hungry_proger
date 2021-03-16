@@ -8,9 +8,9 @@ function AboutMe() {
     let inlineStyle = {top: `${headerHeight}px`};
     return (
         <div className={style.container} style={inlineStyle}>
-            <div className={style.header}>
-                <h1>Обо мне</h1>
-                <div/>
+            <div>
+                <h1 className={style.header}>Обо мне</h1>
+                <div className={style.separator}/>
             </div>
             <div className={style.content}>
                 <img src="/images/avatar.jpg"/>

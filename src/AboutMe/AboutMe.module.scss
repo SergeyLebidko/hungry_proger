@@ -1,13 +1,9 @@
 @import "../variables";
+@import "../rule-presets";
 
 .container {
-  position: relative;
-  background-color: azure;
+  @extend %container;
   box-shadow: 0 -5px 30px 5px rgba(50, 50, 50, 0.25);
-  padding-top: 40px;
-  padding-bottom: 40px;
-  width: 100%;
-  z-index: 4;
 }
 
 .container > div {
@@ -17,23 +13,11 @@
 }
 
 .header {
-  h1 {
-    font-family: $headers-font-family;
-    font-weight: normal;
-    font-size: 3em;
-    text-align: center;
-    padding-bottom: 0;
-    margin-bottom: 20px;
-    color: $headers-font-color;
-    max-width: 1000px;
-  }
+  @extend %header
+}
 
-  div {
-    max-width: 1000px;
-    height: 2px;
-    background-image: linear-gradient(to right, transparent, teal, transparent);
-    margin-bottom: 40px;
-  }
+.separator {
+  @extend %separator
 }
 
 .content {

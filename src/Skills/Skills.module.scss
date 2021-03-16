@@ -1,0 +1,60 @@
+@import "../variables";
+@import "../rule-presets";
+
+.container {
+  @extend %container;
+  padding-top: 100px;
+}
+
+.container > div {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header {
+  @extend %header
+}
+
+.separator {
+  @extend %separator
+}
+
+.content {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style-type: none;
+  }
+
+  li {
+    font-family: $headers-font-family;
+    font-size: 1.5em;
+    color: dimgray;
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    border: 1px solid dimgray;
+    border-radius: $small-radius;
+    cursor: default;
+    transition: all 400ms;
+
+    &:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 15px 5px rgba(50, 50, 50, 0.3);
+      background-color: dimgray;
+      color: white;
+      transition: all 400ms;
+    }
+  }
+
+
+  span {
+    margin-top: 20px;
+  }
+}
