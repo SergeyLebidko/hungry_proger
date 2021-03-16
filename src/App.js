@@ -1,4 +1,7 @@
 import React from 'react';
+import {useEffect, useState} from 'react';
+import {Switch, Route} from 'react-router-dom';
+import axios from 'axios';
 import Header from './Header/Header';
 import TitleBlock from './TitleBlock/TitleBlock';
 import AboutMe from './AboutMe/AboutMe';
@@ -10,15 +13,26 @@ export const headerHeight = window.innerHeight + 50;
 
 
 function App() {
+    let [aboutMeText, setAboutMeText] = useState('');
+
+    useEffect(() => {
+        axios.get('/content/about_me.txt').then(response => setAboutMeText(response.data));
+    }, []);
+
     return (
-        <>
-            <Header/>
-            <TitleBlock/>
-            <AboutMe/>
-            <Skills/>
-            <Project/>
-            <Contacts/>
-        </>
+        <Switch>
+            <Route exact path="/">
+                <Header/>
+                <TitleBlock/>
+                <AboutMe text={aboutMeText}/>
+                <Skills/>
+                <Project/>
+                <Contacts/>
+            </Route>
+            <Route path="*">
+                <div>Простите, но такой страницы нет...</div>
+            </Route>
+        </Switch>
     );
 }
 

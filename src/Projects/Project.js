@@ -95,7 +95,7 @@ function Project() {
                     <a href="https://github.com/SergeyLebidko/ReactTraining"><img src="/images/git_logo.png"/></a>
                     <h1>ReactTraining</h1>
                     <p>
-                        Учебный проект, в которм я обкатывал навыки создания различных React-компонетов и работы с CSS
+                        Учебный проект, в котором я обкатывал навыки создания различных React-компонетов и работы с CSS
                     </p>
                     <ul>
                         <li>Python</li>

@@ -34,3 +34,18 @@ export function createGradient() {
 
     return {backgroundImage: `linear-gradient(to ${hPos} ${vPos}, ${color1}, ${color2})`}
 }
+
+export function textParser(text) {
+    let [headerText, bodyText] = text.split('###');
+    if (headerText && headerText.length > 0) {
+        headerText = headerText.split('***');
+    } else {
+        headerText = [];
+    }
+    if (bodyText && bodyText.length > 0) {
+        bodyText = bodyText.split('***');
+    } else {
+        bodyText = [];
+    }
+    return {headerText, bodyText}
+}

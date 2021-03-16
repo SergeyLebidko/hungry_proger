@@ -2,9 +2,12 @@ import React from 'react';
 import style from './AboutMe.module.scss';
 import SimpleButton from '../SimpleButton/SimpleButton';
 import {headerHeight} from '../App';
+import {textParser} from '../utils';
 
 
-function AboutMe() {
+function AboutMe({text}) {
+    let {headerText} = textParser(text);
+
     let inlineStyle = {top: `${headerHeight}px`};
     return (
         <div className={style.container} style={inlineStyle}>
@@ -16,15 +19,7 @@ function AboutMe() {
                 <img src="/images/avatar.jpg"/>
                 <div>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore
-                    </p>
-                    <p>
-                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                        ut
-                        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                        culpa qui officia deserunt mollit anim id est laborum.
+                        {headerText.map(line => <p>{line}</p>)}
                     </p>
                     <SimpleButton text="Читать полностью" delay={0} action={e => e}/>
                 </div>
