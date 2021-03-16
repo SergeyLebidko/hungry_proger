@@ -17,11 +17,11 @@
   padding-bottom: 0;
   margin-bottom: 20px;
   color: $headers-font-color;
-  max-width: 1000px;
+  width: 100%;
 }
 
 %separator {
-  max-width: 1000px;
+  width: 100%;
   height: 2px;
   background-image: linear-gradient(to right, transparent, teal, transparent);
   margin-bottom: 40px;
