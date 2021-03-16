@@ -47,7 +47,8 @@
     &:hover {
       transform: scale(1.08);
       box-shadow: 0 0 10px 5px rgba(50, 50, 50, 0.25);
-      background-color: dimgray;
+      background-color: black;
+      border-color: black;
       color: white;
       transition: all 400ms;
     }

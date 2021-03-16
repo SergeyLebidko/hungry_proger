@@ -1,6 +1,7 @@
 import React from 'react';
 import style from './Projects.module.scss';
 import {headerHeight} from '../App';
+import SimpleButton from "../SimpleButton/SimpleButton";
 
 
 function Project() {
@@ -13,7 +14,7 @@ function Project() {
             </div>
             <div className={style.content}>
                 <div>
-                    <img src="/images/git_logo_negative.png"/>
+                    <a href="https://github.com/SergeyLebidko/Abalone"><img src="/images/git_logo.png"/></a>
                     <h1>Abalone</h1>
                     <p>
                         Реализация настольной игры "Абалон", созданной французскими игровыми дизайнерами в 1987 году.
@@ -25,9 +26,39 @@ function Project() {
                 </div>
                 <div>
                     <img src="/images/git_logo_negative.png"/>
-                    <h1>Abalone</h1>
+                    <h1>Graphite</h1>
                     <p>
-                        Реализация настольной игры "Абалон", созданной французскими игровыми дизайнерами в 1987 году.
+                        Платформа для ведения блогов<br/>
+                        Мой первый, в котором фронтэнд написан полностью на React
+                    </p>
+                    <ul>
+                        <li>Python</li>
+                        <li>Django</li>
+                        <li>DRF</li>
+                        <li>React</li>
+                        <li>CSS</li>
+                    </ul>
+                </div>
+                <div>
+                    <img src="/images/git_logo_negative.png"/>
+                    <h1>MiniStorage</h1>
+                    <p>
+                        Простая система ведения учета на небольшом складе с базовым набором возможностей
+                    </p>
+                    <ul>
+                        <li>DRF</li>
+                        <li>JavaScript</li>
+                        <li>jQuery</li>
+                        <li>CSS</li>
+                        <li>Python</li>
+                        <li>Django</li>
+                    </ul>
+                </div>
+                <div>
+                    <img src="/images/git_logo_negative.png"/>
+                    <h1>Hexagone</h1>
+                    <p>
+                        Игра-пазл на поле из гексов
                     </p>
                     <ul>
                         <li>Python</li>
@@ -36,9 +67,24 @@ function Project() {
                 </div>
                 <div>
                     <img src="/images/git_logo_negative.png"/>
-                    <h1>Abalone</h1>
+                    <h1>hProger</h1>
                     <p>
-                        Реализация настольной игры "Абалон", созданной французскими игровыми дизайнерами в 1987 году.
+                        Сайт, на котором вы сейчас находитесь<br/>
+                        Можете кликнуть на логотип github'a в углу карточки и посмотреть его исходный код :)
+                    </p>
+                    <ul>
+                        <li>React</li>
+                        <li>paper.js</li>
+                        <li>Axios</li>
+                        <li>CSS</li>
+                        <li>SCSS</li>
+                    </ul>
+                </div>
+                <div>
+                    <img src="/images/git_logo_negative.png"/>
+                    <h1>PyChess</h1>
+                    <p>
+                        Шахматы на Python. Один из первых моих проектов на этом языке
                     </p>
                     <ul>
                         <li>Python</li>
@@ -47,29 +93,36 @@ function Project() {
                 </div>
                 <div>
                     <img src="/images/git_logo_negative.png"/>
-                    <h1>Abalone</h1>
+                    <h1>ReactTraining</h1>
                     <p>
-                        Реализация настольной игры "Абалон", созданной французскими игровыми дизайнерами в 1987 году.
+                        Учебный проект, в которм я обкатывал навыки создания различных React-компонетов и работы с CSS
                     </p>
                     <ul>
                         <li>Python</li>
-                        <li>pygame</li>
+                        <li>Django</li>
+                        <li>React</li>
+                        <li>CSS</li>
                     </ul>
                 </div>
                 <div>
                     <img src="/images/git_logo_negative.png"/>
-                    <h1>Abalone</h1>
+                    <h1>WhiteLinen</h1>
                     <p>
-                        Реализация настольной игры "Абалон", созданной французскими игровыми дизайнерами в 1987 году.
+                        Проект простого сайта-визитки для небольшой дизайн-студии<br/>
+                        Мой первый опыт в верстке лендинга
                     </p>
                     <ul>
-                        <li>Python</li>
-                        <li>pygame</li>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>jQuery</li>
                     </ul>
                 </div>
             </div>
+            <div className={style.btn_block}>
+                <SimpleButton text="Больше о моих проектах" delay={0} action={e => e}/>
+            </div>
         </div>
-    )
+    );
 }
 
 export default Project
