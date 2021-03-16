@@ -47,13 +47,18 @@
       width: 0;
       height: 0;
       background-image: linear-gradient(to right bottom, rgb(65, 65, 65), black);
-      z-index: -1;
+      z-index: -2;
     }
 
     &:hover {
       transform: scale(1.05);
       box-shadow: 0 0 15px 10px rgba(50, 50, 50, 0.5);
       transition: all 400ms;
+
+      img {
+        filter: grayscale(0);
+        transition: all 400ms;
+      }
 
       &:after {
         width: 100%;
@@ -72,10 +77,6 @@
       padding: 3px;
       border: 2px solid white;
       border-radius: 50%;
-
-      &:hover {
-        filter: grayscale(0);
-      }
     }
 
     h1 {

@@ -25,7 +25,7 @@ function Project() {
                     </ul>
                 </div>
                 <div>
-                    <img src="/images/git_logo_negative.png"/>
+                    <a href="https://github.com/SergeyLebidko/graphite_client"><img src="/images/git_logo.png"/></a>
                     <h1>Graphite</h1>
                     <p>
                         Платформа для ведения блогов<br/>
@@ -40,7 +40,7 @@ function Project() {
                     </ul>
                 </div>
                 <div>
-                    <img src="/images/git_logo_negative.png"/>
+                    <a href="https://github.com/SergeyLebidko/MiniStorage"><img src="/images/git_logo.png"/></a>
                     <h1>MiniStorage</h1>
                     <p>
                         Простая система ведения учета на небольшом складе с базовым набором возможностей
@@ -55,8 +55,8 @@ function Project() {
                     </ul>
                 </div>
                 <div>
-                    <img src="/images/git_logo_negative.png"/>
-                    <h1>Hexagone</h1>
+                    <a href="https://github.com/SergeyLebidko/Hexagon"><img src="/images/git_logo.png"/></a>
+                    <h1>Hexagon</h1>
                     <p>
                         Игра-пазл на поле из гексов
                     </p>
@@ -66,7 +66,7 @@ function Project() {
                     </ul>
                 </div>
                 <div>
-                    <img src="/images/git_logo_negative.png"/>
+                    <a href="https://github.com/SergeyLebidko/hungry_proger"><img src="/images/git_logo.png"/></a>
                     <h1>hProger</h1>
                     <p>
                         Сайт, на котором вы сейчас находитесь<br/>
@@ -81,7 +81,7 @@ function Project() {
                     </ul>
                 </div>
                 <div>
-                    <img src="/images/git_logo_negative.png"/>
+                    <a href="https://github.com/SergeyLebidko/PyChess"><img src="/images/git_logo.png"/></a>
                     <h1>PyChess</h1>
                     <p>
                         Шахматы на Python. Один из первых моих проектов на этом языке
@@ -92,7 +92,7 @@ function Project() {
                     </ul>
                 </div>
                 <div>
-                    <img src="/images/git_logo_negative.png"/>
+                    <a href="https://github.com/SergeyLebidko/ReactTraining"><img src="/images/git_logo.png"/></a>
                     <h1>ReactTraining</h1>
                     <p>
                         Учебный проект, в которм я обкатывал навыки создания различных React-компонетов и работы с CSS
@@ -105,7 +105,7 @@ function Project() {
                     </ul>
                 </div>
                 <div>
-                    <img src="/images/git_logo_negative.png"/>
+                    <a href="https://github.com/SergeyLebidko/WhiteLinen"><img src="/images/git_logo.png"/></a>
                     <h1>WhiteLinen</h1>
                     <p>
                         Проект простого сайта-визитки для небольшой дизайн-студии<br/>
