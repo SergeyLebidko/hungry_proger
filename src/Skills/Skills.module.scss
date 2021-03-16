@@ -3,7 +3,7 @@
 
 .container {
   @extend %container;
-  padding-top: 100px;
+  padding-top: 200px;
 }
 
 .container > div {
@@ -37,7 +37,7 @@
     font-size: 1.5em;
     color: dimgray;
     display: inline-block;
-    margin: 10px;
+    margin: 15px;
     padding: 10px 20px;
     border: 1px solid dimgray;
     border-radius: $small-radius;
