@@ -5,17 +5,18 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  background-image: linear-gradient(to right bottom, lightgray, dimgray);
+  background-image: linear-gradient(to right bottom, white, AntiqueWhite);
 }
 
 .content {
   max-width: 800px;
   padding: 20px;
-  margin: 15px;
+  margin: 30px 15px 30px 15px;
   background-color: white;
   color: dimgray;
-  box-shadow: 0 0 15px 10px rgba(50, 50, 50, 0.25);
+  box-shadow: 0 0 15px 10px rgba(50, 50, 50, 0.20);
   border-radius: $large-radius;
+  z-index: 2;
 
   .header {
     background-image: linear-gradient(to right bottom, DeepSkyBlue, DodgerBlue);
@@ -42,4 +43,15 @@
 
 .separator {
   @extend %separator
+}
+
+.cap {
+  position: fixed;
+  width: 100%;
+  height: 150px;
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(to right bottom, orangered, crimson);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 100%);
+  z-index: 1;
 }

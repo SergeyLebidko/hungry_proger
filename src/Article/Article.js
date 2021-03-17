@@ -7,6 +7,7 @@ import style from './Article.module.scss';
 function Article({title, content, history}) {
     return (
         <div className={style.container}>
+            <div className={style.cap}/>
             <div className={style.content}>
                 <div className={style.title}>{title}</div>
                 <div className={style.separator}/>
