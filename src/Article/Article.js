@@ -1,0 +1,22 @@
+import React from 'react';
+import {withRouter} from 'react-router-dom';
+import SimpleButton from '../SimpleButton/SimpleButton';
+import style from './Article.module.scss';
+
+
+function Article({title, content, history}) {
+    return (
+        <div className={style.container}>
+            <div className={style.content}>
+                <div className={style.title}>{title}</div>
+                <div className={style.separator}/>
+                <div className={style.header}>{content.header.map(value => <p>{value}</p>)}</div>
+                <div>{content.body.map(value => <p>{value}</p>)}</div>
+                <SimpleButton text="На главную" delay={0} action={() => history.push('/')}/>
+                <SimpleButton text="Моё резюме" delay={0} action={() => window.open('/content/resume.pdf', '_blank')}/>
+            </div>
+        </div>
+    );
+}
+
+export default withRouter(Article);

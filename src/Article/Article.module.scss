@@ -1,0 +1,45 @@
+@import "../variables";
+@import "../rule-presets";
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background-image: linear-gradient(to right bottom, lightgray, dimgray);
+}
+
+.content {
+  max-width: 800px;
+  padding: 20px;
+  margin: 15px;
+  background-color: white;
+  color: dimgray;
+  box-shadow: 0 0 15px 10px rgba(50, 50, 50, 0.25);
+  border-radius: $large-radius;
+
+  .header {
+    background-image: linear-gradient(to right bottom, DeepSkyBlue, DodgerBlue);
+    color: white;
+    border-radius: $small-radius;
+    padding: 15px;
+  }
+
+  p {
+    margin-top: 10px;
+    text-align: justify;
+    font-size: 1.2em;
+  }
+
+  span {
+    margin-top: 20px;
+    margin-right: 20px;
+  }
+}
+
+.title {
+  @extend %header
+}
+
+.separator {
+  @extend %separator
+}

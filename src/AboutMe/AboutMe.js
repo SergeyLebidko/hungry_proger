@@ -1,10 +1,11 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom';
 import style from './AboutMe.module.scss';
 import SimpleButton from '../SimpleButton/SimpleButton';
 import {headerHeight} from '../App';
 
 
-function AboutMe({content}) {
+function AboutMe({content, history}) {
     let inlineStyle = {top: `${headerHeight}px`};
     return (
         <div className={style.container} style={inlineStyle}>
@@ -16,11 +17,11 @@ function AboutMe({content}) {
                 <img src="/images/avatar.jpg"/>
                 <div>
                     {content === null ? '' : content.header.map(line => <p>{line}</p>)}
-                    <SimpleButton text="Читать полностью" delay={0} action={e => e}/>
+                    <SimpleButton text="Читать полностью" delay={0} action={() => history.push("/about_me")}/>
                 </div>
             </div>
         </div>
     );
 }
 
-export default AboutMe;
+export default withRouter(AboutMe);

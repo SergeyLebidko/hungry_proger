@@ -1,6 +1,6 @@
 import React from 'react';
 import {useEffect, useState} from 'react';
-import {Switch, Route} from 'react-router-dom';
+import {Switch, Route, Redirect} from 'react-router-dom';
 import axios from 'axios';
 import Header from './Header/Header';
 import TitleBlock from './TitleBlock/TitleBlock';
@@ -8,6 +8,7 @@ import AboutMe from './AboutMe/AboutMe';
 import Contacts from './Contacts/Contacts';
 import Skills from './Skills/Skills';
 import Project from './Projects/Project';
+import Article from "./Article/Article";
 
 export const headerHeight = window.innerHeight + 50;
 
@@ -19,15 +20,9 @@ function App() {
 
     useEffect(() => {
         axios.get('/content/about_me.txt').then(response => setAboutMeContent(response.data));
-    }, []);
-
-    useEffect(() => {
         axios.get('/content/projects.txt').then(response => setProjectsContent(response.data));
-    });
-
-    useEffect(() => {
         axios.get('/content/skills.txt').then(response => setSkillsList(response.data));
-    });
+    }, []);
 
     return (
         <Switch>
@@ -38,6 +33,9 @@ function App() {
                 <Skills content={skillsList}/>
                 <Project content={projectsContent}/>
                 <Contacts/>
+            </Route>
+            <Route exact path="/about_me">
+                {aboutMeContent === null ? <Redirect to="/"/> : <Article content={aboutMeContent} title="Обо мне"/>}
             </Route>
             <Route path="*">
                 <div>Простите, но такой страницы нет...</div>
