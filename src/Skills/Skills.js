@@ -4,7 +4,7 @@ import style from './Skills.module.scss';
 import {headerHeight} from '../App';
 
 
-function Skills() {
+function Skills({content}) {
     let inlineStyle = {top: `${headerHeight}px`};
     return (
         <div className={style.container} style={inlineStyle}>
@@ -14,14 +14,7 @@ function Skills() {
             </div>
             <div className={style.content}>
                 <ul>
-                    <li>Python</li>
-                    <li>Django</li>
-                    <li>Django Rest Framework</li>
-                    <li>JavaScript</li>
-                    <li>jQuery</li>
-                    <li>React</li>
-                    <li>HTML</li>
-                    <li>CSS</li>
+                    {content === null ? '' : content.map(value => <li>{value}</li>)}
                 </ul>
                 <SimpleButton text="Подробнее" delay={0} action={e => e}/>
             </div>
