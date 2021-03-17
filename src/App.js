@@ -13,10 +13,10 @@ export const headerHeight = window.innerHeight + 50;
 
 
 function App() {
-    let [aboutMeText, setAboutMeText] = useState('');
+    let [aboutMeContent, setAboutMeContent] = useState(null);
 
     useEffect(() => {
-        axios.get('/content/about_me.txt').then(response => setAboutMeText(response.data));
+        axios.get('/content/about_me.txt').then(response => setAboutMeContent(response.data));
     }, []);
 
     return (
@@ -24,7 +24,7 @@ function App() {
             <Route exact path="/">
                 <Header/>
                 <TitleBlock/>
-                <AboutMe text={aboutMeText}/>
+                <AboutMe content={aboutMeContent}/>
                 <Skills/>
                 <Project/>
                 <Contacts/>
