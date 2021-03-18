@@ -12,7 +12,7 @@ function Article({title, content, history}) {
             <div className={style.content}>
                 <div className={style.title}>{title}</div>
                 <div className={style.separator}/>
-                {hasHeader ? '': <div className={style.header}>{content.header.map(value => <p>{value}</p>)}</div>}
+                {hasHeader ? <div className={style.header}>{content.header.map(value => <p>{value}</p>)}</div>: ''}
                 <div>{content.body.map(value => <p>{value}</p>)}</div>
                 <SimpleButton text="На главную" delay={0} action={() => history.push('/')}/>
             </div>
