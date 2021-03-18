@@ -1,0 +1,42 @@
+@import "../variables";
+
+.container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-image: $main-background-gradient;
+}
+
+.content {
+  margin: 20px;
+  padding: 40px;
+  background-color: $main-background-color;
+  border-radius: $large-radius;
+  box-shadow: 0 0 15px 10px rgba(50, 50, 50, 0.15);
+
+  p {
+    font-family: $headers-font-family;
+    color: $headers-font-color;
+    font-size: 1.5em;
+  }
+
+  span {
+    margin-top: 20px;
+  }
+}
+
+.cap {
+  position: fixed;
+  width: 100%;
+  height: 150px;
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(to right bottom, orangered, crimson);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 100%);
+  z-index: 1;
+}

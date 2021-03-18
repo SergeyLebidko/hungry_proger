@@ -9,6 +9,7 @@ import Contacts from './Contacts/Contacts';
 import Skills from './Skills/Skills';
 import Project from './Projects/Project';
 import Article from "./Article/Article";
+import NoMatch from './NoMatch/NoMatch';
 
 export const headerHeight = window.innerHeight + 50;
 
@@ -40,7 +41,7 @@ function App() {
                 {aboutMeContent === null ? <Redirect to="/"/> : <Article content={aboutMeContent} title="Обо мне"/>}
             </Route>
             <Route path="*">
-                <div>Простите, но такой страницы нет...</div>
+                <NoMatch/>
             </Route>
         </Switch>
     );

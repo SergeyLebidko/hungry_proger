@@ -5,14 +5,14 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  background-image: linear-gradient(to right bottom, white, AntiqueWhite);
+  background-image: $main-background-gradient
 }
 
 .content {
   max-width: 800px;
   padding: 20px;
   margin: 30px 15px 30px 15px;
-  background-color: white;
+  background-color: $main-background-color;
   color: dimgray;
   box-shadow: 0 0 15px 10px rgba(50, 50, 50, 0.20);
   border-radius: $large-radius;

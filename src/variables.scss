@@ -7,4 +7,7 @@ $large-radius: 10px;
 $small-radius: 5px;
 
 /* Основной цвет фона */
-$main-background-color: white
+$main-background-color: white;
+
+/* Основной градиент для фона */
+$main-background-gradient: linear-gradient(to right bottom, white, AntiqueWhite);
