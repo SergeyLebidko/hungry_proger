@@ -6,23 +6,21 @@ function PrintablePhrase({phrase, delay}) {
     let [text, setText] = useState('');
     let [hasCursor, setHasCursor] = useState(false);
 
-    function startPrintProcess() {
-        setHasCursor(true);
-        let pos = 1;
-        let timer = setInterval(() => {
-            if (pos === (phrase.length + 1)) {
-                clearInterval(timer);
-                setHasCursor(false);
-                return;
-            }
-            setText(phrase.slice(0, pos));
-            pos++;
-        }, 55);
-    }
-
     useEffect(() => {
         if (delay > 0) {
-            setTimeout(startPrintProcess, delay);
+            setTimeout(() => {
+                setHasCursor(true);
+                let pos = 1;
+                let timer = setInterval(() => {
+                    if (pos === (phrase.length + 1)) {
+                        clearInterval(timer);
+                        setHasCursor(false);
+                        return;
+                    }
+                    setText(phrase.slice(0, pos));
+                    pos++;
+                }, 55);
+            }, delay);
         } else {
             setText(phrase);
         }

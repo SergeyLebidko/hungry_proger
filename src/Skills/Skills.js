@@ -14,7 +14,7 @@ function Skills({content}) {
             </div>
             <div className={style.content}>
                 <ul>
-                    {content === null ? '' : content.map(value => <li>{value}</li>)}
+                    {content === null ? '' : content.map((value, index) => <li key={index}>{value}</li>)}
                 </ul>
                 <SimpleButton text="Подробнее" delay={0} action={e => e}/>
             </div>

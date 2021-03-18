@@ -3,26 +3,23 @@ import style from './SimpleButton.module.scss';
 
 
 function SimpleButton({text, delay, action}) {
-
     let [opacity, setOpacity] = useState(0);
-
-    function startAppearance() {
-        let timer = setInterval(() => {
-            opacity += 0.1;
-            if (opacity > 1) {
-                clearInterval(timer);
-                return;
-            }
-            setOpacity(opacity);
-        }, 120);
-    }
 
     useEffect(() => {
         if (delay === 0) {
             setOpacity(1);
             return;
         }
-        setTimeout(startAppearance, delay);
+        setTimeout(() => {
+            let timer = setInterval(() => {
+                opacity += 0.1;
+                if (opacity > 1) {
+                    clearInterval(timer);
+                    return;
+                }
+                setOpacity(opacity);
+            }, 120);
+        }, delay);
     }, [text]);
 
     return (

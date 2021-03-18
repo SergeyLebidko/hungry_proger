@@ -4,17 +4,13 @@ import style from './HeaderCanvas.module.css';
 
 
 class HeaderCanvas extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount() {
         paper.setup(this.refs.myCanvas);
         let {Path, Point, view} = paper;
         let {Circle} = Path;
 
         let circle;
-        for (let index = 0; index < 30; index++) {
+        for (let index = 0; index < 60; index++) {
             circle = new Circle(Point.random().multiply(view.size), Math.random() * 100);
             circle.fillColor = 'white';
             circle.opacity = Math.random() * 0.4;

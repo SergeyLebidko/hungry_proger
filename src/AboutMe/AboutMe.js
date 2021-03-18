@@ -14,9 +14,9 @@ function AboutMe({content, history}) {
                 <div className={style.separator}/>
             </div>
             <div className={style.content}>
-                <img src="/images/avatar.jpg"/>
+                <img src="/images/avatar.jpg" alt="avatar"/>
                 <div>
-                    {content === null ? '' : content.header.map(line => <p>{line}</p>)}
+                    {content === null ? '' : content.header.map((line, index) => <p key={index}>{line}</p>)}
                     <SimpleButton text="Читать полностью" delay={0} action={() => history.push("/about_me")}/>
                     <SimpleButton text="Моё резюме" delay={0} action={() => window.open('/content/resume.pdf', '_blank')}/>
                 </div>
