@@ -1,10 +1,11 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom';
 import SimpleButton from "../SimpleButton/SimpleButton";
 import style from './Skills.module.scss';
 import {headerHeight} from '../App';
 
 
-function Skills({content}) {
+function Skills({content, history}) {
     let inlineStyle = {top: `${headerHeight}px`};
     return (
         <div className={style.container} style={inlineStyle}>
@@ -16,10 +17,10 @@ function Skills({content}) {
                 <ul>
                     {content === null ? '' : content.map((value, index) => <li key={index}>{value}</li>)}
                 </ul>
-                <SimpleButton text="Подробнее" delay={0} action={e => e}/>
+                <SimpleButton text="Подробнее" delay={0} action={() => history.push('/skills')}/>
             </div>
         </div>
     )
 }
 
-export default Skills;
+export default withRouter(Skills);
