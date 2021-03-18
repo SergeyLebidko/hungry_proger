@@ -18,6 +18,7 @@ function AboutMe({content, history}) {
                 <div>
                     {content === null ? '' : content.header.map(line => <p>{line}</p>)}
                     <SimpleButton text="Читать полностью" delay={0} action={() => history.push("/about_me")}/>
+                    <SimpleButton text="Моё резюме" delay={0} action={() => window.open('/content/resume.pdf', '_blank')}/>
                 </div>
             </div>
         </div>
