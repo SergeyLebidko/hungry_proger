@@ -1,39 +1,41 @@
 import React, {useState, useEffect} from 'react'
 import style from './PrintablePhrase.module.scss';
 
+let printablePhraseStorage = {text: null}
 
 function PrintablePhrase({phrase, delay}) {
-    let [text, setText] = useState('');
+    let [text, setText] = useState(printablePhraseStorage.text || '');
     let [hasCursor, setHasCursor] = useState(false);
 
     useEffect(() => {
-        console.log('PrintablePhrase смонтирован');
-
         let timeout;
         let interval;
-        if (delay > 0) {
-            timeout = setTimeout(() => {
-                setHasCursor(true);
-                let pos = 1;
-                interval = setInterval(() => {
-                    if (pos === (phrase.length + 1)) {
-                        clearInterval(interval);
-                        setHasCursor(false);
-                        return;
-                    }
-                    setText(phrase.slice(0, pos));
-                    pos++;
-                }, 55);
-            }, delay);
-        } else {
+
+        if (delay === 0) {
             setText(phrase);
+            return;
         }
+        if (phrase === printablePhraseStorage.text) return;
+
+        timeout = setTimeout(() => {
+            setHasCursor(true);
+            let pos = text.length + 1, nextText;
+            interval = setInterval(() => {
+                if (pos === (phrase.length + 1)) {
+                    clearInterval(interval);
+                    setHasCursor(false);
+                    return;
+                }
+                nextText = phrase.slice(0, pos)
+                printablePhraseStorage.text = nextText;
+                setText(nextText);
+                pos++;
+            }, 55);
+        }, delay);
 
         return () => {
             clearInterval(interval);
             clearTimeout(timeout);
-
-            console.log('PrintablePhrase размонтирован');
         };
     }, [phrase]);
 
