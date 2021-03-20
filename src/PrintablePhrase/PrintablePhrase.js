@@ -7,6 +7,8 @@ function PrintablePhrase({phrase, delay}) {
     let [hasCursor, setHasCursor] = useState(false);
 
     useEffect(() => {
+        console.log('PrintablePhrase смонтирован');
+
         let timeout;
         let interval;
         if (delay > 0) {
@@ -30,6 +32,8 @@ function PrintablePhrase({phrase, delay}) {
         return () => {
             clearInterval(interval);
             clearTimeout(timeout);
+
+            console.log('PrintablePhrase размонтирован');
         };
     }, [phrase]);
 
