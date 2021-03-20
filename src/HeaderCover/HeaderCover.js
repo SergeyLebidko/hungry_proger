@@ -3,18 +3,11 @@ import {createGradient} from '../utils';
 import style from './HeaderCover.module.css';
 
 
-let headerCoverStorage = {
-    gradient1: null,
-    gradient2: null,
-    opacity: null,
-    delta: null,
-}
-
 function HeaderCover({headerHeight}) {
-    let [gradient1, setGradient1] = useState(headerCoverStorage.gradient1 || createGradient());
-    let [gradient2, setGradient2] = useState(headerCoverStorage.gradient2 || createGradient());
-    let [opacity, setOpacity] = useState(headerCoverStorage.opacity || 1);
-    let [delta, setDelta] = useState(headerCoverStorage.delta || -0.025);
+    let [gradient1, setGradient1] = useState(createGradient());
+    let [gradient2, setGradient2] = useState(createGradient());
+    let [opacity, setOpacity] = useState(1);
+    let [delta, setDelta] = useState(-0.025);
 
     useEffect(() => {
         let interval = setInterval(() => {
@@ -45,10 +38,7 @@ function HeaderCover({headerHeight}) {
             setOpacity(opacity);
         }, 250);
 
-        return () => {
-            headerCoverStorage = {gradient1, gradient2, opacity, delta}
-            clearInterval(interval);
-        };
+        return () => clearInterval(interval);
     }, [headerHeight]);
 
     let innerStyle1 = {height: `${headerHeight}px`};
