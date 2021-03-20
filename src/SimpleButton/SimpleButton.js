@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import style from './SimpleButton.module.scss';
 
+let simpleButtonStorage = {opacity: null}
 
 function SimpleButton({text, delay, action}) {
-    let [opacity, setOpacity] = useState(0);
+    let [opacity, setOpacity] = useState(simpleButtonStorage.opacity || 0);
 
     useEffect(() => {
         let interval;
@@ -24,6 +25,7 @@ function SimpleButton({text, delay, action}) {
         }, delay);
 
         return () => {
+            simpleButtonStorage = {opacity}
             clearInterval(interval);
             clearTimeout(timeout);
         };
