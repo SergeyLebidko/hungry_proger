@@ -2,6 +2,11 @@ import React, {useState, useEffect} from 'react'
 import style from './PrintablePhrase.module.scss';
 
 
+let printablePhraseStorage = {
+    text: null,
+    hasCursor: null
+}
+
 function PrintablePhrase({phrase, delay}) {
     let [text, setText] = useState('');
     let [hasCursor, setHasCursor] = useState(false);
@@ -28,6 +33,7 @@ function PrintablePhrase({phrase, delay}) {
         }
 
         return () => {
+            printablePhraseStorage = {text, hasCursor}
             clearInterval(interval);
             clearTimeout(timeout);
         };

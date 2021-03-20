@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import style from './SimpleButton.module.scss';
 
-let simpleButtonStorage = {opacity: 0}
+let simpleButtonStorage = {opacity: null}
 
 function SimpleButton({text, delay, action}) {
     let [opacity, setOpacity] = useState(simpleButtonStorage.opacity || 0);
