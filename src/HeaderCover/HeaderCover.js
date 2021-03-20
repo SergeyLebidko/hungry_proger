@@ -10,7 +10,7 @@ function HeaderCover({headerHeight}) {
     let [delta, setDelta] = useState(-0.025);
 
     useEffect(() => {
-        setInterval(() => {
+        let interval = setInterval(() => {
             opacity += delta;
 
             if (opacity <= 0) {
@@ -37,6 +37,8 @@ function HeaderCover({headerHeight}) {
 
             setOpacity(opacity);
         }, 250);
+
+        return () => clearInterval(interval);
     }, [headerHeight]);
 
     let innerStyle1 = {height: `${headerHeight}px`};

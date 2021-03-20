@@ -7,13 +7,15 @@ function PrintablePhrase({phrase, delay}) {
     let [hasCursor, setHasCursor] = useState(false);
 
     useEffect(() => {
+        let timeout;
+        let interval;
         if (delay > 0) {
-            setTimeout(() => {
+            timeout = setTimeout(() => {
                 setHasCursor(true);
                 let pos = 1;
-                let timer = setInterval(() => {
+                interval = setInterval(() => {
                     if (pos === (phrase.length + 1)) {
-                        clearInterval(timer);
+                        clearInterval(interval);
                         setHasCursor(false);
                         return;
                     }
@@ -24,6 +26,11 @@ function PrintablePhrase({phrase, delay}) {
         } else {
             setText(phrase);
         }
+
+        return () => {
+            clearInterval(interval);
+            clearTimeout(timeout);
+        };
     }, [phrase]);
 
     return <p className={style.phrase}>{text}<span style={hasCursor ? {opacity: 1} : {opacity: 0}}>|</span></p>;
