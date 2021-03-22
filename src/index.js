@@ -1,13 +1,17 @@
 import React from 'react';
 import {render} from 'react-dom';
 import {HashRouter} from 'react-router-dom';
-import './index.css';
+import {Provider} from 'react-redux';
 import App from './App';
+import {store} from './store';
+import './index.css';
 
 
 render(
-    <HashRouter>
-        <App/>
-    </HashRouter>,
+    <Provider store={store}>
+        <HashRouter>
+            <App/>
+        </HashRouter>
+    </Provider>,
     document.getElementById('root')
 );
