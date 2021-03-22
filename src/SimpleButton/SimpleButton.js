@@ -3,7 +3,7 @@ import style from './SimpleButton.module.scss';
 
 let simpleButtonStorage = {opacity: null}
 
-function SimpleButton({text, delay, action}) {
+function SimpleButton({text, delay, action, pk}) {
     let [opacity, setOpacity] = useState(simpleButtonStorage.opacity || 0);
 
     useEffect(() => {

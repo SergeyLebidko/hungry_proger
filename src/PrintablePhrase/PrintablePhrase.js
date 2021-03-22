@@ -19,7 +19,7 @@ function PrintablePhrase({phrase, delay, pk}) {
     let [hasCursor, setHasCursor] = useState(data.hasCursor);
 
     let _data = useRef(null);
-    _data.current = {text: text, hasCursor: hasCursor};
+    _data.current = {text, hasCursor};
 
     useEffect(() => {
         let timeout;
