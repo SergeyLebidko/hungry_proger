@@ -10,8 +10,10 @@ import Skills from './Skills/Skills';
 import Project from './Projects/Project';
 import Article from "./Article/Article";
 import NoMatch from './NoMatch/NoMatch';
+import {store} from './store';
 
 export const headerHeight = window.innerHeight + 50;
+export const Context = React.createContext(store);
 
 
 function App() {
@@ -43,7 +45,8 @@ function App() {
                 {aboutMeContent === null ? <Redirect to="/"/> : <Article content={aboutMeContent} title="Обо мне"/>}
             </Route>
             <Route exact path="/skills">
-                {aboutMeContent === null ? <Redirect to="/"/> : <Article content={skillsDetail} title="Технологии"/>}
+                {aboutMeContent === null ? <Redirect to="/"/> :
+                    <Article content={skillsDetail} title="Технологии"/>}
             </Route>
             <Route path="*">
                 <NoMatch/>

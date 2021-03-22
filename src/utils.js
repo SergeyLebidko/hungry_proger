@@ -34,3 +34,10 @@ export function createGradient() {
 
     return {backgroundImage: `linear-gradient(to ${hPos} ${vPos}, ${color1}, ${color2})`}
 }
+
+export function searchData(arr, pk, defaultData) {
+    for (let value of arr) {
+        if (value.pk === pk) return value.data;
+    }
+    return defaultData;
+}

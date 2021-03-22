@@ -1,9 +1,21 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
+import {Context} from '../App';
 import style from './PrintablePhrase.module.scss';
+import {searchData} from '../utils';
+import {PRINTABLE_PHRASE_DATA_FIELD} from '../store';
 
 let printablePhraseStorage = {text: null}
 
+export function getPrintablePhraseData(store, pk) {
+    let state = store.getState();
+    let defaultData = {text: null};
+    return searchData(state[PRINTABLE_PHRASE_DATA_FIELD], pk, defaultData);
+}
+
 function PrintablePhrase({phrase, delay}) {
+    let store = useContext(Context);
+    console.log(store.getState());
+
     let [text, setText] = useState(printablePhraseStorage.text || '');
     let [hasCursor, setHasCursor] = useState(false);
 

@@ -1,41 +1,72 @@
 import {combineReducers, createStore} from "redux";
 
-export const SAVE = 'save';
+// Я использую Redux для сохранения состояния компонентов между их размонтированием и повторным монтированием
 
-export function actionCreator(pk, data) {
-    return {type: SAVE, pk, data}
+// Типы action'ов
+const SAVE_PRINTABLE_PHRASE_DATA = 'SAVE_PRINTABLE_PHRASE_DATA';
+const SAVE_HEADER_COVER_DATA = 'SAVE_HEADER_COVER_DATA';
+const SAVE_SIMPLE_BUTTON_DATA = 'SAVE_SIMPLE_BUTTON_DATA';
+const SAVE_HEADER_CANVAS_DATA = 'SAVE_HEADER_CANVAS_DATA';
+
+// Наименования полей в хранилище
+export const PRINTABLE_PHRASE_DATA_FIELD = 'printablePhraseData';
+export const HEADER_COVER_DATA_FIELD = 'headerCoverData';
+export const SIMPLE_BUTTON_DATA_FIELD = 'simpleButtonData';
+export const HEADER_CANVAS_DATA_FIELD = 'headerCanvasData';
+
+// Объект для быстрого сопоставления типа action и наименования поля в хранилище
+let selector = {
+    [SAVE_PRINTABLE_PHRASE_DATA]: PRINTABLE_PHRASE_DATA_FIELD,
+    [SAVE_HEADER_COVER_DATA]: HEADER_COVER_DATA_FIELD,
+    [SAVE_SIMPLE_BUTTON_DATA]: SIMPLE_BUTTON_DATA_FIELD,
+    [SAVE_HEADER_CANVAS_DATA]: HEADER_CANVAS_DATA_FIELD
+}
+
+function replaceOrAdd(arr, pk, data) {
+    let updateFlag = false;
+    let result = arr.map(value => {
+        if (value.pk === pk) {
+            updateFlag = true;
+            return {pk, data};
+        }
+        return value
+    });
+    if (updateFlag) return result;
+    return [...result, {pk, data}];
 }
 
 function reducer(state, action) {
-    let {type, pk, data} = action;
-    switch (type) {
-        case SAVE: {
-            let find = false;
-            let result = state.map(value => {
-                if (value.pk === pk) {
-                    find = true;
-                    return {pk, data}
-                }
-                return value;
-            });
-            if (!find) return [...result, {pk, data}]
-            return result;
-        }
-        default:
-            return state;
-    }
+    let fieldName = selector[action.type];
+    if (!fieldName) return state;
+    return {...state, [fieldName]: replaceOrAdd(state[fieldName], action.pk, action.data)}
 }
 
-function printablePhraseData(state = [], action) {
-    reducer(state, action);
+const initialState = {
+    [PRINTABLE_PHRASE_DATA_FIELD]: [],
+    [HEADER_COVER_DATA_FIELD]: [],
+    [SIMPLE_BUTTON_DATA_FIELD]: [],
+    [HEADER_CANVAS_DATA_FIELD]: []
 }
 
-function simpleButtonData(state = [], action) {
-    reducer(state, action);
+export const store = createStore(reducer, initialState);
+
+// Блок создателей действий
+function createSaveDataAction(actionType, pk, data) {
+    return {type: actionType, pk, data};
 }
 
-function headerCoverData(state = [], action) {
-    reducer(state, action);
+export function createSavePrintablePhraseAction(pk, data) {
+    return createSaveDataAction(SAVE_PRINTABLE_PHRASE_DATA, pk, data);
 }
 
-export const store = createStore(combineReducers({printablePhraseData, simpleButtonData, headerCoverData}));
+export function createSaveHeaderCoverAction(pk, data) {
+    return createSaveDataAction(SAVE_HEADER_COVER_DATA, pk, data);
+}
+
+export function createSaveSimpleButtonAction(pk, data) {
+    return createSaveDataAction(SAVE_SIMPLE_BUTTON_DATA, pk, data);
+}
+
+export function createSaveHeaderCanvasAction(pk, data) {
+    return createSaveDataAction(SAVE_HEADER_CANVAS_DATA, pk, data);
+}
