@@ -1,4 +1,4 @@
-import {combineReducers, createStore} from "redux";
+import {createStore} from "redux";
 
 // Я использую Redux для сохранения состояния компонентов между их размонтированием и повторным монтированием
 
