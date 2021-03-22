@@ -1,57 +1,57 @@
-import React, {useState, useEffect, useContext} from 'react'
+import React, {useState, useEffect, useContext, useRef} from 'react'
 import {Context} from '../App';
 import style from './PrintablePhrase.module.scss';
 import {searchData} from '../utils';
-import {PRINTABLE_PHRASE_DATA_FIELD} from '../store';
+import {PRINTABLE_PHRASE_DATA_FIELD, createSavePrintablePhraseAction} from '../store';
 
-let printablePhraseStorage = {text: null}
+const defaultData = {text: '', hasCursor: false};
 
-export function getPrintablePhraseData(store, pk) {
+function getPrintablePhraseData(store, pk) {
     let state = store.getState();
-    let defaultData = {text: null};
     return searchData(state[PRINTABLE_PHRASE_DATA_FIELD], pk, defaultData);
 }
 
-function PrintablePhrase({phrase, delay}) {
+function PrintablePhrase({phrase, delay, pk}) {
     let store = useContext(Context);
-    console.log(store.getState());
+    let data = getPrintablePhraseData(store, pk);
 
-    let [text, setText] = useState(printablePhraseStorage.text || '');
-    let [hasCursor, setHasCursor] = useState(false);
+    let [text, setText] = useState(data.text);
+    let [hasCursor, setHasCursor] = useState(data.hasCursor);
+
+    let _data = useRef(null);
+    _data.current = {text: text, hasCursor: hasCursor};
 
     useEffect(() => {
         let timeout;
         let interval;
 
-        if (delay === 0) {
-            setText(phrase);
-            return;
-        }
-        if (phrase === printablePhraseStorage.text) return;
-
         timeout = setTimeout(() => {
+            if (text === phrase) return;
             setHasCursor(true);
-            let pos = text.length + 1, nextText;
+            let pos = text.length + 1;
             interval = setInterval(() => {
-                if (pos === (phrase.length + 1)) {
-                    clearInterval(interval);
-                    setHasCursor(false);
-                    return;
-                }
-                nextText = phrase.slice(0, pos)
-                printablePhraseStorage.text = nextText;
-                setText(nextText);
+                setText(phrase.slice(0, pos));
                 pos++;
+                if (pos > phrase.length) {
+                    setHasCursor(false);
+                    clearInterval(interval);
+                }
             }, 55);
         }, delay);
 
         return () => {
-            clearInterval(interval);
             clearTimeout(timeout);
+            clearInterval(interval);
+            store.dispatch(createSavePrintablePhraseAction(pk, _data.current));
         };
     }, [phrase]);
 
-    return <p className={style.phrase}>{text}<span style={hasCursor ? {opacity: 1} : {opacity: 0}}>|</span></p>;
+    return (
+        <p className={style.phrase}>
+            {text}
+            <span style={hasCursor ? {opacity: 1} : {opacity: 0}}>|</span>
+        </p>
+    );
 }
 
 export default PrintablePhrase;
