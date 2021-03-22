@@ -5,7 +5,8 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  background-image: $main-background-gradient
+  background-image: $main-background-gradient;
+  width: 100%;
 }
 
 .content {
