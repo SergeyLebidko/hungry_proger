@@ -5,22 +5,17 @@ import style from './Article.module.scss';
 
 import {headerHeight} from '../App';
 
-
 function Article({title, content, history}) {
     let inlineStyle = {minHeight: headerHeight};
-    let hasHeader = content.header.length > 0;
     return (
         <div className={style.container} style={inlineStyle}>
             <div className={style.cap}/>
             <div className={style.content}>
                 <div className={style.title}>{title}</div>
                 <div className={style.separator}/>
-                {hasHeader ?
-                    <div className={style.header}>
-                        {content.header.map((value, index) => <p key={index}>{value}</p>)}
-                    </div>
-                    : ''
-                }
+                <div className={style.header}>
+                    {content.header.map((value, index) => <p key={index}>{value}</p>)}
+                </div>
                 <div>
                     {content.body.map((value, index) => <p key={index}>{value}</p>)}
                 </div>
