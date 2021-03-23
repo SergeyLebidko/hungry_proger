@@ -15,10 +15,10 @@ function HeaderCover({headerHeight, pk}) {
     let store = useContext(Context);
     let data = getHeaderCoverData(store, pk);
 
-    let [gradient1, setGradient1] = useState(data.gradient);
+    let [gradient1, setGradient1] = useState(data.gradient1);
     let [gradient2, setGradient2] = useState(data.gradient2);
     let [opacity, setOpacity] = useState(data.opacity);
-    let [delta, setDelta] = useState(data.delay);
+    let [delta, setDelta] = useState(data.delta);
 
     let _data = useRef(null);
     _data.current = {gradient1, gradient2, opacity, delta}
