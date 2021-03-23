@@ -55,4 +55,15 @@
   background-image: linear-gradient(to right bottom, orangered, crimson);
   clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 100%);
   z-index: 1;
+
+  &:after {
+    position: absolute;
+    left: 30px;
+    top: -15px;
+    content: 'hProger';
+    font-size: 9em;
+    color: white;
+    letter-spacing: 3px;
+    opacity: 0.3;
+  }
 }
