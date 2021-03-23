@@ -1,33 +1,45 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext, useRef} from 'react';
+import {Context} from '../App';
 import style from './SimpleButton.module.scss';
+import {searchData} from "../utils";
+import {createSaveSimpleButtonAction, SIMPLE_BUTTON_DATA_FIELD} from '../store';
 
-let simpleButtonStorage = {opacity: null}
+const defaultData = {opacity: 0}
+
+function getSimpleButtonData(store, pk) {
+    let state = store.getState();
+    return searchData(state[SIMPLE_BUTTON_DATA_FIELD], pk, defaultData);
+}
 
 function SimpleButton({text, delay, action, pk}) {
-    let [opacity, setOpacity] = useState(simpleButtonStorage.opacity || 0);
+    let store = useContext(Context);
+    let data = getSimpleButtonData(store, pk)
+
+    let [opacity, setOpacity] = useState(data.opacity);
+
+    let _data = useRef(null);
+    _data.current = {opacity};
 
     useEffect(() => {
         let interval;
         let timeout;
-        if (delay === 0) {
-            setOpacity(1);
-            return;
-        }
+
         timeout = setTimeout(() => {
+            if (opacity === 1) return;
             interval = setInterval(() => {
                 opacity += 0.1;
-                if (opacity > 1) {
-                    clearInterval(interval);
-                    return;
+                if (opacity >= 1) {
+                    opacity = 1
+                    clearInterval(interval)
                 }
                 setOpacity(opacity);
-            }, 120);
+            }, 100);
         }, delay);
 
         return () => {
-            simpleButtonStorage = {opacity}
             clearInterval(interval);
             clearTimeout(timeout);
+            store.dispatch(createSaveSimpleButtonAction(pk, _data.current));
         };
     }, [text]);
 
