@@ -1,13 +1,27 @@
-import React, {useState, useEffect} from 'react';
-import {createGradient} from '../utils';
+import React, {useState, useEffect, useRef, useContext} from 'react';
+import {createGradient, searchData} from '../utils';
+import {Context} from '../App';
 import style from './HeaderCover.module.css';
+import {createSaveHeaderCoverAction, HEADER_COVER_DATA_FIELD} from '../store';
 
+const defaultData = {gradient1: createGradient(), gradient2: createGradient(), opacity: 1, delta: -0.025}
 
-function HeaderCover({headerHeight}) {
-    let [gradient1, setGradient1] = useState(createGradient());
-    let [gradient2, setGradient2] = useState(createGradient());
-    let [opacity, setOpacity] = useState(1);
-    let [delta, setDelta] = useState(-0.025);
+function getHeaderCoverData(store, pk) {
+    let state = store.getState();
+    return searchData(state[HEADER_COVER_DATA_FIELD], pk, defaultData);
+}
+
+function HeaderCover({headerHeight, pk}) {
+    let store = useContext(Context);
+    let data = getHeaderCoverData(store, pk);
+
+    let [gradient1, setGradient1] = useState(data.gradient);
+    let [gradient2, setGradient2] = useState(data.gradient2);
+    let [opacity, setOpacity] = useState(data.opacity);
+    let [delta, setDelta] = useState(data.delay);
+
+    let _data = useRef(null);
+    _data.current = {gradient1, gradient2, opacity, delta}
 
     useEffect(() => {
         let interval = setInterval(() => {
@@ -38,7 +52,10 @@ function HeaderCover({headerHeight}) {
             setOpacity(opacity);
         }, 250);
 
-        return () => clearInterval(interval);
+        return () => {
+            clearInterval(interval);
+            store.dispatch(createSaveHeaderCoverAction(pk, _data.current));
+        }
     }, [headerHeight]);
 
     let innerStyle1 = {height: `${headerHeight}px`};

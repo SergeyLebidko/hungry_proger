@@ -7,7 +7,7 @@ import {headerHeight} from '../App';
 function Header() {
     return (
         <>
-            <HeaderCover headerHeight={headerHeight}/>
+            <HeaderCover headerHeight={headerHeight} pk="h_cover"/>
             <HeaderCanvas headerHeight={headerHeight}/>
         </>
     );
