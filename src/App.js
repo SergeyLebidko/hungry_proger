@@ -15,7 +15,6 @@ import {store} from './store';
 export const headerHeight = window.innerHeight + 50;
 export const Context = React.createContext(store);
 
-
 function App() {
     let [aboutMeContent, setAboutMeContent] = useState(null);
     let [projectsContent, setProjectsContent] = useState(null);

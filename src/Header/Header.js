@@ -8,7 +8,7 @@ function Header() {
     return (
         <>
             <HeaderCover headerHeight={headerHeight} pk="h_cover"/>
-            <HeaderCanvas headerHeight={headerHeight}/>
+            <HeaderCanvas headerHeight={headerHeight} pk="h_canvas"/>
         </>
     );
 }
