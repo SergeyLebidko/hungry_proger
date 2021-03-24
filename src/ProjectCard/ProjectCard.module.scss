@@ -14,6 +14,7 @@
 
     &:after {
       @extend %gradient_after_element;
+      transition: all 400ms;
     }
 
     &:hover {

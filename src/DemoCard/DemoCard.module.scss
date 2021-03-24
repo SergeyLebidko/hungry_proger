@@ -9,9 +9,11 @@
   background-image: linear-gradient(to right bottom, whitesmoke, rgb(230, 230, 235));
   cursor: pointer;
   overflow: hidden;
+  transition: all 400ms;
 
   &:after {
     @extend %gradient_after_element;
+    transition: all 400ms;
   }
 
   &:before {
@@ -29,6 +31,7 @@
     padding-left: 10px;
     padding-right: 10px;
     background-image: linear-gradient(to right bottom, DeepSkyBlue, dodgerblue);
+    transition: all 400ms;
     opacity: 0;
   }
 
