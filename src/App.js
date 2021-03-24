@@ -8,6 +8,7 @@ import AboutMe from './AboutMe/AboutMe';
 import Contacts from './Contacts/Contacts';
 import Skills from './Skills/Skills';
 import Project from './Projects/Project';
+import Demos from './Demos/Demos';
 import Article from "./Article/Article";
 import NoMatch from './NoMatch/NoMatch';
 import {store} from './store';
@@ -37,6 +38,7 @@ function App() {
                 <TitleBlock/>
                 <AboutMe content={aboutMeContent}/>
                 <Skills content={skillsList}/>
+                <Demos/>
                 <Project content={projectsContent}/>
                 <Contacts content={contactsList}/>
             </Route>

@@ -2,6 +2,7 @@ import React from 'react';
 import {withRouter} from 'react-router-dom';
 import SimpleButton from "../SimpleButton/SimpleButton";
 import style from './Skills.module.scss';
+
 import {headerHeight} from '../App';
 
 
