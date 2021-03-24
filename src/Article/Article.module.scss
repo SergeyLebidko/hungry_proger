@@ -31,14 +31,14 @@
     text-align: justify;
     font-size: 1.2em;
   }
+
+  span.dedicated {
+    font-weight: bold;
+  }
 }
 
 .content > span {
   margin-top: 20px;
-}
-
-span.dedicated {
-  font-weight: bold;
 }
 
 .title {
@@ -56,17 +56,36 @@ span.dedicated {
   top: 0;
   left: 0;
   background-image: linear-gradient(to right bottom, DarkOrange, OrangeRed);
+  border-top:  2px solid OrangeRed;
   border-bottom: 2px solid OrangeRed;
   z-index: 1;
 
   &:after {
     position: absolute;
-    left: 10px;
+    left: 20px;
     top: 10px;
     content: 'hProger';
     font-size: 5em;
     color: white;
     letter-spacing: 3px;
+    opacity: 0.4;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: -100px;
+    top: 0;
+    width: 450px;
+    height: 100%;
+    background-image: linear-gradient(to right, transparent, white);
+    transform: skew(-25deg);
     opacity: 0.3;
+    transition: all 500ms;
+  }
+
+  &:hover:before {
+    left: 100%;
+    transition: all 500ms;
   }
 }
