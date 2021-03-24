@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../rule-presets";
+@import '../variables';
+@import '../rule-presets';
 
 .container {
   @extend %container;
@@ -45,8 +45,6 @@
     transition: all 400ms;
 
     &:hover {
-      transform: scale(1.08);
-      box-shadow: 0 0 10px 5px rgba(50, 50, 50, 0.25);
       background-color: black;
       border-color: black;
       color: white;

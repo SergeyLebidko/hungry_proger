@@ -1,4 +1,5 @@
-@import "../variables";
+@import '../variables';
+@import '../rule-presets';
 
 .container {
   position: fixed;
@@ -13,11 +14,11 @@
 }
 
 .content {
+  @extend %standard_shadow;
   margin: 20px;
   padding: 40px;
   background-color: $main-background-color;
   border-radius: $large-radius;
-  box-shadow: 0 0 15px 10px rgba(50, 50, 50, 0.15);
 
   p {
     font-family: $headers-font-family;

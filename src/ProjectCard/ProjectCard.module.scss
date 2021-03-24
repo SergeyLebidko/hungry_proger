@@ -18,9 +18,9 @@
     }
 
     &:hover {
-      transform: scale(1.05);
+      @extend %standard_shadow;
+      transform: scale($main-scale-factor);
       color: white;
-      box-shadow: 0 0 15px 10px rgba(50, 50, 50, 0.3);
       transition: all 400ms;
 
       &:after {
