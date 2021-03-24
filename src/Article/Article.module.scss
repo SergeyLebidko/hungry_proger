@@ -37,6 +37,10 @@
   margin-top: 20px;
 }
 
+span.dedicated {
+  font-weight: bold;
+}
+
 .title {
   @extend %header
 }
