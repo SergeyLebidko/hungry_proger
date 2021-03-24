@@ -1,0 +1,62 @@
+@import '../variables';
+@import '../rule-presets';
+
+.demo_card {
+  min-width: 300px;
+  position: relative;
+  padding: 20px 35px;
+  border-radius: $small-radius;
+  background-image: linear-gradient(to right bottom, whitesmoke, rgb(230, 230, 235));
+  cursor: pointer;
+  overflow: hidden;
+
+  &:after {
+    @extend %gradient_after_element;
+  }
+
+  &:before {
+    position: absolute;
+    content: '\27A5';
+    color: white;
+    font-size: 2.5em;
+    font-weight: bold;
+    top: 0;
+    right: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-image: linear-gradient(to right bottom, DeepSkyBlue, dodgerblue);
+    opacity: 0;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+    color: white;
+    box-shadow: 0 0 15px 10px rgba(50, 50, 50, 0.3);
+    transition: all 400ms;
+
+    &:after {
+      opacity: 1;
+      transition: all 400ms;
+    }
+
+    &:before {
+      opacity: 1;
+      transition: all 400ms;
+    }
+  }
+
+  &:active {
+    transform: scale(1);
+    transition: all 150ms;
+    box-shadow: none;
+  }
+
+  p {
+    font-family: $headers-font-family;
+    font-size: 2em;
+  }
+}

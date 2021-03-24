@@ -22,6 +22,7 @@ function App() {
     let [skillsList, setSkillsList] = useState(null);
     let [contactsList, setContactsList] = useState(null);
     let [skillsDetail, setSkillsDetail] = useState(null);
+    let [demoData, setDemoData] = useState(null)
 
     useEffect(() => {
         axios.get('/content/about_me.txt').then(response => setAboutMeContent(response.data));
@@ -29,6 +30,8 @@ function App() {
         axios.get('/content/skills.txt').then(response => setSkillsList(response.data));
         axios.get('/content/contacts.txt').then(response => setContactsList(response.data));
         axios.get('/content/skills_detail.txt').then(response => setSkillsDetail(response.data));
+        axios.get('/content/skills_detail.txt').then(response => setSkillsDetail(response.data));
+        axios.get('/content/demo_data.txt').then(response => setDemoData(response.data));
     }, []);
 
     return (
@@ -38,7 +41,7 @@ function App() {
                 <TitleBlock/>
                 <AboutMe content={aboutMeContent}/>
                 <Skills content={skillsList}/>
-                <Demos/>
+                <Demos content={demoData}/>
                 <Project content={projectsContent}/>
                 <Contacts content={contactsList}/>
             </Route>

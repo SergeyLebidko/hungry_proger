@@ -1,4 +1,5 @@
-@import "../variables";
+@import '../variables';
+@import '../rule-presets';
 
 .project_card {
     position: relative;
@@ -12,16 +13,7 @@
     transition: all 400ms;
 
     &:after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: linear-gradient(to right bottom, rgb(50, 50, 50), black);
-      opacity: 0;
-      transition: all 400ms;
-      z-index: -1;
+      @extend %gradient_after_element;
     }
 
     &:hover {

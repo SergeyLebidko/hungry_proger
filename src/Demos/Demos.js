@@ -1,10 +1,11 @@
 import React from 'react';
+import DemoCard from '../DemoCard/DemoCard';
 import style from './Demos.module.scss';
 
 import {headerHeight} from '../App';
 
 
-function Demos() {
+function Demos({content}) {
     let inlineStyle = {top: `${headerHeight}px`};
     return (
         <div className={style.container} style={inlineStyle}>
@@ -16,6 +17,7 @@ function Demos() {
                 <h3>
                     Страницы с демонстрационными компонентами, написанными мной с помощью React и jQuery
                 </h3>
+                {content === null ? '' : content.map((value, index) => <DemoCard key={index} {...value}/>)}
             </div>
         </div>
     )
