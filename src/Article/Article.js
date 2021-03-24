@@ -14,10 +14,10 @@ function Article({title, content, history}) {
                 <div className={style.title}>{title}</div>
                 <div className={style.separator}/>
                 <div className={style.header}>
-                    {content.header.map((value, index) => <p key={index}>{value}</p>)}
+                    {content.header.map((value, index) => <p key={index}><span>{value}</span></p>)}
                 </div>
                 <div>
-                    {content.body.map((value, index) => <p key={index}>{value}</p>)}
+                    {content.body.map((value, index) => <p key={index}><span>{value}</span></p>)}
                 </div>
                 <SimpleButton text="На главную" delay={0} action={() => history.push('/')}/>
             </div>
