@@ -23,6 +23,10 @@ function HeaderCanvas({headerHeight, pk}) {
             let {Path, Point, view} = paper;
             let {Circle} = Path;
 
+            view.onResize = function (e) {
+                console.log('Изменение размера ', e);
+            }
+
             let {circleList} = _data.current;
             if (circleList.length === 0) {
                 let circle, center, radius, opacity;
@@ -48,8 +52,8 @@ function HeaderCanvas({headerHeight, pk}) {
         }
     );
 
-    let innerStyle = {width: '100%', height: `${headerHeight - 1}px`};
-    return <canvas ref={_canvas} className={style.main_canvas} style={innerStyle}/>;
+    let innerStyle = {width: '100%', height: `${headerHeight}px`};
+    return <canvas ref={_canvas} className={style.main_canvas} style={innerStyle} resize="true"/>;
 }
 
 export default HeaderCanvas;

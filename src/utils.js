@@ -52,21 +52,22 @@ export function parseText(text, dedicatedClass) {
     let line = text;
     let dedicatedText, anchorRef, anchorText;
     let pos = -1;
+    let key = 0;
     while (pos < line.length && line !== '') {
         pos++;
         if (pos === line.length) {
-            result.push(<span>{line}</span>);
+            result.push(<span key={key++}>{line}</span>);
         }
         if (line[pos] === '{') {
-            if (pos > 0) result.push(<span>{line.slice(0, pos)}</span>);
+            if (pos > 0) result.push(<span key={key++}>{line.slice(0, pos)}</span>);
             [, dedicatedText, line] = /^\{(.+?)\}(.*)/s.exec(line.slice(pos));
-            result.push(<span className={dedicatedClass}>{dedicatedText}</span>);
+            result.push(<span key={key++} className={dedicatedClass}>{dedicatedText}</span>);
             pos = -1;
         }
         if (line[pos] === '[') {
-            if (pos > 0) result.push(<span>{line.slice(0, pos)}</span>);
+            if (pos > 0) result.push(<span key={key++}>{line.slice(0, pos)}</span>);
             [, anchorRef, anchorText, line] = /^\[(.+?)\]\[(.+?)\](.*)/s.exec(line.slice(pos));
-            result.push(<span><a href={anchorRef}>{anchorText}</a></span>);
+            result.push(<span key={key++}><a href={anchorRef}>{anchorText}</a></span>);
             pos = -1;
         }
     }
