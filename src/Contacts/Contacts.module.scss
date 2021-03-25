@@ -6,6 +6,7 @@
   padding: 30px;
   z-index: 4;
   background-color: transparent;
+  pointer-events: none;
 
   div {
     display: flex;
@@ -17,12 +18,14 @@
     margin-right: auto;
     padding: 10px;
     border-radius: $large-radius;
+    pointer-events: none;
   }
 
   a {
     display: flex;
     justify-content: center;
     align-items: center;
+    pointer-events: auto;
   }
 
   img {

@@ -20,11 +20,15 @@ function HeaderCanvas({headerHeight, pk}) {
 
     useEffect(() => {
             paper.setup(_canvas.current);
-            let {Path, Point, view} = paper;
+            let {Path, Point, view, Tool} = paper;
             let {Circle} = Path;
 
             view.onResize = function (e) {
-                console.log('Изменение размера ', e);
+                console.log('Изменение размера: ', e);
+            }
+
+            view.onMouseDown = function (e) {
+                console.log('Кнопку нажали: ', e);
             }
 
             let {circleList} = _data.current;

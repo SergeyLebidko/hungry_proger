@@ -4,7 +4,6 @@ import PrintablePhrase from '../PrintablePhrase/PrintablePhrase';
 import style from './TitleBlock.module.scss';
 import {headerHeight} from '../App';
 
-
 function scrollToAbout() {
     let current = window.pageYOffset;
     let stop = headerHeight + 3;
@@ -20,11 +19,10 @@ function scrollToAbout() {
 
 }
 
-
 function TitleBlock() {
-    let titleBlockStyle = {height: headerHeight}
+    let inlineStyle = {height: headerHeight}
     return (
-        <div className={style.title_block} style={titleBlockStyle}>
+        <div className={style.title_block} style={inlineStyle}>
             <div>
                 <PrintablePhrase phrase="Сергей Лебидко. Junior web-developer" delay={200} pk="tb_phrase"/>
                 <SimpleButton text="Узнать больше" delay={1900} action={scrollToAbout} pk="tb_button"/>

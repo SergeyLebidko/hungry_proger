@@ -15,6 +15,7 @@
   font-family: $headers-font-family;
   letter-spacing: 2px;
   transition: all 500ms;
+  pointer-events: auto;
 
   &:hover {
     color: white;
