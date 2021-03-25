@@ -7,11 +7,17 @@ import style from './Article.module.scss';
 import {headerHeight} from '../App';
 
 function Article({title, content, history}) {
+    window.scrollTo(0, 0);
+
     let headerElements = [];
-    content.header.map((value, index) => headerElements.push(<p key={index}>{parseText(value, style.dedicated)}</p>));
+    content.header.map(
+        (value, index) => headerElements.push(<p key={index}>{parseText(value, style.dedicated)}</p>)
+    );
 
     let bodyElements = [];
-    content.body.map((value, index) => bodyElements.push(<p key={index}><span>{parseText(value, style.dedicated)}</span></p>));
+    content.body.map(
+        (value, index) => bodyElements.push(<p key={index}><span>{parseText(value, style.dedicated)}</span></p>)
+    );
 
     let inlineStyle = {minHeight: headerHeight};
     return (
