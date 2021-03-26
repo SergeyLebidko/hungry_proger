@@ -58,12 +58,8 @@ function HeaderCover({pk}) {
         }
     }, []);
 
-    let innerStyle1 = {};
-    let innerStyle2 = {};
-
-    Object.assign(innerStyle1, gradient1);
-    Object.assign(innerStyle2, gradient2, {opacity});
-
+    let innerStyle1 = gradient1;
+    let innerStyle2  = Object.assign({}, gradient2, {opacity});
     return (
         <>
             <div className={style.cover1} style={innerStyle1}/>
