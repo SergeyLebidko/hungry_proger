@@ -8,19 +8,11 @@ export function randomChoice(arr) {
 // Функция генерирует и возвращает объект градиента
 export function createGradient() {
     let colors = [
-        'LightSkyBlue',
-        'LightPink',
-        'PaleGreen',
-        'Turquoise',
-        'DarkOrchid',
-        'GreenYellow',
-        'LightSalmon',
-        'Cyan',
-        'Violet',
         'DeepSkyBlue',
+        'ForestGreen',
         'OrangeRed',
-        'SlateBlue',
-        'LightSlateGray'
+        'DarkViolet',
+        'MediumVioletRedУле'
     ];
     let horizontalPositions = ['left', 'right'];
     let verticalPositions = ['top', 'bottom'];
