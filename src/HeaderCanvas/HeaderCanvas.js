@@ -63,6 +63,19 @@ function HeaderCanvas() {
             data = data.filter(value => value.onScreen);
         }
 
+        // Линии
+        const W = view.size.width;
+        const H = view.size.height;
+
+        let path;
+        for (let factor = 0.05; factor <= 0.95; factor += 0.02) {
+            path = new Path();
+            path.add(new Point(0, H * factor), new Point(W, H * factor))
+            path.strokeColor = 'white';
+            path.strokeWidth = 2;
+            path.opacity = 0.2;
+        }
+
         return () => {
             data.forEach(({figure}) => figure.remove());
             tool.remove();
