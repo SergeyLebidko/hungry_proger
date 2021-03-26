@@ -10,7 +10,7 @@ export function createGradient() {
     let colors = [
         'OrangeRed',
         'Gold',
-        'LawnGreen',
+        'ForestGreen',
         'DeepSkyBlue',
         'BlueViolet'
     ];
