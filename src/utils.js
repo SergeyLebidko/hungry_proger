@@ -9,10 +9,13 @@ export function randomChoice(arr) {
 export function createGradient() {
     let colors = [
         'DeepSkyBlue',
+        'DodgerBlue',
         'ForestGreen',
-        'OrangeRed',
+        'LimeGreen',
         'DarkViolet',
-        'MediumVioletRedУле'
+        'MediumVioletRed',
+        'Crimson',
+        'OrangeRed'
     ];
     let horizontalPositions = ['left', 'right'];
     let verticalPositions = ['top', 'bottom'];
