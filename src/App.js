@@ -16,12 +16,18 @@ import HeaderCanvas from './HeaderCanvas/HeaderCanvas';
 
 export const Context = React.createContext(store);
 
+let resizeTimeout = null;
+
 function App() {
     let [windowSize, setWindowSize] = useState({'windowWidth': window.innerWidth, 'windowHeight': window.innerHeight});
 
-    // window.addEventListener('resize', ()=>{
-    //     setWindowSize({'windowWidth': window.innerWidth, 'windowHeight': window.innerHeight});
-    // });
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            setWindowSize({'windowWidth': window.innerWidth, 'windowHeight': window.innerHeight});
+            console.log('Сработало!');
+        }, 600);
+    });
 
     let [aboutMeContent, setAboutMeContent] = useState(null);
     let [projectsContent, setProjectsContent] = useState(null);
