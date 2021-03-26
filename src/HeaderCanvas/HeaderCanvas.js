@@ -2,85 +2,77 @@ import React, {useEffect, useRef} from 'react';
 import paper from 'paper';
 import style from './HeaderCanvas.module.css';
 
-const base = 45;
-const border = 1;
-const bevel = 3;
-
-const pi = Math.PI;
 
 function HeaderCanvas() {
     let _canvas = useRef(null);
 
     useEffect(() => {
         paper.setup(_canvas.current);
-        let {view, Path, Point, Color} = paper;
+        let {view, Path, Point} = paper;
 
-        function getFieldParams(canvasWidth, canvasHeight) {
-            let rectWidth = 2 * border + base;
-            let rectHeight = 2 * border + base;
+        const W = view.size.width;
+        const H = view.size.height;
 
-            let xCount = Math.floor(canvasWidth / rectWidth);
-            let yCount = Math.floor(canvasHeight / rectHeight);
+        let segments = [];
+        segments.push(new Point(W, H));
+        segments.push(new Point(0, H));
+        segments.push(new Point(0, H * 0.8));
 
-            let rectsWidth = xCount * rectWidth;
-            let rectsHeight = yCount * rectHeight;
+        let baseLine = H * 0.8;
 
-            let xStart = (canvasWidth - rectsWidth) / 2;
-            let yStart = (canvasHeight - rectsHeight) / 2;
-
-            return {xCount, yCount, xStart, yStart, rectWidth, rectHeight}
+        let factor = 20;
+        for (let index = 1; index < 10; index++) {
+            segments.push(new Point(W / 10 * index, baseLine + factor));
+            factor *= -1;
         }
+        segments.push(new Point(W, H * 0.8));
 
-        function createElements({xCount, yCount, xStart, yStart, rectWidth, rectHeight}) {
-            let elementList = [], rect, startPoint;
-            for (let row = 0; row < yCount; row++) {
-                for (let col = 0; col < xCount; col++) {
-                    startPoint = new Point(xStart + rectWidth * col, yStart + rectHeight * row);
-                    rect = new Path();
-                    rect.add(startPoint.add(bevel, 0));
-                    rect.add(startPoint.add(base - bevel, 0));
-                    rect.add(startPoint.add(base, bevel));
-                    rect.add(startPoint.add(base, base - bevel));
-                    rect.add(startPoint.add(base - bevel, base));
-                    rect.add(startPoint.add(bevel, base));
-                    rect.add(startPoint.add(0, base - bevel));
-                    rect.add(startPoint.add(0, bevel));
-                    rect.closed = true;
+        let path = new Path(segments);
+        path.closed = true;
 
-                    rect.onMouseEnter = function () {
-                        this.fillColor = 'red';
-                        this.opacity = 0.9;
-                    }
+        let topLeft = new Point(W / 2, baseLine - 30);
+        let bottomRight = new Point(W / 2, H);
 
-                    rect.onMouseLeave = function () {
-                        this.fillColor = 'white';
-                        this.opacity = 0.3;
-                    }
+        path.fillColor = {
+            gradient: {
+                stops: ['blue', 'deepskyblue']
+            },
+            origin: topLeft,
+            destination: bottomRight
+        };
+        path.smooth({from: 2, to: 12});
 
-                    rect.fillColor = 'white';
-                    rect.opacity = 0.3;
-                    elementList.push(rect);
-                }
+        function getRandomArr() {
+            let result = [];
+            for (let index = 0; index < 11; index++) {
+                result.push(Math.random() * 4 - 2);
             }
-            return elementList;
+            return result;
         }
 
-        let fieldParams = getFieldParams(view.size.width, view.size.height);
-        let elementList = createElements(fieldParams);
+        let waves = [
+            {
+                deltaList: getRandomArr(),
+                baseLine,
+                wave: path
+            }
+        ];
 
-        // Код обновления поля при изменении размеров окна
-        let resizeTimeout = null;
-        view.onResize = function () {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                elementList.forEach(element => {
-                    element.off();
-                    element.remove();
-                });
-                fieldParams = getFieldParams(view.size.width, view.size.height);
-                elementList = createElements(fieldParams);
-            }, 600);
+        view.onFrame = function () {
+            waves.forEach(({deltaList, baseLine, wave}) => {
+                for (let index = 2; index <= 12; index++) {
+                    wave.segments[index].point.y += (deltaList[index - 2]);
+                    if (wave.segments[index].point.y > (baseLine + 30)) {
+                        deltaList[index - 2] = -Math.random() * 2;
+                        continue;
+                    }
+                    if (wave.segments[index].point.y < (baseLine - 30)) {
+                        deltaList[index - 2] = Math.random() * 2;
+                    }
+                }
+            });
         }
+
     }, []);
 
     return <canvas ref={_canvas} className={style.main_canvas} resize="true"/>;
