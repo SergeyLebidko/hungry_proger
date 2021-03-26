@@ -1,4 +1,5 @@
 @import '../variables';
+@import '../rule-presets';
 
 .title_block {
     position: absolute;
@@ -15,11 +16,13 @@
 
 .title_block > div {
     position: relative;
-    background-color: rgba(255, 255, 255, 0.7);
-    padding: 40px 100px;
+    padding: 40px 50px;
     border-radius: $large-radius;
     margin: 20px;
     pointer-events: none;
+    text-align: center;
+    background-image: $main-background-gradient;
+    @extend %standard_shadow;
 }
 
 .title_block > div > span {

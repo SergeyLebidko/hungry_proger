@@ -59,18 +59,10 @@ function App() {
                 <Contacts windowSize={windowSize} content={contactsList}/>
             </Route>
             <Route exact path="/about_me">
-                {aboutMeContent === null ?
-                    <Redirect to="/"/>
-                    :
-                    <Article content={aboutMeContent} title="Обо мне"/>
-                }
+                {aboutMeContent === null ? <Redirect to="/"/> : <Article content={aboutMeContent} title="Обо мне"/>}
             </Route>
             <Route exact path="/skills">
-                {aboutMeContent === null ?
-                    <Redirect to="/"/>
-                    :
-                    <Article content={skillsDetail} title="Технологии"/>
-                }
+                {aboutMeContent === null ? <Redirect to="/"/> : <Article content={skillsDetail} title="Технологии"/>}
             </Route>
             <Route path="*">
                 <NoMatch/>

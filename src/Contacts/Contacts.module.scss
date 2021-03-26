@@ -3,7 +3,7 @@
 
 .container {
   position: relative;
-  padding: 30px;
+  padding: 45px;
   z-index: 4;
   background-color: transparent;
   pointer-events: none;
@@ -13,12 +13,13 @@
     justify-content: center;
     align-items: center;
     width: 350px;
-    background-color: rgba(255, 255, 255, 0.7);
     margin-left: auto;
     margin-right: auto;
     padding: 10px;
     border-radius: $large-radius;
     pointer-events: none;
+    background-image: $main-background-gradient;
+    @extend %standard_shadow;
   }
 
   a {
