@@ -4,9 +4,8 @@ import SimpleButton from '../SimpleButton/SimpleButton';
 import {parseText} from '../utils';
 import style from './Article.module.scss';
 
-import {headerHeight} from '../App';
 
-function Article({title, content, history}) {
+function Article({title, content, history, windowSize}) {
     window.scrollTo(0, 0);
 
     let headerElements = [];
@@ -19,7 +18,7 @@ function Article({title, content, history}) {
         (value, index) => bodyElements.push(<p key={index}><span>{parseText(value, style.dedicated)}</span></p>)
     );
 
-    let inlineStyle = {minHeight: headerHeight};
+    let inlineStyle = {minHeight: `${windowSize.windowHeight}px`};
     return (
         <div className={style.container} style={inlineStyle}>
             <div className={style.cap}/>

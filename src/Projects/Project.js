@@ -2,11 +2,10 @@ import React from 'react';
 import SimpleButton from '../SimpleButton/SimpleButton';
 import ProjectCard from '../ProjectCard/ProjectCard';
 import style from './Projects.module.scss';
-import {headerHeight} from '../App';
 
 
-function Project({content}) {
-    let inlineStyle = {top: `${headerHeight}px`};
+function Project({content, windowSize}) {
+    let inlineStyle = {top: `${windowSize.windowHeight}px`};
     return (
         <div className={style.container} style={inlineStyle}>
             <div>

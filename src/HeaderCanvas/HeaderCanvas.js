@@ -1,62 +1,80 @@
-import React, {useEffect, useContext, useRef, useState} from 'react';
+import React, {useEffect, useRef} from 'react';
 import paper from 'paper';
-import {Context} from '../App';
 import style from './HeaderCanvas.module.css';
-import {searchData} from "../utils";
-import {createSaveHeaderCanvasAction, HEADER_CANVAS_DATA_FIELD} from "../store";
 
-const defaultData = {circleList: []};
 
-function getHeaderCanvasData(store, pk) {
-    let state = store.getState();
-    return searchData(state[HEADER_CANVAS_DATA_FIELD], pk, defaultData);
-}
-
-function HeaderCanvas({headerHeight, pk}) {
-    let store = useContext(Context);
-
+function HeaderCanvas({windowSize}) {
     let _canvas = useRef(null);
-    let _data = useRef(getHeaderCanvasData(store, pk));
 
     useEffect(() => {
             paper.setup(_canvas.current);
-            let {Path, Point, view, Tool} = paper;
-            let {Circle} = Path;
+            let {Path, Point, Size, view} = paper;
+
+            /*
+            let tool = new Tool();
+            tool.minDistance = 150;
 
             view.onResize = function (e) {
-                console.log('Изменение размера: ', e);
+                console.log('Новый размер: ', e.size);
             }
 
-            view.onMouseDown = function (e) {
-                console.log('Кнопку нажали: ', e);
+            tool.onMouseDown = function (e) {
+                console.log('Кнопку нажали: ', e.count);
             }
 
-            let {circleList} = _data.current;
-            if (circleList.length === 0) {
-                let circle, center, radius, opacity;
-                for (let index = 0; index < 50; index++) {
-                    center = Point.random().multiply(view.size);
-                    radius = Math.random() * 100;
-                    opacity = Math.random() * 0.4;
-                    circle = new Circle(center, radius);
-                    circle.fillColor = 'white';
-                    circle.opacity = opacity;
-                    circleList.push({center, radius, opacity});
+            tool.onMouseMove = function (e) {
+                console.log('Мышь перетащили: ', e);
+            }
+            */
+
+            let canvasWidth = view.size.width;
+            let canvasHeight = view.size.height;
+
+            let base = 65;
+            let border = 3;
+            let rectWidth = 2 * border + base;
+            let rectHeight = 2 * border + base;
+
+            let xCount = Math.floor(canvasWidth / rectWidth);
+            let yCount = Math.floor(canvasHeight / rectHeight);
+
+            let rectsWidth = xCount * rectWidth;
+            let rectsHeight = yCount * rectHeight;
+
+            let xStart = (canvasWidth - rectsWidth) / 2;
+            let yStart = (canvasHeight - rectsHeight) / 2;
+
+            let rectList = [], rect, startPoint;
+            for (let row = 0; row < yCount; row++) {
+                for (let col = 0; col < xCount; col++) {
+                    startPoint = new Point(xStart + rectWidth * col, yStart + rectHeight * row);
+                    rect = new Path();
+                    rect.add(startPoint.add(5, 0));
+                    rect.add(startPoint.add(base - 5, 0));
+                    rect.add(startPoint.add(base, 5));
+                    rect.add(startPoint.add(base, base - 5));
+                    rect.add(startPoint.add(base - 5, base));
+                    rect.add(startPoint.add(5, base));
+                    rect.add(startPoint.add(0, base - 5));
+                    rect.add(startPoint.add(0, 5));
+                    rect.closed = true;
+
+                    rect.onMouseEnter = function (e) {
+                        this.fillColor = 'red'
+                    }
+
+                    rect.onMouseLeave = function (e) {
+                        this.fillColor = 'white'
+                    }
+
+                    rect.fillColor = 'white';
+                    rect.opacity = 0.4;
+                    rectList.push(rect);
                 }
-            } else {
-                let circle;
-                for (let {center, radius, opacity} of circleList) {
-                    circle = new Circle(center, radius);
-                    circle.fillColor = 'white';
-                    circle.opacity = opacity;
-                }
             }
+        }, []);
 
-            return () => store.dispatch(createSaveHeaderCanvasAction(pk, _data.current));
-        }
-    );
-
-    let innerStyle = {width: '100%', height: `${headerHeight}px`};
+    let innerStyle = {width: '100%', height: `${windowSize.windowHeight}px`};
     return <canvas ref={_canvas} className={style.main_canvas} style={innerStyle} resize="true"/>;
 }
 

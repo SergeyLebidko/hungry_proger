@@ -4,11 +4,9 @@ import style from './AboutMe.module.scss';
 import SimpleButton from '../SimpleButton/SimpleButton';
 import {parseText} from '../utils';
 
-import {headerHeight} from '../App';
 
-
-function AboutMe({content, history}) {
-    let inlineStyle = {top: `${headerHeight}px`};
+function AboutMe({content, history, windowSize}) {
+    let inlineStyle = {top: `${windowSize.windowHeight}px`};
     return (
         <div className={style.container} style={inlineStyle}>
             <div>

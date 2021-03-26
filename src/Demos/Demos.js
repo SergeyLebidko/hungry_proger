@@ -2,11 +2,9 @@ import React from 'react';
 import DemoCard from '../DemoCard/DemoCard';
 import style from './Demos.module.scss';
 
-import {headerHeight} from '../App';
 
-
-function Demos({content}) {
-    let inlineStyle = {top: `${headerHeight}px`};
+function Demos({content, windowSize}) {
+    let inlineStyle = {top: `${windowSize.windowHeight}px`};
     return (
         <div className={style.container} style={inlineStyle}>
             <div>

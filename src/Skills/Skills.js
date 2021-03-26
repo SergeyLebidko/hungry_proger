@@ -3,11 +3,9 @@ import {withRouter} from 'react-router-dom';
 import SimpleButton from "../SimpleButton/SimpleButton";
 import style from './Skills.module.scss';
 
-import {headerHeight} from '../App';
 
-
-function Skills({content, history}) {
-    let inlineStyle = {top: `${headerHeight}px`};
+function Skills({content, history, windowSize}) {
+    let inlineStyle = {top: `${windowSize.windowHeight}px`};
     return (
         <div className={style.container} style={inlineStyle}>
             <div>

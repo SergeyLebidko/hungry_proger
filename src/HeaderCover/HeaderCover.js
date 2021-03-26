@@ -11,7 +11,7 @@ function getHeaderCoverData(store, pk) {
     return searchData(state[HEADER_COVER_DATA_FIELD], pk, defaultData);
 }
 
-function HeaderCover({headerHeight, pk}) {
+function HeaderCover({pk}) {
     let store = useContext(Context);
     let data = getHeaderCoverData(store, pk);
 
@@ -56,10 +56,10 @@ function HeaderCover({headerHeight, pk}) {
             clearInterval(interval);
             store.dispatch(createSaveHeaderCoverAction(pk, _data.current));
         }
-    }, [headerHeight]);
+    }, []);
 
-    let innerStyle1 = {height: `${headerHeight}px`};
-    let innerStyle2 = {height: `${headerHeight}px`};
+    let innerStyle1 = {};
+    let innerStyle2 = {};
 
     Object.assign(innerStyle1, gradient1);
     Object.assign(innerStyle2, gradient2, {opacity});

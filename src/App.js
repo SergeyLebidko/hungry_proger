@@ -2,21 +2,27 @@ import React from 'react';
 import {useEffect, useState} from 'react';
 import {Switch, Route, Redirect} from 'react-router-dom';
 import axios from 'axios';
-import Header from './Header/Header';
 import TitleBlock from './TitleBlock/TitleBlock';
 import AboutMe from './AboutMe/AboutMe';
 import Contacts from './Contacts/Contacts';
 import Skills from './Skills/Skills';
 import Project from './Projects/Project';
 import Demos from './Demos/Demos';
-import Article from "./Article/Article";
+import Article from './Article/Article';
 import NoMatch from './NoMatch/NoMatch';
 import {store} from './store';
+import HeaderCover from './HeaderCover/HeaderCover';
+import HeaderCanvas from './HeaderCanvas/HeaderCanvas';
 
-export const headerHeight = window.innerHeight + 50;
 export const Context = React.createContext(store);
 
 function App() {
+    let [windowSize, setWindowSize] = useState({'windowWidth': window.innerWidth, 'windowHeight': window.innerHeight});
+
+    window.addEventListener('resize', ()=>{
+        setWindowSize({'windowWidth': window.innerWidth, 'windowHeight': window.innerHeight});
+    });
+
     let [aboutMeContent, setAboutMeContent] = useState(null);
     let [projectsContent, setProjectsContent] = useState(null);
     let [skillsList, setSkillsList] = useState(null);
@@ -37,20 +43,25 @@ function App() {
     return (
         <Switch>
             <Route exact path="/">
-                <Header/>
-                <TitleBlock/>
-                <AboutMe content={aboutMeContent}/>
-                <Skills content={skillsList}/>
-                <Demos content={demoData}/>
-                <Project content={projectsContent}/>
-                <Contacts content={contactsList}/>
+                <HeaderCover/>
+                <HeaderCanvas windowSize={windowSize}/>
+                <TitleBlock windowSize={windowSize}/>
+                <AboutMe windowSize={windowSize} content={aboutMeContent}/>
+                <Skills windowSize={windowSize} content={skillsList}/>
+                <Demos windowSize={windowSize} content={demoData}/>
+                <Project windowSize={windowSize} content={projectsContent}/>
+                <Contacts windowSize={windowSize} content={contactsList}/>
             </Route>
             <Route exact path="/about_me">
-                {aboutMeContent === null ? <Redirect to="/"/> : <Article content={aboutMeContent} title="Обо мне"/>}
+                {aboutMeContent === null ?
+                    <Redirect to="/"/>
+                    :
+                    <Article windowSize={windowSize} content={aboutMeContent} title="Обо мне"/>
+                }
             </Route>
             <Route exact path="/skills">
                 {aboutMeContent === null ? <Redirect to="/"/> :
-                    <Article content={skillsDetail} title="Технологии"/>}
+                    <Article windowSize={windowSize} content={skillsDetail} title="Технологии"/>}
             </Route>
             <Route path="*">
                 <NoMatch/>

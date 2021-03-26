@@ -2,11 +2,10 @@ import React from 'react';
 import SimpleButton from '../SimpleButton/SimpleButton';
 import PrintablePhrase from '../PrintablePhrase/PrintablePhrase';
 import style from './TitleBlock.module.scss';
-import {headerHeight} from '../App';
 
-function scrollToAbout() {
+function scrollToAbout(windowSize) {
     let current = window.pageYOffset;
-    let stop = headerHeight + 3;
+    let stop = windowSize.windowHeight + 3;
     let delta = 50;
     let timer = setInterval(() => {
         current += delta;
@@ -19,13 +18,12 @@ function scrollToAbout() {
 
 }
 
-function TitleBlock() {
-    let inlineStyle = {height: headerHeight}
+function TitleBlock({windowSize}) {
     return (
-        <div className={style.title_block} style={inlineStyle}>
+        <div className={style.title_block}>
             <div>
                 <PrintablePhrase phrase="Сергей Лебидко. Junior web-developer" delay={200} pk="tb_phrase"/>
-                <SimpleButton text="Узнать больше" delay={1900} action={scrollToAbout} pk="tb_button"/>
+                <SimpleButton text="Узнать больше" delay={1900} action={() => scrollToAbout(windowSize)} pk="tb_button"/>
             </div>
         </div>
     );
