@@ -25,7 +25,6 @@ function App() {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {
             setWindowSize({'windowWidth': window.innerWidth, 'windowHeight': window.innerHeight});
-            console.log('Сработало!');
         }, 600);
     });
 

@@ -6,12 +6,14 @@ const base = 45;
 const border = 1;
 const bevel = 3;
 
+const pi = Math.PI;
+
 function HeaderCanvas() {
     let _canvas = useRef(null);
 
     useEffect(() => {
         paper.setup(_canvas.current);
-        let {Path, Point, view} = paper;
+        let {view, Path, Point, Color} = paper;
 
         function getFieldParams(canvasWidth, canvasHeight) {
             let rectWidth = 2 * border + base;
@@ -46,8 +48,8 @@ function HeaderCanvas() {
                     rect.closed = true;
 
                     rect.onMouseEnter = function () {
-                        this.fillColor = 'blue';
-                        this.opacity = 0.8;
+                        this.fillColor = 'red';
+                        this.opacity = 0.9;
                     }
 
                     rect.onMouseLeave = function () {
@@ -66,11 +68,15 @@ function HeaderCanvas() {
         let fieldParams = getFieldParams(view.size.width, view.size.height);
         let elementList = createElements(fieldParams);
 
+        // Код обновления поля при изменении размеров окна
         let resizeTimeout = null;
         view.onResize = function () {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(() => {
-                elementList.forEach(element => element.remove());
+                elementList.forEach(element => {
+                    element.off();
+                    element.remove();
+                });
                 fieldParams = getFieldParams(view.size.width, view.size.height);
                 elementList = createElements(fieldParams);
             }, 600);
