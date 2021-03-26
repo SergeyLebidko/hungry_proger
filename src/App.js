@@ -19,9 +19,9 @@ export const Context = React.createContext(store);
 function App() {
     let [windowSize, setWindowSize] = useState({'windowWidth': window.innerWidth, 'windowHeight': window.innerHeight});
 
-    window.addEventListener('resize', ()=>{
-        setWindowSize({'windowWidth': window.innerWidth, 'windowHeight': window.innerHeight});
-    });
+    // window.addEventListener('resize', ()=>{
+    //     setWindowSize({'windowWidth': window.innerWidth, 'windowHeight': window.innerHeight});
+    // });
 
     let [aboutMeContent, setAboutMeContent] = useState(null);
     let [projectsContent, setProjectsContent] = useState(null);
@@ -44,7 +44,7 @@ function App() {
         <Switch>
             <Route exact path="/">
                 <HeaderCover/>
-                <HeaderCanvas windowSize={windowSize}/>
+                <HeaderCanvas/>
                 <TitleBlock windowSize={windowSize}/>
                 <AboutMe windowSize={windowSize} content={aboutMeContent}/>
                 <Skills windowSize={windowSize} content={skillsList}/>
