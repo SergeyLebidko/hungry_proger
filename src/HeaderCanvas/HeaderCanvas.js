@@ -45,7 +45,7 @@ function HeaderCanvas() {
         function getRandomArr() {
             let result = [];
             for (let index = 0; index < 11; index++) {
-                result.push(Math.random() * 4 - 2);
+                result.push(1 - (2 * (index % 2)));
             }
             return result;
         }
@@ -61,13 +61,9 @@ function HeaderCanvas() {
         view.onFrame = function () {
             waves.forEach(({deltaList, baseLine, wave}) => {
                 for (let index = 2; index <= 12; index++) {
-                    wave.segments[index].point.y += (deltaList[index - 2]);
-                    if (wave.segments[index].point.y > (baseLine + 30)) {
-                        deltaList[index - 2] = -Math.random() * 2;
-                        continue;
-                    }
-                    if (wave.segments[index].point.y < (baseLine - 30)) {
-                        deltaList[index - 2] = Math.random() * 2;
+                    wave.segments[index].point.y += deltaList[index - 2];
+                    if ((wave.segments[index].point.y > (baseLine + 30)) || (wave.segments[index].point.y < (baseLine - 30))) {
+                        deltaList[index - 2] *= -1;
                     }
                 }
             });
