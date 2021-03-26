@@ -62,12 +62,15 @@ function App() {
                 {aboutMeContent === null ?
                     <Redirect to="/"/>
                     :
-                    <Article windowSize={windowSize} content={aboutMeContent} title="Обо мне"/>
+                    <Article content={aboutMeContent} title="Обо мне"/>
                 }
             </Route>
             <Route exact path="/skills">
-                {aboutMeContent === null ? <Redirect to="/"/> :
-                    <Article windowSize={windowSize} content={skillsDetail} title="Технологии"/>}
+                {aboutMeContent === null ?
+                    <Redirect to="/"/>
+                    :
+                    <Article content={skillsDetail} title="Технологии"/>
+                }
             </Route>
             <Route path="*">
                 <NoMatch/>

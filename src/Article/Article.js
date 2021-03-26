@@ -5,7 +5,7 @@ import {parseText} from '../utils';
 import style from './Article.module.scss';
 
 
-function Article({title, content, history, windowSize}) {
+function Article({title, content, history}) {
     window.scrollTo(0, 0);
 
     let headerElements = [];
@@ -18,9 +18,8 @@ function Article({title, content, history, windowSize}) {
         (value, index) => bodyElements.push(<p key={index}><span>{parseText(value, style.dedicated)}</span></p>)
     );
 
-    let inlineStyle = {minHeight: `${windowSize.windowHeight}px`};
     return (
-        <div className={style.container} style={inlineStyle}>
+        <div className={style.container}>
             <div className={style.cap}/>
             <div className={style.content}>
                 <div className={style.title}>{title}</div>
