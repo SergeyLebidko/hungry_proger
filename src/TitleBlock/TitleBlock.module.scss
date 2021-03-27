@@ -22,6 +22,7 @@
     pointer-events: none;
     text-align: center;
     background-image: $main-background-gradient;
+    border: 1px solid black;
     @extend %standard_shadow;
 }
 

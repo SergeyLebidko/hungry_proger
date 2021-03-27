@@ -14,7 +14,7 @@ function HeaderCanvas() {
         // Фигуры-искры
         let sparkles = [];
         let sideCounts = [2, 3, 4, 5, 6];
-        let sparkle, sideCount, radius, vector, rotateFactor, opacity;
+        let sparkle, sideCount, radius, vector, rotateFactor;
         let sparkleCount;
 
         let tool = new Tool();

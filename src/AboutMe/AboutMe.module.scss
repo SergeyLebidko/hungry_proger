@@ -3,6 +3,7 @@
 
 .container {
   @extend %container;
+  border-top: 1px solid black;
   box-shadow: 0 -15px 15px rgba(50, 50, 50, 0.25);
 }
 
