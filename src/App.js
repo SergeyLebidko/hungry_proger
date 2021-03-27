@@ -13,6 +13,7 @@ import NoMatch from './NoMatch/NoMatch';
 import {store} from './store';
 import HeaderCover from './HeaderCover/HeaderCover';
 import HeaderCanvas from './HeaderCanvas/HeaderCanvas';
+import DemoSelector from './DemoSelector/DemoSelector';
 
 export const Context = React.createContext(store);
 
@@ -62,6 +63,9 @@ function App() {
             </Route>
             <Route exact path="/skills">
                 {aboutMeContent === null ? <Redirect to="/"/> : <Article content={skillsDetail} title="Технологии"/>}
+            </Route>
+            <Route path="/demo">
+                {demoData === null ? <Redirect to="/"/> : <DemoSelector content={demoData}/>}
             </Route>
             <Route path="*">
                 <NoMatch/>
