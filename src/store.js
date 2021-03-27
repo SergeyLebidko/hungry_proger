@@ -6,20 +6,17 @@ import {createStore} from "redux";
 const SAVE_PRINTABLE_PHRASE_DATA = 'SAVE_PRINTABLE_PHRASE_DATA';
 const SAVE_HEADER_COVER_DATA = 'SAVE_HEADER_COVER_DATA';
 const SAVE_SIMPLE_BUTTON_DATA = 'SAVE_SIMPLE_BUTTON_DATA';
-const SAVE_HEADER_CANVAS_DATA = 'SAVE_HEADER_CANVAS_DATA';
 
 // Наименования полей в хранилище
 export const PRINTABLE_PHRASE_DATA_FIELD = 'printablePhraseData';
 export const HEADER_COVER_DATA_FIELD = 'headerCoverData';
 export const SIMPLE_BUTTON_DATA_FIELD = 'simpleButtonData';
-export const HEADER_CANVAS_DATA_FIELD = 'headerCanvasData';
 
 // Объект для быстрого сопоставления типа action и наименования поля в хранилище
 let selector = {
     [SAVE_PRINTABLE_PHRASE_DATA]: PRINTABLE_PHRASE_DATA_FIELD,
     [SAVE_HEADER_COVER_DATA]: HEADER_COVER_DATA_FIELD,
-    [SAVE_SIMPLE_BUTTON_DATA]: SIMPLE_BUTTON_DATA_FIELD,
-    [SAVE_HEADER_CANVAS_DATA]: HEADER_CANVAS_DATA_FIELD
+    [SAVE_SIMPLE_BUTTON_DATA]: SIMPLE_BUTTON_DATA_FIELD
 }
 
 function replaceOrAdd(arr, pk, data) {
@@ -44,8 +41,7 @@ function reducer(state, action) {
 const initialState = {
     [PRINTABLE_PHRASE_DATA_FIELD]: [],
     [HEADER_COVER_DATA_FIELD]: [],
-    [SIMPLE_BUTTON_DATA_FIELD]: [],
-    [HEADER_CANVAS_DATA_FIELD]: []
+    [SIMPLE_BUTTON_DATA_FIELD]: []
 }
 
 export const store = createStore(reducer, initialState);
@@ -65,8 +61,4 @@ export function createSaveHeaderCoverAction(pk, data) {
 
 export function createSaveSimpleButtonAction(pk, data) {
     return createSaveDataAction(SAVE_SIMPLE_BUTTON_DATA, pk, data);
-}
-
-export function createSaveHeaderCanvasAction(pk, data) {
-    return createSaveDataAction(SAVE_HEADER_CANVAS_DATA, pk, data);
 }
