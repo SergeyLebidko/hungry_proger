@@ -43,7 +43,6 @@ function HeaderCanvas() {
         }
 
         view.onClick = function (event) {
-            if (event.event.button !== 0) return;
             createSparkles(event.point);
         }
 
@@ -72,8 +71,8 @@ function HeaderCanvas() {
             path = new Path();
             path.add(new Point(0, H * factor), new Point(W, H * factor))
             path.strokeColor = 'white';
-            path.strokeWidth = 2;
-            path.opacity = 0.2;
+            path.strokeWidth = 1;
+            path.opacity = 0.3;
         }
 
         return () => {
