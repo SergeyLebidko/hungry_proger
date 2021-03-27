@@ -22,7 +22,8 @@ function TitleBlock({windowSize}) {
     return (
         <div className={style.title_block}>
             <div>
-                <PrintablePhrase phrase="Сергей Лебидко. Junior web-developer" delay={200} pk="tb_phrase"/>
+                <PrintablePhrase phrase="Сергей Лебидко" delay={200} pk="tb_phrase"/>
+                <PrintablePhrase phrase="Junior web-developer" delay={970} pk="tb_phrase"/>
                 <SimpleButton text="Узнать больше" delay={1900} action={() => scrollToAbout(windowSize)} pk="tb_button"/>
             </div>
         </div>
