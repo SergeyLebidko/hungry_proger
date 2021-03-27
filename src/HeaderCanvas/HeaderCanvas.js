@@ -61,12 +61,12 @@ function HeaderCanvas() {
             sparkles = sparkles.filter(({onScreen}) => onScreen);
         }
 
-        // Линии
+        // Линии, рамка и "заклепки"
         let W = view.size.width;
         let H = view.size.height;
 
         let line, lines = [];
-        let startFactor = 0.05, endFactor = 0.95, deltaFactor = 0.02;
+        let startFactor = 0.1, endFactor = 0.9, deltaFactor = 0.02;
         for (let factor = startFactor; factor <= endFactor; factor += deltaFactor) {
             line = new Path();
             line.add(new Point(0, H * factor), new Point(W, H * factor))
@@ -75,6 +75,45 @@ function HeaderCanvas() {
             line.opacity = 0.3;
             lines.push(line);
         }
+
+        const margin = 20, bevel = 20;
+
+        function createFrame() {
+            let result = new Path();
+            result.add(
+                new Point(margin + bevel, margin),
+                new Point(W - margin - bevel, margin),
+                new Point(W - margin, margin + bevel),
+                new Point(W - margin, H - margin - bevel),
+                new Point(W - margin - bevel, H - margin),
+                new Point(margin + bevel, H - margin),
+                new Point(margin, H - margin - bevel),
+                new Point(margin, margin + bevel)
+            );
+            result.closed = true;
+            result.strokeWidth = 1;
+            result.strokeColor = 'white';
+            result.opacity = 0.3;
+            return result;
+        }
+
+        let frame = createFrame();
+
+        function createRivets() {
+            let result = [
+                new Path.Circle(new Point(2.5 * margin, 2.5 * margin), 10),
+                new Path.Circle(new Point(W - 2.5 * margin, 2.5 * margin), 10),
+                new Path.Circle(new Point(W - 2.5 * margin, H - 2.5 * margin), 10),
+                new Path.Circle(new Point(2.5 * margin, H - 2.5 * margin), 10),
+            ];
+            result.forEach(rivet => {
+                rivet.opacity = 0.3;
+                rivet.fillColor = 'white';
+            });
+            return result;
+        }
+
+        let rivets = createRivets();
 
         let resizeTimeout;
         view.onResize = function () {
@@ -89,11 +128,19 @@ function HeaderCanvas() {
                     line.lastSegment.point.y = H * factor;
                     factor += deltaFactor;
                 }
+
+                frame.remove();
+                frame = createFrame();
+
+                rivets.forEach(rivet => rivet.remove());
+                rivets = createRivets();
             }, 600);
         }
 
         return () => {
             sparkles.forEach(({sparkle}) => sparkle.remove());
+            frame.remove();
+            rivets.forEach(rivet => rivet.remove());
             tool.remove();
         }
     }, []);
