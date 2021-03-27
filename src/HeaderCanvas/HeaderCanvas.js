@@ -11,8 +11,8 @@ function HeaderCanvas() {
         paper.setup(_canvas.current);
         let {view, Path, Point, Tool} = paper;
 
+        // Фигуры-искры
         let sparkles = [];
-
         let sideCounts = [2, 3, 4, 5, 6];
         let sparkle, sideCount, radius, vector, rotateFactor, opacity;
         let sparkleCount;
@@ -76,19 +76,19 @@ function HeaderCanvas() {
             lines.push(line);
         }
 
-        const margin = 20, bevel = 20;
+        const frameMargin = 20, frameBevel = 20;
 
         function createFrame() {
             let result = new Path();
             result.add(
-                new Point(margin + bevel, margin),
-                new Point(W - margin - bevel, margin),
-                new Point(W - margin, margin + bevel),
-                new Point(W - margin, H - margin - bevel),
-                new Point(W - margin - bevel, H - margin),
-                new Point(margin + bevel, H - margin),
-                new Point(margin, H - margin - bevel),
-                new Point(margin, margin + bevel)
+                new Point(frameMargin + frameBevel, frameMargin),
+                new Point(W - frameMargin - frameBevel, frameMargin),
+                new Point(W - frameMargin, frameMargin + frameBevel),
+                new Point(W - frameMargin, H - frameMargin - frameBevel),
+                new Point(W - frameMargin - frameBevel, H - frameMargin),
+                new Point(frameMargin + frameBevel, H - frameMargin),
+                new Point(frameMargin, H - frameMargin - frameBevel),
+                new Point(frameMargin, frameMargin + frameBevel)
             );
             result.closed = true;
             result.strokeWidth = 1;
@@ -101,10 +101,10 @@ function HeaderCanvas() {
 
         function createRivets() {
             let result = [
-                new Path.Circle(new Point(2.5 * margin, 2.5 * margin), 10),
-                new Path.Circle(new Point(W - 2.5 * margin, 2.5 * margin), 10),
-                new Path.Circle(new Point(W - 2.5 * margin, H - 2.5 * margin), 10),
-                new Path.Circle(new Point(2.5 * margin, H - 2.5 * margin), 10),
+                new Path.Circle(new Point(2.5 * frameMargin, 2.5 * frameMargin), 10),
+                new Path.Circle(new Point(W - 2.5 * frameMargin, 2.5 * frameMargin), 10),
+                new Path.Circle(new Point(W - 2.5 * frameMargin, H - 2.5 * frameMargin), 10),
+                new Path.Circle(new Point(2.5 * frameMargin, H - 2.5 * frameMargin), 10),
             ];
             result.forEach(rivet => {
                 rivet.opacity = 0.3;
@@ -115,6 +115,7 @@ function HeaderCanvas() {
 
         let rivets = createRivets();
 
+        // Пересчет положения линий, рамки и "заклепок" при изменении размера окна
         let resizeTimeout;
         view.onResize = function () {
             clearTimeout(resizeTimeout);
@@ -137,6 +138,7 @@ function HeaderCanvas() {
             }, 600);
         }
 
+        // При размонтировании компонента - удаляем объекты с холста
         return () => {
             sparkles.forEach(({sparkle}) => sparkle.remove());
             frame.remove();
