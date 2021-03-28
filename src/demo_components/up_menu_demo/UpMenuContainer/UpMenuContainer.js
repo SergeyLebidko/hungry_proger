@@ -1,6 +1,7 @@
 import React from 'react'
 import UpMenu from '../UpMenu/UpMenu';
-import style from './UpMenuContainer.module.css';
+import TextBlock from '../TextBlock/TextBlock';
+import style from './UpMenuContainer.module.scss';
 
 function UpMenuContainer() {
     let items = ['О нас', 'Проекты', 'Услуги', 'Портфолио', 'Отзывы', 'Блог', 'Котакты'];
@@ -10,6 +11,7 @@ function UpMenuContainer() {
     return (
         <div className={style.container} style={inlineStyle}>
             <UpMenu items={items}/>
+            {items.map((value, index) => <TextBlock key={index} title={value}/>)}
         </div>
     );
 }

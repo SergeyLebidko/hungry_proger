@@ -1,0 +1,33 @@
+@import '../../../variables';
+
+.container {
+  position: relative;
+  top: 100px;
+  height: 800px;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 0;
+  max-width: 800px;
+  margin: 50px auto 50px auto;
+  color: white;
+  font-size: 1.3em;
+
+  h3 {
+    font-size: 1.2em;
+    font-family: $headers-font-family;
+    font-weight: normal;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    border-bottom: 1px dotted lightgray;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+
+  p {
+    text-align: justify;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+
+}
