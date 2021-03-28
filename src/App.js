@@ -13,11 +13,17 @@ import NoMatch from './NoMatch/NoMatch';
 import {store} from './store';
 import HeaderCover from './HeaderCover/HeaderCover';
 import HeaderCanvas from './HeaderCanvas/HeaderCanvas';
-import DemoSelector from './DemoSelector/DemoSelector';
+import UpMenuContainer from './demo_components/up_menu_demo/UpMenuContainer/UpMenuContainer';
 
 export const Context = React.createContext(store);
 const DEMO_PATH = '/demo';
-
+const DEMO_DATA = [
+    {
+        title: 'Верхнее меню',
+        href: 'up_menu',
+        component: <UpMenuContainer/>
+    }
+];
 
 function App() {
     let [windowSize, setWindowSize] = useState({'windowWidth': window.innerWidth, 'windowHeight': window.innerHeight});
@@ -35,7 +41,6 @@ function App() {
     let [skillsList, setSkillsList] = useState(null);
     let [contactsList, setContactsList] = useState(null);
     let [skillsDetail, setSkillsDetail] = useState(null);
-    let [demoData, setDemoData] = useState(null)
 
     useEffect(() => {
         axios.get('/content/about_me.txt').then(response => setAboutMeContent(response.data));
@@ -44,7 +49,6 @@ function App() {
         axios.get('/content/contacts.txt').then(response => setContactsList(response.data));
         axios.get('/content/skills_detail.txt').then(response => setSkillsDetail(response.data));
         axios.get('/content/skills_detail.txt').then(response => setSkillsDetail(response.data));
-        axios.get('/content/demo_data.txt').then(response => setDemoData(response.data));
     }, []);
 
     return (
@@ -55,7 +59,7 @@ function App() {
                 <TitleBlock windowSize={windowSize}/>
                 <AboutMe windowSize={windowSize} content={aboutMeContent}/>
                 <Skills windowSize={windowSize} content={skillsList}/>
-                <Demos windowSize={windowSize} content={demoData}/>
+                <Demos windowSize={windowSize} content={DEMO_DATA}/>
                 <Project windowSize={windowSize} content={projectsContent}/>
                 <Contacts windowSize={windowSize} content={contactsList}/>
             </Route>
@@ -65,9 +69,7 @@ function App() {
             <Route exact path="/skills">
                 {aboutMeContent === null ? <Redirect to="/"/> : <Article content={skillsDetail} title="Технологии"/>}
             </Route>
-            <Route path={DEMO_PATH}>
-                {demoData === null ? <Redirect to="/"/> : <DemoSelector content={demoData}/>}
-            </Route>
+            {DEMO_DATA.map(data => <Route exact path={`${DEMO_PATH}/${data.href}`}>{data.component}</Route>)}
             <Route path="*">
                 <NoMatch/>
             </Route>
