@@ -69,7 +69,9 @@ function App() {
             <Route exact path="/skills">
                 {aboutMeContent === null ? <Redirect to="/"/> : <Article content={skillsDetail} title="Технологии"/>}
             </Route>
-            {DEMO_DATA.map(data => <Route exact path={`${DEMO_PATH}/${data.href}`}>{data.component}</Route>)}
+            {DEMO_DATA.map(data => <Route exact path={`${DEMO_PATH}/${data.href}`} key={data.href}>
+                {data.component}
+            </Route>)}
             <Route path="*">
                 <NoMatch/>
             </Route>

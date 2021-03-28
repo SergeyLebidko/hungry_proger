@@ -1,0 +1,40 @@
+@import '../../../variables';
+
+
+.container {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80px;
+  background-color: whitesmoke;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4);
+
+  ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    li {
+      display: inline-block;
+      padding-bottom: 5px;
+      padding-left: 30px;
+      padding-right: 30px;
+      font-family: $headers-font-family;
+      text-transform: uppercase;
+      font-size: 1.6em;
+      color: rgb(50, 50, 70);
+      cursor: pointer;
+      border-bottom: 5px solid transparent;
+      transition: all 500ms;
+
+      &:hover {
+        color: orange;
+        border-bottom: 5px solid orange;
+        transition: all 500ms;
+      }
+    }
+  }
+}
