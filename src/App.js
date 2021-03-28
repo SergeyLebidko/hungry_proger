@@ -16,12 +16,13 @@ import HeaderCanvas from './HeaderCanvas/HeaderCanvas';
 import DemoSelector from './DemoSelector/DemoSelector';
 
 export const Context = React.createContext(store);
+const DEMO_PATH = '/demo';
 
-let resizeTimeout = null;
 
 function App() {
     let [windowSize, setWindowSize] = useState({'windowWidth': window.innerWidth, 'windowHeight': window.innerHeight});
 
+    let resizeTimeout = null;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {
@@ -64,7 +65,7 @@ function App() {
             <Route exact path="/skills">
                 {aboutMeContent === null ? <Redirect to="/"/> : <Article content={skillsDetail} title="Технологии"/>}
             </Route>
-            <Route path="/demo">
+            <Route path={DEMO_PATH}>
                 {demoData === null ? <Redirect to="/"/> : <DemoSelector content={demoData}/>}
             </Route>
             <Route path="*">
