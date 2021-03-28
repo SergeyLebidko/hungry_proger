@@ -54,7 +54,7 @@
     }
   }
 
-  ul.horizontal {
+  ul.item_list {
     display: flex;
     flex-flow: row;
     justify-content: center;
@@ -83,7 +83,7 @@
   }
 
   @media (max-width: 800px) {
-    ul.horizontal {
+    ul.item_list {
       position: absolute;
       top: 80px;
       width: 100%;
@@ -97,6 +97,7 @@
         width: 100%;
         border-bottom: none;
         text-align: center;
+        box-sizing: border-box;
         transition: all 500ms;
 
         &:hover {

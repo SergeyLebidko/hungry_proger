@@ -16,6 +16,13 @@ function UpMenu({items}) {
         let $menuButton = $(menuButton.current);
         let oldVal = window.innerWidth;
 
+        // Если стартуем на маленьком экране, то сразу прячем меню и показываем кнопку
+        if (oldVal <= 800) {
+            $menuButton.show();
+            $menu.hide();
+        }
+
+        // Обработка изменения размеров окна
         function resizeListener() {
             if (oldVal <= 800 && window.innerWidth > 800) {
                 if (!$menu.is(':visible')) $menu.css({display: 'flex'});
@@ -37,7 +44,8 @@ function UpMenu({items}) {
     return (
         <div className={style.container} style={containerInlineStyle}>
             <img src={"/images/demo_components/up_menu_demo/logo.png"}/>
-            <div className={style.menu_button} style={{display: 'none'}} onClick={menuButtonClickHandler} ref={menuButton}>
+            <div className={style.menu_button} style={{display: 'none'}} onClick={menuButtonClickHandler}
+                 ref={menuButton}>
                 <div/>
                 <div/>
                 <div/>
@@ -45,7 +53,7 @@ function UpMenu({items}) {
                 <div/>
                 <div/>
             </div>
-            <ul className={style.horizontal} ref={menu}>
+            <ul className={style.item_list} ref={menu}>
                 {items.map((value, index) => <li key={index}>{value}</li>)}
             </ul>
         </div>
