@@ -11,20 +11,20 @@ function UpMenuContainer() {
         backgroundImage: 'radial-gradient(circle, transparent, rgba(0, 0, 0, 0.5)), url(/images/demo_components/up_menu_demo/back_container.png)'
     }
 
-    let menuMinimalHeightFlag = useRef(false);
     let container = useRef(null);
-    let [menuMinimalState, setMenuMinimalState] = useState(false);
+    let miniModeRef = useRef(false);
+    let [miniMode, setMiniMode] = useState(false);
 
     useEffect(() => {
         function scrollHandler() {
             let scrollPos = container.current.scrollTop;
-            if (scrollPos > scrollLimit && !menuMinimalHeightFlag.current) {
-                menuMinimalHeightFlag.current = true;
-                setMenuMinimalState(true);
+            if (scrollPos > scrollLimit && !miniModeRef.current) {
+                miniModeRef.current = true;
+                setMiniMode(true);
             }
-            if (scrollPos <= scrollLimit && menuMinimalHeightFlag.current) {
-                menuMinimalHeightFlag.current = false;
-                setMenuMinimalState(false);
+            if (scrollPos <= scrollLimit && miniModeRef.current) {
+                miniModeRef.current = false;
+                setMiniMode(false);
             }
         }
 
@@ -35,7 +35,7 @@ function UpMenuContainer() {
 
     return (
         <div className={style.container} style={inlineStyle} ref={container}>
-            <UpMenu items={items} minimalHeightFlag={menuMinimalState}/>
+            <UpMenu items={items} miniMode={miniMode}/>
             {items.map((value, index) => <TextBlock key={index} title={value}/>)}
         </div>
     );

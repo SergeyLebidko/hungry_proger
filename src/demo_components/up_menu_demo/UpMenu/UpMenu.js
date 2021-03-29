@@ -2,29 +2,28 @@ import React, {useEffect, useRef} from 'react';
 import $ from 'jquery';
 import style from './UpMenu.module.scss';
 
-function UpMenu({items, minimalHeightFlag}) {
+function UpMenu({items, miniMode}) {
     let container = useRef(null);
     let menu = useRef(null);
     let menuButton = useRef(null);
     let logo = useRef(null);
 
-    if (minimalHeightFlag) {
-        $(logo.current).hide('fast');
-        $(container.current).animate({height: '40px'}, () => $(container.current).css({
-            backgroundImage: 'none',
-            backgroundColor: 'white'
-        }));
-    } else {
-        $(logo.current).show('fast');
-        $(container.current).animate({height: '80px'}, () => $(container.current).css({
-            backgroundImage: 'url(/images/demo_components/up_menu_demo/back_menu.png)',
-            backgroundColor: 'none'
-        }));
-    }
+    let miniModeRef = useRef(null);
+    miniModeRef.current = miniMode;
 
     function menuButtonClickHandler() {
         if (window.innerWidth > 800) return;
         $(menu.current).slideToggle();
+    }
+
+    if (!$(menuButton.current).is(':visible')) {
+        if (miniMode) {
+            $(logo.current).hide('fast');
+            $(container.current).animate({height: '40px'});
+        } else {
+            $(logo.current).show('fast');
+            $(container.current).animate({height: '80px'});
+        }
     }
 
     useEffect(() => {
@@ -43,9 +42,15 @@ function UpMenu({items, minimalHeightFlag}) {
             if (oldWindowWidth <= 800 && window.innerWidth > 800) {
                 if (!$menu.is(':visible')) $menu.css({display: 'flex'});
                 $menuButton.hide();
+                if (miniModeRef.current) {
+                    $(logo.current).hide('fast');
+                    $(container.current).animate({height: '40px'});
+                };
             }
             if (oldWindowWidth > 800 && window.innerWidth <= 800) {
                 if ($menu.is(':visible')) $menu.css({display: 'none'});
+                $(logo.current).show();
+                $(container.current).css({height: '80px'});
                 $menuButton.show();
             }
             oldWindowWidth = window.innerWidth;
