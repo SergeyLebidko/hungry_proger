@@ -38,6 +38,7 @@ function UpMenu({items, miniMode, clickHandler}) {
     }
 
     useEffect(() => {
+        let $container = $(container.current);
         let $menu = $(menu.current);
         let $menuButton = $(menuButton.current);
         let oldWindowWidth = window.innerWidth;
@@ -64,6 +65,7 @@ function UpMenu({items, miniMode, clickHandler}) {
                 $(container.current).css({height: HAS_NOT_MINI_MODE_HEIGHT});
                 $menuButton.show();
             }
+            $menu.css({maxHeight: `${window.innerHeight - $container.outerHeight()}px`})
             oldWindowWidth = window.innerWidth;
         }
 
@@ -76,7 +78,8 @@ function UpMenu({items, miniMode, clickHandler}) {
     return (
         <div className={style.container} style={containerInlineStyle} ref={container}>
             <img src={"/images/demo_components/up_menu_demo/logo.png"} ref={logo}/>
-            <div className={style.menu_button} style={{display: 'none'}} onClick={menuButtonClickHandler}
+            <div className={style.menu_button} style={{display: 'none'}}
+                 onClick={menuButtonClickHandler}
                  ref={menuButton}>
                 <div/>
                 <div/>

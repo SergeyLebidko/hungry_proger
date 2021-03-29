@@ -33,6 +33,7 @@ function UpMenuContainer() {
         return () => container.current.removeEventListener('scroll', scrollHandler);
     }, []);
 
+    // Функция выполняет прокрутку до текста, соответствующего выбранному пользователем пункту меню
     function menuClickHandler(index) {
         let posCurrent = container.current.scrollTop;
         let posDestination = index * 850;
