@@ -2,6 +2,10 @@ import React, {useEffect, useRef} from 'react';
 import $ from 'jquery';
 import style from './UpMenu.module.scss';
 
+const WINDOW_WIDTH_LIMIT = 800;
+const HAS_MINI_MODE_HEIGHT = '40px';
+const HAS_NOT_MINI_MODE_HEIGHT = '80px';
+
 function UpMenu({items, miniMode}) {
     let container = useRef(null);
     let menu = useRef(null);
@@ -11,19 +15,20 @@ function UpMenu({items, miniMode}) {
     let miniModeRef = useRef(null);
     miniModeRef.current = miniMode;
 
-    function menuButtonClickHandler() {
-        if (window.innerWidth > 800) return;
-        $(menu.current).slideToggle();
-    }
-
     if (!$(menuButton.current).is(':visible')) {
         if (miniMode) {
             $(logo.current).hide('fast');
-            $(container.current).animate({height: '40px'});
+            $(container.current).animate({height: HAS_MINI_MODE_HEIGHT});
         } else {
             $(logo.current).show('fast');
-            $(container.current).animate({height: '80px'});
+            $(container.current).animate({height: HAS_NOT_MINI_MODE_HEIGHT});
         }
+    }
+
+    // Обработчик клика по кнопке открытия/закрытия меню (она используется при ширине окна менее 800px)
+    function menuButtonClickHandler() {
+        if (window.innerWidth > WINDOW_WIDTH_LIMIT) return;
+        $(menu.current).slideToggle();
     }
 
     useEffect(() => {
@@ -31,26 +36,26 @@ function UpMenu({items, miniMode}) {
         let $menuButton = $(menuButton.current);
         let oldWindowWidth = window.innerWidth;
 
-        // Если стартуем на маленьком экране, то сразу прячем меню и показываем кнопку
-        if (oldWindowWidth <= 800) {
+        // Если стартуем на маленьком экране, то сразу прячем меню и показываем кнопку его открытия/закрытия
+        if (oldWindowWidth <= WINDOW_WIDTH_LIMIT) {
             $menuButton.show();
             $menu.hide();
         }
 
         // Так как при изменении размеров окна меняется не только вид меню, но и поведение, то контролируем это из JS
         function resizeListener() {
-            if (oldWindowWidth <= 800 && window.innerWidth > 800) {
+            if (oldWindowWidth <= WINDOW_WIDTH_LIMIT && window.innerWidth > WINDOW_WIDTH_LIMIT) {
                 if (!$menu.is(':visible')) $menu.css({display: 'flex'});
                 $menuButton.hide();
                 if (miniModeRef.current) {
                     $(logo.current).hide('fast');
-                    $(container.current).animate({height: '40px'});
-                };
+                    $(container.current).animate({height: HAS_MINI_MODE_HEIGHT});
+                }
             }
-            if (oldWindowWidth > 800 && window.innerWidth <= 800) {
+            if (oldWindowWidth > WINDOW_WIDTH_LIMIT && window.innerWidth <= WINDOW_WIDTH_LIMIT) {
                 if ($menu.is(':visible')) $menu.css({display: 'none'});
                 $(logo.current).show();
-                $(container.current).css({height: '80px'});
+                $(container.current).css({height: HAS_NOT_MINI_MODE_HEIGHT});
                 $menuButton.show();
             }
             oldWindowWidth = window.innerWidth;
