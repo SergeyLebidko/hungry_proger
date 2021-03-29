@@ -33,9 +33,26 @@ function UpMenuContainer() {
         return () => container.current.removeEventListener('scroll', scrollHandler);
     }, []);
 
+    function menuClickHandler(index) {
+        let posCurrent = container.current.scrollTop;
+        let posDestination = index * 850;
+        if (posCurrent === posDestination) return;
+
+        let delta = (posCurrent < posDestination) ? 95 : -95;
+        let scrollInterval = setInterval(() => {
+            if (Math.abs((posCurrent + delta) - posDestination) < Math.abs(delta)) {
+                container.current.scrollTo(0, posDestination);
+                clearInterval(scrollInterval);
+                return;
+            }
+            posCurrent += delta;
+            container.current.scrollTo(0, posCurrent);
+        }, 12);
+    }
+
     return (
         <div className={style.container} style={inlineStyle} ref={container}>
-            <UpMenu items={items} miniMode={miniMode}/>
+            <UpMenu items={items} miniMode={miniMode} clickHandler={menuClickHandler}/>
             {items.map((value, index) => <TextBlock key={index} title={value}/>)}
         </div>
     );

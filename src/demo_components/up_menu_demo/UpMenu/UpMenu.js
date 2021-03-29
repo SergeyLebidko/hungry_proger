@@ -6,7 +6,7 @@ const WINDOW_WIDTH_LIMIT = 800;
 const HAS_MINI_MODE_HEIGHT = '40px';
 const HAS_NOT_MINI_MODE_HEIGHT = '80px';
 
-function UpMenu({items, miniMode}) {
+function UpMenu({items, miniMode, clickHandler}) {
     let container = useRef(null);
     let menu = useRef(null);
     let menuButton = useRef(null);
@@ -29,6 +29,12 @@ function UpMenu({items, miniMode}) {
     function menuButtonClickHandler() {
         if (window.innerWidth > WINDOW_WIDTH_LIMIT) return;
         $(menu.current).slideToggle();
+    }
+
+    // Обработчик клика по пункту меню (используется при ширине окна менее 800px)
+    function menuItemClickHandler(index) {
+        if ($(menuButton.current).is(':visible')) $(menuButton.current).trigger('click');
+        clickHandler(index);
     }
 
     useEffect(() => {
@@ -80,7 +86,7 @@ function UpMenu({items, miniMode}) {
                 <div/>
             </div>
             <ul className={style.item_list} ref={menu}>
-                {items.map((value, index) => <li key={index}>{value}</li>)}
+                {items.map((value, index) => <li key={index} onClick={() => menuItemClickHandler(index)}>{value}</li>)}
             </ul>
         </div>
     );
