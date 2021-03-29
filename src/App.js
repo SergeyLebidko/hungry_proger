@@ -13,15 +13,17 @@ import NoMatch from './NoMatch/NoMatch';
 import {store} from './store';
 import HeaderCover from './HeaderCover/HeaderCover';
 import HeaderCanvas from './HeaderCanvas/HeaderCanvas';
-import UpMenuContainer from './demo_components/up_menu_demo/UpMenuContainer/UpMenuContainer';
+
+// Импорты demo-компонентов
+import {Container as MenuDemoContainer} from "./demo_components/up_menu_demo/Container/Container";
 
 export const Context = React.createContext(store);
 const DEMO_PATH = '/demo';
 const DEMO_DATA = [
     {
-        title: 'Верхнее меню',
-        href: 'up_menu',
-        component: <UpMenuContainer/>
+        title: 'Меню',
+        href: 'menu',
+        component: <MenuDemoContainer/>
     }
 ];
 
