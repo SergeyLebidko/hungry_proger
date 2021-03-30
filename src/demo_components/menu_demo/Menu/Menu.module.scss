@@ -5,6 +5,9 @@
   width: 100%;
   box-shadow: 0 10px 10px rgba(30, 30, 30, 0.5);
   z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .standard_height {

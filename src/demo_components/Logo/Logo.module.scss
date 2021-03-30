@@ -1,0 +1,30 @@
+img {
+  display: block;
+  padding: 5px;
+  background-color: white;
+  border-radius: 50%;
+  border: 1px solid black;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.2);
+    transition: all 300ms;
+  }
+
+  &:active {
+    transform: scale(1);
+    transition: all 300ms;
+  }
+}
+
+.logo_standard_size {
+  width: 35px;
+  height: 35px;
+  transition: all 300ms;
+}
+
+.logo_minimize_size {
+  width: 15px;
+  height: 15px;
+  transition: all 300ms;
+}
