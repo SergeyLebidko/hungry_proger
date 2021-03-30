@@ -1,3 +1,5 @@
+@import '../../../variables';
+
 .container {
   display: flex;
   justify-content: center;
@@ -5,5 +7,17 @@
 
   li {
     display: inline-block;
+    font-family: $headers-font-family;
+    text-transform: uppercase;
+    padding: 0 15px 5px 15px;
+    border-bottom: 5px solid transparent;
+    cursor: pointer;
+    transition: all 300ms;
+
+    &:hover {
+      color: orange;
+      border-bottom: 5px solid orange;
+      transition: all 300ms;
+    }
   }
 }

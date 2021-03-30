@@ -1,0 +1,36 @@
+@import '../../../variables';
+
+.container {
+  position: fixed;
+  width: 100%;
+  list-style-type: none;
+  padding: 0;
+  z-index: 1;
+
+  li {
+    padding: 15px 0 15px 0;
+    font-family: $headers-font-family;
+    text-transform: uppercase;
+    font-size: 1.7em;
+    text-align: center;
+    background-color: white;
+    cursor: pointer;
+    transition: all 300ms;
+
+    &:hover {
+      background-color: orange;
+      color: white;
+      transition: all 300ms;
+    }
+  }
+}
+
+.normal_position {
+  top: 80px;
+  transition: all 300ms;
+}
+
+.minimized_position {
+  top: 40px;
+  transition: all 300ms;
+}

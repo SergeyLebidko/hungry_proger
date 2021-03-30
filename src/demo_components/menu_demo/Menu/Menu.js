@@ -28,7 +28,7 @@ function Menu({items, minimizeFlag}) {
 
     let inlineStyle = {backgroundImage: 'url(/images/demo_components/menu_demo/back_menu.png)'}
     let menuComponent;
-    if (menuView === vertical) menuComponent = <VerticalList items={items}/>;
+    if (menuView === vertical) menuComponent = <VerticalList items={items} minimizeFlag={minimizeFlag}/>;
     if (menuView === horizontal) menuComponent = <HorizontalList items={items}/>;
     return (
         <div className={`${style.container} ${minimizeFlag ? style.minimize_height : style.standard_height}`}
