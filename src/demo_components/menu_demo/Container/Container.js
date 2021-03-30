@@ -39,7 +39,7 @@ export function Container() {
     }
     return (
         <div className={style.container} style={inlineStyle} ref={container}>
-            <Menu minimizeFlag={minimizeFlag}/>
+            <Menu items={items} minimizeFlag={minimizeFlag}/>
             {textBlocks}
         </div>
     )
