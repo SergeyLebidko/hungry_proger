@@ -1,6 +1,7 @@
 import React from 'react';
 import style from './Container.module.scss'
-import TextBlock from "../TextBlock/TextBlock";
+import TextBlock from '../TextBlock/TextBlock';
+import Menu from '../Menu/Menu';
 
 const backgroundImage = 'url(/images/demo_components/menu_demo/back_container.png';
 const backgroundGradient = 'radial-gradient(circle, transparent, rgba(30, 30, 30, 0.6))';
@@ -20,6 +21,7 @@ export function Container() {
     }
     return (
         <div className={style.container} style={inlineStyle}>
+            <Menu/>
             {textBlocks}
         </div>
     )
