@@ -15,7 +15,8 @@ const aboutComponentText = 'Это компонент с меню. ' +
 export function Container() {
     let items = ['О компоненте', 'О нас', 'Услуги', 'Проекты', 'Отзывы', 'Контакты'];
     let textBlocks = items.map((val, i) => {
-        return (i === 0 ? <TextBlock key={i} title={val} text={aboutComponentText}/> : <TextBlock key={i} title={val}/>);
+        return (i === 0 ? <TextBlock key={i} title={val} text={aboutComponentText}/> :
+            <TextBlock key={i} title={val}/>);
     });
 
     let [minimizeFlag, setMinimizeFlag] = useState(false);
@@ -34,8 +35,21 @@ export function Container() {
         container.current.addEventListener('scroll', scrollListener);
     }, []);
 
-    function itemClickHandler(index){
-        container.current.scrollTo(0,index * 1000);
+    function itemClickHandler(index) {
+        let desPos = index * 1000;
+        let curPos = container.current.scrollTop;
+        if (desPos === curPos) return;
+
+        let delta = desPos > curPos ? 100 : -100;
+        let timer = setInterval(() => {
+            if (Math.abs(curPos - desPos) < Math.abs(delta)) {
+                clearInterval(timer);
+                curPos = desPos;
+            } else {
+                curPos += delta;
+            }
+            container.current.scrollTo(0, curPos);
+        }, 10);
     }
 
     let inlineStyle = {
