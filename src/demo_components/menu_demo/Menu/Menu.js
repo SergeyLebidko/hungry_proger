@@ -39,13 +39,17 @@ function Menu({items, minimizeFlag, itemClickHandler}) {
 
     let menuComponent;
     if (menuView === vertical) {
-        menuComponent = <VerticalList items={items} itemClickHandler={itemClickHandler} minimizeFlag={minimizeFlag} hasOpen={hasVerticalMenuOpen}/>;
+        menuComponent = <VerticalList items={items} itemClickHandler={i => {
+            setHasVerticalMenuOpen(false);
+            itemClickHandler(i);
+        }} minimizeFlag={minimizeFlag} hasOpen={hasVerticalMenuOpen}/>;
     }
     if (menuView === horizontal) menuComponent = <HorizontalList items={items} itemClickHandler={itemClickHandler}/>;
 
     let buttonComponent = '';
     if (menuView === vertical) {
-        buttonComponent = <Button minimizeFlag={minimizeFlag} hasOpen={hasVerticalMenuOpen} clickHandler={menuButtonClickHandler}/>
+        buttonComponent =
+            <Button minimizeFlag={minimizeFlag} hasOpen={hasVerticalMenuOpen} clickHandler={menuButtonClickHandler}/>
     }
     return (
         <div className={`${style.container} ${minimizeFlag ? style.minimize_height : style.standard_height}`}
