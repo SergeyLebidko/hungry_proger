@@ -32,11 +32,13 @@ export function Container() {
             oldScrollPos.current = curScrollPos;
         }
 
+        // Перехватываем скроллинг для управления высотой полосы меню
         container.current.addEventListener('scroll', scrollListener);
     }, []);
 
+    // При клике на пункт меню прокручиваем компонент до соответствующего пункту меню текстового блока
     function itemClickHandler(index) {
-        let desPos = index * 1000;
+        let desPos = index * 1100;
         let curPos = container.current.scrollTop;
         if (desPos === curPos) return;
 

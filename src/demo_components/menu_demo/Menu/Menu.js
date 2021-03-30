@@ -26,6 +26,7 @@ function Menu({items, minimizeFlag, itemClickHandler}) {
             oldWidth.current = curWidth;
         }
 
+        // Перехватываем изменение ширины окна для переключения между видами меню - горизонтальным и вертикальным
         window.addEventListener('resize', resizeListener);
 
         return () => window.removeEventListener('resize', resizeListener);
