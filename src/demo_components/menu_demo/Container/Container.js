@@ -15,7 +15,7 @@ const aboutComponentText = 'Это компонент с меню. ' +
 export function Container() {
     let items = ['О компоненте', 'О нас', 'Услуги', 'Проекты', 'Отзывы', 'Контакты'];
     let textBlocks = items.map((val, i) => {
-        return (i == 0 ? <TextBlock key={i} title={val} text={aboutComponentText}/> : <TextBlock key={i} title={val}/>);
+        return (i === 0 ? <TextBlock key={i} title={val} text={aboutComponentText}/> : <TextBlock key={i} title={val}/>);
     });
 
     let [minimizeFlag, setMinimizeFlag] = useState(false);
@@ -34,12 +34,16 @@ export function Container() {
         container.current.addEventListener('scroll', scrollListener);
     }, []);
 
+    function itemClickHandler(index){
+        container.current.scrollTo(0,index * 1000);
+    }
+
     let inlineStyle = {
         backgroundImage: `${backgroundGradient}, ${backgroundImage}`
     }
     return (
         <div className={style.container} style={inlineStyle} ref={container}>
-            <Menu items={items} minimizeFlag={minimizeFlag}/>
+            <Menu items={items} itemClickHandler={itemClickHandler} minimizeFlag={minimizeFlag}/>
             {textBlocks}
         </div>
     )

@@ -9,7 +9,7 @@ const widthLimit = 800;
 const horizontal = 'h';
 const vertical = 'v';
 
-function Menu({items, minimizeFlag}) {
+function Menu({items, minimizeFlag, itemClickHandler}) {
     let [hasVerticalMenuOpen, setHasVerticalMenuOpen] = useState(false);
     let [menuView, setMenuView] = useState(window.innerWidth <= widthLimit ? vertical : horizontal);
 
@@ -39,9 +39,9 @@ function Menu({items, minimizeFlag}) {
 
     let menuComponent;
     if (menuView === vertical) {
-        menuComponent = <VerticalList items={items} minimizeFlag={minimizeFlag} hasOpen={hasVerticalMenuOpen}/>;
+        menuComponent = <VerticalList items={items} itemClickHandler={itemClickHandler} minimizeFlag={minimizeFlag} hasOpen={hasVerticalMenuOpen}/>;
     }
-    if (menuView === horizontal) menuComponent = <HorizontalList items={items}/>;
+    if (menuView === horizontal) menuComponent = <HorizontalList items={items} itemClickHandler={itemClickHandler}/>;
 
     let buttonComponent = '';
     if (menuView === vertical) {
