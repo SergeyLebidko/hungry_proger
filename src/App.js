@@ -15,7 +15,8 @@ import HeaderCover from './HeaderCover/HeaderCover';
 import HeaderCanvas from './HeaderCanvas/HeaderCanvas';
 
 // Импорты demo-компонентов
-import {Container as MenuDemoContainer} from "./demo_components/menu_demo/Container/Container";
+import {Container as MenuDemoContainer} from './demo_components/menu_demo/Container/Container';
+import {Container as GalleryDemoContainer} from './demo_components/gallery_demo/Container/Container';
 
 export const Context = React.createContext(store);
 const DEMO_PATH = '/demo';
@@ -24,6 +25,11 @@ const DEMO_DATA = [
         title: 'Меню',
         href: 'menu',
         component: <MenuDemoContainer/>
+    },
+    {
+        title: 'Галерея',
+        href: 'gallery',
+        component: <GalleryDemoContainer/>
     }
 ];
 
