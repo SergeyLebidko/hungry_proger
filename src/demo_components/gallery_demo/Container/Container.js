@@ -3,6 +3,6 @@ import style from './Container.module.scss';
 
 export function Container(){
     return (
-        <div>Здесь будет галерея</div>
+        <div className={style.container}>Здесь будет галерея</div>
     )
 }
