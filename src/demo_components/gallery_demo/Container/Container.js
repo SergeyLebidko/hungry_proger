@@ -3,8 +3,6 @@ import Card from '../Card/Card';
 import Header from '../Header/Header';
 import style from './Container.module.scss';
 
-import {left_pos} from '../Card/Card';
-
 const items = [
     {
         file: 'balloon',
@@ -45,7 +43,7 @@ export function Container() {
         <div className={style.container}>
             <Header/>
             <div className={style.card_list}>
-                {items.map((item, index) => <Card item={item} pos={left_pos} key={index}/>)}
+                {items.map((item, index) => <Card item={item} key={index}/>)}
             </div>
         </div>
     )
