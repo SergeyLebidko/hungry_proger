@@ -16,8 +16,6 @@ function Header({history}) {
     let captionStyle = {backgroundImage: 'url(/images/demo_components/gallery_demo/back.png)'}
     let containerStyle = {
         backgroundImage: 'url(/images/demo_components/gallery_demo/header.jpg)',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: '115% auto',
         backgroundPosition: `${xPos}% ${yPos}%`
     }
     return (
