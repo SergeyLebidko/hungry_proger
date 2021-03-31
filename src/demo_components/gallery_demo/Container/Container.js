@@ -3,9 +3,42 @@ import Card from '../Card/Card';
 import Header from '../Header/Header';
 import style from './Container.module.scss';
 
-export function Container(){
-    let items = ['balloon', 'car', 'krasnodar', 'mountain', 'nature', 'new_york', 'sea', 'sculpture'];
+const items = [
+    {
+        file: 'balloon',
+        title: 'Воздушный шар'
+    },
+    {
+        file: 'car',
+        title: 'Автомобиль'
+    },
+    {
+        file: 'krasnodar',
+        title: 'Краснодар'
+    },
+    {
+        file: 'mountain',
+        title: 'Горы'
+    },
+    {
+        file: 'nature',
+        title: 'Природа'
+    },
+    {
+        file: 'new_york',
+        title: 'Нью-Йорк'
+    },
+    {
+        file: 'sea',
+        title: 'Море'
+    },
+    {
+        file: 'sculpture',
+        title: 'Статуя'
+    }
+]
 
+export function Container() {
     return (
         <div className={style.container}>
             <Header/>
