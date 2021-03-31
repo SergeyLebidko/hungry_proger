@@ -1,5 +1,22 @@
+@import '../../../variables';
+
 .container {
+  position: relative;
   width: 100%;
   height: 50%;
   border-bottom: 2px solid black;
+
+  h2 {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: $headers-font-family;
+    font-size: 1.2em;
+    font-weight: normal;
+    text-transform: uppercase;
+    text-align: center;
+    border-top: 2px solid black;
+  }
 }
