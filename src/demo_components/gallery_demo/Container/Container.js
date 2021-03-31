@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from '../Card/Card';
+import Header from '../Header/Header';
 import style from './Container.module.scss';
 
 export function Container(){
@@ -7,6 +8,7 @@ export function Container(){
 
     return (
         <div className={style.container}>
+            <Header/>
             <div className={style.card_list}>
                 {items.map((item, index) => <Card item={item} key={index}/>)}
             </div>
