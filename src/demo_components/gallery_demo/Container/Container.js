@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Card from '../Card/Card';
 import Header from '../Header/Header';
 import style from './Container.module.scss';
+import ImageViewer from "../ImageViewer/ImageViewer";
 
 const items = [
     {
@@ -39,12 +40,19 @@ const items = [
 ]
 
 export function Container() {
+    let [viewedFile, setViewedFile] = useState(null);
+
+    function imageClickHandler(filename) {
+        setViewedFile(filename);
+    }
+
     return (
         <div className={style.container}>
             <Header/>
             <div className={style.card_list}>
-                {items.map((item, index) => <Card item={item} key={index}/>)}
+                {items.map((item, index) => <Card item={item} clickHandler={imageClickHandler} key={index}/>)}
             </div>
+            {viewedFile ? <ImageViewer filename={viewedFile}/> : ''}
         </div>
     )
 }
