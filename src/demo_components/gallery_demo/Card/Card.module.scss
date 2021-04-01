@@ -100,6 +100,16 @@
     transition: all 600ms;
     cursor: zoom-in;
 
+    &.hide {
+      opacity: 0;
+      transition: all 600ms;
+    }
+
+    &.visible {
+      opacity: 1;
+      transition: all 600ms;
+    }
+
     &:hover {
       transform: scale(1.2);
       transition: all 600ms;

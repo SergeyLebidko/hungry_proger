@@ -28,17 +28,26 @@ function Card({item, clickHandler}) {
     let classForRightControl;
     classForLeftControl = pos === left_pos ? style.selected : '';
     classForRightControl = pos === right_pos ? style.selected : '';
+
+    let imgClassName = stage >1 ? style.visible : style.hide;
     return (
         <div className={containerClassName}>
-            <img src={filename1} onClick={() => clickHandler(filename1)} onLoad={onLoadHandler}/>
-            <img src={filename2} onClick={() => clickHandler(filename2)} onLoad={onLoadHandler}/>
-            <div className={style.title}>
-                <h1>{item.title}</h1>
-            </div>
-            <div className={style.control}>
-                <div className={classForRightControl} onClick={() => setPos(right_pos)}>1</div>
-                <div className={classForLeftControl} onClick={() => setPos(left_pos)}>2</div>
-            </div>
+            <img className={imgClassName} src={filename1} onClick={() => clickHandler(filename1)}
+                 onLoad={onLoadHandler}/>
+            <img className={imgClassName} src={filename2} onClick={() => clickHandler(filename2)}
+                 onLoad={onLoadHandler}/>
+            {stage === 3 ?
+                <>
+                    <div className={style.title}>
+                        <h1>{item.title}</h1>
+                    </div>
+                    <div className={style.control}>
+                        <div className={classForRightControl} onClick={() => setPos(right_pos)}>1</div>
+                        <div className={classForLeftControl} onClick={() => setPos(left_pos)}>2</div>
+                    </div>
+                </>
+                : ''
+            }
             {stage < 3 ? <Preloader hasExit={stage === 2} disabler={preloaderDisabler}/> : ''}
         </div>
     )
