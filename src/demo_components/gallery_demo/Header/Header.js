@@ -13,7 +13,7 @@ function Header({history}) {
         setYPos(40 * clientY / container.current.clientHeight);
     }
 
-    let captionStyle = {backgroundImage: 'url(/images/demo_components/gallery_demo/back.png)'}
+    let captionStyle = {backgroundImage: 'url(/images/demo_components/gallery_demo/back_header.png)'}
     let containerStyle = {
         backgroundImage: 'url(/images/demo_components/gallery_demo/header.jpg)',
         backgroundPosition: `${xPos}% ${yPos}%`
