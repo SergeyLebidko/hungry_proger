@@ -46,13 +46,17 @@ export function Container() {
         setViewedFile(filename);
     }
 
+    function closeViewerHandler() {
+        setViewedFile(null);
+    }
+
     return (
         <div className={style.container}>
             <Header/>
             <div className={style.card_list}>
                 {items.map((item, index) => <Card item={item} clickHandler={imageClickHandler} key={index}/>)}
             </div>
-            {viewedFile ? <ImageViewer filename={viewedFile}/> : ''}
+            {viewedFile ? <ImageViewer filename={viewedFile} closeViewerHandler={closeViewerHandler}/> : ''}
         </div>
     )
 }

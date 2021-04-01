@@ -1,7 +1,48 @@
+@keyframes entry {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1
+  }
+}
+
+@keyframes exit {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.entry_viewer {
+  animation-name: entry;
+  animation-duration: 600ms;
+}
+
+.exit_viewer {
+  animation-name: exit;
+  animation-duration: 600ms;
+}
+
 .container {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 50px;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+  }
 }
