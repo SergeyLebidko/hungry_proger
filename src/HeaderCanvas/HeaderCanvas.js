@@ -20,7 +20,7 @@ function HeaderCanvas() {
         let tool = new Tool();
 
         function createSparkles(point) {
-            sparkleCount = Math.floor(20 + Math.random() * 40);
+            sparkleCount = Math.floor(20 + Math.random() * 20);
             for (let index = 0; index < sparkleCount; index++) {
                 sideCount = randomChoice(sideCounts);
                 radius = 25 * Math.random();
