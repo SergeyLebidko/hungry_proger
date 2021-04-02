@@ -1,0 +1,24 @@
+@import '../../../variables';
+
+.container {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px dotted gray;
+  border-top-left-radius: $large-radius;
+  border-top-right-radius: $large-radius;
+  background-image: linear-gradient(to right bottom, DeepSkyBlue, DodgerBlue);
+  color: white;
+
+  h2 {
+    font-family: $headers-font-family;
+    font-weight: normal;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-family: $headers-font-family;
+    text-align: justify;
+    font-size: 1.2em;
+  }
+}
