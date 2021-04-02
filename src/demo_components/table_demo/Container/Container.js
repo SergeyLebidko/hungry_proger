@@ -1,19 +1,13 @@
 import React from 'react';
-import {withRouter} from 'react-router-dom';
 import Table from '../Table/Table';
+import Description from '../Description/Description';
 import style from './Container.module.scss';
 
-const Container = withRouter(({history}) => {
+export function Container() {
     return (
         <div className={style.container}>
-            <div className={style.content}>
-                <div className={style.close_container_button} onClick={() => history.push('/')}>
-                    &#10006;
-                </div>
-                <Table/>
-            </div>
+            <Description/>
+            <Table/>
         </div>
-    )
-})
-
-export {Container};
+    );
+}
