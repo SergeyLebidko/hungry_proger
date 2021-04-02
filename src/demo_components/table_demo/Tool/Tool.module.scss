@@ -1,0 +1,21 @@
+@import '../../../variables';
+
+.container {
+  list-style-type: none;
+  padding-left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  li {
+    flex: 1;
+    display: inline-block;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: $small-radius;
+
+    &:not(:first-child) {
+      margin-left: 10px;
+    }
+  }
+}
