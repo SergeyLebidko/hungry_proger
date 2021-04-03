@@ -26,10 +26,7 @@ function DateCell({date, rowIndex, changeDateHandler}) {
 
     let touchProps = createTouchProps(() => setEditMode(true));
     return (
-        <td id={cellId}
-            className={style.container}
-            onDoubleClick={() => setEditMode(true)}
-            {...touchProps}>
+        <td id={cellId} className={style.container} onDoubleClick={() => setEditMode(true)} {...touchProps}>
             {editMode ?
                 <input id={inputId} type={"date"} onChange={changeHandler}/>
                 :

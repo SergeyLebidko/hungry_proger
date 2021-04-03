@@ -68,12 +68,12 @@ export function parseText(text, dedicatedClass) {
     return result;
 }
 
-// Функция возвращает пропсы, необходимые для обработки длительного touch
+// Функция возвращает пропсы, необходимые для обработки длительного touch-события
 export function createTouchProps(callback) {
     let touchTimer;
 
     function touchStartHandler() {
-        touchTimer = setTimeout(() => callback(), 1000);
+        touchTimer = setTimeout(() => callback(), 500);
     }
 
     function touchEndHandler() {

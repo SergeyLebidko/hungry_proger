@@ -77,28 +77,41 @@ function Table() {
         }));
     }
 
+    // Готовим пропсы для Tool
+    let toolProps = {
+        addCopyFlag: (selectedRow !== null),
+        addCopyLastFlag: (data.length > 0),
+        removeFlag: (selectedRow !== null),
+        removeAllFlag: (data.length > 0),
+        addEmptyHandler,
+        addCopyLastHandler,
+        addCopyHandler,
+        removeHandler,
+        removeAllHandler
+    }
+
+    // Готовим компоненты для строк
+    let rowComponents = [], index = 0, rowProps;
+    for (let rowData of data) {
+        rowProps = {
+            rowData,
+            selectedHandler,
+            rowIndex: index,
+            hasSelected: index === selectedRow,
+            changeDateHandler,
+            key: index
+        }
+        rowComponents.push(<Row {...rowProps}/>);
+        index++;
+    }
+
     return (
         <div className={style.container}>
-            <Tool addCopyFlag={selectedRow !== null}
-                  addCopyLastFlag={data.length > 0}
-                  removeFlag={selectedRow !== null}
-                  removeAllFlag={data.length > 0}
-                  addEmptyHandler={addEmptyHandler}
-                  addCopyLastHandler={addCopyLastHandler}
-                  addCopyHandler={addCopyHandler}
-                  removeHandler={removeHandler}
-                  removeAllHandler={removeAllHandler}
-            />
+            <Tool {...toolProps}/>
             <table>
                 <tbody>
                 <HeaderRow columns={columns}/>
-                {data.map((rowData, index) => <Row rowData={rowData}
-                                                   selectedHandler={selectedHandler}
-                                                   rowIndex={index}
-                                                   hasSelected={index === selectedRow}
-                                                   changeDateHandler={changeDateHandler}
-                                                   key={index}/>
-                )}
+                {rowComponents}
                 </tbody>
             </table>
         </div>
