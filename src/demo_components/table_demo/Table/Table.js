@@ -45,6 +45,11 @@ function Table() {
 
     }
 
+    // Обработчик выбора строки
+    function selectedHandler(rowIndex) {
+        setSelectedRow(rowIndex);
+    }
+
     return (
         <div className={style.container}>
             <Tool addCopyFlag={selectedRow !== null}
@@ -60,7 +65,7 @@ function Table() {
             <table>
                 <tbody>
                 <HeaderRow columns={columns}/>
-                {data.map((rowData, index) => <Row rowData={rowData} key={index}/>)}
+                {data.map((rowData, index) => <Row rowData={rowData} selectedHandler={selectedHandler} rowIndex={index} hasSelected={index === selectedRow} key={index}/>)}
                 </tbody>
             </table>
         </div>

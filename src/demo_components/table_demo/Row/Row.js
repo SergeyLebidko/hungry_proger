@@ -1,9 +1,9 @@
 import React from 'react';
 import style from './Row.module.scss';
 
-function Row({rowData}) {
+function Row({rowData, selectedHandler, rowIndex, hasSelected}) {
     return (
-        <tr>
+        <tr onClick={() => selectedHandler(rowIndex)} className={hasSelected ? style.selected : ''}>
             <td>
                 {rowData.number}
             </td>
