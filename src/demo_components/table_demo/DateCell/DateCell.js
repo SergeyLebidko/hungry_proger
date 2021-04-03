@@ -1,24 +1,11 @@
 import React, {useState, useEffect} from 'react';
+import {createTouchProps} from '../../../utils';
 import style from './DateCell.module.scss';
 
 function DateCell({date, rowIndex, changeDateHandler}) {
     let inputId = `inputDateId${rowIndex}`;
     let cellId = `cellDateId${rowIndex}`;
     let [editMode, setEditMode] = useState(false);
-
-    function dblClickHandler() {
-        setEditMode(true);
-    }
-
-    let touchTimer;
-
-    function touchStartHandler() {
-        touchTimer = setTimeout(() => setEditMode(true), 1000);
-    }
-
-    function touchEndHandler() {
-        clearTimeout(touchTimer);
-    }
 
     function changeHandler(event) {
         let [, year, month, day] = /(\d\d\d\d)-(\d\d)-(\d\d)/.exec(event.target.value);
@@ -37,12 +24,12 @@ function DateCell({date, rowIndex, changeDateHandler}) {
         return () => window.removeEventListener('click', resetInput);
     }, []);
 
+    let touchProps = createTouchProps(() => setEditMode(true));
     return (
         <td id={cellId}
             className={style.container}
-            onDoubleClick={dblClickHandler}
-            onTouchStart={touchStartHandler}
-            onTouchEnd={touchEndHandler}>
+            onDoubleClick={() => setEditMode(true)}
+            {...touchProps}>
             {editMode ?
                 <input id={inputId} type={"date"} onChange={changeHandler}/>
                 :
