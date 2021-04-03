@@ -19,7 +19,8 @@ function Header({history}) {
         backgroundPosition: `${xPos}% ${yPos}%`
     }
     return (
-        <div className={style.container} style={containerStyle} onMouseMove={moveHandler} ref={container}>
+        <div className={style.container} style={containerStyle} onMouseMove={moveHandler} ref={container}
+             onTouchMove={e => moveHandler({clientX: e.changedTouches[0].clientX, clientY: e.changedTouches[0].clientY})}>
             <div className={style.close_button} onClick={() => history.push('/')}>
                 <div/>
                 <div/>
