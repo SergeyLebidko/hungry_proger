@@ -1,4 +1,5 @@
 import React from 'react';
+import DateCell from '../DateCell/DateCell';
 import style from './Row.module.scss';
 
 import {paymentMethodsMap} from '../Table/Table';
@@ -10,9 +11,7 @@ function Row({rowData, selectedHandler, rowIndex, hasSelected}) {
             <td>
                 {rowData.number}
             </td>
-            <td>
-                {rowData.paymentDate.toLocaleDateString()}
-            </td>
+            <DateCell data={rowData.paymentDate} rowIndex={rowIndex}/>
             <td>
                 {rowData.title}
             </td>
