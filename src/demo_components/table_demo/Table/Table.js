@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import HeaderRow from '../HeaderRow/HeaderRow';
 import Tool from '../Tool/Tool';
+import Row from '../Row/Row';
 import style from './Table.module.scss';
 
 const columns = ['N', 'Дата покупки', 'Наименование', 'Плановая покупка', 'Способ оплаты', 'Количество', 'Цена', 'Сумма'];
@@ -11,7 +12,17 @@ function Table() {
 
     // Обработчик добавления новой строки
     function addEmptyHandler() {
-
+        let nextElement = {
+            number: data.length + 1,
+            paymentDate: new Date(),
+            title: '',
+            plane: true,
+            paymentMethod: 'cash',
+            count: 1,
+            price: 1,
+            total: 1
+        }
+        setData([...data, nextElement]);
     }
 
     // Обработчик добавления копии последней строки
@@ -49,6 +60,7 @@ function Table() {
             <table>
                 <tbody>
                 <HeaderRow columns={columns}/>
+                {data.map((rowData, index) => <Row rowData={rowData} key={index}/>)}
                 </tbody>
             </table>
         </div>
