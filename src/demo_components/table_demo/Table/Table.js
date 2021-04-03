@@ -6,6 +6,16 @@ import style from './Table.module.scss';
 
 const columns = ['N', 'Дата покупки', 'Наименование', 'Плановая покупка', 'Способ оплаты', 'Количество', 'Цена', 'Сумма'];
 
+const cash = 'cash';
+const debet = 'debet';
+const credit = 'credit';
+
+export const paymentMethodsMap = {
+    [cash]: 'Наличные',
+    [debet]: 'Дебетовая карта',
+    [credit]: 'Кредитная карта'
+}
+
 function Table() {
     let [data, setData] = useState([]);
     let [selectedRow, setSelectedRow] = useState(null);
@@ -17,17 +27,17 @@ function Table() {
             paymentDate: new Date(),
             title: '',
             plane: true,
-            paymentMethod: 'cash',
-            count: 1,
-            price: 1,
-            total: 1
+            paymentMethod: cash,
+            count: 0,
+            price: 0,
+            total: 0
         }
         setData([...data, nextElement]);
     }
 
     // Обработчик добавления копии последней строки
     function addCopyLastHandler() {
-        if (data.length === 0)return;
+        if (data.length === 0) return;
         setData([...data, Object.assign({}, data[data.length - 1])]);
     }
 

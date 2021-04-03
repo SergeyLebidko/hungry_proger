@@ -1,14 +1,17 @@
 import React from 'react';
 import style from './Row.module.scss';
 
+import {paymentMethodsMap} from '../Table/Table';
+
 function Row({rowData, selectedHandler, rowIndex, hasSelected}) {
+    let rowClassName = style.container + ' ' + (hasSelected ? style.selected : '');
     return (
-        <tr onClick={() => selectedHandler(rowIndex)} className={hasSelected ? style.selected : ''}>
+        <tr onClick={() => selectedHandler(rowIndex)} className={rowClassName}>
             <td>
                 {rowData.number}
             </td>
             <td>
-                {rowData.paymentDate.toString()}
+                {rowData.paymentDate.toLocaleDateString()}
             </td>
             <td>
                 {rowData.title}
@@ -17,7 +20,7 @@ function Row({rowData, selectedHandler, rowIndex, hasSelected}) {
                 {rowData.plane}
             </td>
             <td>
-                {rowData.paymentMethod}
+                {paymentMethodsMap[rowData.paymentMethod]}
             </td>
             <td>
                 {rowData.count}
