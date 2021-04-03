@@ -27,24 +27,25 @@ function Table() {
 
     // Обработчик добавления копии последней строки
     function addCopyLastHandler() {
-
+        if (data.length === 0)return;
+        setData([...data, Object.assign({}, data[data.length - 1])]);
     }
 
     // Обработчик добавления копии выделенной строки
     function addCopyHandler() {
-
+        if (selectedRow === null) return;
+        setData([...data, Object.assign({}, data[selectedRow])]);
     }
 
     // Обработчик удаления выделенной строки
     function removeHandler() {
-        if (selectedRow !== null) {
-            let nextData = data.filter((rowData, index) => index !== selectedRow);
-            setData(nextData.map((rowData, index) => {
-                rowData.number = index + 1;
-                return rowData;
-            }));
-            setSelectedRow(null);
-        }
+        if (selectedRow === null) return;
+        let nextData = data.filter((rowData, index) => index !== selectedRow);
+        setData(nextData.map((rowData, index) => {
+            rowData.number = index + 1;
+            return rowData;
+        }));
+        setSelectedRow(null);
     }
 
     // Обработчик удаления всех строк
