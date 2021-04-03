@@ -69,6 +69,14 @@ function Table() {
         setSelectedRow(rowIndex);
     }
 
+    // Обработчик изменения даты в строке
+    function changeDateHandler(nextDate, rowIndex) {
+        setData(data.map((rowData, index) => {
+            if (index !== rowIndex) return rowData;
+            return Object.assign(rowData, {paymentDate: nextDate});
+        }));
+    }
+
     return (
         <div className={style.container}>
             <Tool addCopyFlag={selectedRow !== null}
@@ -84,8 +92,13 @@ function Table() {
             <table>
                 <tbody>
                 <HeaderRow columns={columns}/>
-                {data.map((rowData, index) => <Row rowData={rowData} selectedHandler={selectedHandler} rowIndex={index}
-                                                   hasSelected={index === selectedRow} key={index}/>)}
+                {data.map((rowData, index) => <Row rowData={rowData}
+                                                   selectedHandler={selectedHandler}
+                                                   rowIndex={index}
+                                                   hasSelected={index === selectedRow}
+                                                   changeDateHandler={changeDateHandler}
+                                                   key={index}/>
+                )}
                 </tbody>
             </table>
         </div>

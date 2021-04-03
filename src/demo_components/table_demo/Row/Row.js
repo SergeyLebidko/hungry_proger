@@ -4,14 +4,14 @@ import style from './Row.module.scss';
 
 import {paymentMethodsMap} from '../Table/Table';
 
-function Row({rowData, selectedHandler, rowIndex, hasSelected}) {
+function Row({rowData, selectedHandler, rowIndex, hasSelected, changeDateHandler}) {
     let rowClassName = style.container + ' ' + (hasSelected ? style.selected : '');
     return (
         <tr onClick={() => selectedHandler(rowIndex)} className={rowClassName}>
             <td>
                 {rowData.number}
             </td>
-            <DateCell data={rowData.paymentDate} rowIndex={rowIndex}/>
+            <DateCell date={rowData.paymentDate} rowIndex={rowIndex} changeDateHandler={changeDateHandler}/>
             <td>
                 {rowData.title}
             </td>
