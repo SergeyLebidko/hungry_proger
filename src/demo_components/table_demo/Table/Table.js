@@ -37,12 +37,20 @@ function Table() {
 
     // Обработчик удаления выделенной строки
     function removeHandler() {
-
+        if (selectedRow !== null) {
+            let nextData = data.filter((rowData, index) => index !== selectedRow);
+            setData(nextData.map((rowData, index) => {
+                rowData.number = index + 1;
+                return rowData;
+            }));
+            setSelectedRow(null);
+        }
     }
 
     // Обработчик удаления всех строк
     function removeAllHandler() {
-
+        setData([]);
+        setSelectedRow(null);
     }
 
     // Обработчик выбора строки
@@ -65,7 +73,8 @@ function Table() {
             <table>
                 <tbody>
                 <HeaderRow columns={columns}/>
-                {data.map((rowData, index) => <Row rowData={rowData} selectedHandler={selectedHandler} rowIndex={index} hasSelected={index === selectedRow} key={index}/>)}
+                {data.map((rowData, index) => <Row rowData={rowData} selectedHandler={selectedHandler} rowIndex={index}
+                                                   hasSelected={index === selectedRow} key={index}/>)}
                 </tbody>
             </table>
         </div>
