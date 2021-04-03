@@ -13,14 +13,20 @@ function Header({history}) {
         setYPos(40 * clientY / container.current.clientHeight);
     }
 
+    function touchMoveHandler(event) {
+        if (event.changedTouches.length > 1) return;
+        moveHandler({clientX: event.changedTouches[0].clientX, clientY: event.changedTouches[0].clientY});
+    }
+
     let captionStyle = {backgroundImage: 'url(/images/demo_components/gallery_demo/back_header.png)'}
     let containerStyle = {
         backgroundImage: 'url(/images/demo_components/gallery_demo/header.jpg)',
         backgroundPosition: `${xPos}% ${yPos}%`
     }
+
+    let containerProps = {onMouseMove: moveHandler, onTouchMove: touchMoveHandler}
     return (
-        <div className={style.container} style={containerStyle} onMouseMove={moveHandler} ref={container}
-             onTouchMove={e => moveHandler({clientX: e.changedTouches[0].clientX, clientY: e.changedTouches[0].clientY})}>
+        <div className={style.container} style={containerStyle} {...containerProps} ref={container}>
             <div className={style.close_button} onClick={() => history.push('/')}>
                 <div/>
                 <div/>
