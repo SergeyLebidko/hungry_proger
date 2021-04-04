@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {createTouchProps} from '../../../utils';
 import style from './DateCell.module.scss';
 
 function DateCell({date, rowIndex, changeDateHandler}) {
-    let inputId = `inputDateId${rowIndex}`;
-    let cellId = `cellDateId${rowIndex}`;
     let [editMode, setEditMode] = useState(false);
+    let cellRef = useRef(null);
+    let inputRef = useRef(null);
 
     function changeHandler(event) {
         let [, year, month, day] = /(\d\d\d\d)-(\d\d)-(\d\d)/.exec(event.target.value);
@@ -16,7 +16,7 @@ function DateCell({date, rowIndex, changeDateHandler}) {
 
     useEffect(() => {
         let resetInput = (event) => {
-            if (event.target.id === inputId || event.target.id === cellId) return;
+            if (event.target === inputRef.current || event.target === cellRef.current) return;
             setEditMode(false);
         };
         window.addEventListener('click', resetInput);
@@ -26,9 +26,9 @@ function DateCell({date, rowIndex, changeDateHandler}) {
 
     let touchProps = createTouchProps(() => setEditMode(true));
     return (
-        <td id={cellId} className={style.container} onDoubleClick={() => setEditMode(true)} {...touchProps}>
+        <td className={style.container} onDoubleClick={() => setEditMode(true)} ref={cellRef} {...touchProps}>
             {editMode ?
-                <input id={inputId} type={"date"} onChange={changeHandler}/>
+                <input type={"date"} onChange={changeHandler} ref={inputRef}/>
                 :
                 date.toLocaleDateString()
             }
