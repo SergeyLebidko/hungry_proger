@@ -15,11 +15,19 @@ function CountCell({count, rowIndex, changeCountHandler}) {
     }
 
     function changeHandler(event) {
+        let value = event.target.value;
+
+        // Пресекаем попытки ввести невалидное (не числовое) значение
+        if (!(/^[1-9]\d*$/.test(value) || /^[1-9]\d*\.\d*$/.test(value) || value === '')) return;
         setInputValue(event.target.value);
     }
 
     function keyDownHandler(event) {
         if (event.keyCode === 13) {
+            if (inputValue === '') {
+                setEditMode(false);
+                return;
+            }
             changeCountHandler(inputValue, rowIndex);
             setEditMode(false);
         }
@@ -32,7 +40,8 @@ function CountCell({count, rowIndex, changeCountHandler}) {
     return (
         <td className={style.container} onDoubleClick={doubleClickHandler} ref={cellRef} {...touchProps}>
             {editMode ?
-                <input type={"text"} value={inputValue} ref={inputRef} onChange={changeHandler} onKeyDown={keyDownHandler}/>
+                <input type={"text"} value={inputValue} ref={inputRef} onChange={changeHandler}
+                       onKeyDown={keyDownHandler}/>
                 :
                 count
             }
