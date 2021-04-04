@@ -1,5 +1,6 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useRef} from 'react';
 import {createTouchProps} from '../../../utils';
+import useResetInputEffect from '../resetInputEffect';
 import style from './TitleCell.module.scss';
 
 function TitleCell({title, rowIndex, changeTitleHandler}) {
@@ -25,15 +26,7 @@ function TitleCell({title, rowIndex, changeTitleHandler}) {
         }
     }
 
-    useEffect(() => {
-        let resetInput = (event) => {
-            if (event.target === inputRef.current || event.target === cellRef.current) return;
-            setEditMode(false);
-        };
-        window.addEventListener('click', resetInput);
-
-        return () => window.removeEventListener('click', resetInput);
-    }, []);
+    useResetInputEffect(inputRef, cellRef, () => setEditMode(false));
 
     let touchProps = createTouchProps(() => setEditMode(true));
     return (

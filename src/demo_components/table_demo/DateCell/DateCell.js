@@ -1,5 +1,6 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useRef} from 'react';
 import {createTouchProps} from '../../../utils';
+import useResetInputEffect from '../resetInputEffect';
 import style from './DateCell.module.scss';
 
 function DateCell({date, rowIndex, changeDateHandler}) {
@@ -20,15 +21,7 @@ function DateCell({date, rowIndex, changeDateHandler}) {
         setEditMode(false);
     }
 
-    useEffect(() => {
-        let resetInput = (event) => {
-            if (event.target === inputRef.current || event.target === cellRef.current) return;
-            setEditMode(false);
-        };
-        window.addEventListener('click', resetInput);
-
-        return () => window.removeEventListener('click', resetInput);
-    }, []);
+    useResetInputEffect(inputRef, cellRef, () => setEditMode(false));
 
     let [, day, month, year] = /(\d\d)\.(\d\d)\.(\d\d\d\d)/.exec(date.toLocaleString());
     let inputStartValue = `${year}-${month}-${day}`;
