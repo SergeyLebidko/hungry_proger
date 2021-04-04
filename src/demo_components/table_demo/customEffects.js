@@ -1,6 +1,6 @@
 import {useEffect} from 'react';
 
-function useResetInputEffect(inputRef, cellRef, resetFunction) {
+export function useResetInputEffect(inputRef, cellRef, resetFunction) {
     useEffect(() => {
         let resetInput = (event) => {
             if (event.target === inputRef.current || event.target === cellRef.current) return;
@@ -12,4 +12,8 @@ function useResetInputEffect(inputRef, cellRef, resetFunction) {
     }, []);
 }
 
-export default useResetInputEffect;
+export function useFocusEffect(inputRef) {
+    useEffect(() => {
+        if (inputRef.current) inputRef.current.focus();
+    });
+}
