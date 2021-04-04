@@ -29,14 +29,16 @@ function TitleCell({title, rowIndex, changeTitleHandler}) {
     useResetInputEffect(inputRef, cellRef, () => setEditMode(false));
     useFocusEffect(inputRef);
 
+    let containerClass = style.container;
+    if (title.length === 0) containerClass += (' ' + style.empty);
+
     let touchProps = createTouchProps(() => setEditMode(true));
     return (
-        <td className={style.container} onDoubleClick={doubleClickHandler} ref={cellRef} {...touchProps}>
+        <td className={containerClass} onDoubleClick={doubleClickHandler} ref={cellRef} {...touchProps}>
             {editMode ?
-                <input type={"text"} ref={inputRef} onChange={onChangeHandler} onKeyDown={onKeyDownHandler}
-                       value={inputValue}/>
+                <input type={"text"} ref={inputRef} onChange={onChangeHandler} onKeyDown={onKeyDownHandler} value={inputValue}/>
                 :
-                title
+                title.length > 0 ? title : '- введите наименование -'
             }
         </td>
     )
