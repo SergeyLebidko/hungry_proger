@@ -93,6 +93,14 @@ function Table() {
         }));
     }
 
+    // Обработчик изменения метода оплаты
+    function changeMethodHandler(nextMethod, rowIndex){
+        setData(data.map((rowData, index) => {
+            if (index !== rowIndex) return rowData;
+            return Object.assign(rowData, {paymentMethod: nextMethod});
+        }));
+    }
+
     // Готовим пропсы для Tool
     let toolProps = {
         addCopyFlag: (selectedRow !== null),
@@ -117,6 +125,7 @@ function Table() {
             changeDateHandler,
             changeTitleHandler,
             changePlanHandler,
+            changeMethodHandler,
             key: index
         }
         rowComponents.push(<Row {...rowProps}/>);

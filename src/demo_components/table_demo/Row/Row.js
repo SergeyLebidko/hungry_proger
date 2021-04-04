@@ -2,30 +2,40 @@ import React from 'react';
 import DateCell from '../DateCell/DateCell';
 import TitleCell from '../TitleCell/TitleCell';
 import PlanCell from '../PlanCell/PlanCell';
+import MethodCell from '../MethonCell/MethodCell';
 import style from './Row.module.scss';
-import {paymentMethodsMap} from '../Table/Table';
 
-function Row({rowData, selectedHandler, rowIndex, hasSelected, changeDateHandler, changeTitleHandler, changePlanHandler}) {
-    let rowClassName = style.container + ' ' + (hasSelected ? style.selected : '');
+function Row(props) {
+    let rowClassName = style.container + ' ' + (props.hasSelected ? style.selected : '');
     return (
-        <tr onClick={() => selectedHandler(rowIndex)} className={rowClassName}>
+        <tr onClick={() => props.selectedHandler(props.rowIndex)} className={rowClassName}>
             <td>
-                {rowData.number}
+                {props.rowData.number}
             </td>
-            <DateCell date={rowData.paymentDate} rowIndex={rowIndex} changeDateHandler={changeDateHandler}/>
-            <TitleCell title={rowData.title} rowIndex={rowIndex} changeTitleHandler={changeTitleHandler}/>
-            <PlanCell plan={rowData.plan} rowIndex={rowIndex} changePlanHandler={changePlanHandler}/>
+            <DateCell date={props.rowData.paymentDate}
+                      rowIndex={props.rowIndex}
+                      changeDateHandler={props.changeDateHandler}
+            />
+            <TitleCell title={props.rowData.title}
+                       rowIndex={props.rowIndex}
+                       changeTitleHandler={props.changeTitleHandler}
+            />
+            <PlanCell plan={props.rowData.plan}
+                      rowIndex={props.rowIndex}
+                      changePlanHandler={props.changePlanHandler}
+            />
+            <MethodCell paymentMethod={props.rowData.paymentMethod}
+                        rowIndex={props.rowIndex}
+                        changeMethodHandler={props.changeMethodHandler}
+            />
             <td>
-                {paymentMethodsMap[rowData.paymentMethod]}
+                {props.rowData.count}
             </td>
             <td>
-                {rowData.count}
+                {props.rowData.price}
             </td>
             <td>
-                {rowData.price}
-            </td>
-            <td>
-                {rowData.total}
+                {props.rowData.total}
             </td>
         </tr>
     )
