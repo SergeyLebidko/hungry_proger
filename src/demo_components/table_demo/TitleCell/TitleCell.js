@@ -15,11 +15,11 @@ function TitleCell({title, rowIndex, changeTitleHandler}) {
         setInputValue(title);
     }
 
-    function onChangeHandler(event) {
+    function changeHandler(event) {
         setInputValue(event.target.value);
     }
 
-    function onKeyDownHandler(event) {
+    function keyDownHandler(event) {
         if (event.keyCode === 13) {
             changeTitleHandler(inputValue, rowIndex);
             setEditMode(false);
@@ -36,7 +36,7 @@ function TitleCell({title, rowIndex, changeTitleHandler}) {
     return (
         <td className={containerClass} onDoubleClick={doubleClickHandler} ref={cellRef} {...touchProps}>
             {editMode ?
-                <input type={"text"} ref={inputRef} onChange={onChangeHandler} onKeyDown={onKeyDownHandler} value={inputValue}/>
+                <input type={"text"} ref={inputRef} onChange={changeHandler} onKeyDown={keyDownHandler} value={inputValue}/>
                 :
                 title.length > 0 ? title : '- введите наименование -'
             }

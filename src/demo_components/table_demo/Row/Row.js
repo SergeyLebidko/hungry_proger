@@ -4,6 +4,7 @@ import TitleCell from '../TitleCell/TitleCell';
 import PlanCell from '../PlanCell/PlanCell';
 import MethodCell from '../MethonCell/MethodCell';
 import style from './Row.module.scss';
+import CountCell from "../CountCell/CountCell";
 
 function Row(props) {
     let rowClassName = style.container + ' ' + (props.hasSelected ? style.selected : '');
@@ -28,12 +29,14 @@ function Row(props) {
                         rowIndex={props.rowIndex}
                         changeMethodHandler={props.changeMethodHandler}
             />
-            <td>
-                {props.rowData.count}
-            </td>
-            <td>
-                {props.rowData.price}
-            </td>
+            <CountCell count={props.rowData.count}
+                       rowIndex={props.rowIndex}
+                       changeCountHandler={props.changeCountHandler}
+            />
+            <CountCell count={props.rowData.price}
+                       rowIndex={props.rowIndex}
+                       changeCountHandler={props.changePriceHandler}
+            />
             <td>
                 {props.rowData.total}
             </td>

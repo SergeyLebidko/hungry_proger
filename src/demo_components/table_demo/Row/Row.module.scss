@@ -6,7 +6,11 @@
     padding: 8px 0;
     font-size: 1.2em;
 
-    &:nth-child(1) {
+    &:first-child {
+      text-align: center;
+    }
+
+    &:last-child {
       text-align: center;
     }
   }

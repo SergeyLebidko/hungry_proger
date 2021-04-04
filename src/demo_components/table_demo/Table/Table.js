@@ -94,10 +94,26 @@ function Table() {
     }
 
     // Обработчик изменения метода оплаты
-    function changeMethodHandler(nextMethod, rowIndex){
+    function changeMethodHandler(nextMethod, rowIndex) {
         setData(data.map((rowData, index) => {
             if (index !== rowIndex) return rowData;
             return Object.assign(rowData, {paymentMethod: nextMethod});
+        }));
+    }
+
+    // Обработчик изменения количества
+    function changeCountHandler(nextCount, rowIndex) {
+        setData(data.map((rowData, index) => {
+            if (index !== rowIndex) return rowData;
+            return Object.assign(rowData, {count: nextCount, total: rowData.price * nextCount});
+        }));
+    }
+
+    // Обработчик изменения цены
+    function changePriceHandler(nextPrice, rowIndex){
+        setData(data.map((rowData, index) => {
+            if (index !== rowIndex) return rowData;
+            return Object.assign(rowData, {price: nextPrice, total: rowData.count * nextPrice});
         }));
     }
 
@@ -126,6 +142,8 @@ function Table() {
             changeTitleHandler,
             changePlanHandler,
             changeMethodHandler,
+            changeCountHandler,
+            changePriceHandler,
             key: index
         }
         rowComponents.push(<Row {...rowProps}/>);
