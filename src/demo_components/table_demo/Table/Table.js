@@ -85,6 +85,14 @@ function Table() {
         }));
     }
 
+    // Обработчик изменения флага плановой покупки
+    function changePlanHandler(nextPlan, rowIndex) {
+        setData(data.map((rowData, index) => {
+            if (index !== rowIndex) return rowData;
+            return Object.assign(rowData, {plan: nextPlan});
+        }));
+    }
+
     // Готовим пропсы для Tool
     let toolProps = {
         addCopyFlag: (selectedRow !== null),
@@ -108,6 +116,7 @@ function Table() {
             hasSelected: index === selectedRow,
             changeDateHandler,
             changeTitleHandler,
+            changePlanHandler,
             key: index
         }
         rowComponents.push(<Row {...rowProps}/>);
