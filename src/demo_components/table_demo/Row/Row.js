@@ -3,8 +3,9 @@ import DateCell from '../DateCell/DateCell';
 import style from './Row.module.scss';
 
 import {paymentMethodsMap} from '../Table/Table';
+import TitleCell from "../TitleCell/TitleCell";
 
-function Row({rowData, selectedHandler, rowIndex, hasSelected, changeDateHandler}) {
+function Row({rowData, selectedHandler, rowIndex, hasSelected, changeDateHandler, changeTitleHandler}) {
     let rowClassName = style.container + ' ' + (hasSelected ? style.selected : '');
     return (
         <tr onClick={() => selectedHandler(rowIndex)} className={rowClassName}>
@@ -12,9 +13,7 @@ function Row({rowData, selectedHandler, rowIndex, hasSelected, changeDateHandler
                 {rowData.number}
             </td>
             <DateCell date={rowData.paymentDate} rowIndex={rowIndex} changeDateHandler={changeDateHandler}/>
-            <td>
-                {rowData.title}
-            </td>
+            <TitleCell title={rowData.title} rowIndex={rowIndex} changeTitleHandler={changeTitleHandler}/>
             <td>
                 {rowData.plane}
             </td>

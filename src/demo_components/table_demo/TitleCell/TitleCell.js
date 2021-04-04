@@ -1,23 +1,28 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {createTouchProps} from '../../../utils';
-import style from './DateCell.module.scss';
+import style from './TitleCell.module.scss';
 
-function DateCell({date, rowIndex, changeDateHandler}) {
+function TitleCell({title, rowIndex, changeTitleHandler}) {
     let [editMode, setEditMode] = useState(false);
+    let [inputValue, setInputValue] = useState(title);
 
     let cellRef = useRef(null);
     let inputRef = useRef(null);
 
     function doubleClickHandler() {
         setEditMode(true);
+        setInputValue(title);
     }
 
-    function changeHandler(event) {
-        if (!event.target.value) return;
-        let [, year, month, day] = /(\d\d\d\d)-(\d\d)-(\d\d)/.exec(event.target.value);
-        let nextDate = new Date(year, month - 1, day);
-        changeDateHandler(nextDate, rowIndex);
-        setEditMode(false);
+    function onChangeHandler(event) {
+        setInputValue(event.target.value);
+    }
+
+    function onKeyDownHandler(event) {
+        if (event.keyCode === 13) {
+            changeTitleHandler(inputValue, rowIndex);
+            setEditMode(false);
+        }
     }
 
     useEffect(() => {
@@ -30,18 +35,17 @@ function DateCell({date, rowIndex, changeDateHandler}) {
         return () => window.removeEventListener('click', resetInput);
     }, []);
 
-    let [, day, month, year] = /(\d\d)\.(\d\d)\.(\d\d\d\d)/.exec(date.toLocaleString());
-    let inputStartValue = `${year}-${month}-${day}`;
     let touchProps = createTouchProps(() => setEditMode(true));
     return (
         <td className={style.container} onDoubleClick={doubleClickHandler} ref={cellRef} {...touchProps}>
             {editMode ?
-                <input type={"date"} onChange={changeHandler} ref={inputRef} value={inputStartValue}/>
+                <input type={"text"} ref={inputRef} onChange={onChangeHandler} onKeyDown={onKeyDownHandler}
+                       value={inputValue}/>
                 :
-                date.toLocaleDateString()
+                title
             }
         </td>
     )
 }
 
-export default DateCell;
+export default TitleCell;

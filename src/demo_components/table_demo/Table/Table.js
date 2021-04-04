@@ -77,6 +77,14 @@ function Table() {
         }));
     }
 
+    // Обработчик изменения наименования в строке
+    function changeTitleHandler(nextTitle, rowIndex) {
+        setData(data.map((rowData, index) => {
+            if (index !== rowIndex) return rowData;
+            return Object.assign(rowData, {title: nextTitle});
+        }));
+    }
+
     // Готовим пропсы для Tool
     let toolProps = {
         addCopyFlag: (selectedRow !== null),
@@ -99,6 +107,7 @@ function Table() {
             rowIndex: index,
             hasSelected: index === selectedRow,
             changeDateHandler,
+            changeTitleHandler,
             key: index
         }
         rowComponents.push(<Row {...rowProps}/>);
@@ -106,7 +115,7 @@ function Table() {
     }
 
     return (
-        <div className={style.container} onKeyDown={e => console.log(e)}>
+        <div className={style.container}>
             <Tool {...toolProps}/>
             <table>
                 <tbody>
