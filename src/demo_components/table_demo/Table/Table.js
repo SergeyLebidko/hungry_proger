@@ -106,7 +106,7 @@ function Table() {
     }
 
     return (
-        <div className={style.container}>
+        <div className={style.container} onKeyDown={e => console.log(e)}>
             <Tool {...toolProps}/>
             <table>
                 <tbody>

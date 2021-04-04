@@ -24,11 +24,13 @@ function DateCell({date, rowIndex, changeDateHandler}) {
         return () => window.removeEventListener('click', resetInput);
     }, []);
 
+    let [, day, month, year] = /(\d\d)\.(\d\d)\.(\d\d\d\d)/.exec(date.toLocaleString());
+    let inputStartValue = `${year}-${month}-${day}`;
     let touchProps = createTouchProps(() => setEditMode(true));
     return (
         <td className={style.container} onDoubleClick={() => setEditMode(true)} ref={cellRef} {...touchProps}>
             {editMode ?
-                <input type={"date"} onChange={changeHandler} ref={inputRef}/>
+                <input type={"date"} onChange={changeHandler} ref={inputRef} value={inputStartValue}/>
                 :
                 date.toLocaleDateString()
             }
