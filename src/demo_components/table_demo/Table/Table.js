@@ -26,7 +26,7 @@ function Table() {
             number: data.length + 1,
             paymentDate: new Date(),
             title: '',
-            plane: true,
+            plan: true,
             paymentMethod: cash,
             count: 0,
             price: 0,
