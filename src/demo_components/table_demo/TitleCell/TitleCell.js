@@ -38,7 +38,7 @@ function TitleCell({title, rowIndex, changeTitleHandler}) {
             {editMode ?
                 <input type={"text"} ref={inputRef} onChange={changeHandler} onKeyDown={keyDownHandler} value={inputValue}/>
                 :
-                title.length > 0 ? title : '- введите наименование -'
+                title.length > 0 ? title : 'введите данные'
             }
         </td>
     )

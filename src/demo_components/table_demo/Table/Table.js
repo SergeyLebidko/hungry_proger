@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import HeaderRow from '../HeaderRow/HeaderRow';
 import Tool from '../Tool/Tool';
 import Row from '../Row/Row';
+import TotalPane from '../TotalPane/TotalPane';
 import style from './Table.module.scss';
 
 const columns = ['N', 'Дата покупки', 'Наименование', 'Плановая покупка', 'Способ оплаты', 'Количество', 'Цена', 'Сумма'];
@@ -110,7 +111,7 @@ function Table() {
     }
 
     // Обработчик изменения цены
-    function changePriceHandler(nextPrice, rowIndex){
+    function changePriceHandler(nextPrice, rowIndex) {
         setData(data.map((rowData, index) => {
             if (index !== rowIndex) return rowData;
             return Object.assign(rowData, {price: nextPrice, total: rowData.count * nextPrice});
@@ -159,6 +160,7 @@ function Table() {
                 {rowComponents}
                 </tbody>
             </table>
+            <TotalPane dataList={data}/>
         </div>
     )
 }

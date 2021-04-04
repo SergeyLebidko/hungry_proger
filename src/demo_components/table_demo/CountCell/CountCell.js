@@ -11,6 +11,7 @@ function CountCell({count, rowIndex, changeCountHandler}) {
     let cellRef = useRef(null);
 
     function doubleClickHandler() {
+        setInputValue(count);
         setEditMode(true);
     }
 
@@ -33,7 +34,9 @@ function CountCell({count, rowIndex, changeCountHandler}) {
         }
     }
 
-    useResetInputEffect(inputRef, cellRef, () => setEditMode(false));
+    useResetInputEffect(inputRef, cellRef, () => {
+        setEditMode(false);
+    });
     useFocusEffect(inputRef);
 
     let touchProps = createTouchProps(() => setEditMode(true));
