@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef, useEffect} from 'react';
 import DateCell from '../DateCell/DateCell';
 import TitleCell from '../TitleCell/TitleCell';
 import PlanCell from '../PlanCell/PlanCell';
@@ -7,12 +7,26 @@ import style from './Row.module.scss';
 import CountCell from "../CountCell/CountCell";
 
 function Row(props) {
+    let row = useRef(null);
+
+    useEffect(() => {
+        if (row.current !== null && props.hasSelected) row.current.focus();
+    })
+
+    function keyHandler(event) {
+        if (event.code === 'ArrowUp') props.selectHandler(props.rowIndex - 1);
+        if (event.code === 'ArrowDown') props.selectHandler(props.rowIndex + 1);
+        if (event.code === 'Tab') props.selectHandler(props.rowIndex + 1, true);
+        if (event.code === 'Delete') props.removeHandler(props.rowIndex);
+    }
+
     let rowClassName = style.container + ' ' + (props.hasSelected ? style.selected : '');
     return (
-        <tr onClick={() => props.selectedHandler(props.rowIndex)}
-            onFocus={() => props.selectedHandler(props.rowIndex)}
+        <tr onClick={() => props.selectHandler(props.rowIndex)}
+            onFocus={() => props.selectHandler(props.rowIndex)}
+            onKeyDown={keyHandler}
             className={rowClassName}
-            tabIndex={2}>
+            tabIndex={2} ref={row}>
             <td>
                 {props.rowData.number}
             </td>

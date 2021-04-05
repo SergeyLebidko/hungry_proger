@@ -56,7 +56,8 @@ function Table() {
             rowData.number = index + 1;
             return rowData;
         }));
-        setSelectedRow(null);
+        if (nextData.length === 0) setSelectedRow(null);
+        if (selectedRow === nextData.length) setSelectedRow(nextData.length - 1);
     }
 
     // Обработчик удаления всех строк
@@ -66,8 +67,16 @@ function Table() {
     }
 
     // Обработчик выбора строки
-    function selectedHandler(rowIndex) {
-        setSelectedRow(rowIndex);
+    function selectHandler(rowIndex, tabFlag = false) {
+        if (rowIndex === data.length && tabFlag) {
+            setSelectedRow(null);
+            return;
+        }
+
+        let nextIndex = rowIndex;
+        if (rowIndex < 0) nextIndex = data.length - 1;
+        if (rowIndex > (data.length - 1)) nextIndex = 0;
+        setSelectedRow(nextIndex);
     }
 
     // Универсальный обработчик для изменения даты, наименования, флага плановой покупки и метода оплаты
@@ -93,22 +102,6 @@ function Table() {
         }));
     }
 
-    // Обработчик нажатия клавиш
-    function keyDownHandler(event) {
-        if (selectedRow === null) return;
-
-        if (event.code === 'ArrowUp') {
-            selectedRow -= 1;
-            if (selectedRow < 0) selectedRow = data.length - 1;
-            setSelectedRow(selectedRow);
-        }
-        if (event.code === 'ArrowDown') {
-            selectedRow += 1;
-            if (selectedRow > (data.length - 1)) selectedRow = 0;
-            setSelectedRow(selectedRow);
-        }
-    }
-
     // Готовим пропсы для Tool
     let toolProps = {
         addCopyFlag: (selectedRow !== null),
@@ -127,7 +120,7 @@ function Table() {
     for (let rowData of data) {
         rowProps = {
             rowData,
-            selectedHandler,
+            selectHandler,
             rowIndex: index,
             hasSelected: index === selectedRow,
             changeDateHandler: (nextValue, rowIndex) => simpleChangeHandler('paymentDate', nextValue, rowIndex),
@@ -136,6 +129,7 @@ function Table() {
             changeMethodHandler: (nextValue, rowIndex) => simpleChangeHandler('paymentMethod', nextValue, rowIndex),
             changeCountHandler: (nextValue, rowIndex) => countAndPriceChangeHandler('count', nextValue, rowIndex),
             changePriceHandler: (nextValue, rowIndex) => countAndPriceChangeHandler('price', nextValue, rowIndex),
+            removeHandler,
             key: index
         }
         rowComponents.push(<Row {...rowProps}/>);
