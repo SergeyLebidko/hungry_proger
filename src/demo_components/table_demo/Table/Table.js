@@ -70,38 +70,6 @@ function Table() {
         setSelectedRow(rowIndex);
     }
 
-    // Обработчик изменения даты в строке
-    function changeDateHandler(nextDate, rowIndex) {
-        setData(data.map((rowData, index) => {
-            if (index !== rowIndex) return rowData;
-            return Object.assign(rowData, {paymentDate: nextDate});
-        }));
-    }
-
-    // Обработчик изменения наименования в строке
-    function changeTitleHandler(nextTitle, rowIndex) {
-        setData(data.map((rowData, index) => {
-            if (index !== rowIndex) return rowData;
-            return Object.assign(rowData, {title: nextTitle});
-        }));
-    }
-
-    // Обработчик изменения флага плановой покупки
-    function changePlanHandler(nextPlan, rowIndex) {
-        setData(data.map((rowData, index) => {
-            if (index !== rowIndex) return rowData;
-            return Object.assign(rowData, {plan: nextPlan});
-        }));
-    }
-
-    // Обработчик изменения метода оплаты
-    function changeMethodHandler(nextMethod, rowIndex) {
-        setData(data.map((rowData, index) => {
-            if (index !== rowIndex) return rowData;
-            return Object.assign(rowData, {paymentMethod: nextMethod});
-        }));
-    }
-
     // Обработчик изменения количества
     function changeCountHandler(nextCount, rowIndex) {
         setData(data.map((rowData, index) => {
@@ -115,6 +83,14 @@ function Table() {
         setData(data.map((rowData, index) => {
             if (index !== rowIndex) return rowData;
             return Object.assign(rowData, {price: nextPrice, total: rowData.count * nextPrice});
+        }));
+    }
+
+    // Универсальный обработчик для изменения даты, наименования, флага плановой покупки и метода оплаты
+    function simpleChangeHandler(fieldName, nextValue, rowIndex) {
+        setData(data.map((rowData, index) => {
+            if (index !== rowIndex) return rowData;
+            return Object.assign(rowData, {[fieldName]: nextValue});
         }));
     }
 
@@ -139,10 +115,10 @@ function Table() {
             selectedHandler,
             rowIndex: index,
             hasSelected: index === selectedRow,
-            changeDateHandler,
-            changeTitleHandler,
-            changePlanHandler,
-            changeMethodHandler,
+            changeDateHandler: (nextValue, rowIndex) => simpleChangeHandler('paymentDate', nextValue, rowIndex),
+            changeTitleHandler: (nextValue, rowIndex) => simpleChangeHandler('title', nextValue, rowIndex),
+            changePlanHandler: (nextValue, rowIndex) => simpleChangeHandler('plan', nextValue, rowIndex),
+            changeMethodHandler: (nextValue, rowIndex) => simpleChangeHandler('paymentMethod', nextValue, rowIndex),
             changeCountHandler,
             changePriceHandler,
             key: index
