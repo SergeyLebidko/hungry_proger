@@ -18,6 +18,7 @@
     color: white;
     outline-color: blue;
     outline-width: 2px;
+    user-select: none;
 
     &:not(:first-child) {
       margin-left: 10px;
