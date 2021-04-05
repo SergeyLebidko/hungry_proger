@@ -56,7 +56,10 @@ function Table() {
             rowData.number = index + 1;
             return rowData;
         }));
-        if (nextData.length === 0) setSelectedRow(null);
+        if (nextData.length === 0) {
+            setSelectedRow(null);
+            return;
+        }
         if (selectedRow === nextData.length) setSelectedRow(nextData.length - 1);
     }
 
