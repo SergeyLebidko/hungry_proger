@@ -16,7 +16,8 @@ function Row(props) {
     function keyHandler(event) {
         if (event.code === 'ArrowUp') props.selectHandler(props.rowIndex - 1);
         if (event.code === 'ArrowDown') props.selectHandler(props.rowIndex + 1);
-        if (event.code === 'Tab') props.selectHandler(props.rowIndex + 1, true);
+        if (event.code === 'Tab' && event.nativeEvent.shiftKey) props.selectHandler(props.rowIndex - 1, true);
+        if (event.code === 'Tab' && !event.nativeEvent.shiftKey) props.selectHandler(props.rowIndex + 1, true);
         if (event.code === 'Delete') props.removeHandler(props.rowIndex);
     }
 

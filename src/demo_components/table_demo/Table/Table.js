@@ -71,7 +71,7 @@ function Table() {
 
     // Обработчик выбора строки
     function selectHandler(rowIndex, tabFlag = false) {
-        if (rowIndex === data.length && tabFlag) {
+        if ((rowIndex === data.length || rowIndex === -1) && tabFlag) {
             setSelectedRow(null);
             return;
         }
