@@ -24,17 +24,13 @@ function MethodCell({paymentMethod, rowIndex, changeMethodHandler}) {
 
     let optionsList = [], index = 0;
     for (let value of Object.keys(paymentMethodsMap)) {
-        optionsList.push(
-            <option key={index} value={value} selected={value === paymentMethod}>
-                {paymentMethodsMap[value]}
-            </option>
-        );
+        optionsList.push(<option key={index} value={value}>{paymentMethodsMap[value]}</option>);
         index++;
     }
     return (
         <td className={style.container} onDoubleClick={doubleClickHandler} {...touchProps} ref={cellRef}>
             {editMode ?
-                <select ref={inputRef} onChange={changeHandler}>
+                <select ref={inputRef} onChange={changeHandler} defaultValue={paymentMethod}>
                     {optionsList}
                 </select>
                 :
