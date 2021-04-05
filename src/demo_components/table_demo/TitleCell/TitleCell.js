@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {createTouchProps} from '../../../utils';
-import {useResetInputEffect, useFocusEffect} from '../customEffects';
+import {useResetInputEffect, useFocusEffect, useSelectionEffect} from '../customEffects';
 import style from './TitleCell.module.scss';
 
 function TitleCell({title, rowIndex, changeTitleHandler}) {
@@ -28,6 +28,7 @@ function TitleCell({title, rowIndex, changeTitleHandler}) {
 
     useResetInputEffect(inputRef, cellRef, () => setEditMode(false));
     useFocusEffect(inputRef);
+    useSelectionEffect(inputRef, editMode);
 
     let containerClass = style.container;
     if (title.length === 0) containerClass += (' ' + style.empty);
@@ -36,7 +37,12 @@ function TitleCell({title, rowIndex, changeTitleHandler}) {
     return (
         <td className={containerClass} onDoubleClick={doubleClickHandler} ref={cellRef} {...touchProps}>
             {editMode ?
-                <input type={"text"} ref={inputRef} onChange={changeHandler} onKeyDown={keyDownHandler} value={inputValue}/>
+                <input type={"text"}
+                       ref={inputRef}
+                       onChange={changeHandler}
+                       onKeyDown={keyDownHandler}
+                       value={inputValue}
+                />
                 :
                 title.length > 0 ? title : 'введите данные'
             }

@@ -14,6 +14,14 @@ export function useResetInputEffect(inputRef, cellRef, resetFunction) {
 
 export function useFocusEffect(inputRef) {
     useEffect(() => {
-        if (inputRef.current) inputRef.current.focus();
+        if (inputRef.current) {
+            inputRef.current.focus();
+        }
     });
+}
+
+export function useSelectionEffect(inputRef, flagVar) {
+    useEffect(() => {
+        if (inputRef.current && inputRef.current.value.length > 0) inputRef.current.select();
+    }, [flagVar])
 }
