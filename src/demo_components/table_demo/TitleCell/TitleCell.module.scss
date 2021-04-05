@@ -1,4 +1,6 @@
 .container {
+  touch-action: manipulation;
+
   input {
     width: 100%;
     outline: none;

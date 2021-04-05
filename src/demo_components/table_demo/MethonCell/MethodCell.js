@@ -1,7 +1,6 @@
 import React, {useState, useRef} from 'react';
 import {paymentMethodsMap} from '../Table/Table';
 import {useResetInputEffect} from '../customEffects';
-import {createTouchProps} from '../../../utils';
 import style from './MethodCell.module.scss';
 
 function MethodCell({paymentMethod, rowIndex, changeMethodHandler}) {
@@ -20,7 +19,6 @@ function MethodCell({paymentMethod, rowIndex, changeMethodHandler}) {
     }
 
     useResetInputEffect(inputRef, cellRef, () => setEditMode(false));
-    let touchProps = createTouchProps(() => setEditMode(true));
 
     let optionsList = [], index = 0;
     for (let value of Object.keys(paymentMethodsMap)) {
@@ -28,7 +26,7 @@ function MethodCell({paymentMethod, rowIndex, changeMethodHandler}) {
         index++;
     }
     return (
-        <td className={style.container} onDoubleClick={doubleClickHandler} {...touchProps} ref={cellRef}>
+        <td className={style.container} onDoubleClick={doubleClickHandler} ref={cellRef}>
             {editMode ?
                 <select ref={inputRef} onChange={changeHandler} defaultValue={paymentMethod}>
                     {optionsList}

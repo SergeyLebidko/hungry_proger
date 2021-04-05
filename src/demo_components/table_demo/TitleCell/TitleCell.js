@@ -1,5 +1,4 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {createTouchProps} from '../../../utils';
 import {useResetInputEffect, useFocusEffect, useSelectionEffect} from '../customEffects';
 import style from './TitleCell.module.scss';
 
@@ -33,9 +32,8 @@ function TitleCell({title, rowIndex, changeTitleHandler}) {
     let containerClass = style.container;
     if (title.length === 0) containerClass += (' ' + style.empty);
 
-    let touchProps = createTouchProps(() => setEditMode(true));
     return (
-        <td className={containerClass} onDoubleClick={doubleClickHandler} ref={cellRef} {...touchProps}>
+        <td className={containerClass} onDoubleClick={doubleClickHandler} ref={cellRef}>
             {editMode ?
                 <input type={"text"}
                        ref={inputRef}

@@ -1,5 +1,4 @@
 import React, {useState, useRef} from 'react';
-import {createTouchProps} from '../../../utils';
 import {useFocusEffect, useResetInputEffect} from '../customEffects';
 import style from './DateCell.module.scss';
 
@@ -26,9 +25,8 @@ function DateCell({date, rowIndex, changeDateHandler}) {
 
     let [, day, month, year] = /(\d\d)\.(\d\d)\.(\d\d\d\d)/.exec(date.toLocaleString());
     let inputStartValue = `${year}-${month}-${day}`;
-    let touchProps = createTouchProps(() => setEditMode(true));
     return (
-        <td className={style.container} onDoubleClick={doubleClickHandler} ref={cellRef} {...touchProps}>
+        <td className={style.container} onDoubleClick={doubleClickHandler} ref={cellRef}>
             {editMode ?
                 <input type={"date"} onChange={changeHandler} ref={inputRef} value={inputStartValue}/>
                 :

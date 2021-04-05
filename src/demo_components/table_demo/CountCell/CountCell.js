@@ -1,6 +1,5 @@
 import React, {useState, useRef} from 'react';
 import style from './CountCell.module.scss';
-import {createTouchProps} from '../../../utils';
 import {useFocusEffect, useResetInputEffect, useSelectionEffect} from "../customEffects";
 
 function CountCell({count, rowIndex, changeCountValueHandler}) {
@@ -38,9 +37,8 @@ function CountCell({count, rowIndex, changeCountValueHandler}) {
     useSelectionEffect(inputRef, editMode);
     useFocusEffect(inputRef);
 
-    let touchProps = createTouchProps(() => setEditMode(true));
     return (
-        <td className={style.container} onDoubleClick={doubleClickHandler} ref={cellRef} {...touchProps}>
+        <td className={style.container} onDoubleClick={doubleClickHandler} ref={cellRef}>
             {editMode ?
                 <input type={"text"} value={inputValue} ref={inputRef} onChange={changeHandler}
                        onKeyDown={keyDownHandler}/>
