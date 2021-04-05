@@ -93,6 +93,22 @@ function Table() {
         }));
     }
 
+    // Обработчик нажатия клавиш
+    function keyDownHandler(event) {
+        if (selectedRow === null) return;
+
+        if (event.code === 'ArrowUp') {
+            selectedRow -= 1;
+            if (selectedRow < 0) selectedRow = data.length - 1;
+            setSelectedRow(selectedRow);
+        }
+        if (event.code === 'ArrowDown') {
+            selectedRow += 1;
+            if (selectedRow > (data.length - 1)) selectedRow = 0;
+            setSelectedRow(selectedRow);
+        }
+    }
+
     // Готовим пропсы для Tool
     let toolProps = {
         addCopyFlag: (selectedRow !== null),

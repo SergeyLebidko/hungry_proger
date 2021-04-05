@@ -9,7 +9,10 @@ import CountCell from "../CountCell/CountCell";
 function Row(props) {
     let rowClassName = style.container + ' ' + (props.hasSelected ? style.selected : '');
     return (
-        <tr onClick={() => props.selectedHandler(props.rowIndex)} className={rowClassName}>
+        <tr onClick={() => props.selectedHandler(props.rowIndex)}
+            onFocus={() => props.selectedHandler(props.rowIndex)}
+            className={rowClassName}
+            tabIndex={2}>
             <td>
                 {props.rowData.number}
             </td>

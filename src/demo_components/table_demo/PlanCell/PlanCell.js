@@ -11,7 +11,7 @@ function PlanCell({plan, rowIndex, changePlanHandler}) {
 
     return (
         <td className={style.container}>
-            <input type={"checkbox"} value={plan} checked={inputValue} onChange={changeHandler}/>
+            <input type={"checkbox"} value={plan} checked={inputValue} onChange={changeHandler} tabIndex={-1}/>
         </td>
     );
 }

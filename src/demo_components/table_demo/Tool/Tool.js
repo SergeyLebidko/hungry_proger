@@ -11,19 +11,44 @@ function Tool({addCopyFlag, addCopyLastFlag, removeFlag, removeAllFlag, addEmpty
 
     return (
         <ul className={style.container}>
-            <li className={style.enabled_add} onClick={addEmptyHandler}>
+            <li className={style.enabled_add}
+                onClick={addEmptyHandler}
+                onKeyDown={e => {
+                    if (e.code === 'Enter' || e.code === 'Space') addEmptyHandler()
+                }}
+                tabIndex={1}>
                 Добавить новую строку
             </li>
-            <li className={addCopyLastClass} onClick={addCopyLastHandler}>
+            <li className={addCopyLastClass}
+                onClick={addCopyLastHandler}
+                onKeyDown={e => {
+                    if (e.code === 'Enter' || e.code === 'Space') addCopyLastHandler()
+                }}
+                tabIndex={1}>
                 Добавить копию последней строки
             </li>
-            <li className={addCopyClass} onClick={addCopyHandler}>
+            <li className={addCopyClass}
+                onClick={addCopyHandler}
+                onKeyDown={e => {
+                    if (e.code === 'Enter' || e.code === 'Space') addCopyHandler()
+                }}
+                tabIndex={1}>
                 Добавить копию выделенной строки
             </li>
-            <li className={removeClass} onClick={removeHandler}>
+            <li className={removeClass}
+                onClick={removeHandler}
+                onKeyDown={e => {
+                    if (e.code === 'Enter' || e.code === 'Space') removeHandler()
+                }}
+                tabIndex={1}>
                 Удалить выделенную строку
             </li>
-            <li className={removeAllClass} onClick={removeAllHandler}>
+            <li className={removeAllClass}
+                onClick={removeAllHandler}
+                onKeyDown={e => {
+                    if (e.code === 'Enter' || e.code === 'Space') removeAllHandler()
+                }}
+                tabIndex={1}>
                 Удалить все строки
             </li>
         </ul>

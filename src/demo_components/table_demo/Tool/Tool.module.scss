@@ -16,6 +16,8 @@
     cursor: pointer;
     font-size: 1.2em;
     color: white;
+    outline-color: blue;
+    outline-width: 2px;
 
     &:not(:first-child) {
       margin-left: 10px;
