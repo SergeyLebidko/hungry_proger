@@ -31,11 +31,11 @@ function Row(props) {
             />
             <CountCell count={props.rowData.count}
                        rowIndex={props.rowIndex}
-                       changeCountHandler={props.changeCountHandler}
+                       changeCountValueHandler={props.changeCountHandler}
             />
             <CountCell count={props.rowData.price}
                        rowIndex={props.rowIndex}
-                       changeCountHandler={props.changePriceHandler}
+                       changeCountValueHandler={props.changePriceHandler}
             />
             <td>
                 {props.rowData.total}

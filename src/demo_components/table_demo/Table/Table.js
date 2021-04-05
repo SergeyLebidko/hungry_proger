@@ -70,27 +70,26 @@ function Table() {
         setSelectedRow(rowIndex);
     }
 
-    // Обработчик изменения количества
-    function changeCountHandler(nextCount, rowIndex) {
-        setData(data.map((rowData, index) => {
-            if (index !== rowIndex) return rowData;
-            return Object.assign(rowData, {count: nextCount, total: rowData.price * nextCount});
-        }));
-    }
-
-    // Обработчик изменения цены
-    function changePriceHandler(nextPrice, rowIndex) {
-        setData(data.map((rowData, index) => {
-            if (index !== rowIndex) return rowData;
-            return Object.assign(rowData, {price: nextPrice, total: rowData.count * nextPrice});
-        }));
-    }
-
     // Универсальный обработчик для изменения даты, наименования, флага плановой покупки и метода оплаты
     function simpleChangeHandler(fieldName, nextValue, rowIndex) {
         setData(data.map((rowData, index) => {
             if (index !== rowIndex) return rowData;
             return Object.assign(rowData, {[fieldName]: nextValue});
+        }));
+    }
+
+    // Универсальный обработчик для изменения значений цены и количества
+    function countAndPriceChangeHandler(fieldName, nextValue, rowIndex) {
+        setData(data.map((rowData, index) => {
+            if (index !== rowIndex) return rowData;
+            if (fieldName === 'price') return Object.assign(rowData, {
+                price: nextValue,
+                total: rowData.count * nextValue
+            });
+            if (fieldName === 'count') return Object.assign(rowData, {
+                count: nextValue,
+                total: rowData.price * nextValue
+            });
         }));
     }
 
@@ -119,8 +118,8 @@ function Table() {
             changeTitleHandler: (nextValue, rowIndex) => simpleChangeHandler('title', nextValue, rowIndex),
             changePlanHandler: (nextValue, rowIndex) => simpleChangeHandler('plan', nextValue, rowIndex),
             changeMethodHandler: (nextValue, rowIndex) => simpleChangeHandler('paymentMethod', nextValue, rowIndex),
-            changeCountHandler,
-            changePriceHandler,
+            changeCountHandler: (nextValue, rowIndex) => countAndPriceChangeHandler('count', nextValue, rowIndex),
+            changePriceHandler: (nextValue, rowIndex) => countAndPriceChangeHandler('price', nextValue, rowIndex),
             key: index
         }
         rowComponents.push(<Row {...rowProps}/>);

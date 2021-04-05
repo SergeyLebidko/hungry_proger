@@ -3,7 +3,7 @@ import style from './CountCell.module.scss';
 import {createTouchProps} from '../../../utils';
 import {useFocusEffect, useResetInputEffect, useSelectionEffect} from "../customEffects";
 
-function CountCell({count, rowIndex, changeCountHandler}) {
+function CountCell({count, rowIndex, changeCountValueHandler}) {
     let [editMode, setEditMode] = useState(false);
     let [inputValue, setInputValue] = useState(count);
 
@@ -29,7 +29,7 @@ function CountCell({count, rowIndex, changeCountHandler}) {
                 setEditMode(false);
                 return;
             }
-            changeCountHandler(inputValue, rowIndex);
+            changeCountValueHandler(inputValue, rowIndex);
             setEditMode(false);
         }
     }
