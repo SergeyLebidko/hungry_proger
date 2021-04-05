@@ -1,7 +1,7 @@
 import React, {useState, useRef} from 'react';
 import style from './CountCell.module.scss';
 import {createTouchProps} from '../../../utils';
-import {useFocusEffect, useResetInputEffect} from "../customEffects";
+import {useFocusEffect, useResetInputEffect, useSelectionEffect} from "../customEffects";
 
 function CountCell({count, rowIndex, changeCountHandler}) {
     let [editMode, setEditMode] = useState(false);
@@ -34,9 +34,8 @@ function CountCell({count, rowIndex, changeCountHandler}) {
         }
     }
 
-    useResetInputEffect(inputRef, cellRef, () => {
-        setEditMode(false);
-    });
+    useResetInputEffect(inputRef, cellRef, () => setEditMode(false));
+    useSelectionEffect(inputRef, editMode);
     useFocusEffect(inputRef);
 
     let touchProps = createTouchProps(() => setEditMode(true));
