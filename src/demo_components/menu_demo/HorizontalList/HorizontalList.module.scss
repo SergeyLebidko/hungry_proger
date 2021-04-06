@@ -1,12 +1,12 @@
 @import '../../../variables';
 
 .container {
+  list-style-type: none;
   display: flex;
   justify-content: center;
   align-items: center;
 
   li {
-    display: inline-block;
     font-family: $headers-font-family;
     text-transform: uppercase;
     padding: 0 15px 5px 15px;
