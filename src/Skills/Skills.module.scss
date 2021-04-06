@@ -42,6 +42,7 @@
     border-radius: $small-radius;
     cursor: default;
     transition: all 400ms;
+    user-select: none;
 
     &:hover {
       background-color: black;

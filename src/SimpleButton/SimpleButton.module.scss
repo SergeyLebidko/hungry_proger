@@ -16,6 +16,7 @@
   letter-spacing: 2px;
   transition: all 500ms;
   pointer-events: auto;
+  user-select: none;
 
   &:hover {
     color: white;

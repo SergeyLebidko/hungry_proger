@@ -10,6 +10,7 @@
   cursor: pointer;
   overflow: hidden;
   transition: all 400ms;
+  user-select: none;
 
   &:after {
     @extend %gradient_after_element;
