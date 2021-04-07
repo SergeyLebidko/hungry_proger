@@ -24,7 +24,12 @@ const initialData = [
     [0, 0, 139],
     [47, 79, 79],
     [255, 0, 0],
-    [0, 139, 139]
+    [0, 139, 139],
+    [210, 105, 30],
+    [128, 0, 0],
+    [255, 248, 220],
+    [255, 228, 225],
+    [0, 255, 255]
 ];
 
 const colorScope = 100;
@@ -32,7 +37,7 @@ const colorScope = 100;
 function createColorsList() {
     let result = [];
     let r, g, b;
-    for (let index = 0; index < 16; index++) {
+    for (let index = 0; index < initialData.length; index++) {
         [r, g, b] = initialData[index];
         r += Math.floor(Math.random() * colorScope - (colorScope / 2));
         g += Math.floor(Math.random() * colorScope - (colorScope / 2));
@@ -53,7 +58,7 @@ const Container = withRouter(({history}) => {
         <div className={style.container} style={containerStyle}>
             <div className={style.description}>
                 <h3>
-                    Перед вами 16 карточек разных цветов.
+                    Перед вами 21 карточка с разными цветами.
                     Чтобы изменить цвет карточки - кликните на ней правой кнопкой мышки и вызовите компонент с
                     контекстным меню для редактирования цвета.
                 </h3>
@@ -64,7 +69,7 @@ const Container = withRouter(({history}) => {
                                   action={() => history.push('/')}
                     />
                     <SimpleButton text={"Создать новые цвета"}
-                                  pk={"cmd_close_btn"}
+                                  pk={"cmd_new_color_btn"}
                                   delay={0}
                                   action={() => setColorsData(createColorsList)}
                     />
