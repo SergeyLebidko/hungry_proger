@@ -2,10 +2,14 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  max-width: 840px;
+  max-width: 848px;
   margin: auto;
+}
 
-  div {
-    margin: 5px;
+.container > div {
+  margin: 5px;
+
+  @media (max-width: 600px){
+    margin-bottom: 10px;
   }
 }
