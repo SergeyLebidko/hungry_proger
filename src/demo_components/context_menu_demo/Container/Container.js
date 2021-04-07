@@ -6,7 +6,7 @@ import style from './Container.module.scss';
 import {shuffle} from "../../../utils";
 
 const backgroundImage = 'url(/images/demo_components/context_menu_demo/back_container.png)';
-const backgroundGradient = 'radial-gradient(circle, transparent, rgba(30, 30, 30, 0.6))';
+const backgroundGradient = 'radial-gradient(circle, transparent, rgba(30, 30, 30, 0.4))';
 
 const initialData = [
     [34, 139, 34],
