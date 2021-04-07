@@ -23,7 +23,7 @@ export const Context = React.createContext(store);
 const DEMO_PATH = '/demo';
 const DEMO_DATA = [
     {
-        title: 'Меню',
+        title: 'Меню сайта',
         href: 'menu',
         component: <MenuDemoContainer/>
     },

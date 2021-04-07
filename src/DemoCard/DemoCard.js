@@ -10,9 +10,10 @@ function DemoCard({title, href, history}) {
         }, 150);
     }
 
+    let titleStyle = title.length > 15 ? {fontSize: '1.8em'} : {};
     return (
         <div className={style.demo_card} onClick={clickHandler}>
-            <p>{title}</p>
+            <p style={titleStyle}>{title}</p>
         </div>
     );
 }
