@@ -36,7 +36,7 @@ function Menu({items, minimizeFlag, itemClickHandler}) {
         setHasVerticalMenuOpen(!hasVerticalMenuOpen);
     }
 
-    let inlineStyle = {backgroundImage: 'url(/images/demo_components/menu_demo/back_menu.png)'}
+    let inlineStyle = {backgroundImage: 'url(/images/demo_components/main_menu_demo/back_menu.png)'}
 
     let menuComponent;
     if (menuView === vertical) {

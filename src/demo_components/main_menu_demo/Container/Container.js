@@ -5,7 +5,7 @@ import Menu from '../Menu/Menu';
 
 const scrollLimit = 100;
 
-const backgroundImage = 'url(/images/demo_components/menu_demo/back_container.png';
+const backgroundImage = 'url(/images/demo_components/main_menu_demo/back_container.png';
 const backgroundGradient = 'radial-gradient(circle, transparent, rgba(30, 30, 30, 0.6))';
 
 const aboutComponentText = 'Это компонент с меню. ' +
