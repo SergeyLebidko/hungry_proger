@@ -35,6 +35,7 @@
     border-top-right-radius: $small-radius;
     top: -60px;
     box-sizing: border-box;
+    user-select: none;
     transition: all 200ms;
   }
 

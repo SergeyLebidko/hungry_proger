@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import {withRouter} from 'react-router-dom';
 import Card from '../Card/Card';
 import SimpleButton from '../../../SimpleButton/SimpleButton';
@@ -49,6 +49,18 @@ const Container = withRouter(({history}) => {
         setVisibleContext(false);
     }
 
+    useEffect(() => {
+        // Отслеживаем изменение размеров экрана и скрываем меню
+        function hideMenu() {
+            setVisibleContext(false);
+        }
+
+        window.addEventListener('resize', hideMenu);
+
+        return () => window.removeEventListener('resize', hideMenu);
+    });
+
+    // Функция для создания компонента карточки отдельного цвета
     function cardsMap(value, index) {
         return (
             <Card key={index}
@@ -60,8 +72,8 @@ const Container = withRouter(({history}) => {
     }
 
     return (
-        <div ref={containerRef} className={style.container} onContextMenu={containerContextHandler}
-             onClick={clickHandler}>
+        <div ref={containerRef} className={style.container}
+             onContextMenu={containerContextHandler} onClick={clickHandler} onScroll={() => setVisibleContext(false)}>
             <div ref={descriptionRef} className={style.description}>
                 <h3>
                     Это демонстрация компонента с контекстным меню. На пустом поле внизу можно кликать правой кнопкой
