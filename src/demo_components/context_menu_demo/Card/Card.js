@@ -3,7 +3,7 @@ import style from './Card.module.scss';
 
 const colorLimit = 65;
 
-function Card({data}) {
+function Card({data, index, hasHide, contextHandler}) {
     let [r1, g1, b1] = data;
     let r2, g2, b2;
     if (r1 < colorLimit && g1 < colorLimit && b1 < colorLimit) {
@@ -21,8 +21,9 @@ function Card({data}) {
     let containerStyle = {
         backgroundImage: `linear-gradient(to right bottom, ${color1}, ${color2})`
     };
+    if (hasHide) Object.assign(containerStyle, {opacity: 0.3});
     return (
-        <div className={style.container} style={containerStyle}>
+        <div className={style.container} style={containerStyle} onContextMenu={event => contextHandler(event, index)}>
             <div>
                 {`${r1}, ${g1}, ${b1}`}
             </div>
