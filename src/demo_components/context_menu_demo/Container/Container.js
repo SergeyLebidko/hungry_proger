@@ -9,20 +9,16 @@ const Container = withRouter(({history}) => {
         <div className={style.container}>
             <div className={style.description}>
                 <h3>
-                    Перед вами 21 карточка с разными цветами.
-                    Чтобы изменить цвет карточки - кликните на ней правой кнопкой мышки и вызовите компонент с
-                    контекстным меню для редактирования цвета.
+                    Это демонстрация компонента с контекстным меню. На пустом поле внизу можно кликать правой кнопкой
+                    мышки для того, чтобы вызвать меню создания цветовой карточки. Также можно вызывать меню
+                    для редактирования и удаления уже созданных карточек.
                 </h3>
                 <nav>
-                    <SimpleButton text={"На главную"}
-                                  pk={"cmd_close_btn"}
-                                  delay={0}
-                                  action={() => history.push('/')}
-                    />
+                    <SimpleButton text={"На главную"} pk={"cmd_close_btn"} delay={0} action={() => history.push('/')}/>
                 </nav>
             </div>
             <div className={style.cards_block}>
-                <Card data={[30, 144, 255]}/>
+
             </div>
         </div>
     )
