@@ -9,9 +9,11 @@
   box-sizing: border-box;
   overflow: auto;
   padding: 15px;
+  background-color: WhiteSmoke;
 
   .description {
     margin: -15px -15px 20px -15px;
+    border-bottom: 1px solid lightgray;
 
     h3 {
       padding: 25px 0;
@@ -34,5 +36,11 @@
         margin-right: 15px;
       }
     }
+  }
+
+  .cards_block {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
   }
 }

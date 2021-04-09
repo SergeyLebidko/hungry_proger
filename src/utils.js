@@ -5,19 +5,6 @@ export function randomChoice(arr) {
     return arr[pos];
 }
 
-export function shuffle(arr) {
-    let tmp = [];
-    for (let obj of arr) {
-        tmp.push({obj, rnd: Math.random()})
-    }
-    tmp.sort((a, b) => {
-        if (a.rnd < b.rnd) return -1;
-        if (a.rnd > b.rnd) return 1;
-        return 0;
-    })
-    return tmp.map(value => value.obj);
-}
-
 // Функция генерирует и возвращает объект градиента
 export function createGradient() {
     let colors = [
