@@ -1,12 +1,34 @@
-import React from 'react';
+import React, {useRef, useState} from 'react';
 import {withRouter} from 'react-router-dom';
 import Card from '../Card/Card';
 import SimpleButton from '../../../SimpleButton/SimpleButton';
 import style from './Container.module.scss';
+import ContextMenu from "../ContextMenu/ContextMenu";
 
 const Container = withRouter(({history}) => {
+    let [contextX, setContextX] = useState(0);
+    let [contextY, setContextY] = useState(0);
+    let [visibleContext, setVisibleContext] = useState(false);
+
+    let containerRef = useRef(null);
+
+    function contextHandler(event) {
+        if (event.target !== containerRef.current) {
+            if (visibleContext) setVisibleContext(false)
+            return;
+        }
+        event.preventDefault();
+        setContextX(event.clientX);
+        setContextY(event.clientY);
+        setVisibleContext(true);
+    }
+
+    function clickHandler(event) {
+        setVisibleContext(false)
+    }
+
     return (
-        <div className={style.container}>
+        <div ref={containerRef} className={style.container} onContextMenu={contextHandler} onClick={clickHandler}>
             <div className={style.description}>
                 <h3>
                     Это демонстрация компонента с контекстным меню. На пустом поле внизу можно кликать правой кнопкой
@@ -20,6 +42,7 @@ const Container = withRouter(({history}) => {
             <div className={style.cards_block}>
 
             </div>
+            <ContextMenu x={contextX} y={contextY} visible={visibleContext}/>
         </div>
     )
 })
