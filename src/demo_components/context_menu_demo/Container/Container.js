@@ -7,7 +7,7 @@ import style from './Container.module.scss';
 
 const Container = withRouter(({history}) => {
     // Временный массив данных. В дальнейшем должен быть удален
-    let cardsData = [[34, 139, 34], [30, 144, 255], [255, 69, 0]];
+    let [cardsData, setCardsData] = useState([[34, 139, 34], [30, 144, 255], [255, 69, 0]]);
 
     let [contextX, setContextX] = useState(0);
     let [contextY, setContextY] = useState(0);
@@ -82,6 +82,16 @@ const Container = withRouter(({history}) => {
                 </h3>
                 <nav>
                     <SimpleButton text={"На главную"} pk={"cmd_close_btn"} delay={0} action={() => history.push('/')}/>
+                    {cardsData.length > 0 ?
+                        <SimpleButton text={"Удалить все карточки"}
+                                      pk={"rm_cards_btn"}
+                                      delay={0}
+                                      action={() => setCardsData([])}
+                        />
+                        :
+                        ''
+                    }
+
                 </nav>
             </div>
             <div className={style.cards_block}>
