@@ -1,4 +1,5 @@
 import React from 'react';
+import ColorChooser from '../ColorChooser/ColorChooser';
 import style from './ContextMenu.module.scss';
 
 const widthMenu = 300;
@@ -15,7 +16,11 @@ function ContextMenu({xClick, yClick, visible, data, cardIndex}) {
     // Формируем содержимое меню основываясь на переданных данных
     let content;
     if (data !== null) {
-        content = <p>Меню редактирования или удаления карточки {data.color.join(', ')}</p>
+        content = (
+            <div className={style.content}>
+                <p>Меню редактирования или удаления карточки {data.color.join(', ')}</p>
+                <ColorChooser/>
+            </div>);
     } else {
         content = <p>Меню создания карточки</p>
     }

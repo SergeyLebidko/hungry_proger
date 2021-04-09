@@ -1,0 +1,25 @@
+.container {
+  padding: 20px;
+  border: 1px solid black;
+
+  div.scale {
+    position: relative;
+    height: 10px;
+    background-color: whitesmoke;
+    border: 1px solid black;
+    border-radius: 5px;
+
+    div.regulator {
+      position: absolute;
+      background-color: orangered;
+      border: 1px solid black;
+      border-radius: 50%;
+      transition: all 200ms;
+    }
+  }
+}
+
+.drag {
+  transform: scale(1.2);
+  transition: all 200ms;
+}
