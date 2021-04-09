@@ -13,10 +13,7 @@ const Container = withRouter(({history}) => {
     let containerRef = useRef(null);
 
     function contextHandler(event) {
-        if (event.target !== containerRef.current) {
-            if (visibleContext) setVisibleContext(false)
-            return;
-        }
+        if (event.target !== containerRef.current) return;
         event.preventDefault();
         setContextX(event.clientX);
         setContextY(event.clientY);
@@ -40,7 +37,9 @@ const Container = withRouter(({history}) => {
                 </nav>
             </div>
             <div className={style.cards_block}>
-
+                <Card data={[34, 139, 34]}/>
+                <Card data={[30, 144, 255]}/>
+                <Card data={[255, 69, 0]}/>
             </div>
             <ContextMenu x={contextX} y={contextY} visible={visibleContext}/>
         </div>

@@ -42,6 +42,12 @@
   .cards_block {
     display: flex;
     justify-content: flex-start;
+    flex-wrap: wrap;
     align-items: center;
+    pointer-events: none;
   }
+}
+
+.cards_block > div {
+  margin: 10px;
 }
