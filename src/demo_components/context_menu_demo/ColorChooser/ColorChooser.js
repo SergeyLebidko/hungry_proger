@@ -22,7 +22,7 @@ function ColorChooser({init, type, chooseHandler}) {
         let scaleWidth = bound.right - bound.left;
         setRegulatorColor(init);
         setRegulatorPos(init * scaleWidth / 255 - sizeFactor);
-    }, []);
+    }, [init]);
 
     function update(clientX){
         let bound = scaleRef.current.getBoundingClientRect();

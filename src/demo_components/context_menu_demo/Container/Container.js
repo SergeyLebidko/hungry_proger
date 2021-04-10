@@ -7,7 +7,7 @@ import style from './Container.module.scss';
 
 const Container = withRouter(({history}) => {
     // Временный массив данных. В дальнейшем должен быть удален
-    let [cardsData, setCardsData] = useState([[34, 139, 34], [30, 144, 255], [255, 69, 0]]);
+    let [cardsData, setCardsData] = useState([]);
 
     let [contextX, setContextX] = useState(0);
     let [contextY, setContextY] = useState(0);
@@ -71,6 +71,32 @@ const Container = withRouter(({history}) => {
         );
     }
 
+    // Обработчк отмены действий в меню
+    function menuCancelHandler() {
+        setHasMenuShow(false);
+    }
+
+    // Обработчик сохранения карточки
+    function saveCardHandler(data) {
+        setCardsData(cardsData.map((color, index) => {
+            if (index !== data.cardIndex) return color;
+            return data.color;
+        }));
+        setHasMenuShow(false);
+    }
+
+    // Обработчк добавления карточки
+    function addCardHandler(color){
+        setCardsData([...cardsData, color]);
+        setHasMenuShow(false);
+    }
+
+    // Обработчик удаления карточки
+    function removeCardHandler(cardIndex){
+        setCardsData(cardsData.filter((_, index) => cardIndex !== index));
+        setHasMenuShow(false);
+    }
+
     return (
         <div ref={containerRef} className={style.container}
              onContextMenu={containerContextHandler} onClick={clickHandler} onScroll={() => setHasMenuShow(false)}>
@@ -98,7 +124,15 @@ const Container = withRouter(({history}) => {
                 {cardsData.map(cardsMap)}
             </div>
             {hasMenuShow ?
-                <ContextMenu key={Math.random()} xClick={contextX} yClick={contextY} data={contextData}/>
+                <ContextMenu key={Math.random()}
+                             xClick={contextX}
+                             yClick={contextY}
+                             data={contextData}
+                             menuCancelHandler={menuCancelHandler}
+                             saveCardHandler={saveCardHandler}
+                             addCardHandler={addCardHandler}
+                             removeCardHandler={removeCardHandler}
+                />
                 :
                 ''
             }
