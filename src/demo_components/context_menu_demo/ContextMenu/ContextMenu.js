@@ -4,8 +4,8 @@ import style from './ContextMenu.module.scss';
 
 import {redType, greenType, blueType} from '../ColorChooser/ColorChooser';
 
-const widthMenu = 300;
-const heightMenu = 400;
+const widthMenu = 350;
+const heightMenu = 450;
 
 function ContextMenu({xClick, yClick, data}) {
     let [red, setRed] = useState(data !== null ? data.color[0] : 0);

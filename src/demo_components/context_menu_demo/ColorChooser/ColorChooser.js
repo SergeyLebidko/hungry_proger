@@ -60,11 +60,14 @@ function ColorChooser({init, type, chooseHandler}) {
     if (type === redType) Object.assign(scaleInline, {backgroundImage: 'linear-gradient(to right, black, red)'});
     if (type === greenType) Object.assign(scaleInline, {backgroundImage: 'linear-gradient(to right, black, green)'});
     if (type === blueType) Object.assign(scaleInline, {backgroundImage: 'linear-gradient(to right, black, blue)'});
+
+    let indicatorStyle = {top: `-${sizeFactor}px`}
     return (
         <div className={style.container}
              onMouseMove={moveHandler}
              onMouseUp={() => setHasDrag(false)}
              onMouseLeave={() => setHasDrag(false)}>
+            <span style={indicatorStyle}>{Math.floor(regulatorColor)}</span>
             <div className={style.scale} style={scaleInline} ref={scaleRef}>
                 <div className={regulatorClass} style={regulatorInline} onMouseDown={() => setHasDrag(true)}/>
             </div>
