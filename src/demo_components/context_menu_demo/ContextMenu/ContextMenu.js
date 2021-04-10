@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import ColorChooser from '../ColorChooser/ColorChooser';
+import createGradient from '../gradientCreator';
 import style from './ContextMenu.module.scss';
 
 import {redType, greenType, blueType} from '../ColorChooser/ColorChooser';
@@ -21,16 +22,22 @@ function ContextMenu({xClick, yClick, data}) {
     // Формируем содержимое меню основываясь на переданных данных
     let content;
     if (data !== null) {
-        let colorPaneInline = {
-            backgroundColor: `rgb(${red}, ${green}, ${blue})`
-        }
-        console.log(colorPaneInline);
+        let colorPaneInline = createGradient(red, green, blue);
         content = (
             <div className={style.content}>
                 <ColorChooser init={data.color[0]} type={redType} chooseHandler={r => setRed(r)}/>
                 <ColorChooser init={data.color[1]} type={greenType} chooseHandler={g => setGreen(g)}/>
                 <ColorChooser init={data.color[2]} type={blueType} chooseHandler={b => setBlue(b)}/>
                 <div className={style.color_pane} style={colorPaneInline}/>
+                <button>
+                    Сохранить
+                </button>
+                <button>
+                    Отменить
+                </button>
+                <button>
+                    Удалить карточку
+                </button>
             </div>);
     } else {
         content = <p>Меню создания карточки</p>
