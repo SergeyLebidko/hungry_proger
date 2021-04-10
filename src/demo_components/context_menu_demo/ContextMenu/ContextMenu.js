@@ -2,10 +2,12 @@ import React from 'react';
 import ColorChooser from '../ColorChooser/ColorChooser';
 import style from './ContextMenu.module.scss';
 
+import {redType, greenType, blueType} from '../ColorChooser/ColorChooser';
+
 const widthMenu = 300;
 const heightMenu = 400;
 
-function ContextMenu({xClick, yClick, visible, data, cardIndex}) {
+function ContextMenu({xClick, yClick, visible, data}) {
 
     // Функция для предотвращения распространения событий мы за пределы меню
     function stopEvent(event) {
@@ -19,7 +21,9 @@ function ContextMenu({xClick, yClick, visible, data, cardIndex}) {
         content = (
             <div className={style.content}>
                 <p>Меню редактирования или удаления карточки {data.color.join(', ')}</p>
-                <ColorChooser/>
+                <ColorChooser init={data.color[0]} type={redType}/>
+                <ColorChooser init={data.color[1]} type={greenType}/>
+                <ColorChooser init={data.color[2]} type={blueType}/>
             </div>);
     } else {
         content = <p>Меню создания карточки</p>
