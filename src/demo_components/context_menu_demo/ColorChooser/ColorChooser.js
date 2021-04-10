@@ -72,11 +72,17 @@ function ColorChooser({init, type, chooseHandler}) {
         <div className={style.container}
              onClick={scaleClickHandler}
              onMouseMove={moveHandler}
+             onTouchMove={e => moveHandler({clientX: e.changedTouches[0].clientX})}
              onMouseUp={() => setHasDrag(false)}
+             onTouchEnd={() => setHasDrag(false)}
              onMouseLeave={() => setHasDrag(false)}>
             <span style={indicatorStyle}>{Math.floor(regulatorColor)}</span>
             <div className={style.scale} style={scaleInline} ref={scaleRef}>
-                <div className={regulatorClass} style={regulatorInline} onMouseDown={() => setHasDrag(true)}/>
+                <div className={regulatorClass}
+                     style={regulatorInline}
+                     onMouseDown={() => setHasDrag(true)}
+                     onTouchStart={() => setHasDrag(true)}
+                />
             </div>
         </div>
     )
