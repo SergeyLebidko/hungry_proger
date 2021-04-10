@@ -52,4 +52,8 @@
 
 .cards_block > div {
   margin: 10px;
+
+  @media (max-width: 600px) {
+    margin-bottom: 40px;
+  }
 }
