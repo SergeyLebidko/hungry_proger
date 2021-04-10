@@ -19,6 +19,7 @@ import {Container as MainMenuDemoContainer} from './demo_components/main_menu_de
 import {Container as GalleryDemoContainer} from './demo_components/gallery_demo/Container/Container';
 import {Container as TableDemoContainer} from './demo_components/table_demo/Container/Container';
 import {Container as ContextMenuDemoContainer} from './demo_components/context_menu_demo/Container/Container';
+import {Container as SliderDemoContainer} from './demo_components/slider_demo/Container/Container';
 
 export const Context = React.createContext(store);
 const DEMO_PATH = '/demo';
@@ -42,6 +43,11 @@ const DEMO_DATA = [
         title: 'Таблица',
         href: 'table',
         component: <TableDemoContainer/>
+    },
+    {
+        title: 'Слайдеры',
+        href: 'sliders',
+        component: <SliderDemoContainer/>
     }
 ];
 
