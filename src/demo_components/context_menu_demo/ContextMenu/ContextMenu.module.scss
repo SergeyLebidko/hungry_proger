@@ -21,4 +21,26 @@
       box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.4);
     }
   }
+
+  button {
+    margin: 5px;
+    padding: 10px;
+    font-family: $headers-font-family;
+    font-size: 1.2em;
+    border: 1px solid lightgray;
+    outline: none;
+    transition: all 200ms;
+
+    &:hover {
+      box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+      transform: scale(1.03);
+      transition: all 200ms;
+    }
+
+    &:active {
+      box-shadow: none;
+      transform: scale(1);
+      transition: all 100ms;
+    }
+  }
 }
