@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ColorChooser from '../ColorChooser/ColorChooser';
 import style from './ContextMenu.module.scss';
 
@@ -7,7 +7,10 @@ import {redType, greenType, blueType} from '../ColorChooser/ColorChooser';
 const widthMenu = 300;
 const heightMenu = 400;
 
-function ContextMenu({xClick, yClick, visible, data}) {
+function ContextMenu({xClick, yClick, data}) {
+    let [red, setRed] = useState(data !== null ? data.color[0] : 0);
+    let [green, setGreen] = useState(data !== null ? data.color[1] : 0);
+    let [blue, setBlue] = useState(data !== null ? data.color[2] : 0);
 
     // Функция для предотвращения распространения событий мы за пределы меню
     function stopEvent(event) {
@@ -18,12 +21,16 @@ function ContextMenu({xClick, yClick, visible, data}) {
     // Формируем содержимое меню основываясь на переданных данных
     let content;
     if (data !== null) {
+        let colorPaneInline = {
+            backgroundColor: `rgb(${red}, ${green}, ${blue})`
+        }
+        console.log(colorPaneInline);
         content = (
             <div className={style.content}>
-                <p>Меню редактирования или удаления карточки {data.color.join(', ')}</p>
-                <ColorChooser key={Math.random()} init={data.color[0]} type={redType}/>
-                <ColorChooser key={Math.random()} init={data.color[1]} type={greenType}/>
-                <ColorChooser key={Math.random()} init={data.color[2]} type={blueType}/>
+                <ColorChooser init={data.color[0]} type={redType} chooseHandler={r => setRed(r)}/>
+                <ColorChooser init={data.color[1]} type={greenType} chooseHandler={g => setGreen(g)}/>
+                <ColorChooser init={data.color[2]} type={blueType} chooseHandler={b => setBlue(b)}/>
+                <div className={style.color_pane} style={colorPaneInline}/>
             </div>);
     } else {
         content = <p>Меню создания карточки</p>
@@ -38,7 +45,6 @@ function ContextMenu({xClick, yClick, visible, data}) {
     if (left < 0) left = 0;
 
     let containerStyle = {top: `${top}px`, left: `${left}px`, width: `${widthMenu}px`, height: `${heightMenu}px`}
-    containerStyle = visible ? Object.assign(containerStyle, {display: 'block'}) : containerStyle;
     return (
         <div className={style.container} style={containerStyle} onClick={stopEvent} onContextMenu={stopEvent}>
             {content}

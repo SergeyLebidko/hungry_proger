@@ -12,7 +12,7 @@ const Container = withRouter(({history}) => {
     let [contextX, setContextX] = useState(0);
     let [contextY, setContextY] = useState(0);
     let [contextData, setContextData] = useState(null);
-    let [visibleContext, setVisibleContext] = useState(false);
+    let [hasMenuShow, setHasMenuShow] = useState(false);
 
     let containerRef = useRef(null);
     let descriptionRef = useRef(null);
@@ -20,7 +20,7 @@ const Container = withRouter(({history}) => {
     // Обработчик вызова меню на контейнере
     function containerContextHandler(event) {
         if (event.target !== containerRef.current) {
-            setVisibleContext(false);
+            setHasMenuShow(false);
             return;
         }
         showContextMenu(event);
@@ -36,7 +36,7 @@ const Container = withRouter(({history}) => {
         event.preventDefault();
         setContextX(event.clientX);
         setContextY(event.clientY);
-        setVisibleContext(true);
+        setHasMenuShow(true);
         if (cardIndex !== null) {
             setContextData({color: cardsData[cardIndex], cardIndex});
         } else {
@@ -46,13 +46,13 @@ const Container = withRouter(({history}) => {
 
     // При клике на контейнере убираем меню с экрана
     function clickHandler() {
-        setVisibleContext(false);
+        setHasMenuShow(false);
     }
 
     useEffect(() => {
         // Отслеживаем изменение размеров экрана и скрываем меню
         function hideMenu() {
-            setVisibleContext(false);
+            setHasMenuShow(false);
         }
 
         window.addEventListener('resize', hideMenu);
@@ -66,14 +66,14 @@ const Container = withRouter(({history}) => {
             <Card key={index}
                   data={value} index={index}
                   contextHandler={cardContextHandler}
-                  hasHide={visibleContext && contextData !== null && contextData.cardIndex !== index}
+                  hasHide={hasMenuShow && contextData !== null && contextData.cardIndex !== index}
             />
         );
     }
 
     return (
         <div ref={containerRef} className={style.container}
-             onContextMenu={containerContextHandler} onClick={clickHandler} onScroll={() => setVisibleContext(false)}>
+             onContextMenu={containerContextHandler} onClick={clickHandler} onScroll={() => setHasMenuShow(false)}>
             <div ref={descriptionRef} className={style.description}>
                 <h3>
                     Это демонстрация компонента с контекстным меню. На пустом поле внизу можно кликать правой кнопкой
@@ -97,7 +97,11 @@ const Container = withRouter(({history}) => {
             <div className={style.cards_block}>
                 {cardsData.map(cardsMap)}
             </div>
-            <ContextMenu xClick={contextX} yClick={contextY} visible={visibleContext} data={contextData}/>
+            {hasMenuShow ?
+                <ContextMenu key={Math.random()} xClick={contextX} yClick={contextY} data={contextData}/>
+                :
+                ''
+            }
         </div>
     )
 })

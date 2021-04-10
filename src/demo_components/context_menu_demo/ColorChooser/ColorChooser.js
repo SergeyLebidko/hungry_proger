@@ -9,7 +9,7 @@ export const redType = 'r';
 export const greenType = 'g';
 export const blueType = 'b';
 
-function ColorChooser({init, type}) {
+function ColorChooser({init, type, chooseHandler}) {
     let [hasDrag, setHasDrag] = useState(false);
     let [regulatorPos, setRegulatorPos] = useState(-regulatorSize / 2);
     let [regulatorColor, setRegulatorColor] = useState(init);
@@ -30,16 +30,18 @@ function ColorChooser({init, type}) {
         let bound = scaleRef.current.getBoundingClientRect();
         let scaleStartX = bound.left;
         let scaleEndX = bound.right;
+        let scaleWidth = scaleEndX - scaleStartX;
         let {clientX} = event;
 
         if (clientX < scaleStartX) clientX = scaleStartX;
         if (clientX > scaleEndX) clientX = scaleEndX;
 
         let nextPos = clientX - scaleStartX - sizeFactor;
-        let scaleWidth = scaleEndX - scaleStartX;
+        let nextColor = (nextPos + sizeFactor) / scaleWidth * 255
 
         setRegulatorPos(nextPos);
-        setRegulatorColor((nextPos - sizeFactor) / scaleWidth * 255);
+        setRegulatorColor(nextColor);
+        chooseHandler(nextColor);
     }
 
     let regulatorClass = hasDrag ? style.regulator + ' ' + style.drag : style.regulator;

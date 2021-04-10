@@ -5,13 +5,19 @@
   background-color: white;
   border-radius: $small-radius;
   border: 1px solid lightgray;
-  box-shadow: 0 0 20px rgba(50, 50, 50 , 0.3);
-  display: none;
+  box-shadow: 0 0 20px rgba(50, 50, 50, 0.3);
   user-select: none;
 
   div.content {
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    div.color_pane {
+      height: 50px;
+      border-radius: 5px;
+      border: 1px solid black;
+      margin: 5px;
+    }
   }
 }
