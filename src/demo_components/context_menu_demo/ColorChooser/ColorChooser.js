@@ -24,14 +24,11 @@ function ColorChooser({init, type, chooseHandler}) {
         setRegulatorPos(init * scaleWidth / 255 - sizeFactor);
     }, []);
 
-    function moveHandler(event) {
-        if (!hasDrag) return;
-
+    function update(clientX){
         let bound = scaleRef.current.getBoundingClientRect();
         let scaleStartX = bound.left;
         let scaleEndX = bound.right;
         let scaleWidth = scaleEndX - scaleStartX;
-        let {clientX} = event;
 
         if (clientX < scaleStartX) clientX = scaleStartX;
         if (clientX > scaleEndX) clientX = scaleEndX;
@@ -42,6 +39,15 @@ function ColorChooser({init, type, chooseHandler}) {
         setRegulatorPos(nextPos);
         setRegulatorColor(nextColor);
         chooseHandler(nextColor);
+    }
+
+    function moveHandler(event) {
+        if (!hasDrag) return;
+        update(event.clientX);
+    }
+
+    function scaleClickHandler(event){
+        update(event.clientX);
     }
 
     let regulatorClass = hasDrag ? style.regulator + ' ' + style.drag : style.regulator;
@@ -64,6 +70,7 @@ function ColorChooser({init, type, chooseHandler}) {
     let indicatorStyle = {top: `-${sizeFactor}px`}
     return (
         <div className={style.container}
+             onClick={scaleClickHandler}
              onMouseMove={moveHandler}
              onMouseUp={() => setHasDrag(false)}
              onMouseLeave={() => setHasDrag(false)}>
