@@ -22,7 +22,7 @@ function ColorChooser({init, type}) {
         let scaleWidth = bound.right - bound.left;
         setRegulatorColor(init);
         setRegulatorPos(init * scaleWidth / 255 - sizeFactor);
-    });
+    }, []);
 
     function moveHandler(event) {
         if (!hasDrag) return;

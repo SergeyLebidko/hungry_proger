@@ -21,9 +21,9 @@ function ContextMenu({xClick, yClick, visible, data}) {
         content = (
             <div className={style.content}>
                 <p>Меню редактирования или удаления карточки {data.color.join(', ')}</p>
-                <ColorChooser init={data.color[0]} type={redType}/>
-                <ColorChooser init={data.color[1]} type={greenType}/>
-                <ColorChooser init={data.color[2]} type={blueType}/>
+                <ColorChooser key={Math.random()} init={data.color[0]} type={redType}/>
+                <ColorChooser key={Math.random()} init={data.color[1]} type={greenType}/>
+                <ColorChooser key={Math.random()} init={data.color[2]} type={blueType}/>
             </div>);
     } else {
         content = <p>Меню создания карточки</p>
