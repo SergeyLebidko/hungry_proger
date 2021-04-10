@@ -33,16 +33,17 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      text-align: center;
 
       span:first-child {
-        margin-right: 15px;
+        margin-right: 10px;
       }
     }
   }
 
   .cards_block {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     flex-wrap: wrap;
     align-items: center;
     pointer-events: none;
