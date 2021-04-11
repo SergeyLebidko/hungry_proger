@@ -7,14 +7,23 @@ const imgCount = 5;
 function Header({history}) {
     let [currentSlide, setCurrentSlide] = useState(1);
     let currentSlideRef = useRef(1);
+    let intervalRef = useRef(null);
 
-    useEffect(() => {
-        let interval = setInterval(() => {
+    function startSwitcher() {
+        intervalRef.current = setInterval(() => {
             setCurrentSlide(currentSlideRef.current % imgCount + 1);
             currentSlideRef.current++;
         }, 3000);
+    }
 
-        return () => clearInterval(interval);
+    function stopSwitcher() {
+        clearInterval(intervalRef.current);
+    }
+
+    useEffect(() => {
+        startSwitcher();
+
+        return () => stopSwitcher();
     }, [])
 
     let images = [];
@@ -32,8 +41,10 @@ function Header({history}) {
         controlPoints.push(
             <div className={index === currentSlide ? style.current : ''}
                  onClick={() => {
+                     stopSwitcher();
                      currentSlideRef.current = index;
                      setCurrentSlide(index);
+                     startSwitcher();
                  }}
                  key={index}
             />
