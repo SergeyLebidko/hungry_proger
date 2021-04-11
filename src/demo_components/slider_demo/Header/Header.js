@@ -2,6 +2,7 @@ import React, {useState, useEffect, useRef} from 'react';
 import {withRouter} from 'react-router-dom';
 import style from './Header.module.scss';
 
+const imgCount = 5;
 
 function Header({history}) {
     let [currentSlide, setCurrentSlide] = useState(1);
@@ -9,7 +10,7 @@ function Header({history}) {
 
     useEffect(() => {
         let interval = setInterval(() => {
-            setCurrentSlide(currentSlideRef.current % 4 + 1);
+            setCurrentSlide(currentSlideRef.current % imgCount + 1);
             currentSlideRef.current++;
         }, 3000);
 
@@ -17,7 +18,7 @@ function Header({history}) {
     }, [])
 
     let images = [];
-    for (let index = 1; index <= 4; index++) {
+    for (let index = 1; index <= imgCount; index++) {
         images.push(
             <img src={`/images/demo_components/slider_demo/header${index}.jpg`}
                  className={index === currentSlide ? style.visible : style.hide}
@@ -27,7 +28,7 @@ function Header({history}) {
     }
 
     let controlPoints = [];
-    for (let index = 1; index <= 4; index++) {
+    for (let index = 1; index <= imgCount; index++) {
         controlPoints.push(
             <div className={index === currentSlide ? style.current : ''}
                  onClick={() => {
