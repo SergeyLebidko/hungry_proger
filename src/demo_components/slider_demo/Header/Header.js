@@ -14,6 +14,12 @@ function Header({history}) {
                 <h3>Набор слайдеров на React и jQuery</h3>
                 <span onClick={() => history.push('/')}>На главную</span>
             </div>
+            <div className={style.slide_control}>
+                <div/>
+                <div className={style.current}/>
+                <div/>
+                <div/>
+            </div>
         </div>
     )
 }
