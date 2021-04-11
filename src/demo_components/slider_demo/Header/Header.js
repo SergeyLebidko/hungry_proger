@@ -11,7 +11,7 @@ function Header({history}) {
         let interval = setInterval(() => {
             setCurrentSlide(currentSlideRef.current % 4 + 1);
             currentSlideRef.current++;
-        }, 4000);
+        }, 3000);
 
         return () => clearInterval(interval);
     }, [])
