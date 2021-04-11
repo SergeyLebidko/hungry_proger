@@ -20,7 +20,7 @@ function Header({history}) {
     for (let index = 1; index <= 4; index++) {
         images.push(
             <img src={`/images/demo_components/slider_demo/header${index}.jpg`}
-                 style={index === currentSlide ? {opacity: 1} : {opacity: 0}}
+                 className={index === currentSlide ? style.visible : style.hide}
                  key={index}
             />
         )
@@ -30,7 +30,10 @@ function Header({history}) {
     for (let index = 1; index <= 4; index++) {
         controlPoints.push(
             <div className={index === currentSlide ? style.current : ''}
-                 onClick={() => setCurrentSlide(index)}
+                 onClick={() => {
+                     currentSlideRef.current = index;
+                     setCurrentSlide(index);
+                 }}
                  key={index}
             />
         )
