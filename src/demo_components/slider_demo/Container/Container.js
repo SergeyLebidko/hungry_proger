@@ -4,8 +4,8 @@ import style from './Container.module.scss';
 
 export function Container() {
     return (
-        <>
+        <div>
             <Header/>
-        </>
+        </div>
     )
 }
