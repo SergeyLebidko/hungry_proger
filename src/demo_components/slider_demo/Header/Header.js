@@ -5,18 +5,10 @@ import style from './Header.module.scss';
 function Header({history}) {
     return (
         <div className={style.container}>
-            <div className={style.image_block}
-                 style={{backgroundImage: 'url(/images/demo_components/slider_demo/header1.jpg)'}}
-            />
-            <div className={style.image_block}
-                 style={{backgroundImage: 'url(/images/demo_components/slider_demo/header2.jpg)'}}
-            />
-            <div className={style.image_block}
-                 style={{backgroundImage: 'url(/images/demo_components/slider_demo/header3.jpg)'}}
-            />
-            <div className={style.image_block}
-                 style={{backgroundImage: 'url(/images/demo_components/slider_demo/header4.jpg)'}}
-            />
+            <img src={'/images/demo_components/slider_demo/header1.jpg'}/>
+            <img src={'/images/demo_components/slider_demo/header2.jpg'}/>
+            <img src={'/images/demo_components/slider_demo/header3.jpg'}/>
+            <img src={'/images/demo_components/slider_demo/header4.jpg'}/>
             <div className={style.cap_block}/>
             <div className={style.description}>
                 <h3>Набор слайдеров на React и jQuery</h3>
