@@ -53,8 +53,10 @@ function Header({history}) {
 
     return (
         <div className={style.container}>
-            {images}
-            <div className={style.cap_block}/>
+            <div className={style.image_block}>
+                {images}
+                <div className={style.cap_block}/>
+            </div>
             <div className={style.description}>
                 <h3>Набор слайдеров на React и jQuery</h3>
                 <span onClick={() => history.push('/')}>На главную</span>
