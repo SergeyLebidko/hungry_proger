@@ -13,7 +13,7 @@ function HeaderCanvas() {
 
         // Фигуры-искры
         let sparkles = [];
-        let sideCounts = [2, 3, 4, 5, 6];
+        let sideCounts = [3, 4, 5, 6];
         let sparkle, sideCount, radius, vector, rotateFactor;
         let sparkleCount;
 
@@ -27,7 +27,12 @@ function HeaderCanvas() {
                 rotateFactor = 10 - 20 * Math.random();
 
                 sparkle = new Path.RegularPolygon(point, sideCount, radius);
-                sparkle.fillColor = 'white';
+                if (Math.random() * 10 < 5){
+                    sparkle.fillColor = 'white';
+                } else {
+                    sparkle.strokeColor = 'white';
+                    sparkle.strokeWidth = 1;
+                }
                 sparkle.opacity = Math.random() * 0.8;
 
                 vector = Point.random().multiply(5 + Math.random() * 8);
