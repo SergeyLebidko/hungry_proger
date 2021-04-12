@@ -72,6 +72,10 @@ function Header({history}) {
 
     let preloaderClass = style.preloader;
     if (mode === mode2) preloaderClass += (' ' + style.hide);
+
+    let preloaderStyle = {
+        backgroundImage: 'radial-gradient(rgba(30, 144, 255, 0.3), rgba(0, 0, 205, 0.3)), url(/images/demo_components/slider_demo/back_preloader.png)'
+    }
     return (
         <div className={style.container}>
             <div className={imageBlockClass}>
@@ -91,7 +95,7 @@ function Header({history}) {
                 :
                 ''
             }
-            {mode === mode3 ? '' : <div className={preloaderClass}/>}
+            {mode === mode3 ? '' : <div className={preloaderClass} style={preloaderStyle}/>}
         </div>
     )
 }

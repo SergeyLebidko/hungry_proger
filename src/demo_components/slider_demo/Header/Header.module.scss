@@ -22,6 +22,17 @@
   }
 }
 
+@keyframes pulse {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0.5;
+  }
+}
+
 .container {
   position: relative;
   min-height: 800px;
@@ -123,7 +134,36 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:before {
+      content: 'ЗАГРУЗКА';
+      font-family: $headers-font-family;
+      font-size: 1.5em;
+      font-weight: normal;
+      color: black;
+      z-index: 2;
+    }
+
+    &:after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      content: '';
+      width: 150px;
+      height: 150px;
+      border: 1px solid navy;
+      box-sizing: unset;
+      border-radius: 50%;
+      background-color: white;
+      z-index: 1;
+      animation-name: pulse;
+      animation-duration: 500ms;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+    }
   }
 }
 
