@@ -26,7 +26,6 @@
   position: relative;
   min-height: 800px;
   border-bottom: 1px solid black;
-  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,6 +53,7 @@
   .description {
     position: relative;
     padding: 40px;
+    margin: 10px;
     height: 100px;
     border-left: 10px solid white;
     font-family: $headers-font-family;
