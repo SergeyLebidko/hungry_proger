@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {withRouter} from 'react-router-dom';
+import {createTouchSlideProps} from '../sliderUtil';
 import style from './Header.module.scss';
 
 const imgCount = 5;
@@ -12,13 +13,25 @@ function Header({history}) {
     let [mode, setMode] = useState(mode1);
     let [imgLoadCount, setImgLoadCount] = useState(0);
     let [currentSlide, setCurrentSlide] = useState(1);
+
     let currentSlideRef = useRef(1);
     let intervalRef = useRef(null);
 
+    function prev() {
+        currentSlideRef.current--;
+        if (currentSlideRef.current < 1) currentSlideRef.current = imgCount;
+        setCurrentSlide(currentSlideRef.current);
+    }
+
+    function next() {
+        currentSlideRef.current++;
+        if (currentSlideRef.current > imgCount) currentSlideRef.current = 1;
+        setCurrentSlide(currentSlideRef.current);
+    }
+
     function startSwitcher() {
         intervalRef.current = setInterval(() => {
-            setCurrentSlide(currentSlideRef.current % imgCount + 1);
-            currentSlideRef.current++;
+            next();
         }, 3000);
     }
 
@@ -67,6 +80,9 @@ function Header({history}) {
         )
     }
 
+    let touchProps = {}
+    if (mode === mode3) touchProps = createTouchSlideProps(prev, next, stopSwitcher, startSwitcher);
+
     let imageBlockClass = style.image_block;
     if (mode === mode1) imageBlockClass += (' ' + style.hide);
 
@@ -77,7 +93,7 @@ function Header({history}) {
         backgroundImage: 'radial-gradient(rgba(30, 144, 255, 0.3), rgba(0, 0, 205, 0.3)), url(/images/demo_components/slider_demo/back_preloader.png)'
     }
     return (
-        <div className={style.container}>
+        <div className={style.container} {...touchProps}>
             <div className={imageBlockClass}>
                 {images}
                 <div className={style.cap_block}/>
