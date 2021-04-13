@@ -1,32 +1,17 @@
 import React, {useRef, useState, useEffect} from 'react';
 import $ from 'jquery';
 import Preloader, {lightTheme} from '../Preloader/Preloader';
-import {createTouchSlideProps} from '../sliderUtil';
+import {createTouchSlideProps, modeController, mode2, mode3} from '../sliderUtil';
 import style from './Slider1.module.scss';
 
 const items = ['balloon', 'car', 'krasnodar', 'mountain', 'nature', 'new_york', 'sculpture', 'sea'];
 
-const mode1 = '1'; // Первый режим - изображения еще не загружены. Отображается прелоадер
-const mode2 = '2'; // Второй режим - изображения загружены, прелоадер плавно удаляется с экрана
-const mode3 = '3'; // Третий режим - прелоадер размонтирован
-
-function Slider1() {
+function Slider1({mode, imgLoadHandler}) {
     let contentRef = useRef(null);
     let arrowLeftRef = useRef(null);
     let arrowRightRef = useRef(null);
 
-    let [imgLoadCount, setImgLoadCount] = useState(0);
-    let [mode, setMode] = useState(mode1);
     let [pos, setPos] = useState(0);
-
-    // Отслеживаем количество загруженных изображений
-    useEffect(() => {
-        if (imgLoadCount < items.length) return;
-        setTimeout(() => {
-            setMode(mode2);
-            setTimeout(() => setMode(mode3), 1000);
-        }, 1500);
-    }, [imgLoadCount]);
 
     let images = [], index = 0;
     for (let item of items) {
@@ -34,7 +19,7 @@ function Slider1() {
             <img key={index}
                  src={`/images/demo_components/slider_demo/${item}.jpg`}
                  style={{left: `${100 * index}%`}}
-                 onLoad={() => setImgLoadCount(imgLoadCount + 1)}
+                 onLoad={imgLoadHandler}
             />
         );
         index++;
@@ -84,4 +69,4 @@ function Slider1() {
     )
 }
 
-export default Slider1;
+export default modeController(Slider1, items.length);
