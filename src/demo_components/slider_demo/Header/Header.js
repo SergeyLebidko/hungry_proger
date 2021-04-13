@@ -1,4 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
+import Preloader from '../Preloader/Preloader';
+import {darkTheme} from '../Preloader/Preloader';
 import {withRouter} from 'react-router-dom';
 import {createTouchSlideProps} from '../sliderUtil';
 import style from './Header.module.scss';
@@ -39,6 +41,7 @@ function Header({history}) {
         clearInterval(intervalRef.current);
     }
 
+    // Отслеживаем количество загруженных изображений и переключаем режимы работы для создания плавных переходов
     useEffect(() => {
         if (imgLoadCount < imgCount) return;
         setTimeout(() => {
@@ -86,12 +89,6 @@ function Header({history}) {
     let imageBlockClass = style.image_block;
     if (mode === mode1) imageBlockClass += (' ' + style.hide);
 
-    let preloaderClass = style.preloader;
-    if (mode === mode2) preloaderClass += (' ' + style.hide);
-
-    let preloaderStyle = {
-        backgroundImage: 'radial-gradient(rgba(30, 144, 255, 0.3), rgba(0, 0, 205, 0.3)), url(/images/demo_components/slider_demo/back_preloader.png)'
-    }
     return (
         <div className={style.container} {...touchProps}>
             <div className={imageBlockClass}>
@@ -112,7 +109,7 @@ function Header({history}) {
                 :
                 ''
             }
-            {mode === mode3 ? '' : <div className={preloaderClass} style={preloaderStyle}/>}
+            {mode === mode3 ? '' : <Preloader theme={darkTheme} hasDeactivateProcess={mode === mode2}/>}
         </div>
     )
 }
