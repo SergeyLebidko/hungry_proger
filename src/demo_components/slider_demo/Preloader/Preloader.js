@@ -4,6 +4,8 @@ import style from './Preloader.module.scss';
 export const lightTheme = 'l';
 export const darkTheme = 'd';
 
+export const preloaderHideDuration = 1000;
+
 function Preloader({theme, hasDeactivateProcess}) {
     let preloaderStyle = {};
     let preloaderClass = style.container;

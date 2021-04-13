@@ -1,3 +1,6 @@
+import React, {useState, useEffect} from 'react';
+import {preloaderHideDuration} from './Preloader/Preloader';
+
 const moveLimit = 100;
 
 export function createTouchSlideProps(prev, next, stopTimer = null, startTimer = null) {
@@ -32,4 +35,33 @@ export function createTouchSlideProps(prev, next, stopTimer = null, startTimer =
     }
 
     return {onTouchStart: touchStartHandler, onTouchMove: touchMoveHandler, onTouchEnd: touchEndHandler}
+}
+
+const mode1 = '1'; // Первый режим - изображения еще не загружены. Должен отображаться прелоадер
+const mode2 = '2'; // Второй режим - изображения загружены, прелоадер может начать размонтирование
+const mode3 = '3'; // Третий режим - сигнал к размонтированию прелоадера
+
+export function modeController(Slider, slideCount) {
+    function ModeController(props) {
+        let [imgLoadCount, setImgLoadCount] = useState(0);
+        let [mode, setMode] = useState(mode1);
+
+        function imgLoadHandler() {
+            setImgLoadCount(imgLoadCount + 1);
+        }
+
+        useEffect(() => {
+            if (imgLoadCount < slideCount) return;
+            setTimeout(() => {
+                setMode(mode2);
+                setTimeout(() => setMode(mode3), preloaderHideDuration);
+            }, 1500)
+
+        }, [imgLoadCount])
+
+        return <Slider {...props} imgLoadHandler={imgLoadHandler} mode={mode}/>
+    }
+
+    ModeController.displayName = Slider.displayName;
+    return ModeController;
 }

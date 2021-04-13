@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import Preloader, {darkTheme} from '../Preloader/Preloader';
 import {withRouter} from 'react-router-dom';
-import {createTouchSlideProps} from '../sliderUtil';
+import {createTouchSlideProps, modeController} from '../sliderUtil';
 import style from './Header.module.scss';
 
 const imgCount = 5;
@@ -113,4 +113,4 @@ function Header({history}) {
     )
 }
 
-export default withRouter(Header);
+export default withRouter(modeController(Header, imgCount));
