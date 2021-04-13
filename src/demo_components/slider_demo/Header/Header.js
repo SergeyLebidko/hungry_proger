@@ -1,6 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
-import Preloader from '../Preloader/Preloader';
-import {darkTheme} from '../Preloader/Preloader';
+import Preloader, {darkTheme} from '../Preloader/Preloader';
 import {withRouter} from 'react-router-dom';
 import {createTouchSlideProps} from '../sliderUtil';
 import style from './Header.module.scss';
