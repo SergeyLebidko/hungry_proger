@@ -1,18 +1,12 @@
 import React, {useState, useEffect, useRef} from 'react';
 import Preloader, {darkTheme} from '../Preloader/Preloader';
 import {withRouter} from 'react-router-dom';
-import {createTouchSlideProps, modeController} from '../sliderUtil';
+import {createTouchSlideProps, modeController, mode1, mode2, mode3} from '../sliderUtil';
 import style from './Header.module.scss';
 
 const imgCount = 5;
 
-const mode1 = '1'; // Первый режим - изображения еще не загружены. Отображается прелоадер
-const mode2 = '2'; // Второй режим - изображения загружены, прелоадер плавно удаляется с экрана
-const mode3 = '3'; // Третий режим - прелоадер размонтирован. Отображается описание и блок контроля
-
-function Header({history}) {
-    let [mode, setMode] = useState(mode1);
-    let [imgLoadCount, setImgLoadCount] = useState(0);
+function Header({history, mode, imgLoadHandler}) {
     let [currentSlide, setCurrentSlide] = useState(1);
 
     let currentSlideRef = useRef(1);
@@ -40,27 +34,13 @@ function Header({history}) {
         clearInterval(intervalRef.current);
     }
 
-    // Отслеживаем количество загруженных изображений и переключаем режимы работы для создания плавных переходов
-    useEffect(() => {
-        if (imgLoadCount < imgCount) return;
-        setTimeout(() => {
-            setMode(mode2);
-            setTimeout(() => {
-                startSwitcher();
-                setMode(mode3);
-            }, 1000);
-        }, 1500);
-
-        return () => stopSwitcher();
-    }, [imgLoadCount]);
-
     // Формируем изображения
     let images = [];
     for (let index = 1; index <= imgCount; index++) {
         images.push(
             <img src={`/images/demo_components/slider_demo/header${index}.jpg`}
                  className={index === currentSlide ? style.visible : style.hide}
-                 onLoad={() => setImgLoadCount(imgLoadCount + 1)}
+                 onLoad={imgLoadHandler}
                  key={index}
             />
         )

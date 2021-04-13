@@ -37,9 +37,9 @@ export function createTouchSlideProps(prev, next, stopTimer = null, startTimer =
     return {onTouchStart: touchStartHandler, onTouchMove: touchMoveHandler, onTouchEnd: touchEndHandler}
 }
 
-const mode1 = '1'; // Первый режим - изображения еще не загружены. Должен отображаться прелоадер
-const mode2 = '2'; // Второй режим - изображения загружены, прелоадер может начать размонтирование
-const mode3 = '3'; // Третий режим - сигнал к размонтированию прелоадера
+export const mode1 = '1'; // Первый режим - изображения еще не загружены. Должен отображаться прелоадер
+export const mode2 = '2'; // Второй режим - изображения загружены, прелоадер может начать размонтирование
+export const mode3 = '3'; // Третий режим - сигнал к размонтированию прелоадера
 
 export function modeController(Slider, slideCount) {
     function ModeController(props) {
