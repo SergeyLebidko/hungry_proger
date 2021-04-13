@@ -16,22 +16,12 @@
   }
 }
 
-@keyframes exit {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
 .container {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 100;
 
   div {
     position: absolute;
@@ -60,6 +50,6 @@
 }
 
 .exit {
-  animation-name: exit;
-  animation-duration: 2000ms;
+  opacity: 0;
+  transition: opacity 2000ms;
 }
