@@ -102,6 +102,7 @@ function Header({history}) {
                 <>
                     <div className={style.description}>
                         <h3>Набор слайдеров на React и jQuery</h3>
+                        <p>Для пролистывания можно использовать мышь и свайп вправо или влево</p>
                         <span onClick={() => history.push('/')}>На главную</span>
                     </div>
                     <div className={style.slide_control}>
