@@ -35,6 +35,7 @@
       background-color: white;
       cursor: pointer;
       transition: all 200ms;
+      z-index: 500;
 
       &:hover {
         background-color: OrangeRed;
