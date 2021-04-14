@@ -1,7 +1,6 @@
 import React from 'react';
 import style from './ProjectCard.module.scss';
 
-
 function ProjectCard({data}) {
     return (
         <div className={style.project_card}>
