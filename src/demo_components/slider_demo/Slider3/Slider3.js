@@ -9,6 +9,7 @@ const items = ['balloon', 'car', 'krasnodar', 'mountain', 'nature', 'new_york', 
 function Slider3({mode, imgLoadHandler}) {
     let [pos, setPos] = useState(0);
 
+    let hasSwitchProcess = useRef(false);
     let contentRef = useRef(null);
     let arrowLeftRef = useRef(null);
     let arrowRightRef = useRef(null);
@@ -20,18 +21,24 @@ function Slider3({mode, imgLoadHandler}) {
         $img.css({zIndex: 3, clipPath: `circle(0 at ${xStart}px ${yStart}px)`});
 
         timer = setInterval(() => {
-            radius += 50;
+            radius += 45;
             $img.css({clipPath: `circle(${radius}px at ${xStart}px ${yStart}px)`});
             if (radius > Math.max($(contentRef.current).outerWidth(), $(contentRef.current).outerHeight())) {
                 $img.css({clipPath: `none`});
                 clearInterval(timer);
                 deferred.resolve();
             }
-        }, 10);
+        }, 15);
         return deferred.promise();
     }
 
-    function prev() {
+    function prev(event) {
+        // Предотвращаем распространение события, чтобы оно не было перехвачено обработчиком клика на области контента
+        if (event) event.stopPropagation();
+
+        if (hasSwitchProcess.current) return;
+        hasSwitchProcess.current = true;
+
         let xStart = Math.floor(arrowLeftRef.current.offsetLeft + $(arrowLeftRef.current).outerWidth() / 2);
         let yStart = Math.floor(arrowLeftRef.current.offsetTop);
 
@@ -42,12 +49,25 @@ function Slider3({mode, imgLoadHandler}) {
 
         expansion(xStart, yStart, $nextSlide).done(() => {
             setPos(nextPos);
+            hasSwitchProcess.current = false;
         });
     }
 
-    function next() {
-        let xStart = Math.floor(arrowRightRef.current.offsetLeft + $(arrowRightRef.current).outerWidth() / 2);
-        let yStart = Math.floor(arrowRightRef.current.offsetTop);
+    function next(event, x = null, y = null) {
+        // Предотвращаем распространение события, чтобы оно не было перехвачено обработчиком клика на области контента
+        if (event) event.stopPropagation();
+
+        if (hasSwitchProcess.current) return;
+        hasSwitchProcess.current = true;
+
+        let xStart, yStart;
+        if (x !== null && y !== null) {
+            xStart = x;
+            yStart = y;
+        } else {
+            xStart = Math.floor(arrowRightRef.current.offsetLeft + $(arrowRightRef.current).outerWidth() / 2);
+            yStart = Math.floor(arrowRightRef.current.offsetTop);
+        }
 
         // Определяем следующий слайд и выбираем его
         let nextPos = pos + 1;
@@ -56,7 +76,13 @@ function Slider3({mode, imgLoadHandler}) {
 
         expansion(xStart, yStart, $nextSlide).done(() => {
             setPos(nextPos);
+            hasSwitchProcess.current = false;
         });
+    }
+
+    function contentClickHandler(event) {
+        // При клике на слайдере (но не на кнопке управления), имитируем клик на кнопке next
+        next(event, event.nativeEvent.offsetX, event.nativeEvent.offsetY);
     }
 
     let images = [], index = 0;
@@ -84,7 +110,7 @@ function Slider3({mode, imgLoadHandler}) {
 
     return (
         <div className={style.container}>
-            <div className={style.content} ref={contentRef} {...touchProps}>
+            <div className={style.content} ref={contentRef} {...touchProps} onClick={contentClickHandler}>
                 {images}
                 {arrowLeft}
                 {arrowRight}
