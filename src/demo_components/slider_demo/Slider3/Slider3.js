@@ -8,6 +8,14 @@ const items = ['balloon', 'car', 'krasnodar', 'mountain', 'nature', 'new_york', 
 
 function Slider3({mode, imgLoadHandler}) {
 
+    function prev(event) {
+        console.log(event.target);
+    }
+
+    function next(event) {
+        console.log(event.target);
+    }
+
     let images = [], index = 0;
     for (let item of items) {
         images.push(
@@ -19,18 +27,18 @@ function Slider3({mode, imgLoadHandler}) {
         index++;
     }
 
-    let arrowLeft = <div className={style.arrow + ' ' + style.arrow_left}>
+    let arrowLeft = <div className={style.arrow + ' ' + style.arrow_left} onClick={prev}>
         <div/>
         <div/>
     </div>;
-    let arrowRight = <div className={style.arrow + ' ' + style.arrow_right}>
+    let arrowRight = <div className={style.arrow + ' ' + style.arrow_right} onClick={next}>
         <div/>
         <div/>
     </div>;
 
     return (
         <div className={style.container}>
-            <div className={style.content} onClick={e => console.log(e)}>
+            <div className={style.content}>
                 {images}
                 {arrowLeft}
                 {arrowRight}

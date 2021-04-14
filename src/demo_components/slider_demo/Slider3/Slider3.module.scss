@@ -28,8 +28,8 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      width: 80px;
-      height: 80px;
+      width: 60px;
+      height: 60px;
       border: 2px solid OrangeRed;
       border-radius: 50%;
       background-color: white;
@@ -61,6 +61,7 @@
         border-radius: 3px;
         background-color: OrangeRed;
         transition: all 200ms;
+        pointer-events: none;
       }
     }
 
