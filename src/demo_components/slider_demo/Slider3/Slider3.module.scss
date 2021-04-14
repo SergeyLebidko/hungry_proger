@@ -1,0 +1,103 @@
+.container {
+  position: relative;
+  min-height: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  border-bottom: 1px solid black;
+
+  .content {
+    position: absolute;
+    width: 80%;
+    height: 90%;
+    overflow: hidden;
+    box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.4);
+    border: 1px solid black;
+    border-radius: 5px;
+
+    img {
+      position: absolute;
+      width: 101%;
+      height: 100%;
+      left: 0;
+      object-fit: cover;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 80px;
+      height: 80px;
+      border: 2px solid OrangeRed;
+      border-radius: 50%;
+      background-color: white;
+      cursor: pointer;
+      transition: all 200ms;
+
+      &:hover {
+        background-color: OrangeRed;
+        transform: translateY(-50%) scale(1.1);
+        transition: all 200ms;
+
+        div {
+          background-color: white;
+          transition: all 200ms;
+        }
+      }
+
+      &:active {
+        transform: translateY(-50%) scale(1);
+        transition: all 200ms;
+      }
+
+      div {
+        position: absolute;
+        top: 47%;
+        transform: translateY(-50%);
+        width: 30%;
+        height: 6px;
+        border-radius: 3px;
+        background-color: OrangeRed;
+        transition: all 200ms;
+      }
+    }
+
+    .arrow_left {
+      left: 25px;
+
+      div {
+        left: 40%;
+      }
+
+      div:first-child {
+        transform-origin: top left;
+        transform: translateY(-1px) rotate(45deg);
+      }
+
+      div:last-child {
+        transform-origin: bottom left;
+        transform: translateY(1px) rotate(-45deg);
+      }
+    }
+
+    .arrow_right {
+      right: 25px;
+
+      div {
+        right: 40%;
+      }
+
+      div:first-child {
+        transform-origin: top right;
+        transform: translateY(-1px) rotate(-45deg);
+      }
+
+      div:last-child {
+        transform-origin: bottom right;
+        transform: translateY(1px) rotate(45deg);
+      }
+    }
+  }
+}

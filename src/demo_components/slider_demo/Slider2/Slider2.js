@@ -1,7 +1,7 @@
 import React, {useRef, useState} from 'react';
 import $ from 'jquery';
 import Preloader, {darkTheme} from '../Preloader/Preloader';
-import {createTouchSlideProps, modeController, mode1, mode2, mode3} from '../sliderUtil';
+import {createTouchSlideProps, modeController, mode2, mode3} from '../sliderUtil';
 import style from './Slider2.module.scss';
 
 const items = ['balloon', 'car', 'krasnodar', 'mountain', 'nature', 'new_york', 'sculpture', 'sea'];
