@@ -18,7 +18,7 @@ export function createTouchSlideProps(prev, next, stopTimer = null, startTimer =
         if (!startLine) return;
         let currentLine = event.changedTouches[0].clientX;
         let hasStep = activate(currentLine);
-        if (hasStep) startLine = currentLine;
+        if (hasStep) startLine = null;
     }
 
     function activate(currentLine) {

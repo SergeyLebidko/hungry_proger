@@ -21,12 +21,13 @@ function Slider3({mode, imgLoadHandler}) {
 
         timer = setInterval(() => {
             radius += 50;
-            $img.css({clipPath: `circle(${radius}px at ${xStart}px ${yStart}px)`})
+            $img.css({clipPath: `circle(${radius}px at ${xStart}px ${yStart}px)`});
             if (radius > Math.max($(contentRef.current).outerWidth(), $(contentRef.current).outerHeight())) {
+                $img.css({clipPath: `none`});
                 clearInterval(timer);
                 deferred.resolve();
             }
-        }, 15);
+        }, 10);
         return deferred.promise();
     }
 
@@ -70,6 +71,8 @@ function Slider3({mode, imgLoadHandler}) {
         index++;
     }
 
+    let touchProps = mode === mode3 ? createTouchSlideProps(prev, next) : {};
+
     let arrowLeft = <div className={style.arrow + ' ' + style.arrow_left} onClick={prev} ref={arrowLeftRef}>
         <div/>
         <div/>
@@ -81,7 +84,7 @@ function Slider3({mode, imgLoadHandler}) {
 
     return (
         <div className={style.container}>
-            <div className={style.content} ref={contentRef}>
+            <div className={style.content} ref={contentRef} {...touchProps}>
                 {images}
                 {arrowLeft}
                 {arrowRight}
