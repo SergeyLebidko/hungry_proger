@@ -25,14 +25,20 @@ function Header({history, mode, imgLoadHandler}) {
     }
 
     function startSwitcher() {
-        intervalRef.current = setInterval(() => {
-            next();
-        }, 3000);
+        intervalRef.current = setInterval(() => next(), 3000);
     }
 
     function stopSwitcher() {
         clearInterval(intervalRef.current);
     }
+
+    // Включаем автоматическую смену слайдов
+    useEffect(() => {
+        if (mode !== mode3) return;
+        startSwitcher();
+
+        return () => stopSwitcher();
+    }, [mode])
 
     // Формируем изображения
     let images = [];
