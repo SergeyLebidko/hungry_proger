@@ -13,8 +13,35 @@ function Slider3({mode, imgLoadHandler}) {
     let arrowLeftRef = useRef(null);
     let arrowRightRef = useRef(null);
 
-    function prev() {
+    function expansion(xStart, yStart, $img) {
+        let deferred = $.Deferred();
+        let timer;
+        let radius = 0;
+        $img.css({zIndex: 3, clipPath: `circle(0 at ${xStart}px ${yStart}px)`});
 
+        timer = setInterval(() => {
+            radius += 50;
+            $img.css({clipPath: `circle(${radius}px at ${xStart}px ${yStart}px)`})
+            if (radius > Math.max($(contentRef.current).outerWidth(), $(contentRef.current).outerHeight())) {
+                clearInterval(timer);
+                deferred.resolve();
+            }
+        }, 15);
+        return deferred.promise();
+    }
+
+    function prev() {
+        let xStart = Math.floor(arrowLeftRef.current.offsetLeft + $(arrowLeftRef.current).outerWidth() / 2);
+        let yStart = Math.floor(arrowLeftRef.current.offsetTop);
+
+        // Определяем следующий слайд и выбираем его
+        let nextPos = pos - 1;
+        if (nextPos < 0) nextPos = (items.length - 1);
+        let $nextSlide = $('img', contentRef.current).eq(nextPos);
+
+        expansion(xStart, yStart, $nextSlide).done(() => {
+            setPos(nextPos);
+        });
     }
 
     function next() {
@@ -26,26 +53,7 @@ function Slider3({mode, imgLoadHandler}) {
         if (nextPos === items.length) nextPos = 0;
         let $nextSlide = $('img', contentRef.current).eq(nextPos);
 
-        // Устанавливаем для него новые css-правила
-        let radius = 0;
-        $nextSlide.css({zIndex: 3, clipPath: `circle(0 at ${xStart}px ${yStart}px)`});
-
-        let timer;
-
-        function expansion() {
-            let deferred = $.Deferred()
-            timer = setInterval(() => {
-                radius += 50;
-                $nextSlide.css({clipPath: `circle(${radius}px at ${xStart}px ${yStart}px)`})
-                if (radius > Math.max($(contentRef.current).outerWidth(), $(contentRef.current).outerHeight())) {
-                    clearInterval(timer);
-                    deferred.resolve();
-                }
-            }, 15);
-            return deferred.promise();
-        }
-
-        expansion().done(() => {
+        expansion(xStart, yStart, $nextSlide).done(() => {
             setPos(nextPos);
         });
     }
