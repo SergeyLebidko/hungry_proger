@@ -1,4 +1,5 @@
 @import '../../../variables';
+@import '../common_slider_rules';
 
 @keyframes appearance_description {
   from {
@@ -23,12 +24,7 @@
 }
 
 .container {
-  position: relative;
-  min-height: 800px;
-  border-bottom: 1px solid black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @extend %container;
 
   .image_block {
     position: absolute;
