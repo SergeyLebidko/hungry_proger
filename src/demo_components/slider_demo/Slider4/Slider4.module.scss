@@ -96,8 +96,30 @@
         width: 55px;
         height: 55px;
         color: white;
-        border-radius: 50%;
+        border-radius: 20%;
         background-color: rgba(255, 255, 255, 0.3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 200ms;
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.5);
+          transform: scale(1.1);
+          transition: all 200ms;
+        }
+
+        &:active {
+          background-color: rgba(255, 255, 255, 0.7);
+          transform: scale(1);
+          transition: all 150ms;
+        }
+
+        img {
+          display: block;
+          width: 70%;
+          height: 70%;
+        }
       }
     }
   }

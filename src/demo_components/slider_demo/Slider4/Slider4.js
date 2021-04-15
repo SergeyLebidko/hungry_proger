@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import $ from 'jquery';
 import Preloader, {darkTheme} from '../Preloader/Preloader';
 import {createTouchSlideProps, modeController, mode2, mode3} from '../sliderUtil';
@@ -13,10 +13,50 @@ for (let index = 0; index < files.length; index++) {
 }
 
 function Slider4({mode, imgLoadHandler}) {
+    let [hasLeftArrow, setHasLeftArrow] = useState(true);
+    let [hasRightArrow, setHasRightArrow] = useState(false);
+
     let contentRef = useRef(null);
     let pos = useRef(0);
     let hasSwitchProcess = useRef(false);
     let $wrapsRef = useRef(null);
+
+    function prev() {
+        if (pos.current === 0 || hasSwitchProcess.current) return;
+        hasSwitchProcess.current = true;
+
+        let $element = $wrapsRef.current.eq(pos.current);
+        let prevElement = $wrapsRef.current.eq(pos.current - 1);
+
+        toHide($element).done(() => {
+            $wrapsRef.current.animate({left: '+=100%'});
+            toVisible(prevElement);
+            pos.current--;
+            updateArrowFlags();
+            hasSwitchProcess.current = false;
+        });
+    }
+
+    function next() {
+        if (pos.current === (items.length - 1) || hasSwitchProcess.current) return;
+        hasSwitchProcess.current = true;
+
+        let $element = $wrapsRef.current.eq(pos.current);
+        let $nextElement = $wrapsRef.current.eq(pos.current + 1);
+
+        toHide($element).done(() => {
+            $wrapsRef.current.animate({left: '-=100%'});
+            toVisible($nextElement);
+            pos.current++;
+            updateArrowFlags();
+            hasSwitchProcess.current = false;
+        });
+    }
+
+    useEffect(() => {
+        $wrapsRef.current = $(`.${style.wrap}`, contentRef.current);
+        toVisible($wrapsRef.current.eq(pos.current));
+    }, []);
 
     function toVisible($element) {
         let deferred = $.Deferred();
@@ -34,40 +74,20 @@ function Slider4({mode, imgLoadHandler}) {
         return deferred.promise();
     }
 
-    function prev() {
-        if (pos.current === 0 || hasSwitchProcess.current) return;
-        hasSwitchProcess.current = true;
-
-        let $element = $wrapsRef.current.eq(pos.current);
-        let prevElement = $wrapsRef.current.eq(pos.current - 1);
-
-        toHide($element).done(() => {
-            $wrapsRef.current.animate({left: '+=100%'});
-            toVisible(prevElement);
-            pos.current--;
-            hasSwitchProcess.current = false;
-        });
+    function updateArrowFlags() {
+        if (pos.current === 0) {
+            setHasLeftArrow(true);
+            setHasRightArrow(false)
+            return;
+        }
+        if (pos.current === (items.length - 1)) {
+            setHasLeftArrow(false);
+            setHasRightArrow(true);
+            return;
+        }
+        setHasLeftArrow(true);
+        setHasRightArrow(true);
     }
-
-    function next() {
-        if (pos.current === (items.length - 1) || hasSwitchProcess.current) return;
-        hasSwitchProcess.current = true;
-
-        let $element = $wrapsRef.current.eq(pos.current);
-        let $nextElement = $wrapsRef.current.eq(pos.current + 1);
-
-        toHide($element).done(() => {
-            $wrapsRef.current.animate({left: '-=100%'});
-            toVisible($nextElement);
-            pos.current++;
-            hasSwitchProcess.current = false;
-        });
-    }
-
-    useEffect(() => {
-        $wrapsRef.current = $(`.${style.wrap}`, contentRef.current);
-        toVisible($wrapsRef.current.eq(pos.current));
-    }, []);
 
     let images = [], index = 0;
     for (let item of items) {
@@ -88,8 +108,10 @@ function Slider4({mode, imgLoadHandler}) {
 
     let touchProps = createTouchSlideProps(prev, next);
 
-    let leftArrow = <div onClick={next}/>;
-    let rightArrow = <div onClick={prev}/>;
+    let leftArrow = hasLeftArrow ?
+        <div onClick={next}><img src={'/images/demo_components/slider_demo/l_arrow.svg'}/></div> : '';
+    let rightArrow = hasRightArrow ?
+        <div onClick={prev}><img src={'/images/demo_components/slider_demo/r_arrow.svg'}/></div> : '';
     let arrowBlock = <div className={style.arrow_block}>{leftArrow}{rightArrow}</div>
 
     return (
