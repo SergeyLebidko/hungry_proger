@@ -15,6 +15,7 @@ for (let index = 0; index < files.length; index++) {
 function Slider4({mode, imgLoadHandler}) {
     let contentRef = useRef(null);
     let pos = useRef(0);
+    let hasSwitchProcess = useRef(false);
     let $wrapsRef = useRef(null);
 
     function toVisible($element) {
@@ -34,7 +35,8 @@ function Slider4({mode, imgLoadHandler}) {
     }
 
     function prev() {
-        if (pos.current === 0) return;
+        if (pos.current === 0 || hasSwitchProcess.current) return;
+        hasSwitchProcess.current = true;
 
         let $element = $wrapsRef.current.eq(pos.current);
         let prevElement = $wrapsRef.current.eq(pos.current - 1);
@@ -43,11 +45,13 @@ function Slider4({mode, imgLoadHandler}) {
             $wrapsRef.current.animate({left: '+=100%'});
             toVisible(prevElement);
             pos.current--;
+            hasSwitchProcess.current = false;
         });
     }
 
     function next() {
-        if (pos.current === (items.length - 1)) return;
+        if (pos.current === (items.length - 1) || hasSwitchProcess.current) return;
+        hasSwitchProcess.current = true;
 
         let $element = $wrapsRef.current.eq(pos.current);
         let $nextElement = $wrapsRef.current.eq(pos.current + 1);
@@ -56,6 +60,7 @@ function Slider4({mode, imgLoadHandler}) {
             $wrapsRef.current.animate({left: '-=100%'});
             toVisible($nextElement);
             pos.current++;
+            hasSwitchProcess.current = false;
         });
     }
 
@@ -81,14 +86,15 @@ function Slider4({mode, imgLoadHandler}) {
         index++;
     }
 
+    let touchProps = createTouchSlideProps(prev, next);
+
     let leftArrow = <div onClick={next}/>;
     let rightArrow = <div onClick={prev}/>;
-
     let arrowBlock = <div className={style.arrow_block}>{leftArrow}{rightArrow}</div>
 
     return (
         <div className={style.container}>
-            <div className={style.content} ref={contentRef}>
+            <div className={style.content} ref={contentRef} {...touchProps}>
                 {images}
                 {arrowBlock}
                 {mode !== mode3 ? <Preloader theme={darkTheme} hasDeactivateProcess={mode === mode2}/> : ''}
