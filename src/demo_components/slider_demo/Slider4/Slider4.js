@@ -1,11 +1,11 @@
-import React, {useRef, useState, useEffect} from 'react';
+import React, {useRef, useEffect} from 'react';
 import $ from 'jquery';
 import Preloader, {darkTheme} from '../Preloader/Preloader';
 import {createTouchSlideProps, modeController, mode2, mode3} from '../sliderUtil';
 import style from './Slider4.module.scss'
 
 const files = ['balloon', 'car', 'krasnodar', 'mountain', 'nature', 'new_york', 'sculpture', 'sea'];
-const titles = ['Воздушный шар', 'Краснодар', 'Горы', 'Леопард', 'Нью-Йорк', 'Скульптура', 'Море'];
+const titles = ['Воздушный шар', 'Автомобиль', 'Краснодар', 'Горы', 'Леопард', 'Нью-Йорк', 'Скульптура', 'Море'];
 const items = [];
 
 for (let index = 0; index < files.length; index++) {
@@ -13,23 +13,55 @@ for (let index = 0; index < files.length; index++) {
 }
 
 function Slider4({mode, imgLoadHandler}) {
-    let [pos, setPos] = useState(0);
-
     let contentRef = useRef(null);
+    let pos = useRef(0);
+    let $wrapsRef = useRef(null);
 
     function toVisible($element) {
+        let deferred = $.Deferred();
         $(`img.${style.outer_img_clear}`, $element).removeClass(style.outer_img_clear).addClass(style.outer_img_blur);
         $(`.${style.hide}`, $element).removeClass(style.hide).addClass(style.visible);
+        setTimeout(deferred.resolve, 1000);
+        return deferred.promise();
     }
 
     function toHide($element) {
+        let deferred = $.Deferred();
         $(`img.${style.outer_img_blur}`, $element).removeClass(style.outer_img_blur).addClass(style.outer_img_clear);
-        $(`.${style.hide}`, $element).removeClass(style.visible).addClass(style.hide);
+        $('div', $element).removeClass(style.visible).addClass(style.hide);
+        setTimeout(deferred.resolve, 1000);
+        return deferred.promise();
     }
 
-    // При запуске слайдера сразу же применяем эффект к его первому элементу
+    function prev() {
+        if (pos.current === 0) return;
+
+        let $element = $wrapsRef.current.eq(pos.current);
+        let prevElement = $wrapsRef.current.eq(pos.current - 1);
+
+        toHide($element).done(() => {
+            $wrapsRef.current.animate({left: '+=100%'});
+            toVisible(prevElement);
+            pos.current--;
+        });
+    }
+
+    function next() {
+        if (pos.current === (items.length - 1)) return;
+
+        let $element = $wrapsRef.current.eq(pos.current);
+        let $nextElement = $wrapsRef.current.eq(pos.current + 1);
+
+        toHide($element).done(() => {
+            $wrapsRef.current.animate({left: '-=100%'});
+            toVisible($nextElement);
+            pos.current++;
+        });
+    }
+
     useEffect(() => {
-        toVisible($(`.${style.wrap}`, contentRef.current).eq(pos));
+        $wrapsRef.current = $(`.${style.wrap}`, contentRef.current);
+        toVisible($wrapsRef.current.eq(pos.current));
     }, []);
 
     let images = [], index = 0;
@@ -49,8 +81,8 @@ function Slider4({mode, imgLoadHandler}) {
         index++;
     }
 
-    let leftArrow = <div/>;
-    let rightArrow = <div/>;
+    let leftArrow = <div onClick={next}/>;
+    let rightArrow = <div onClick={prev}/>;
 
     let arrowBlock = <div className={style.arrow_block}>{leftArrow}{rightArrow}</div>
 
