@@ -17,7 +17,7 @@ import HeaderCanvas from './HeaderCanvas/HeaderCanvas';
 // Импорты demo-компонентов
 import {Container as MainMenuDemoContainer} from './demo_components/main_menu_demo/Container/Container';
 import {Container as GalleryDemoContainer} from './demo_components/gallery_demo/Container/Container';
-import {Container as TableDemoContainer} from './demo_components/table_demo/Container/Container';
+import {Container as ShoppingListDemoContainer} from './demo_components/shopping_list_demo/Container/Container';
 import {Container as ContextMenuDemoContainer} from './demo_components/context_menu_demo/Container/Container';
 import {Container as SliderDemoContainer} from './demo_components/slider_demo/Container/Container';
 import {Container as TaskListDemoContainer} from './demo_components/task_list_demo/Container/Container';
@@ -41,9 +41,9 @@ const DEMO_DATA = [
         component: <GalleryDemoContainer/>
     },
     {
-        title: 'Таблица',
-        href: 'table',
-        component: <TableDemoContainer/>
+        title: 'Список покупок',
+        href: 'shopping_list',
+        component: <ShoppingListDemoContainer/>
     },
     {
         title: 'Слайдеры',
