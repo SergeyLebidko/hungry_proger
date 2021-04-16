@@ -1,0 +1,43 @@
+@import '../../../variables';
+
+.container {
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    input {
+      font-family: $headers-font-family;
+      font-weight: normal;
+      padding: 5px 10px;
+      font-size: 1.2em;
+      margin-right: 5px;
+      border-radius: 3px;
+      outline: none;
+    }
+
+    input[type=text] {
+      border: 1px solid lightgray;
+      width: 400px;
+    }
+
+    input[type=button] {
+      border: none;
+      background-color: rgb(34, 160, 34);
+      color: white;
+      cursor: pointer;
+      transition: all 150ms;
+
+      &:active {
+        transform: scale(0.95);
+        background-color: rgb(34, 200, 34);
+        transition: all 150ms;
+      }
+    }
+  }
+}
