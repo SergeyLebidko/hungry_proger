@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import Description from '../Description/Description';
-import CategoryCreator from '../CategoryCreator/CategoryCreator';
 import style from './Container.module.scss';
 
 export function Container() {
@@ -9,7 +8,6 @@ export function Container() {
     return (
         <div className={style.container}>
             <Description/>
-            <CategoryCreator/>
         </div>
     );
 }
