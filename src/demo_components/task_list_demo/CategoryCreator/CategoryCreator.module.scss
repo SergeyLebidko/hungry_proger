@@ -27,6 +27,7 @@
     }
 
     input[type=button] {
+      padding: 6px 11px;
       border: none;
       background-color: rgb(34, 160, 34);
       color: white;
@@ -34,8 +35,8 @@
       transition: all 150ms;
 
       &:active {
-        transform: scale(0.95);
-        background-color: rgb(34, 200, 34);
+        transform: scale(0.9);
+        background-color: rgb(34, 180, 34);
         transition: all 150ms;
       }
     }

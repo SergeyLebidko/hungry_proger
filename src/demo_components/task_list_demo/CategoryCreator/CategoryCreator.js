@@ -6,7 +6,7 @@ function CategoryCreator() {
         <div className={style.container}>
             <div className={style.content}>
                 <input type={'text'}/>
-                <input type={'button'} value={'Добавить категорию'}/>
+                <input type={'button'} value={'+'}/>
             </div>
         </div>
     )
