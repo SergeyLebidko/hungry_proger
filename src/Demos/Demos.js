@@ -13,7 +13,7 @@ function Demos({content, windowSize}) {
             </div>
             <div className={style.content}>
                 <h3>
-                    Страницы с примерами компонентов, написанных мной с помощью React и SCSS
+                    Страницы с примерами компонентов, написанных мной с помощью React и jQuery
                 </h3>
                 {content === null ? '' : content.map((value, index) => <DemoCard key={index} {...value}/>)}
             </div>
