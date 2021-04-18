@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  overflow-y: scroll;
+  min-height: 800px;
+
+  &::-webkit-scrollbar {
+    height: 0;
+  }
+}
