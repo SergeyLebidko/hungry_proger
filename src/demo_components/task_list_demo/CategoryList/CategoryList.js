@@ -1,6 +1,7 @@
 import React, {useRef, useState} from 'react';
 import Category from '../Category/Category';
 import style from './CategoryList.module.scss';
+import ControlBlock from "../ControlBlock/ControlBlock";
 
 function CategoryList() {
     let [hasSideScroll, setHasSideScroll] = useState(false);
@@ -32,14 +33,17 @@ function CategoryList() {
 
     let containerStyle = hasSideScroll ? {cursor: 'all-scroll'} : {};
     return (
-        <div className={style.container}
-             onMouseDown={mouseDownHandler}
-             onMouseUp={mouseUpHandler}
-             onMouseMove={mouseMoveHandler}
-             style={containerStyle}
-             ref={containerRef}>
-            {categoryList}
-        </div>
+        <>
+            <ControlBlock/>
+            <div className={style.container}
+                 onMouseDown={mouseDownHandler}
+                 onMouseUp={mouseUpHandler}
+                 onMouseMove={mouseMoveHandler}
+                 style={containerStyle}
+                 ref={containerRef}>
+                {categoryList}
+            </div>
+        </>
     );
 }
 

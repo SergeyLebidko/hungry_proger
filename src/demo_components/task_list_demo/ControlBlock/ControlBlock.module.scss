@@ -4,11 +4,16 @@
   background-color: whitesmoke;
   border-bottom: 1px solid lightgray;
 
-  h3 {
+  a {
+    display: inline-block;
     padding: 15px;
-    background-color: rgb(55, 60, 75);
+    text-decoration: none;
     font-family: $headers-font-family;
-    font-weight: normal;
-    color: white;
+    font-size: 1em;
+    color: black;
+
+    &:hover {
+      background-color: lightgray;
+    }
   }
 }

@@ -6,7 +6,7 @@ function Category() {
 
     // Код-заглушка. Должен быть удален
     let taskList = [];
-    for (let index = 0; index < 8; index++) {
+    for (let index = 0; index < 6; index++) {
         taskList.push(<Task key={index}/>);
     }
 

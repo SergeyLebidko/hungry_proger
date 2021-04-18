@@ -1,7 +1,5 @@
 import React from 'react';
-
 import style from './Description.module.scss'
-import {Link} from "react-router-dom";
 
 function Description(){
     return (
@@ -12,7 +10,6 @@ function Description(){
                 категории в другую и маркировать задачи и категории различными цветами в зависимости от их
                 важности, срочности или каких-либо других параметров.
             </h3>
-            <Link to={'/'}>на главную</Link>
         </div>
     );
 }
