@@ -1,7 +1,7 @@
 import React, {useRef, useState} from 'react';
 import Category from '../Category/Category';
 import ControlBlock from '../ControlBlock/ControlBlock';
-import CreateCategoryModal from '../modals/CreateCategoryModal/CreateCategoryModal';
+import CreateCategoryModal, {toEndCategoryPlace} from '../modals/CreateCategoryModal/CreateCategoryModal';
 import style from './CategoryList.module.scss';
 
 function CategoryList() {
@@ -15,10 +15,20 @@ function CategoryList() {
     let nextId = useRef(0);
 
     // Обработчки для операций модальных окон
-    function createCategory(title) {
-        setCategoryList([...categoryList, {id: nextId.current++, title, taskList: []}]);
+    function createCategory(title, beforeId) {
         setHasCreateCategoryModal(false);
 
+        if (beforeId === toEndCategoryPlace) {
+            setCategoryList([...categoryList, {id: nextId.current++, title, taskList: []}]);
+            return;
+        }
+
+        let nextCategoryList = [];
+        for (let category of categoryList) {
+            if (category.id === +beforeId) nextCategoryList.push({id: nextId.current++, title, taskList: []});
+            nextCategoryList.push(category)
+        }
+        setCategoryList(nextCategoryList);
     }
 
     // Блок функций для управления скроллингом списка категорий вправо и влево с помощью мыши
@@ -42,12 +52,7 @@ function CategoryList() {
     let taskCount = 0;
     for (let category of categoryList) taskCount += category.taskList.length;
 
-    let titlesList = [];
-    if (hasCreateCategoryModal) {
-        for (let {title} of categoryList) titlesList.push(title);
-    }
-
-    let containerStyle = hasSideScroll ? {cursor: 'all-scroll'} : {};
+    let containerStyle = hasSideScroll ? {cursor: 'all-scroll'} : {}
     return (
         <>
             <ControlBlock categoryCount={categoryList.length}
@@ -59,8 +64,7 @@ function CategoryList() {
                  onMouseUp={mouseUpHandler}
                  onMouseMove={mouseMoveHandler}
                  style={containerStyle}
-                 ref={containerRef}
-            >
+                 ref={containerRef}>
                 {categoryList.map(value => <Category title={value.title} taskList={value.taskList}/>)}
             </div>
             {hasCreateCategoryModal ?
