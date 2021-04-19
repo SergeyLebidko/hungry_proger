@@ -1,32 +1,25 @@
 import React, {useRef, useState} from 'react';
 import Category from '../Category/Category';
+import ControlBlock from '../ControlBlock/ControlBlock';
+import CreateCategoryModal from '../modals/CreateCategoryModal/CreateCategoryModal';
 import style from './CategoryList.module.scss';
-import ControlBlock from "../ControlBlock/ControlBlock";
-import CategoryCreatorModal from "../modals/CategoryCreatorModal/CategoryCreatorModal";
 
 function CategoryList() {
     let [categoryList, setCategoryList] = useState([]);
-    let [hasCategoryCreatorModal, setHasCategoryCreatorModal] = useState(false);
+    let [hasCreateCategoryModal, setHasCreateCategoryModal] = useState(false);
 
     let [hasSideScroll, setHasSideScroll] = useState(false);
     let containerRef = useRef(null);
     let mouseLine = useRef(null);
 
     // Обработчки для операций модальных окон
-    function showCreateCategoryModalHandler() {
-        setHasCategoryCreatorModal(true);
-    }
-
-    function hideCreateCategoryModalHandler() {
-        setHasCategoryCreatorModal(false);
-    }
-
     function createCategory(title) {
-        setHasCategoryCreatorModal(false);
+        setCategoryList([...categoryList, {title, taskList: []}]);
+        setHasCreateCategoryModal(false);
 
     }
 
-    // Блок функций для управления скроллингом вправо/влево
+    // Блок функций для управления скроллингом списка категорий вправо и влево с помощью мыши
     function mouseDownHandler(event) {
         mouseLine.current = event.clientX;
         setHasSideScroll(true);
@@ -52,7 +45,7 @@ function CategoryList() {
         <>
             <ControlBlock categoryCount={categoryList.length}
                           taskCount={taskCount}
-                          showCreateCategoryModalHandler={showCreateCategoryModalHandler}
+                          showCreateCategory={() => setHasCreateCategoryModal(true)}
             />
             <div className={style.container}
                  onMouseDown={mouseDownHandler}
@@ -63,9 +56,9 @@ function CategoryList() {
             >
                 {categoryList.map(value => <Category title={value.title} taskList={value.taskList}/>)}
             </div>
-            {hasCategoryCreatorModal ?
-                <CategoryCreatorModal hideModalHandler={hideCreateCategoryModalHandler}
-                                      createCategoryHandler={createCategory}
+            {hasCreateCategoryModal ?
+                <CreateCategoryModal hideHandler={() => setHasCreateCategoryModal(false)}
+                                     createHandler={createCategory}
                 />
                 :
                 ''
