@@ -4,12 +4,22 @@
   background-color: whitesmoke;
   border-bottom: 1px solid lightgray;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   font-family: $headers-font-family;
 
+  @media (max-width: 550px) {
+    flex-direction: column;
+  }
+
   div {
     margin-right: 15px;
+
+    @media (max-width: 550px) {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
 
     span {
       user-select: none;
@@ -49,7 +59,7 @@
     display: inline-block;
     padding: 15px;
     text-decoration: none;
-    color: black;
+    color: gray;
 
     &:hover {
       background-color: lightgray;
