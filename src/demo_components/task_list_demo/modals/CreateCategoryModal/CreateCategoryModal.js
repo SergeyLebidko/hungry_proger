@@ -3,7 +3,7 @@ import style from './CreateCategoryModal.module.scss';
 
 const maxLen = 40;
 
-function CreateCategoryModal({createHandler, hideHandler}) {
+function CreateCategoryModal({createHandler, hideHandler, deniedList}) {
     let [value, setValue] = useState('');
     let [error, setError] = useState(null);
 
@@ -24,12 +24,22 @@ function CreateCategoryModal({createHandler, hideHandler}) {
     function createButtonHandler() {
         let title = value.trim();
         if (title.length === 0) {
-            setError('Название не может быть пустым');
-            clearTimeout(errorTimeout.current);
-            errorTimeout.current = setTimeout(() => setError(null), 3000);
+            showError('Название не может быть пустым');
             return;
         }
+        for (let deniedValue of deniedList) {
+            if (title === deniedValue) {
+                showError('Категория с таким названием уже есть');
+                return;
+            }
+        }
         createHandler(title);
+    }
+
+    function showError(text) {
+        setError(text);
+        clearTimeout(errorTimeout.current);
+        errorTimeout.current = setTimeout(() => setError(null), 3000);
     }
 
     return (

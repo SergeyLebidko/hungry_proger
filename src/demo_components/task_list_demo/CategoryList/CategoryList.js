@@ -41,6 +41,11 @@ function CategoryList() {
     let taskCount = 0;
     for (let category of categoryList) taskCount += category.taskList.length;
 
+    let titlesList = [];
+    if (hasCreateCategoryModal) {
+        for (let {title} of categoryList) titlesList.push(title);
+    }
+
     let containerStyle = hasSideScroll ? {cursor: 'all-scroll'} : {};
     return (
         <>
@@ -58,7 +63,8 @@ function CategoryList() {
                 {categoryList.map(value => <Category title={value.title} taskList={value.taskList}/>)}
             </div>
             {hasCreateCategoryModal ?
-                <CreateCategoryModal hideHandler={() => setHasCreateCategoryModal(false)}
+                <CreateCategoryModal deniedList={titlesList}
+                                     hideHandler={() => setHasCreateCategoryModal(false)}
                                      createHandler={createCategory}
                 />
                 :
