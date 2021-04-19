@@ -12,9 +12,18 @@ function CategoryList() {
     let containerRef = useRef(null);
     let mouseLine = useRef(null);
 
-    // Обработчки открытия модальных окон
-    function createCategoryHandler(){
+    // Обработчки для операций модальных окон
+    function showCreateCategoryModalHandler() {
         setHasCategoryCreatorModal(true);
+    }
+
+    function hideCreateCategoryModalHandler() {
+        setHasCategoryCreatorModal(false);
+    }
+
+    function createCategory(title) {
+        setHasCategoryCreatorModal(false);
+
     }
 
     // Блок функций для управления скроллингом вправо/влево
@@ -43,7 +52,7 @@ function CategoryList() {
         <>
             <ControlBlock categoryCount={categoryList.length}
                           taskCount={taskCount}
-                          createCategoryHandler={createCategoryHandler}
+                          showCreateCategoryModalHandler={showCreateCategoryModalHandler}
             />
             <div className={style.container}
                  onMouseDown={mouseDownHandler}
@@ -54,7 +63,13 @@ function CategoryList() {
             >
                 {categoryList.map(value => <Category title={value.title} taskList={value.taskList}/>)}
             </div>
-            {hasCategoryCreatorModal ? <CategoryCreatorModal/> : ''}
+            {hasCategoryCreatorModal ?
+                <CategoryCreatorModal hideModalHandler={hideCreateCategoryModalHandler}
+                                      createCategoryHandler={createCategory}
+                />
+                :
+                ''
+            }
         </>
     );
 }
