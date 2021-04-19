@@ -6,6 +6,7 @@ import style from './CategoryList.module.scss';
 
 function CategoryList() {
     let [categoryList, setCategoryList] = useState([]);
+
     let [hasCreateCategoryModal, setHasCreateCategoryModal] = useState(false);
 
     let [hasSideScroll, setHasSideScroll] = useState(false);

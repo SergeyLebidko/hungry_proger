@@ -1,13 +1,44 @@
-import React from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import style from './CreateCategoryModal.module.scss';
 
+const maxLen = 40;
+
 function CreateCategoryModal({createHandler, hideHandler}) {
+    let [value, setValue] = useState('');
+    let [error, setError] = useState(null);
+
+    let inputRef = useRef(null)
+    let errorTimeout = useRef(null);
+
+    // При показе модального окна сразу же ставим фокус на поле ввода
+    useEffect(() => {
+        inputRef.current.focus();
+    }, [])
+
+    function changeHandler(event) {
+        let nextValue = event.target.value;
+        if (nextValue.length > maxLen || nextValue === ' ') return;
+        setValue(event.target.value);
+    }
+
+    function createButtonHandler() {
+        let title = value.trim();
+        if (title.length === 0) {
+            setError('Название не может быть пустым');
+            clearTimeout(errorTimeout.current);
+            errorTimeout.current = setTimeout(() => setError(null), 3000);
+            return;
+        }
+        createHandler(title);
+    }
+
     return (
         <div className={style.container}>
             <div className={style.modal}>
-                <input type={'text'}/>
-                <div>
-                    <input type={'button'} value={'Создать'} onClick={createHandler()}/>
+                <input type={'text'} value={value} onChange={changeHandler} ref={inputRef}/>
+                {error !== null ? <div className={style.error_block}>{error}</div> : ''}
+                <div className={style.buttons_block}>
+                    <input type={'button'} value={'Создать'} onClick={createButtonHandler}/>
                     <input type={'button'} value={'Отмена'} onClick={hideHandler}/>
                 </div>
             </div>
