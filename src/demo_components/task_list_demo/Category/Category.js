@@ -2,17 +2,14 @@ import React from 'react';
 import Task from '../Task/Task';
 import style from './Category.module.scss';
 
-function Category() {
+function Category({title, taskList}) {
 
     // Код-заглушка. Должен быть удален
-    let taskList = [];
-    for (let index = 0; index < 6; index++) {
-        taskList.push(<Task key={index}/>);
-    }
 
     return (
         <div className={style.container}>
-            {taskList}
+            <h3>{title}</h3>
+            {taskList.map(value => <Task title={value}/>)}
         </div>
     );
 }

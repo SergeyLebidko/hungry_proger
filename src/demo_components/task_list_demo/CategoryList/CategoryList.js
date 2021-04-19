@@ -4,15 +4,11 @@ import style from './CategoryList.module.scss';
 import ControlBlock from "../ControlBlock/ControlBlock";
 
 function CategoryList() {
+    let [categoryList, setCategoryList] = useState([]);
+
     let [hasSideScroll, setHasSideScroll] = useState(false);
     let containerRef = useRef(null);
     let mouseLine = useRef(null);
-
-    // Код-заглушка. Должен быть удален
-    let categoryList = [];
-    for (let index = 0; index < 10; index++) {
-        categoryList.push(<Category key={index}/>);
-    }
 
     function mouseDownHandler(event) {
         mouseLine.current = event.clientX;
@@ -31,17 +27,20 @@ function CategoryList() {
         containerRef.current.scrollLeft += deltaX;
     }
 
+    let taskCount = 0;
+    for (let category of categoryList) taskCount += category.taskList.length;
+
     let containerStyle = hasSideScroll ? {cursor: 'all-scroll'} : {};
     return (
         <>
-            <ControlBlock/>
+            <ControlBlock categoryCount={categoryList.length} taskCount={taskCount}/>
             <div className={style.container}
                  onMouseDown={mouseDownHandler}
                  onMouseUp={mouseUpHandler}
                  onMouseMove={mouseMoveHandler}
                  style={containerStyle}
                  ref={containerRef}>
-                {categoryList}
+                {categoryList.map(value => <Category title={value.title} taskList={value.taskList}/>)}
             </div>
         </>
     );
