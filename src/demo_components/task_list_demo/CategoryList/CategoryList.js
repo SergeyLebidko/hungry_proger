@@ -2,7 +2,7 @@ import React, {useRef, useState} from 'react';
 import Category from '../Category/Category';
 import style from './CategoryList.module.scss';
 import ControlBlock from "../ControlBlock/ControlBlock";
-import CategoryCreatorModal from "../CategoryCreatorModal/CategoryCreatorModal";
+import CategoryCreatorModal from "../modals/CategoryCreatorModal/CategoryCreatorModal";
 
 function CategoryList() {
     let [categoryList, setCategoryList] = useState([]);
