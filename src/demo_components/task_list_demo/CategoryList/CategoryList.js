@@ -31,6 +31,60 @@ function CategoryList() {
         setCategoryList(nextCategoryList);
     }
 
+    // Функции перемещения категорий внутри списка
+    function categoryToLeft(id) {
+        let currentPos = findCategoryPosById(id);
+        if (currentPos === 0) return;
+
+        let index = 0;
+        let nextCategoryList = [];
+        while (index < categoryList.length) {
+            if (index === (currentPos - 1)) {
+                nextCategoryList.push(categoryList[currentPos]);
+                nextCategoryList.push(categoryList[index]);
+                index += 2;
+                continue;
+            }
+            nextCategoryList.push(categoryList[index]);
+            index++;
+        }
+
+        setCategoryList(nextCategoryList);
+    }
+
+    function categoryToRight(id) {
+        let currentPos = findCategoryPosById(id);
+        if (currentPos === (categoryList.length - 1)) return;
+
+        let index = 0;
+        let nextCategoryList = [];
+        while (index < categoryList.length) {
+            if (index === currentPos) {
+                nextCategoryList.push(categoryList[currentPos + 1]);
+                nextCategoryList.push(categoryList[index]);
+                index += 2;
+                continue;
+            }
+            nextCategoryList.push(categoryList[index]);
+            index++;
+        }
+
+        setCategoryList(nextCategoryList);
+    }
+
+    function findCategoryPosById(id) {
+        let pos;
+        for (let index = 0; index < categoryList.length; index++) {
+            if (categoryList[index].id !== id) continue;
+            pos = index;
+            break;
+        }
+
+        console.log(pos);
+
+        return pos;
+    }
+
     // Блок функций для управления скроллингом списка категорий вправо и влево с помощью мыши
     function mouseDownHandler(event) {
         mouseLine.current = event.clientX;
@@ -65,7 +119,8 @@ function CategoryList() {
                  onMouseMove={mouseMoveHandler}
                  style={containerStyle}
                  ref={containerRef}>
-                {categoryList.map(value => <Category title={value.title} taskList={value.taskList}/>)}
+                {categoryList.map(value => <Category key={value.id} {...value} toLeft={categoryToLeft}
+                                                     toRight={categoryToRight}/>)}
             </div>
             {hasCreateCategoryModal ?
                 <CreateCategoryModal categoryList={categoryList}

@@ -1,3 +1,5 @@
+@import '../../../variables';
+
 .container {
   background-color: whitesmoke;
   border-radius: 3px;
@@ -5,8 +7,54 @@
   min-width: 370px;
   max-width: 370px;
   overflow: auto;
-  font-size: 1.5em;
   padding: 5px;
+
+  .color_label {
+    height: 30px;
+    margin: -5px -5px 0 -5px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    background-color: orangered;
+    cursor: pointer;
+  }
+
+  h3 {
+    font-family: $headers-font-family;
+    font-weight: normal;
+    text-align: center;
+    border-bottom: 1px solid lightgray;
+    margin: 0 -5px 10px -5px;
+    padding: 5px;
+  }
+
+  .control_block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    span {
+      padding: 5px 10px;
+      background-color: white;
+      border: 1px solid lightgray;
+      border-radius: 3px;
+      color: gray;
+      cursor: pointer;
+      transition: all 150ms;
+
+      &:not(:nth-child(2)):hover {
+        color: dodgerblue;
+      }
+
+      &:nth-child(2):hover {
+        color: red;
+      }
+
+      &:active {
+        transform: scale(0.9);
+        transition: all 150ms;
+      }
+    }
+  }
 
   &::-webkit-scrollbar {
     width: 5px;
