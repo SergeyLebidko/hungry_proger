@@ -15,10 +15,15 @@
 
   div {
     margin-right: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 
     @media (max-width: 550px) {
       margin-top: 10px;
       margin-bottom: 10px;
+      justify-content: flex-end;
     }
 
     span {
