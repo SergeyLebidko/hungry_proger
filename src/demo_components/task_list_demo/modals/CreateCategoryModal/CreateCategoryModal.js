@@ -3,7 +3,7 @@ import style from './CreateCategoryModal.module.scss';
 
 const maxLen = 40;
 
-function CreateCategoryModal({createHandler, hideHandler, deniedList}) {
+function CreateCategoryModal({createHandler, hideHandler, categoryList}) {
     let [value, setValue] = useState('');
     let [error, setError] = useState(null);
 
@@ -27,8 +27,8 @@ function CreateCategoryModal({createHandler, hideHandler, deniedList}) {
             showError('Название не может быть пустым');
             return;
         }
-        for (let deniedValue of deniedList) {
-            if (title === deniedValue) {
+        for (let category of categoryList) {
+            if (title === category.title) {
                 showError('Категория с таким названием уже есть');
                 return;
             }
@@ -47,6 +47,19 @@ function CreateCategoryModal({createHandler, hideHandler, deniedList}) {
             <div className={style.modal}>
                 <input type={'text'} value={value} onChange={changeHandler} ref={inputRef}/>
                 {error !== null ? <div className={style.error_block}>{error}</div> : ''}
+                <div>
+                    <p>Поместить перед категорией</p>
+                    {categoryList.map((value, index) =>
+                        <p key={index}>
+                            <label htmlFor={value.id}>{value.title}</label>
+                            <input id={value.id} type={'radio'} name={'before_cat'} value={`before_${value.id}`}/>
+                        </p>
+                    )}
+                    <p>
+                        <label htmlFor={'to_end'}>поместить в конец</label>
+                        <input id={'to_end'} type={'radio'} name={'before_cat'} value={'to_end'} checked={true}/>
+                    </p>
+                </div>
                 <div className={style.buttons_block}>
                     <input type={'button'} value={'Создать'} onClick={createButtonHandler}/>
                     <input type={'button'} value={'Отмена'} onClick={hideHandler}/>

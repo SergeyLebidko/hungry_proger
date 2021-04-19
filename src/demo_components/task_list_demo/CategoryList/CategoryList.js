@@ -6,16 +6,17 @@ import style from './CategoryList.module.scss';
 
 function CategoryList() {
     let [categoryList, setCategoryList] = useState([]);
+    let [hasSideScroll, setHasSideScroll] = useState(false);
 
     let [hasCreateCategoryModal, setHasCreateCategoryModal] = useState(false);
 
-    let [hasSideScroll, setHasSideScroll] = useState(false);
     let containerRef = useRef(null);
     let mouseLine = useRef(null);
+    let nextId = useRef(0);
 
     // Обработчки для операций модальных окон
     function createCategory(title) {
-        setCategoryList([...categoryList, {title, taskList: []}]);
+        setCategoryList([...categoryList, {id: nextId.current++, title, taskList: []}]);
         setHasCreateCategoryModal(false);
 
     }
@@ -63,7 +64,7 @@ function CategoryList() {
                 {categoryList.map(value => <Category title={value.title} taskList={value.taskList}/>)}
             </div>
             {hasCreateCategoryModal ?
-                <CreateCategoryModal deniedList={titlesList}
+                <CreateCategoryModal categoryList={categoryList}
                                      hideHandler={() => setHasCreateCategoryModal(false)}
                                      createHandler={createCategory}
                 />
