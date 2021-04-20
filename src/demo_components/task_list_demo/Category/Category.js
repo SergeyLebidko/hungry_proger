@@ -6,7 +6,7 @@ import {colorPresets} from '../CategoryList/CategoryList';
 
 function Category({id, title, colorPreset, taskList, toLeft, toRight, changeColorHandler}) {
 
-    let colorLabelInline = {backgroundImage: `linear-gradient(to right bottom, ${colorPresets[colorPreset]})`};
+    let colorLabelInline = {backgroundColor: colorPresets[colorPreset]};
     return (
         <div className={style.container}>
             <div className={style.color_label} style={colorLabelInline} onClick={() => changeColorHandler(id)}/>

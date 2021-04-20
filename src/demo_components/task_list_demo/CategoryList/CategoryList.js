@@ -5,13 +5,13 @@ import CreateCategoryModal, {toEndCategoryPlace} from '../modals/CreateCategoryM
 import style from './CategoryList.module.scss';
 
 export const colorPresets = [
-    'rgb(40, 50, 120), black',
-    'DeepSkyBlue, Blue',
-    'Lime, ForestGreen',
-    'DarkOrange, red',
-    'Yellow, Goldenrod',
-    'Violet, DarkViolet',
-    'Silver, dimgray'
+    'black',
+    'DeepSkyBlue',
+    'ForestGreen',
+    'orangered',
+    'Chocolate',
+    'DarkViolet',
+    'dimgray'
 ];
 
 function CategoryList() {
