@@ -7,7 +7,7 @@
     @extend %modal_content;
 
     .error_block {
-
+      @extend %error_block_style
     }
 
     input[type=text]{
