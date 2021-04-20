@@ -152,6 +152,7 @@ function CategoryList() {
     let controlBlockProps = {
         categoryCount: categoryList.length,
         taskCount: taskCount,
+        addTaskEnabled: categoryList.length > 0,
         showCreateCategory: () => setHasCreateCategoryModal(true)
     }
 
@@ -166,7 +167,7 @@ function CategoryList() {
     return (
         <>
             <ControlBlock {...controlBlockProps}/>
-            <div className={style.container} {...containerActions} style={containerStyle} ref={containerRef}>
+            <div className={style.container} style={containerStyle} ref={containerRef} {...containerActions}>
                 <div>&nbsp;</div>
                 {categoryList.map(value => <Category key={value.id} {...value} {...categoryActions}/>)}
                 <div>&nbsp;</div>
