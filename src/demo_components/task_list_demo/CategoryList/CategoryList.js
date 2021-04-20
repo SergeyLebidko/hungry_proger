@@ -2,6 +2,7 @@ import React, {useRef, useState} from 'react';
 import Category from '../Category/Category';
 import ControlBlock from '../ControlBlock/ControlBlock';
 import CreateCategoryModal, {toEndCategoryPlace} from '../modals/CreateCategoryModal/CreateCategoryModal';
+import ConfirmModal from '../modals/ConfirmModal/ConfirmModal';
 import style from './CategoryList.module.scss';
 
 export const colorPresets = [
@@ -24,6 +25,8 @@ function CategoryList() {
     let [hasSideScroll, setHasSideScroll] = useState(false);
 
     let [hasCreateCategoryModal, setHasCreateCategoryModal] = useState(false);
+    let [hasConfirmModal, setHasConfirmModal] = useState(false);
+    let [confirmProps, setConfirmProps] = useState({});
 
     let containerRef = useRef(null);
     let mouseLine = useRef(null);
@@ -99,9 +102,6 @@ function CategoryList() {
             pos = index;
             break;
         }
-
-        console.log(pos);
-
         return pos;
     }
 
@@ -111,6 +111,30 @@ function CategoryList() {
             if (value.id === id) return {...value, colorPreset: (++value.colorPreset) % colorPresets.length}
             return value;
         }));
+    }
+
+    // Функция для уделения категории
+    function removeCategory(id) {
+        let categoryTitle;
+        for (let category of categoryList) {
+            if (id === category.id) {
+                categoryTitle = category.title;
+                break;
+            }
+        }
+
+        // Функция, выполняемая, если пользователь ответит "Да" в окне запроса подтверждения операции
+        let yesFunction = () => {
+            setCategoryList(categoryList.filter(value => value.id !== id));
+            setHasConfirmModal(false);
+        }
+
+        setHasConfirmModal(true);
+        setConfirmProps({
+            text: `Вы действительно хотите удалить категорию "${categoryTitle}"? Все связанные с ней задачи также будут удалены.`,
+            hideHandler: () => setHasConfirmModal(false),
+            yesFunction
+        });
     }
 
     // Блок функций для управления скроллингом списка категорий вправо и влево с помощью мыши
@@ -134,18 +158,19 @@ function CategoryList() {
     let taskCount = 0;
     for (let category of categoryList) taskCount += category.taskList.length;
 
-    // Action-пропы для отдельных категорий
-    let categoryActions = {
-        changeColorHandler: changeCategoryColor,
-        toLeft: categoryToLeft,
-        toRight: categoryToRight
-    }
-
     // Action-пропы для контейнера
     let containerActions = {
         onMouseDown: mouseDownHandler,
         onMouseUp: mouseUpHandler,
         onMouseMove: mouseMoveHandler
+    }
+
+    // Action-пропы для отдельных категорий
+    let categoryActions = {
+        changeColorHandler: changeCategoryColor,
+        toLeft: categoryToLeft,
+        toRight: categoryToRight,
+        toRemove: removeCategory
     }
 
     // Пропы для блока управления
@@ -173,6 +198,7 @@ function CategoryList() {
                 <div>&nbsp;</div>
             </div>
             {hasCreateCategoryModal ? <CreateCategoryModal {...createCategoryModalProps}/> : ''}
+            {hasConfirmModal ? <ConfirmModal {...confirmProps}/> : ''}
         </>
     );
 }

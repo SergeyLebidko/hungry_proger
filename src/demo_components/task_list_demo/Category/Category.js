@@ -4,7 +4,7 @@ import style from './Category.module.scss';
 
 import {colorPresets} from '../CategoryList/CategoryList';
 
-function Category({id, title, colorPreset, taskList, toLeft, toRight, changeColorHandler}) {
+function Category({id, title, colorPreset, taskList, toLeft, toRight, toRemove, changeColorHandler}) {
 
     let colorLabelInline = {backgroundColor: colorPresets[colorPreset]};
     return (
@@ -13,7 +13,7 @@ function Category({id, title, colorPreset, taskList, toLeft, toRight, changeColo
             <h3>{title}</h3>
             <div className={style.control_block}>
                 <span onClick={() => toLeft(id)}>&#9668;</span>
-                <span>&#10006;</span>
+                <span onClick={()=>toRemove(id)}>&#10006;</span>
                 <span onClick={() => toRight(id)}>&#9658;</span>
             </div>
             <div>
