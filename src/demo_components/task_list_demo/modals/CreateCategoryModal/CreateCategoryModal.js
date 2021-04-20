@@ -51,28 +51,40 @@ function CreateCategoryModal({maxLen, createHandler, hideHandler, categoryList})
                 {categoryList.length > 0 ?
                     <div className={style.radio_selector}>
                         <p>Поместить перед категорией:</p>
-                        {categoryList.map((value, index) =>
-                            <p key={index}>
-                                <input id={value.id}
-                                       type={'radio'}
-                                       name={'before_cat'}
-                                       value={value.id}
-                                       onChange={e => setBeforeCategory(e.target.value)}
-                                       checked={+beforeCategory === value.id}
-                                />
-                                <label htmlFor={value.id}>{value.title}</label>
-                            </p>
-                        )}
-                        <p>
-                            <input id={'to_end'}
-                                   type={'radio'}
-                                   name={'before_cat'}
-                                   value={toEndCategoryPlace}
-                                   onChange={e => setBeforeCategory(e.target.value)}
-                                   checked={beforeCategory === toEndCategoryPlace}
-                            />
-                            <label htmlFor={'to_end'}>поместить в конец</label>
-                        </p>
+                        <table>
+                            <tbody>
+                            {categoryList.map((value, index) =>
+                                <tr key={index}>
+                                    <td>
+                                        <input id={value.id}
+                                               type={'radio'}
+                                               name={'before_cat'}
+                                               value={value.id}
+                                               onChange={e => setBeforeCategory(e.target.value)}
+                                               checked={+beforeCategory === value.id}
+                                        />
+                                    </td>
+                                    <td>
+                                        <label htmlFor={value.id}>{value.title}</label>
+                                    </td>
+                                </tr>
+                            )}
+                            <tr>
+                                <td>
+                                    <input id={'to_end'}
+                                           type={'radio'}
+                                           name={'before_cat'}
+                                           value={toEndCategoryPlace}
+                                           onChange={e => setBeforeCategory(e.target.value)}
+                                           checked={beforeCategory === toEndCategoryPlace}
+                                    />
+                                </td>
+                                <td>
+                                    <label htmlFor={'to_end'}>поместить в конец</label>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                     : ''
                 }

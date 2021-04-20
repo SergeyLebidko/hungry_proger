@@ -20,10 +20,6 @@
   background-color: white;
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.5);
 
-  label {
-    word-wrap: break-word;
-  }
-
   &::-webkit-scrollbar {
     width: 5px;
   }
@@ -91,10 +87,24 @@
 }
 
 %radio_selector {
-  margin-top: 5px;
+  max-width: 100%;
+  margin-top: 10px;
   margin-bottom: 10px;
 
   p {
-    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  table {
+    td {
+      padding: 2px 0;
+      vertical-align: top;
+
+      label {
+        display: inline-block;
+        max-width: 300px;
+        word-wrap: break-word;
+      }
+    }
   }
 }
