@@ -3,6 +3,7 @@ import Category from '../Category/Category';
 import ControlBlock from '../ControlBlock/ControlBlock';
 import CreateCategoryModal, {toEndCategoryPlace} from '../modals/CreateCategoryModal/CreateCategoryModal';
 import ConfirmModal from '../modals/ConfirmModal/ConfirmModal';
+import RenameModal from '../modals/RenameModal/RenameModal';
 import style from './CategoryList.module.scss';
 
 export const colorPresets = [
@@ -25,8 +26,12 @@ function CategoryList() {
     let [hasSideScroll, setHasSideScroll] = useState(false);
 
     let [hasCreateCategoryModal, setHasCreateCategoryModal] = useState(false);
+
     let [hasConfirmModal, setHasConfirmModal] = useState(false);
     let [confirmProps, setConfirmProps] = useState({});
+
+    let [hasRenameModal, setHasRenameModal] = useState(false);
+    let [renameProps, setRenameProps] = useState({});
 
     let containerRef = useRef(null);
     let mouseLine = useRef(null);
@@ -137,6 +142,11 @@ function CategoryList() {
         });
     }
 
+    // Функция для переименования категории
+    function renameCategory(id) {
+        // TODO Вставить код подготовки пропсов для модалки переименования
+    }
+
     // Блок функций для управления скроллингом списка категорий вправо и влево с помощью мыши
     function mouseDownHandler(event) {
         mouseLine.current = event.clientX;
@@ -170,7 +180,8 @@ function CategoryList() {
         changeColorHandler: changeCategoryColor,
         toLeft: categoryToLeft,
         toRight: categoryToRight,
-        toRemove: removeCategory
+        toRemove: removeCategory,
+        toRename: renameCategory
     }
 
     // Пропы для блока управления
@@ -199,6 +210,7 @@ function CategoryList() {
             </div>
             {hasCreateCategoryModal ? <CreateCategoryModal {...createCategoryModalProps}/> : ''}
             {hasConfirmModal ? <ConfirmModal {...confirmProps}/> : ''}
+            {hasRenameModal ? <RenameModal {...renameProps}/> : ''}
         </>
     );
 }
