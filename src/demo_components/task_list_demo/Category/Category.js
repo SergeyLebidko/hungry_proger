@@ -2,10 +2,14 @@ import React from 'react';
 import Task from '../Task/Task';
 import style from './Category.module.scss';
 
-function Category({id, title, taskList, toLeft, toRight}) {
+import {colorPresets} from '../CategoryList/CategoryList';
+
+function Category({id, title, colorPreset, taskList, toLeft, toRight, changeColorHandler}) {
+
+    let colorLabelInline = {backgroundImage: `linear-gradient(to right bottom, ${colorPresets[colorPreset]})`};
     return (
         <div className={style.container}>
-            <div className={style.color_label}/>
+            <div className={style.color_label} style={colorLabelInline} onClick={() => changeColorHandler(id)}/>
             <h3>{title}</h3>
             <div className={style.control_block}>
                 <span onClick={() => toLeft(id)}>&#9668;</span>

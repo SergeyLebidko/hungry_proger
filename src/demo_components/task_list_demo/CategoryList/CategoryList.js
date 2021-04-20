@@ -4,6 +4,16 @@ import ControlBlock from '../ControlBlock/ControlBlock';
 import CreateCategoryModal, {toEndCategoryPlace} from '../modals/CreateCategoryModal/CreateCategoryModal';
 import style from './CategoryList.module.scss';
 
+export const colorPresets = [
+    'rgb(40, 50, 120), black',
+    'DeepSkyBlue, Blue',
+    'Lime, ForestGreen',
+    'DarkOrange, red',
+    'Yellow, Goldenrod',
+    'Violet, DarkViolet',
+    'Silver, dimgray'
+];
+
 function CategoryList() {
     let [categoryList, setCategoryList] = useState([]);
     let [hasSideScroll, setHasSideScroll] = useState(false);
@@ -19,13 +29,18 @@ function CategoryList() {
         setHasCreateCategoryModal(false);
 
         if (beforeId === toEndCategoryPlace) {
-            setCategoryList([...categoryList, {id: nextId.current++, title, taskList: []}]);
+            setCategoryList([...categoryList, {id: nextId.current++, title, colorPreset: 0, taskList: []}]);
             return;
         }
 
         let nextCategoryList = [];
         for (let category of categoryList) {
-            if (category.id === +beforeId) nextCategoryList.push({id: nextId.current++, title, taskList: []});
+            if (category.id === +beforeId) nextCategoryList.push({
+                id: nextId.current++,
+                title,
+                colorPreset: 0,
+                taskList: []
+            });
             nextCategoryList.push(category)
         }
         setCategoryList(nextCategoryList);
@@ -85,6 +100,14 @@ function CategoryList() {
         return pos;
     }
 
+    // Функция для изменения цвета категории
+    function changeCategoryColor(id) {
+        setCategoryList(categoryList.map(value => {
+            if (value.id === id) return {...value, colorPreset: (++value.colorPreset) % colorPresets.length}
+            return value;
+        }));
+    }
+
     // Блок функций для управления скроллингом списка категорий вправо и влево с помощью мыши
     function mouseDownHandler(event) {
         mouseLine.current = event.clientX;
@@ -119,8 +142,10 @@ function CategoryList() {
                  onMouseMove={mouseMoveHandler}
                  style={containerStyle}
                  ref={containerRef}>
-                {categoryList.map(value => <Category key={value.id} {...value} toLeft={categoryToLeft}
-                                                     toRight={categoryToRight}/>)}
+                <div>&nbsp;</div>
+                {categoryList.map(value => <Category key={value.id} {...value} changeColorHandler={changeCategoryColor}
+                                                     toLeft={categoryToLeft} toRight={categoryToRight}/>)}
+                <div>&nbsp;</div>
             </div>
             {hasCreateCategoryModal ?
                 <CreateCategoryModal categoryList={categoryList}
