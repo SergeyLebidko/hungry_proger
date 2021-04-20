@@ -5,6 +5,7 @@ import CreateCategoryModal, {toEndCategoryPlace} from '../modals/CreateCategoryM
 import ConfirmModal from '../modals/ConfirmModal/ConfirmModal';
 import RenameModal from '../modals/RenameModal/RenameModal';
 import style from './CategoryList.module.scss';
+import CreateTaskModal from "../modals/CreateTaskModal/CreateTaskModal";
 
 const maxCategoryTitleLen = 40;
 const maxTaskTitleLen = 100;
@@ -35,6 +36,8 @@ function CategoryList() {
     let [hasRenameModal, setHasRenameModal] = useState(false);
     let [renameProps, setRenameProps] = useState({});
 
+    let [hasCreateTaskModal, setHasCreateTaskModal] = useState(false);
+
     let containerRef = useRef(null);
     let mouseLine = useRef(null);
     let nextId = useRef(0);
@@ -59,6 +62,10 @@ function CategoryList() {
             nextCategoryList.push(category)
         }
         setCategoryList(nextCategoryList);
+    }
+
+    function createTask(title, categoryId) {
+        // TODO Вставить код создания задачи
     }
 
     // Функции перемещения категорий внутри списка
@@ -218,15 +225,24 @@ function CategoryList() {
         categoryCount: categoryList.length,
         taskCount: taskCount,
         addTaskEnabled: categoryList.length > 0,
-        showCreateCategory: () => setHasCreateCategoryModal(true)
+        showCreateCategory: () => setHasCreateCategoryModal(true),
+        showCreateTask: () => setHasCreateTaskModal(true)
     }
 
     // Пропы для модального окна создания категории
     let createCategoryModalProps = {
         maxLen: maxCategoryTitleLen,
-        categoryList: categoryList,
+        categoryList,
         hideHandler: () => setHasCreateCategoryModal(false),
         createHandler: createCategory
+    }
+
+    // Пропы для модального окна создания задачи
+    let createTaskModalProps = {
+        maxLen: maxTaskTitleLen,
+        categoryList,
+        hideHandler: () => setHasCreateTaskModal(false),
+        createHandler: createTask
     }
 
     let containerStyle = hasSideScroll ? {cursor: 'all-scroll'} : {}
@@ -239,8 +255,9 @@ function CategoryList() {
                 <div>&nbsp;</div>
             </div>
             {hasCreateCategoryModal ? <CreateCategoryModal {...createCategoryModalProps}/> : ''}
-            {hasConfirmModal ? <ConfirmModal {...confirmProps}/> : ''}
+            {hasCreateTaskModal ? <CreateTaskModal {...createTaskModalProps}/> : ''}
             {hasRenameModal ? <RenameModal {...renameProps}/> : ''}
+            {hasConfirmModal ? <ConfirmModal {...confirmProps}/> : ''}
         </>
     );
 }

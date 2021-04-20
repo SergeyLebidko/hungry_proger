@@ -2,7 +2,7 @@ import React from 'react';
 import style from './ControlBlock.module.scss';
 import {Link} from "react-router-dom";
 
-function ControlBlock({categoryCount, taskCount, addTaskEnabled, showCreateCategory}) {
+function ControlBlock({categoryCount, taskCount, addTaskEnabled, showCreateCategory, showCreateTask}) {
     return (
         <div className={style.container}>
             <Link to={'/'}>на главную</Link>
@@ -15,7 +15,7 @@ function ControlBlock({categoryCount, taskCount, addTaskEnabled, showCreateCateg
                 <div>
                     <span className={style.title}>Задач:</span>
                     <span className={style.count}>{taskCount}</span>
-                    {addTaskEnabled ? <span className={style.add}>+</span> : ''}
+                    {addTaskEnabled ? <span className={style.add} onClick={showCreateTask}>+</span> : ''}
                 </div>
             </div>
         </div>

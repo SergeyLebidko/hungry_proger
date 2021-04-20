@@ -49,7 +49,7 @@ function CreateCategoryModal({maxLen, createHandler, hideHandler, categoryList})
                 <input type={'text'} value={value} onChange={changeHandler} ref={inputRef}/>
                 {error !== null ? <div className={style.error_block}>{error}</div> : ''}
                 {categoryList.length > 0 ?
-                    <div className={style.before_category_block}>
+                    <div className={style.radio_selector}>
                         <p>Поместить перед категорией:</p>
                         {categoryList.map((value, index) =>
                             <p key={index}>
