@@ -134,32 +134,44 @@ function CategoryList() {
     let taskCount = 0;
     for (let category of categoryList) taskCount += category.taskList.length;
 
+    // Action-пропы для отдельных категорий
+    let categoryActions = {
+        changeColorHandler: changeCategoryColor,
+        toLeft: categoryToLeft,
+        toRight: categoryToRight
+    }
+
+    // Action-пропы для контейнера
+    let containerActions = {
+        onMouseDown: mouseDownHandler,
+        onMouseUp: mouseUpHandler,
+        onMouseMove: mouseMoveHandler
+    }
+
+    // Пропы для блока управления
+    let controlBlockProps = {
+        categoryCount: categoryList.length,
+        taskCount: taskCount,
+        showCreateCategory: () => setHasCreateCategoryModal(true)
+    }
+
+    // Пропы для модального окна создания категории
+    let createCategoryModalProps = {
+        categoryList: categoryList,
+        hideHandler: () => setHasCreateCategoryModal(false),
+        createHandler: createCategory
+    }
+
     let containerStyle = hasSideScroll ? {cursor: 'all-scroll'} : {}
     return (
         <>
-            <ControlBlock categoryCount={categoryList.length}
-                          taskCount={taskCount}
-                          showCreateCategory={() => setHasCreateCategoryModal(true)}
-            />
-            <div className={style.container}
-                 onMouseDown={mouseDownHandler}
-                 onMouseUp={mouseUpHandler}
-                 onMouseMove={mouseMoveHandler}
-                 style={containerStyle}
-                 ref={containerRef}>
+            <ControlBlock {...controlBlockProps}/>
+            <div className={style.container} {...containerActions} style={containerStyle} ref={containerRef}>
                 <div>&nbsp;</div>
-                {categoryList.map(value => <Category key={value.id} {...value} changeColorHandler={changeCategoryColor}
-                                                     toLeft={categoryToLeft} toRight={categoryToRight}/>)}
+                {categoryList.map(value => <Category key={value.id} {...value} {...categoryActions}/>)}
                 <div>&nbsp;</div>
             </div>
-            {hasCreateCategoryModal ?
-                <CreateCategoryModal categoryList={categoryList}
-                                     hideHandler={() => setHasCreateCategoryModal(false)}
-                                     createHandler={createCategory}
-                />
-                :
-                ''
-            }
+            {hasCreateCategoryModal ? <CreateCategoryModal {...createCategoryModalProps}/> : ''}
         </>
     );
 }
