@@ -9,7 +9,12 @@ export const colorPresets = [
     'DeepSkyBlue',
     'ForestGreen',
     'orangered',
+    'SlateBlue',
+    'DeepPink',
     'Chocolate',
+    'GreenYellow',
+    'LightSlateGray',
+    'Teal',
     'DarkViolet',
     'dimgray'
 ];
