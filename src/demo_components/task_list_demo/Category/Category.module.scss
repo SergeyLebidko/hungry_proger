@@ -25,6 +25,8 @@
     border-bottom: 1px solid lightgray;
     margin: 0 -5px 10px -5px;
     padding: 5px;
+    cursor: pointer;
+    user-select: none;
   }
 
   .control_block {
