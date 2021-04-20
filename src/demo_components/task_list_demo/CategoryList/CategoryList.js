@@ -65,11 +65,13 @@ function CategoryList() {
     }
 
     function createTask(title, categoryId) {
-        // TODO Тестовый вывод. Удалить
-        console.log(`Создаю задачу ${title} в категории ${categoryId}`);
-
-        // TODO Вставить код создания задачи
-
+        setCategoryList(categoryList.map(category => {
+            if (category.id !== +categoryId)return category;
+            return {
+                ...category,
+                taskList: [...category.taskList, title]
+            }
+        }))
         setHasCreateTaskModal(false);
     }
 
