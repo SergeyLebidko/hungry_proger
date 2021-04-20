@@ -35,33 +35,7 @@
     }
 
     .buttons_block {
-      padding: 10px;
-      text-align: center;
-
-      input {
-        margin: 5px;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 3px;
-        cursor: pointer;
-        color: white;
-        font-family: Arial, Helvetica, 'sans-serif';
-        font-weight: normal;
-        transition: all 150ms;
-
-        &:active {
-          transform: scale(0.9);
-          transition: all 150ms;
-        }
-
-        &:first-child {
-          background-image: linear-gradient(to right bottom, DeepSkyBlue, DodgerBlue);
-        }
-
-        &:last-child {
-          background-image: linear-gradient(to right bottom, orangered, red);
-        }
-      }
+      @extend %buttons_block_style
     }
   }
 }

@@ -78,8 +78,8 @@ function CreateCategoryModal({createHandler, hideHandler, categoryList}) {
                     : ''
                 }
                 <div className={style.buttons_block}>
-                    <input type={'button'} value={'Создать'} onClick={createButtonHandler}/>
-                    <input type={'button'} value={'Отмена'} onClick={hideHandler}/>
+                    <input type={'button'} value={'Создать'} className={style.yes_btn} onClick={createButtonHandler}/>
+                    <input type={'button'} value={'Отмена'} className={style.no_btn} onClick={hideHandler}/>
                 </div>
             </div>
         </div>
