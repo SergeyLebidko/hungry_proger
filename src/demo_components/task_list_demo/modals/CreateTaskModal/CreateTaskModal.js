@@ -1,8 +1,18 @@
 import React, {useState, useRef, useEffect} from 'react';
 import style from './CreateTaskModal.module.scss';
 
-function CreateTaskModal({maxLen, categoryList, hideHandler}) {
+function CreateTaskModal({maxLen, categoryList, defaultCategoryId, hideHandler, createHandler}) {
     let [value, setValue] = useState('');
+    let [radioValue, setRadioValue] = useState(defaultCategoryId || categoryList[0].id)
+    let [error, setError] = useState(null);
+
+    let inputRef = useRef(null);
+    let errorTimeout = useRef(null);
+
+    //Ставим фокус на поле ввода
+    useEffect(() => {
+        inputRef.current.focus();
+    }, []);
 
     function changeHandler(event) {
         let nextValue = event.target.value;
@@ -12,27 +22,61 @@ function CreateTaskModal({maxLen, categoryList, hideHandler}) {
 
     function saveButtonHandler() {
         let finalValue = value.trim();
-        // TODO Вставить код проверки и сохранения значения
+        if (finalValue.length === 0) {
+            showError('Название не может быть пустым');
+            return;
+        }
+
+        for (let category of categoryList){
+            for (let task of category.taskList){
+                if (task.title === finalValue){
+                    showError(`ЗАдача с таким названием уже существует в категории "${category.title}"`);
+                    return;
+                }
+            }
+        }
+
+        createHandler(finalValue, radioValue);
+    }
+
+    function showError(text) {
+        setError(text);
+        clearTimeout(errorTimeout.current);
+        errorTimeout.current = setTimeout(() => setError(null), 3000);
     }
 
     return (
         <div className={style.container}>
             <div className={style.content}>
-                <input type={'text'} value={value} onChange={changeHandler}/>
+                <input type={'text'} value={value} onChange={changeHandler} ref={inputRef}/>
+                {error !== null ? <div className={style.error_block}>{error}</div> : ''}
                 <div className={style.radio_selector}>
                     <p>В какую категорию поместить задачу?</p>
-                    {categoryList.map(category => {
-                        return (
-                            <p>
-                                <input id={`category_${category.id}`} type={'radio'} name={'category'}
-                                       value={category.id}/>
-                                <label htmlFor={`category_${category.id}`}>{category.title}</label>
-                            </p>
-                        )
-                    })}
+                    <table>
+                        <tbody>
+                        {categoryList.map(category => {
+                            return (
+                                <tr>
+                                    <td>
+                                        <input id={`category_${category.id}`}
+                                               type={'radio'}
+                                               name={'category'}
+                                               value={category.id}
+                                               checked={category.id === radioValue}
+                                               onChange={() => setRadioValue(category.id)}
+                                        />
+                                    </td>
+                                    <td>
+                                        <label htmlFor={`category_${category.id}`}>{category.title}</label>
+                                    </td>
+                                </tr>
+                            );
+                        })}
+                        </tbody>
+                    </table>
                 </div>
                 <div className={style.button_block}>
-                    <input type={'button'} value={'Создать'} className={style.yes_btn}/>
+                    <input type={'button'} value={'Создать'} className={style.yes_btn} onClick={saveButtonHandler}/>
                     <input type={'button'} value={'Отмена'} className={style.no_btn} onClick={hideHandler}/>
                 </div>
             </div>

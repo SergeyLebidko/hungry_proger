@@ -65,7 +65,12 @@ function CategoryList() {
     }
 
     function createTask(title, categoryId) {
+        // TODO Тестовый вывод. Удалить
+        console.log(`Создаю задачу ${title} в категории ${categoryId}`);
+
         // TODO Вставить код создания задачи
+
+        setHasCreateTaskModal(false);
     }
 
     // Функции перемещения категорий внутри списка

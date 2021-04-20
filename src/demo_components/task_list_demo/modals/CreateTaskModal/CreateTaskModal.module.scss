@@ -6,6 +6,10 @@
   .content {
     @extend %modal_content;
 
+    .error_block {
+
+    }
+
     input[type=text]{
       @extend %main_input_field_style;
     }
