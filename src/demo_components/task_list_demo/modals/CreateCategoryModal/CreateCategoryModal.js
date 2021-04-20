@@ -1,10 +1,9 @@
 import React, {useState, useRef, useEffect} from 'react';
 import style from './CreateCategoryModal.module.scss';
 
-const maxLen = 35;
 export const toEndCategoryPlace = 'to_end';
 
-function CreateCategoryModal({createHandler, hideHandler, categoryList}) {
+function CreateCategoryModal({maxLen, createHandler, hideHandler, categoryList}) {
     let [value, setValue] = useState('');
     let [error, setError] = useState(null);
     let [beforeCategory, setBeforeCategory] = useState('to_end');

@@ -6,6 +6,8 @@ import ConfirmModal from '../modals/ConfirmModal/ConfirmModal';
 import RenameModal from '../modals/RenameModal/RenameModal';
 import style from './CategoryList.module.scss';
 
+const maxCategoryTitleLen = 40;
+const maxTaskTitleLen = 100;
 export const colorPresets = [
     'black',
     'DeepSkyBlue',
@@ -144,7 +146,34 @@ function CategoryList() {
 
     // Функция для переименования категории
     function renameCategory(id) {
-        // TODO Вставить код подготовки пропсов для модалки переименования
+        let categoryForRename;
+        for (let category of categoryList) {
+            if (category.id === id) {
+                categoryForRename = category;
+                break;
+            }
+        }
+
+        // Функция, выполняемая, если пользователь введет новое имя и нажмет кнопку "Сохранить"
+        let saveFunction = nextTitle => {
+            setCategoryList(categoryList.map(value => {
+                if (value.id === id) return {...value, title: nextTitle}
+                return value;
+            }))
+            setHasRenameModal(false);
+        }
+
+        let deniedList = categoryList.map(value => value.title);
+
+        setHasRenameModal(true);
+        setRenameProps({
+            startValue: categoryForRename.title,
+            maxLen: maxCategoryTitleLen,
+            deniedList,
+            deniedMsg: 'Категория с таким имененем уже существует',
+            hideHandler: () => setHasRenameModal(false),
+            saveHandler: saveFunction
+        });
     }
 
     // Блок функций для управления скроллингом списка категорий вправо и влево с помощью мыши
@@ -194,6 +223,7 @@ function CategoryList() {
 
     // Пропы для модального окна создания категории
     let createCategoryModalProps = {
+        maxLen: maxCategoryTitleLen,
         categoryList: categoryList,
         hideHandler: () => setHasCreateCategoryModal(false),
         createHandler: createCategory
