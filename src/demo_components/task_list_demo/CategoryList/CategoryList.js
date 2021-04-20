@@ -16,7 +16,7 @@ export const colorPresets = [
     'SlateBlue',
     'DeepPink',
     'Chocolate',
-    'GreenYellow',
+    'Lime',
     'LightSlateGray',
     'Teal',
     'DarkViolet',
