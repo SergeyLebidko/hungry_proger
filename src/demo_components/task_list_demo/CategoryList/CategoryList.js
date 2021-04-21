@@ -207,6 +207,38 @@ function CategoryList() {
         });
     }
 
+    // Функция для удаления задачи
+    function removeTask(id) {
+        let taskTitle;
+        for (let category of categoryList) {
+            for (let task of category.taskList) {
+                if (task.id === id) {
+                    taskTitle = task.title;
+                    break;
+                }
+            }
+            if (taskTitle) break;
+        }
+
+        // Функция, выполняемая, если пользователь ответит "Да" в окне запроса подтверждения операции
+        let yesFunction = () => {
+            setCategoryList(categoryList.map(category => {
+                return {
+                    ...category,
+                    taskList: category.taskList.filter(task => id !== task.id)
+                }
+            }));
+            setHasConfirmModal(false);
+        }
+
+        setHasConfirmModal(true);
+        setConfirmProps({
+            text: `Вы действительно хотите удалить задачу "${taskTitle}"?`,
+            hideHandler: () => setHasConfirmModal(false),
+            yesFunction
+        });
+    }
+
     // Функция для переименования категории
     function renameCategory(id) {
         let categoryForRename;
@@ -326,7 +358,8 @@ function CategoryList() {
 
     // Action-пропы для отдельных задач
     let taskActions = {
-        toRename: renameTask
+        toRename: renameTask,
+        toRemove: removeTask
     }
 
     // Пропы для блока управления
