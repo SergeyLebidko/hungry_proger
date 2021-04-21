@@ -1,12 +1,13 @@
 import React, {useState, useRef, useEffect} from 'react';
+import {ErrorController} from '../modalUtils';
 import style from './RenameModal.module.scss';
 
 function RenameModal({startValue, maxLen, deniedList, deniedMsg, hideHandler, saveHandler}) {
     let [value, setValue] = useState(startValue);
     let [error, setError] = useState(null);
 
-    let errorTimeout = useState(null);
     let inputRef = useRef(null);
+    let errorRef = useRef(new ErrorController(setError));
 
     // Ставим фокус на поле ввода при монтировании компонента
     useEffect(() => {
@@ -23,23 +24,17 @@ function RenameModal({startValue, maxLen, deniedList, deniedMsg, hideHandler, sa
         let finalValue = value.trim();
 
         if (finalValue.length === 0) {
-            showError('Название не может быть пустым');
+            errorRef.current.showError('Название не может быть пустым');
             return;
         }
 
         for (let deniedValue of deniedList) {
             if (finalValue === deniedValue) {
-                showError(deniedMsg);
+                errorRef.current.showError(deniedMsg);
                 return;
             }
         }
         saveHandler(finalValue);
-    }
-
-    function showError(text) {
-        setError(text);
-        clearTimeout(errorTimeout.current);
-        errorTimeout.current = setTimeout(() => setError(null), 3000);
     }
 
     return (
