@@ -1,4 +1,5 @@
 import React, {useState, useRef, useEffect} from 'react';
+import {ErrorController} from '../modalUtils';
 import style from './CreateCategoryModal.module.scss';
 
 export const toEndCategoryPlace = 'to_end';
@@ -9,7 +10,7 @@ function CreateCategoryModal({maxLen, createHandler, hideHandler, categoryList})
     let [beforeCategory, setBeforeCategory] = useState('to_end');
 
     let inputRef = useRef(null)
-    let errorTimeout = useRef(null);
+    let errorRef = useRef(new ErrorController(setError));
 
     // При показе модального окна сразу же ставим фокус на поле ввода
     useEffect(() => {
@@ -25,22 +26,16 @@ function CreateCategoryModal({maxLen, createHandler, hideHandler, categoryList})
     function createButtonHandler() {
         let title = value.trim();
         if (title.length === 0) {
-            showError('Название не может быть пустым');
+            errorRef.current.showError('Название не может быть пустым');
             return;
         }
         for (let category of categoryList) {
             if (title === category.title) {
-                showError('Категория с таким названием уже есть');
+                errorRef.current.showError('Категория с таким названием уже есть');
                 return;
             }
         }
         createHandler(title, beforeCategory);
-    }
-
-    function showError(text) {
-        setError(text);
-        clearTimeout(errorTimeout.current);
-        errorTimeout.current = setTimeout(() => setError(null), 3000);
     }
 
     return (
