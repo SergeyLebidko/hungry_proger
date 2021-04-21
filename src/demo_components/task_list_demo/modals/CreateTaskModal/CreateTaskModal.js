@@ -30,7 +30,7 @@ function CreateTaskModal({maxLen, categoryList, defaultCategoryId, hideHandler, 
 
         for (let category of categoryList) {
             for (let task of category.taskList) {
-                if (task === finalValue) {
+                if (task.title === finalValue) {
                     errorRef.current.showError(`Задача с таким названием уже существует в категории "${category.title}"`);
                     return;
                 }
