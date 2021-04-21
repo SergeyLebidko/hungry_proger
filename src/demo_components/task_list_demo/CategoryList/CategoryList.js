@@ -87,9 +87,9 @@ function CategoryList() {
 
     let [hasCreateTaskModal, setHasCreateTaskModal] = useState(false);
 
-    let containerRef = useRef(initialId);
+    let containerRef = useRef(null);
     let mouseLine = useRef(null);
-    let nextId = useRef(0);
+    let nextId = useRef(initialId);
 
     // Обработчки для операций модальных окон
     function createCategory(title, beforeId) {
@@ -118,7 +118,7 @@ function CategoryList() {
             if (category.id !== +categoryId) return category;
             return {
                 ...category,
-                taskList: [...category.taskList, title]
+                taskList: [...category.taskList, {id: initialId++, title}]
             }
         }))
         setHasCreateTaskModal(false);
