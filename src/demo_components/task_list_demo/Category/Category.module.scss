@@ -7,6 +7,7 @@
   min-width: 370px;
   max-width: 370px;
   overflow: auto;
+  user-select: none;
 
   .color_label {
     height: 20px;
@@ -22,7 +23,6 @@
     text-align: center;
     padding: 5px;
     cursor: pointer;
-    user-select: none;
     touch-action: manipulation;
     word-wrap: break-word;
     background-color: rgb(233, 233, 240);
