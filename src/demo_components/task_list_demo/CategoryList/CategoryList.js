@@ -175,6 +175,11 @@ function CategoryList() {
         return pos;
     }
 
+    // Функции для перемещения задач внутри категории
+    function toUp(id){
+        // TODO Вставить код перемещения задачи вверх
+    }
+
     // Функция для изменения цвета категории
     function changeCategoryColor(id) {
         setCategoryList(categoryList.map(value => {
@@ -359,7 +364,8 @@ function CategoryList() {
     // Action-пропы для отдельных задач
     let taskActions = {
         toRename: renameTask,
-        toRemove: removeTask
+        toRemove: removeTask,
+        toUp
     }
 
     // Пропы для блока управления
