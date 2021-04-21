@@ -10,13 +10,13 @@ function Category({id, title, colorPreset, taskList, toLeft, toRight, toRemove, 
     return (
         <div className={style.container}>
             <div className={style.color_label} style={colorLabelInline} onClick={() => changeColorHandler(id)}/>
-            <h3 onDoubleClick={() => toRename(id)}>{title}</h3>
+            <h3 className={style.category_title} onDoubleClick={() => toRename(id)}>{title}</h3>
             <div className={style.control_block}>
-                <span onClick={() => toLeft(id)}>&#9668;</span>
-                <span onClick={() => toRemove(id)}>&#10006;</span>
-                <span onClick={() => toRight(id)}>&#9658;</span>
+                <span className={style.delete_btn} onClick={() => toRemove(id)}>&#10006;</span>
+                <span className={style.move_btn} onClick={() => toLeft(id)}>&#9668;</span>
+                <span className={style.move_btn} onClick={() => toRight(id)}>&#9658;</span>
             </div>
-            <div>
+            <div className={style.task_block}>
                 {taskList.map(value => <Task title={value}/>)}
             </div>
         </div>

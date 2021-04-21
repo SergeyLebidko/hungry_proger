@@ -1,3 +1,56 @@
 .container {
+  background-color: white;
+  border: 1px solid rgb(233, 233, 240);
+  border-radius: 3px;
+  padding: 5px;
 
+  h3.task_title {
+    text-align: left;
+    font-weight: normal;
+    font-size: 1.1em;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 8px;
+  }
+
+  .control_block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+
+    @media (max-width: 550px) {
+      padding: 10px;
+    }
+
+    span {
+      padding: 5px 5px 0 5px;
+      color: gray;
+      cursor: pointer;
+      transition: all 150ms;
+
+      @media (max-width: 550px) {
+        padding: 10px;
+        font-size: 1.2em;
+      }
+
+      &:first-child {
+        margin-right: auto;
+      }
+
+      &.move_btn:hover {
+        color: dodgerblue;
+      }
+
+      &.delete_btn:hover {
+        color: red;
+      }
+
+      &:active {
+        transform: scale(0.9);
+        transition: all 150ms;
+      }
+    }
+  }
 }

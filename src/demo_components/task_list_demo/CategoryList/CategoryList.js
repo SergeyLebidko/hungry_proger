@@ -30,7 +30,7 @@ const initialData = [
         id: initialId++,
         title: 'На будущее',
         colorPreset: 10,
-        taskList: ['Изучиеть Vue.js', 'Познакомится с Flask']
+        taskList: ['Изучить Vue.js', 'Познакомится с Flask']
     },
     {
         id: initialId++,
