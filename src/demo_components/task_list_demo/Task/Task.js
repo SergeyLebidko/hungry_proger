@@ -1,10 +1,10 @@
 import React from 'react';
 import style from './Task.module.scss';
 
-function Task({id, title}) {
+function Task({id, title, toRename}) {
     return (
         <div className={style.container}>
-            <h3 className={style.task_title}>
+            <h3 className={style.task_title} onDoubleClick={()=>toRename(id)}>
                 {title}
             </h3>
             <div className={style.control_block}>

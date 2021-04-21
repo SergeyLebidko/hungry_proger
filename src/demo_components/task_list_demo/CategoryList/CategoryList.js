@@ -37,7 +37,7 @@ const initialData = [
             },
             {
                 id: initialId++,
-                title: 'Познакомится с Flask'
+                title: 'Познакомиться с Flask'
             }
         ]
     },
@@ -239,6 +239,54 @@ function CategoryList() {
         });
     }
 
+    // Функция для переименования задачи
+    function renameTask(id) {
+        let taskForRename;
+        for (let category of categoryList) {
+            for (let task of category.taskList) {
+                if (task.id === id) {
+                    taskForRename = task;
+                    break;
+                }
+            }
+            if (taskForRename) break;
+        }
+
+        // Функция, выполняемая, если пользователь введет новое имя и нажмет "Сохранить"
+        let saveFunction = nextTitle => {
+            console.log(nextTitle);
+
+            setCategoryList(categoryList.map(category => {
+                return {
+                    ...category,
+                    taskList: category.taskList.map(task => {
+                        if (task.id !== id) return task;
+                        return {
+                            ...task,
+                            title: nextTitle
+                        }
+                    })
+                }
+            }));
+            setHasRenameModal(false);
+        }
+
+        let deniedList = [];
+        for (let category of categoryList) {
+            for (let task of category.taskList) deniedList.push(task.title);
+        }
+
+        setHasRenameModal(true);
+        setRenameProps({
+            startValue: taskForRename.title,
+            maxLen: maxTaskTitleLen,
+            deniedMsg: 'Задача с таким названием уже существует',
+            deniedList,
+            hideHandler: () => setHasRenameModal(false),
+            saveHandler: saveFunction
+        });
+    }
+
     // Блок функций для управления скроллингом списка категорий вправо и влево с помощью мыши
     function mouseDownHandler(event) {
         mouseLine.current = event.clientX;
@@ -276,6 +324,11 @@ function CategoryList() {
         toRename: renameCategory
     }
 
+    // Action-пропы для отдельных задач
+    let taskActions = {
+        toRename: renameTask
+    }
+
     // Пропы для блока управления
     let controlBlockProps = {
         categoryCount: categoryList.length,
@@ -307,7 +360,8 @@ function CategoryList() {
             <ControlBlock {...controlBlockProps}/>
             <div className={style.container} style={containerStyle} ref={containerRef} {...containerActions}>
                 <div>&nbsp;</div>
-                {categoryList.map(value => <Category key={value.id} {...value} {...categoryActions}/>)}
+                {categoryList.map(value => <Category key={value.id} {...value} {...categoryActions}
+                                                     taskActions={taskActions}/>)}
                 <div>&nbsp;</div>
             </div>
             {hasCreateCategoryModal ? <CreateCategoryModal {...createCategoryModalProps}/> : ''}
