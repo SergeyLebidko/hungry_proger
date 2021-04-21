@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import HeaderRow from '../HeaderRow/HeaderRow';
 import Tool from '../Tool/Tool';
 import Row from '../Row/Row';
@@ -17,13 +17,53 @@ export const paymentMethodsMap = {
     [credit]: 'Кредитная карта'
 }
 
+let initialId = 0;
+const initialData = [
+    {
+        id: ++initialId,
+        number: initialId,
+        paymentDate: new Date(),
+        title: 'Яблоки',
+        plan: true,
+        paymentMethod: cash,
+        count: 10,
+        price: 15,
+        total: 10 * 15
+    },
+    {
+        id: ++initialId,
+        number: initialId,
+        paymentDate: new Date(),
+        title: 'Апельсины',
+        plan: true,
+        paymentMethod: debet,
+        count: 6,
+        price: 35,
+        total: 6 * 35
+    },
+    {
+        id: ++initialId,
+        number: initialId,
+        paymentDate: new Date(),
+        title: 'Электрический чайник',
+        plan: false,
+        paymentMethod: credit,
+        count: 1,
+        price: 1200,
+        total: 1200
+    }
+]
+
 function Table() {
-    let [data, setData] = useState([]);
+    let [data, setData] = useState(initialData);
     let [selectedRow, setSelectedRow] = useState(null);
+
+    let rowId = useRef(initialId);
 
     // Обработчик добавления новой строки
     function addEmptyHandler() {
         let nextElement = {
+            id: ++rowId.current,
             number: data.length + 1,
             paymentDate: new Date(),
             title: '',
@@ -39,13 +79,13 @@ function Table() {
     // Обработчик добавления копии последней строки
     function addCopyLastHandler() {
         if (data.length === 0) return;
-        setData([...data, Object.assign({}, data[data.length - 1])]);
+        setData([...data, Object.assign({}, {...data[data.length - 1], id: ++rowId.current})]);
     }
 
     // Обработчик добавления копии выделенной строки
     function addCopyHandler() {
         if (selectedRow === null) return;
-        setData([...data, Object.assign({}, data[selectedRow])]);
+        setData([...data, Object.assign({}, {...data[selectedRow], id: ++rowId.current})]);
     }
 
     // Обработчик удаления выделенной строки
@@ -133,7 +173,7 @@ function Table() {
             changeCountHandler: (nextValue, rowIndex) => countAndPriceChangeHandler('count', nextValue, rowIndex),
             changePriceHandler: (nextValue, rowIndex) => countAndPriceChangeHandler('price', nextValue, rowIndex),
             removeHandler,
-            key: index
+            key: rowData.id
         }
         rowComponents.push(<Row {...rowProps}/>);
         index++;
