@@ -24,8 +24,30 @@ export const colorPresets = [
     'dimgray'
 ];
 
+let initialId = 0;
+const initialData = [
+    {
+        id: initialId++,
+        title: 'На будущее',
+        colorPreset: 10,
+        taskList: ['Изучиеть Vue.js', 'Познакомится с Flask']
+    },
+    {
+        id: initialId++,
+        title: 'Текущие задачи',
+        colorPreset: 1,
+        taskList: ['Завершить разработку нового модуля', 'Разобраться с Redux', 'Деплой в продакшен']
+    },
+    {
+        id: initialId++,
+        title: 'Срочные задачи',
+        colorPreset: 3,
+        taskList: ['Фикс багов']
+    }
+]
+
 function CategoryList() {
-    let [categoryList, setCategoryList] = useState([]);
+    let [categoryList, setCategoryList] = useState(initialData);
     let [hasSideScroll, setHasSideScroll] = useState(false);
 
     let [hasCreateCategoryModal, setHasCreateCategoryModal] = useState(false);
@@ -38,7 +60,7 @@ function CategoryList() {
 
     let [hasCreateTaskModal, setHasCreateTaskModal] = useState(false);
 
-    let containerRef = useRef(null);
+    let containerRef = useRef(initialId);
     let mouseLine = useRef(null);
     let nextId = useRef(0);
 
@@ -66,7 +88,7 @@ function CategoryList() {
 
     function createTask(title, categoryId) {
         setCategoryList(categoryList.map(category => {
-            if (category.id !== +categoryId)return category;
+            if (category.id !== +categoryId) return category;
             return {
                 ...category,
                 taskList: [...category.taskList, title]
