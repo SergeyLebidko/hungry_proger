@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './Task.module.scss';
 
-function Task({title}) {
+function Task({id, title}) {
     return (
         <div className={style.container}>
             <h3 className={style.task_title}>

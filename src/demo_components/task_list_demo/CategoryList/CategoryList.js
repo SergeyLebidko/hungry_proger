@@ -30,19 +30,46 @@ const initialData = [
         id: initialId++,
         title: 'На будущее',
         colorPreset: 10,
-        taskList: ['Изучить Vue.js', 'Познакомится с Flask']
+        taskList: [
+            {
+                id: initialId++,
+                title: 'Изучить Vue.js'
+            },
+            {
+                id: initialId++,
+                title: 'Познакомится с Flask'
+            }
+        ]
     },
     {
         id: initialId++,
         title: 'Текущие задачи',
         colorPreset: 1,
-        taskList: ['Завершить разработку нового модуля', 'Разобраться с Redux', 'Деплой в продакшен']
+        taskList: [
+            {
+                id: initialId++,
+                title: 'Завершить разработку нового модуля'
+            },
+            {
+                id: initialId++,
+                title: 'Разобраться с Redux'
+            },
+            {
+                id: initialId++,
+                title: 'Деплой в продакшен'
+            }
+        ]
     },
     {
         id: initialId++,
         title: 'Срочные задачи',
         colorPreset: 3,
-        taskList: ['Фикс багов']
+        taskList: [
+            {
+                id: initialId++,
+                title: 'Фикс багов'
+            }
+        ]
     }
 ]
 
