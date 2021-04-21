@@ -4,8 +4,9 @@ import ControlBlock from '../ControlBlock/ControlBlock';
 import CreateCategoryModal, {toEndCategoryPlace} from '../modals/CreateCategoryModal/CreateCategoryModal';
 import ConfirmModal from '../modals/ConfirmModal/ConfirmModal';
 import RenameModal from '../modals/RenameModal/RenameModal';
+import CreateTaskModal from '../modals/CreateTaskModal/CreateTaskModal';
 import style from './CategoryList.module.scss';
-import CreateTaskModal from "../modals/CreateTaskModal/CreateTaskModal";
+import MoveTaskModal from "../modals/MoveTaskModal/MoveTaskModal";
 
 const maxCategoryTitleLen = 40;
 const maxTaskTitleLen = 100;
@@ -92,6 +93,9 @@ function CategoryList() {
 
     let [hasCreateTaskModal, setHasCreateTaskModal] = useState(false);
 
+    let [hasMoveTaskModal, setHasMoveTaskModal] = useState(false);
+    let [moveTaskProps, setMoveTaskProps] = useState({});
+
     let containerRef = useRef(null);
     let mouseLine = useRef(null);
     let nextId = useRef(initialId);
@@ -169,6 +173,59 @@ function CategoryList() {
                 taskList: nextTaskList
             }
         }));
+    }
+
+    // Функция для перемещения задачи из категории в категорию
+    function moveTaskHorizontal(taskId) {
+        if (categoryList.length < 2) return;
+
+        let currentTask;      // Задача, которую пользователь хочет переместить в другую категорию
+        let currentCategory;  // Категория, в которой задача находится сейчас
+        for (let category of categoryList) {
+            for (let task of category.taskList) {
+                if (task.id === taskId) {
+                    currentTask = task;
+                    currentCategory = category;
+                    break;
+                }
+            }
+            if (currentCategory) break;
+        }
+
+        // Функция, которая будет вызвана, когда пользователь выберет категорию для перемещения
+        let moveHandler = nextCategoryId => {
+            setCategoryList(categoryList.map(category => {
+
+                // Удаляем задачу в текущей категории...
+                if (category.id === currentCategory.id) {
+                    return {
+                        ...category,
+                        taskList: category.taskList.filter(task => task.id !== currentTask.id)
+                    }
+                }
+
+                // ...и создаем её в списке задач целевой категории
+                if (category.id === +nextCategoryId) {
+                    return {
+                        ...category,
+                        taskList: [...category.taskList, currentTask]
+                    }
+                }
+
+                return category;
+            }))
+            setHasMoveTaskModal(false);
+        }
+
+        // Готовим пропсы для модального окна перемещения задачи
+        setMoveTaskProps({
+            task: currentTask,
+            categoryList: categoryList.filter(category => category.id !== currentCategory.id),
+            hideHandler: () => setHasMoveTaskModal(false),
+            moveHandler
+        });
+
+        setHasMoveTaskModal(true);
     }
 
     // Функция для изменения цвета категории
@@ -357,7 +414,8 @@ function CategoryList() {
         toRename: renameTask,
         toRemove: removeTask,
         toUp: id => moveTaskVertical(up, id),
-        toDown: id => moveTaskVertical(down, id)
+        toDown: id => moveTaskVertical(down, id),
+        toMove: moveTaskHorizontal
     }
 
     // Пропы для блока управления
@@ -399,6 +457,7 @@ function CategoryList() {
             {hasCreateTaskModal ? <CreateTaskModal {...createTaskModalProps}/> : ''}
             {hasRenameModal ? <RenameModal {...renameProps}/> : ''}
             {hasConfirmModal ? <ConfirmModal {...confirmProps}/> : ''}
+            {hasMoveTaskModal ? <MoveTaskModal {...moveTaskProps}/> : ''}
         </>
     );
 }
