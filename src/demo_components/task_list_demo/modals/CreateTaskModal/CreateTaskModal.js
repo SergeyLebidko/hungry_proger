@@ -1,4 +1,5 @@
 import React, {useState, useRef, useEffect} from 'react';
+import {ErrorController} from '../modalUtils';
 import style from './CreateTaskModal.module.scss';
 
 function CreateTaskModal({maxLen, categoryList, defaultCategoryId, hideHandler, createHandler}) {
@@ -7,7 +8,7 @@ function CreateTaskModal({maxLen, categoryList, defaultCategoryId, hideHandler, 
     let [error, setError] = useState(null);
 
     let inputRef = useRef(null);
-    let errorTimeout = useRef(null);
+    let errorRef = useRef(new ErrorController(setError));
 
     //Ставим фокус на поле ввода
     useEffect(() => {
@@ -23,26 +24,20 @@ function CreateTaskModal({maxLen, categoryList, defaultCategoryId, hideHandler, 
     function saveButtonHandler() {
         let finalValue = value.trim();
         if (finalValue.length === 0) {
-            showError('Название не может быть пустым');
+            errorRef.current.showError('Название не может быть пустым');
             return;
         }
 
-        for (let category of categoryList){
-            for (let task of category.taskList){
-                if (task === finalValue){
-                    showError(`Задача с таким названием уже существует в категории "${category.title}"`);
+        for (let category of categoryList) {
+            for (let task of category.taskList) {
+                if (task === finalValue) {
+                    errorRef.current.showError(`Задача с таким названием уже существует в категории "${category.title}"`);
                     return;
                 }
             }
         }
 
         createHandler(finalValue, radioValue);
-    }
-
-    function showError(text) {
-        setError(text);
-        clearTimeout(errorTimeout.current);
-        errorTimeout.current = setTimeout(() => setError(null), 3000);
     }
 
     return (
