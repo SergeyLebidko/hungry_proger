@@ -10,9 +10,11 @@ function CreateTaskModal({maxLen, categoryList, defaultCategoryId, hideHandler, 
     let inputRef = useRef(null);
     let errorRef = useRef(new ErrorController(setError));
 
-    //Ставим фокус на поле ввода
+    // Ставим фокус на поле ввода при монтировании компонента, при размонтировании - отключаем таймер показа ошибок
     useEffect(() => {
         inputRef.current.focus();
+
+        return () => errorRef.current.stopTimer();
     }, []);
 
     function changeHandler(event) {

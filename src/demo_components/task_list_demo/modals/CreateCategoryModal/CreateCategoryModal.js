@@ -12,9 +12,11 @@ function CreateCategoryModal({maxLen, createHandler, hideHandler, categoryList})
     let inputRef = useRef(null)
     let errorRef = useRef(new ErrorController(setError));
 
-    // При показе модального окна сразу же ставим фокус на поле ввода
+    // Ставим фокус на поле ввода при монтировании компонента, при размонтировании - отключаем таймер показа ошибок
     useEffect(() => {
         inputRef.current.focus();
+
+        return () => errorRef.current.stopTimer();
     }, [])
 
     function changeHandler(event) {

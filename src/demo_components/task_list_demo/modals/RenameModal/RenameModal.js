@@ -9,9 +9,11 @@ function RenameModal({startValue, maxLen, deniedList, deniedMsg, hideHandler, sa
     let inputRef = useRef(null);
     let errorRef = useRef(new ErrorController(setError));
 
-    // Ставим фокус на поле ввода при монтировании компонента
+    // Ставим фокус на поле ввода при монтировании компонента, при размонтировании - отключаем таймер показа ошибок
     useEffect(() => {
         inputRef.current.focus();
+
+        return () => errorRef.current.stopTimer();
     }, []);
 
     function changeHandler(event) {
@@ -43,7 +45,8 @@ function RenameModal({startValue, maxLen, deniedList, deniedMsg, hideHandler, sa
                 <input type={'text'} value={value} ref={inputRef} onChange={changeHandler}/>
                 {error !== null ? <div className={style.error_block}>{error}</div> : ''}
                 <div className={style.button_block}>
-                    <input type={'button'} value={'Сохранить'} className={style.yes_btn} onClick={saveButtonClickHandler}/>
+                    <input type={'button'} value={'Сохранить'} className={style.yes_btn}
+                           onClick={saveButtonClickHandler}/>
                     <input type={'button'} value={'Отмена'} className={style.no_btn} onClick={hideHandler}/>
                 </div>
             </div>
