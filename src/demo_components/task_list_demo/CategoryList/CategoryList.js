@@ -177,6 +177,27 @@ function CategoryList() {
         }));
     }
 
+    function taskToDown(id) {
+        let nextTaskList, currentPos;
+        setCategoryList(categoryList.map(category => {
+            currentPos = null;
+            nextTaskList = category.taskList.filter((task, index) => {
+                if (task.id === id) {
+                    currentPos = index;
+                    return false
+                }
+                return true;
+            });
+            if (currentPos === null || currentPos === (category.taskList.length - 1)) return category;
+
+            nextTaskList.splice(currentPos + 1, 0, category.taskList[currentPos]);
+            return {
+                ...category,
+                taskList: nextTaskList
+            }
+        }));
+    }
+
     // Функция для изменения цвета категории
     function changeCategoryColor(id) {
         setCategoryList(categoryList.map(value => {
@@ -362,7 +383,8 @@ function CategoryList() {
     let taskActions = {
         toRename: renameTask,
         toRemove: removeTask,
-        toUp: taskToUp
+        toUp: taskToUp,
+        toDown: taskToDown
     }
 
     // Пропы для блока управления
