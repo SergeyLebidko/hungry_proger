@@ -26,6 +26,8 @@ export const colorPresets = [
 
 const left = 'l';
 const right = 'r';
+const up = 'u';
+const down = 'd';
 
 let initialId = 0;
 const initialData = [
@@ -146,8 +148,8 @@ function CategoryList() {
         }
     }
 
-    // Функции для перемещения задач внутри категории
-    function taskToUp(id) {
+    // Функция для перемещения задач внутри категории
+    function moveTaskVertical(direction, id) {
         let nextTaskList, currentPos;
         setCategoryList(categoryList.map(category => {
             currentPos = null;
@@ -158,30 +160,10 @@ function CategoryList() {
                 }
                 return true;
             });
-            if (!currentPos) return category;
+            if (!currentPos && direction === up) return category;
+            if ((currentPos === null || currentPos === (category.taskList.length - 1)) && direction === down) return category;
 
-            nextTaskList.splice(currentPos - 1, 0, category.taskList[currentPos]);
-            return {
-                ...category,
-                taskList: nextTaskList
-            }
-        }));
-    }
-
-    function taskToDown(id) {
-        let nextTaskList, currentPos;
-        setCategoryList(categoryList.map(category => {
-            currentPos = null;
-            nextTaskList = category.taskList.filter((task, index) => {
-                if (task.id === id) {
-                    currentPos = index;
-                    return false
-                }
-                return true;
-            });
-            if (currentPos === null || currentPos === (category.taskList.length - 1)) return category;
-
-            nextTaskList.splice(currentPos + 1, 0, category.taskList[currentPos]);
+            nextTaskList.splice(currentPos + (direction === up ? -1 : 1), 0, category.taskList[currentPos]);
             return {
                 ...category,
                 taskList: nextTaskList
@@ -374,8 +356,8 @@ function CategoryList() {
     let taskActions = {
         toRename: renameTask,
         toRemove: removeTask,
-        toUp: taskToUp,
-        toDown: taskToDown
+        toUp: id => moveTaskVertical(up, id),
+        toDown: id => moveTaskVertical(down, id)
     }
 
     // Пропы для блока управления
