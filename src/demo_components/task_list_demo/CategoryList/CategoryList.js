@@ -129,18 +129,8 @@ function CategoryList() {
         let currentPos = findCategoryPosById(id);
         if (currentPos === 0) return;
 
-        let index = 0;
-        let nextCategoryList = [];
-        while (index < categoryList.length) {
-            if (index === (currentPos - 1)) {
-                nextCategoryList.push(categoryList[currentPos]);
-                nextCategoryList.push(categoryList[index]);
-                index += 2;
-                continue;
-            }
-            nextCategoryList.push(categoryList[index]);
-            index++;
-        }
+        let nextCategoryList = categoryList.filter((_, index) => index !== currentPos);
+        nextCategoryList.splice(currentPos - 1, 0, categoryList[currentPos]);
 
         setCategoryList(nextCategoryList);
     }
@@ -149,18 +139,8 @@ function CategoryList() {
         let currentPos = findCategoryPosById(id);
         if (currentPos === (categoryList.length - 1)) return;
 
-        let index = 0;
-        let nextCategoryList = [];
-        while (index < categoryList.length) {
-            if (index === currentPos) {
-                nextCategoryList.push(categoryList[currentPos + 1]);
-                nextCategoryList.push(categoryList[index]);
-                index += 2;
-                continue;
-            }
-            nextCategoryList.push(categoryList[index]);
-            index++;
-        }
+        let nextCategoryList = categoryList.filter((_, index) => index !== currentPos);
+        nextCategoryList.splice(currentPos + 1, 0, categoryList[currentPos]);
 
         setCategoryList(nextCategoryList);
     }
@@ -176,7 +156,7 @@ function CategoryList() {
     }
 
     // Функции для перемещения задач внутри категории
-    function toUp(id){
+    function toUp(id) {
         // TODO Вставить код перемещения задачи вверх
     }
 
