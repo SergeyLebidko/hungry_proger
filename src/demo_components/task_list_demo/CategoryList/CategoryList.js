@@ -156,8 +156,25 @@ function CategoryList() {
     }
 
     // Функции для перемещения задач внутри категории
-    function toUp(id) {
-        // TODO Вставить код перемещения задачи вверх
+    function taskToUp(id) {
+        let nextTaskList, currentPos;
+        setCategoryList(categoryList.map(category => {
+            currentPos = null;
+            nextTaskList = category.taskList.filter((task, index) => {
+                if (task.id === id) {
+                    currentPos = index;
+                    return false
+                }
+                return true;
+            });
+            if (!currentPos) return category;
+
+            nextTaskList.splice(currentPos - 1, 0, category.taskList[currentPos]);
+            return {
+                ...category,
+                taskList: nextTaskList
+            }
+        }));
     }
 
     // Функция для изменения цвета категории
@@ -345,7 +362,7 @@ function CategoryList() {
     let taskActions = {
         toRename: renameTask,
         toRemove: removeTask,
-        toUp
+        toUp: taskToUp
     }
 
     // Пропы для блока управления
