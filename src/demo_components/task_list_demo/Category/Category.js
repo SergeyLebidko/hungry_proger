@@ -16,9 +16,11 @@ function Category({id, title, colorPreset, taskList, toLeft, toRight, toRemove, 
                 <span className={style.move_btn} onClick={() => toLeft(id)}>&#9668;</span>
                 <span className={style.move_btn} onClick={() => toRight(id)}>&#9658;</span>
             </div>
-            <div className={style.task_block}>
-                {taskList.map(value => <Task key={value.id} {...value} {...taskActions}/>)}
-            </div>
+            {taskList.length > 0 ?
+                <div className={style.task_block}>
+                    {taskList.map(value => <Task key={value.id} {...value} {...taskActions}/>)}
+                </div> : ''
+            }
         </div>
     );
 }
