@@ -24,6 +24,9 @@ export const colorPresets = [
     'dimgray'
 ];
 
+const left = 'l';
+const right = 'r';
+
 let initialId = 0;
 const initialData = [
     {
@@ -124,35 +127,23 @@ function CategoryList() {
         setHasCreateTaskModal(false);
     }
 
-    // Функции перемещения категорий внутри списка
-    function categoryToLeft(id) {
+    // Функции для перемещения категорий внутри списка
+    function moveCategory(direction, id) {
         let currentPos = findCategoryPosById(id);
-        if (currentPos === 0) return;
+        if (currentPos === (categoryList.length - 1) && direction === right) return;
+        if (currentPos === 0 && direction === left) return;
 
         let nextCategoryList = categoryList.filter((_, index) => index !== currentPos);
-        nextCategoryList.splice(currentPos - 1, 0, categoryList[currentPos]);
-
-        setCategoryList(nextCategoryList);
-    }
-
-    function categoryToRight(id) {
-        let currentPos = findCategoryPosById(id);
-        if (currentPos === (categoryList.length - 1)) return;
-
-        let nextCategoryList = categoryList.filter((_, index) => index !== currentPos);
-        nextCategoryList.splice(currentPos + 1, 0, categoryList[currentPos]);
+        nextCategoryList.splice(currentPos + (direction === left ? -1 : 1), 0, categoryList[currentPos]);
 
         setCategoryList(nextCategoryList);
     }
 
     function findCategoryPosById(id) {
-        let pos;
         for (let index = 0; index < categoryList.length; index++) {
             if (categoryList[index].id !== id) continue;
-            pos = index;
-            break;
+            return index;
         }
-        return pos;
     }
 
     // Функции для перемещения задач внутри категории
@@ -373,8 +364,8 @@ function CategoryList() {
     // Action-пропы для отдельных категорий
     let categoryActions = {
         changeColorHandler: changeCategoryColor,
-        toLeft: categoryToLeft,
-        toRight: categoryToRight,
+        toLeft: id => moveCategory(left, id),
+        toRight: id => moveCategory(right, id),
         toRemove: removeCategory,
         toRename: renameCategory
     }
