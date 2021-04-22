@@ -3,7 +3,7 @@ import Category from '../Category/Category';
 import ControlBlock from '../ControlBlock/ControlBlock';
 import CreateCategoryModal, {toEndCategoryPlace} from '../modals/CreateCategoryModal/CreateCategoryModal';
 import ConfirmModal from '../modals/ConfirmModal/ConfirmModal';
-import RenameModal from '../modals/RenameModal/RenameModal';
+import RenameModal, {renameCategoryType, renameTaskType} from '../modals/RenameModal/RenameModal';
 import CreateTaskModal from '../modals/CreateTaskModal/CreateTaskModal';
 import style from './CategoryList.module.scss';
 import MoveTaskModal from "../modals/MoveTaskModal/MoveTaskModal";
@@ -274,7 +274,7 @@ function CategoryList() {
         }
 
         // Функция, выполняемая, если пользователь ответит "Да" в окне запроса подтверждения операции
-        let yesFunction = () => {
+        let okHandler = () => {
             setCategoryList(categoryList.map(category => {
                 return {
                     ...category,
@@ -287,8 +287,8 @@ function CategoryList() {
         setHasConfirmModal(true);
         setConfirmProps({
             text: `Вы действительно хотите удалить задачу "${taskTitle}"?`,
-            hideHandler: () => setHasConfirmModal(false),
-            yesFunction
+            cancelHandler: () => setHasConfirmModal(false),
+            okHandler
         });
     }
 
@@ -303,7 +303,7 @@ function CategoryList() {
         }
 
         // Функция, выполняемая, если пользователь введет новое имя и нажмет кнопку "Сохранить"
-        let saveFunction = nextTitle => {
+        let saveHandler = nextTitle => {
             setCategoryList(categoryList.map(value => {
                 if (value.id === id) return {...value, title: nextTitle}
                 return value;
@@ -311,16 +311,14 @@ function CategoryList() {
             setHasRenameModal(false);
         }
 
-        let deniedList = categoryList.map(value => value.title);
-
         setHasRenameModal(true);
         setRenameProps({
             startValue: categoryForRename.title,
             maxLen: maxCategoryTitleLen,
-            deniedList,
-            deniedMsg: 'Категория с таким имененем уже существует',
+            categoryList,
+            modalType: renameCategoryType,
             hideHandler: () => setHasRenameModal(false),
-            saveHandler: saveFunction
+            saveHandler
         });
     }
 
@@ -338,7 +336,7 @@ function CategoryList() {
         }
 
         // Функция, выполняемая, если пользователь введет новое имя и нажмет "Сохранить"
-        let saveFunction = nextTitle => {
+        let saveHandler = nextTitle => {
             console.log(nextTitle);
 
             setCategoryList(categoryList.map(category => {
@@ -356,19 +354,14 @@ function CategoryList() {
             setHasRenameModal(false);
         }
 
-        let deniedList = [];
-        for (let category of categoryList) {
-            for (let task of category.taskList) deniedList.push(task.title);
-        }
-
         setHasRenameModal(true);
         setRenameProps({
             startValue: taskForRename.title,
             maxLen: maxTaskTitleLen,
-            deniedMsg: 'Задача с таким названием уже существует',
-            deniedList,
+            categoryList,
+            modalType: renameTaskType,
             hideHandler: () => setHasRenameModal(false),
-            saveHandler: saveFunction
+            saveHandler
         });
     }
 

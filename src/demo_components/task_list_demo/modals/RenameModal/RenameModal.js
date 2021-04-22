@@ -1,13 +1,16 @@
 import React, {useState, useRef, useEffect} from 'react';
-import {ErrorController} from '../modalUtils';
+import {ErrorController, getCategoryTitles, getTaskTitles} from '../modalUtils';
 import style from './RenameModal.module.scss';
 
-function RenameModal({startValue, maxLen, deniedList, deniedMsg, hideHandler, saveHandler}) {
+export const renameCategoryType = 'rc';
+export const renameTaskType = 'rt';
+
+function RenameModal({startValue, maxLen, categoryList, modalType, hideHandler, saveHandler}) {
     let [value, setValue] = useState(startValue);
     let [error, setError] = useState(null);
 
     let inputRef = useRef(null);
-    let errorRef = useRef(new ErrorController(setError));
+    let errorRef = useRef(new ErrorController(setError, modalType === renameCategoryType ? getCategoryTitles(categoryList) : getTaskTitles(categoryList)));
 
     // Ставим фокус на поле ввода при монтировании компонента, при размонтировании - отключаем таймер показа ошибок
     useEffect(() => {
@@ -24,18 +27,7 @@ function RenameModal({startValue, maxLen, deniedList, deniedMsg, hideHandler, sa
 
     function saveButtonClickHandler() {
         let finalValue = value.trim();
-
-        if (finalValue.length === 0) {
-            errorRef.current.showError('Название не может быть пустым');
-            return;
-        }
-
-        for (let deniedValue of deniedList) {
-            if (finalValue === deniedValue) {
-                errorRef.current.showError(deniedMsg);
-                return;
-            }
-        }
+        if (errorRef.current.checkError(finalValue)) return;
         saveHandler(finalValue);
     }
 

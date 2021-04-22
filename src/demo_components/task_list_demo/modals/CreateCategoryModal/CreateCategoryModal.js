@@ -1,16 +1,16 @@
 import React, {useState, useRef, useEffect} from 'react';
-import {ErrorController} from '../modalUtils';
+import {ErrorController, getCategoryTitles} from '../modalUtils';
 import style from './CreateCategoryModal.module.scss';
 
 export const toEndCategoryPlace = 'to_end';
 
-function CreateCategoryModal({maxLen, createHandler, hideHandler, categoryList}) {
+function CreateCategoryModal({maxLen, categoryList,  hideHandler, createHandler}) {
     let [value, setValue] = useState('');
     let [error, setError] = useState(null);
     let [beforeCategory, setBeforeCategory] = useState('to_end');
 
     let inputRef = useRef(null)
-    let errorRef = useRef(new ErrorController(setError));
+    let errorRef = useRef(new ErrorController(setError, getCategoryTitles(categoryList)));
 
     // Ставим фокус на поле ввода при монтировании компонента, при размонтировании - отключаем таймер показа ошибок
     useEffect(() => {
@@ -27,16 +27,7 @@ function CreateCategoryModal({maxLen, createHandler, hideHandler, categoryList})
 
     function createButtonHandler() {
         let title = value.trim();
-        if (title.length === 0) {
-            errorRef.current.showError('Название не может быть пустым');
-            return;
-        }
-        for (let category of categoryList) {
-            if (title === category.title) {
-                errorRef.current.showError('Категория с таким названием уже есть');
-                return;
-            }
-        }
+        if (errorRef.current.checkError(title)) return;
         createHandler(title, beforeCategory);
     }
 

@@ -1,5 +1,5 @@
 import React, {useState, useRef, useEffect} from 'react';
-import {ErrorController} from '../modalUtils';
+import {ErrorController, getTaskTitles} from '../modalUtils';
 import style from './CreateTaskModal.module.scss';
 
 function CreateTaskModal({maxLen, categoryList, defaultCategoryId, hideHandler, createHandler}) {
@@ -9,7 +9,7 @@ function CreateTaskModal({maxLen, categoryList, defaultCategoryId, hideHandler, 
     let [radioValue, setRadioValue] = useState(defaultCategoryId || categoryList[0].id)
 
     let inputRef = useRef(null);
-    let errorRef = useRef(new ErrorController(setError));
+    let errorRef = useRef(new ErrorController(setError, getTaskTitles(categoryList)));
 
     // Ставим фокус на поле ввода при монтировании компонента, при размонтировании - отключаем таймер показа ошибок
     useEffect(() => {
@@ -26,20 +26,7 @@ function CreateTaskModal({maxLen, categoryList, defaultCategoryId, hideHandler, 
 
     function saveButtonHandler() {
         let finalValue = value.trim();
-        if (finalValue.length === 0) {
-            errorRef.current.showError('Название не может быть пустым');
-            return;
-        }
-
-        for (let category of categoryList) {
-            for (let task of category.taskList) {
-                if (task.title === finalValue) {
-                    errorRef.current.showError(`Задача с таким названием уже существует в категории "${category.title}"`);
-                    return;
-                }
-            }
-        }
-
+        if (errorRef.current.checkError(finalValue)) return;
         createHandler(finalValue, radioValue);
     }
 
