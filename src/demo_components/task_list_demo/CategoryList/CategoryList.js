@@ -247,7 +247,7 @@ function CategoryList() {
         }
 
         // Функция, выполняемая, если пользователь ответит "Да" в окне запроса подтверждения операции
-        let yesFunction = () => {
+        let okHandler = () => {
             setCategoryList(categoryList.filter(value => value.id !== id));
             setHasConfirmModal(false);
         }
@@ -255,8 +255,8 @@ function CategoryList() {
         setHasConfirmModal(true);
         setConfirmProps({
             text: `Вы действительно хотите удалить категорию "${categoryTitle}"? Все связанные с ней задачи также будут удалены.`,
-            hideHandler: () => setHasConfirmModal(false),
-            yesFunction
+            cancelHandler: () => setHasConfirmModal(false),
+            okHandler
         });
     }
 

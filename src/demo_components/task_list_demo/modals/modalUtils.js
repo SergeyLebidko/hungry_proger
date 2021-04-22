@@ -11,7 +11,15 @@ export class ErrorController {
     }
 
     // Метод нужен для предотвращения попытки обновления уже размонтированного компонента
-    stopTimer(){
+    stopTimer() {
         clearTimeout(this.timer);
     }
+}
+
+export function getCategoryTitles(categoryList) {
+
+}
+
+export function getTaskTitles(categoryList) {
+
 }
