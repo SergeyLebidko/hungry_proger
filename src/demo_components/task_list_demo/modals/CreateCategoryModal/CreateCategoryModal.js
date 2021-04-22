@@ -1,7 +1,7 @@
 import React, {useState, useRef} from 'react';
 import {ErrorController, getCategoryTitles, useFocusAndStopErrorEffect, getChangeHandler} from '../modalUtils';
+import RadioSelector from '../RadioSelector/RadioSelector';
 import style from './CreateCategoryModal.module.scss';
-import RadioSelector from "../RadioSelector/RadioSelector";
 
 export const toEndCategoryPlace = 'to_end';
 
