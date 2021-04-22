@@ -14,14 +14,6 @@
       @extend %error_block_style
     }
 
-    .radio_selector {
-      @extend %radio_selector;
-
-      p:last-child label{
-        color: gray;
-      }
-    }
-
     .buttons_block {
       @extend %buttons_block_style
     }

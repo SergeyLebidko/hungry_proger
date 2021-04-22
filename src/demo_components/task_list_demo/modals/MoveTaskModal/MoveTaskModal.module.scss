@@ -6,10 +6,6 @@
   .content {
     @extend %modal_content;
 
-    .radio_selector {
-      @extend %radio_selector;
-    }
-
     .buttons_block {
       @extend %buttons_block_style;
     }
