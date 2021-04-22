@@ -1,5 +1,5 @@
-import React, {useState, useRef, useEffect} from 'react';
-import {ErrorController, getCategoryTitles, getTaskTitles} from '../modalUtils';
+import React, {useState, useRef} from 'react';
+import {ErrorController, getCategoryTitles, getTaskTitles, useFocusAndStopErrorEffect} from '../modalUtils';
 import style from './RenameModal.module.scss';
 
 export const renameCategoryType = 'rc';
@@ -13,11 +13,7 @@ function RenameModal({startValue, maxLen, categoryList, modalType, hideHandler, 
     let errorRef = useRef(new ErrorController(setError, modalType === renameCategoryType ? getCategoryTitles(categoryList) : getTaskTitles(categoryList)));
 
     // Ставим фокус на поле ввода при монтировании компонента, при размонтировании - отключаем таймер показа ошибок
-    useEffect(() => {
-        inputRef.current.focus();
-
-        return () => errorRef.current.stopTimer();
-    }, []);
+    useFocusAndStopErrorEffect(inputRef, errorRef);
 
     function changeHandler(event) {
         let nextValue = event.target.value;

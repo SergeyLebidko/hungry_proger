@@ -1,5 +1,5 @@
-import React, {useState, useRef, useEffect} from 'react';
-import {ErrorController, getCategoryTitles} from '../modalUtils';
+import React, {useState, useRef} from 'react';
+import {ErrorController, getCategoryTitles, useFocusAndStopErrorEffect} from '../modalUtils';
 import style from './CreateCategoryModal.module.scss';
 
 export const toEndCategoryPlace = 'to_end';
@@ -13,11 +13,7 @@ function CreateCategoryModal({maxLen, categoryList,  hideHandler, createHandler}
     let errorRef = useRef(new ErrorController(setError, getCategoryTitles(categoryList)));
 
     // Ставим фокус на поле ввода при монтировании компонента, при размонтировании - отключаем таймер показа ошибок
-    useEffect(() => {
-        inputRef.current.focus();
-
-        return () => errorRef.current.stopTimer();
-    }, [])
+    useFocusAndStopErrorEffect(inputRef, errorRef);
 
     function changeHandler(event) {
         let nextValue = event.target.value;

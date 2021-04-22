@@ -1,3 +1,6 @@
+import {useEffect} from 'react';
+
+// Класс инкапслуирует общий для модальных окон механизм обработки ошибок пользовательского ввода
 export class ErrorController {
     constructor(errorSetter, deniedList) {
         this.errorSetter = errorSetter;
@@ -41,4 +44,12 @@ export function getTaskTitles(categoryList) {
         for (let task of category.taskList) result.push(task.title);
     }
     return result;
+}
+
+// Хук инкапсулирует общий для модальных окон механизм установки фокуса и отключения таймера вывода ошибки
+export function useFocusAndStopErrorEffect(inputRef, errorRef) {
+    useEffect(() => {
+        inputRef.current.focus();
+        return () => errorRef.current.stopTimer();
+    });
 }

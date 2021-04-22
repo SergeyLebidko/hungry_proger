@@ -1,5 +1,5 @@
-import React, {useState, useRef, useEffect} from 'react';
-import {ErrorController, getTaskTitles} from '../modalUtils';
+import React, {useState, useRef} from 'react';
+import {ErrorController, getTaskTitles, useFocusAndStopErrorEffect} from '../modalUtils';
 import style from './CreateTaskModal.module.scss';
 
 function CreateTaskModal({maxLen, categoryList, defaultCategoryId, hideHandler, createHandler}) {
@@ -12,11 +12,7 @@ function CreateTaskModal({maxLen, categoryList, defaultCategoryId, hideHandler, 
     let errorRef = useRef(new ErrorController(setError, getTaskTitles(categoryList)));
 
     // Ставим фокус на поле ввода при монтировании компонента, при размонтировании - отключаем таймер показа ошибок
-    useEffect(() => {
-        inputRef.current.focus();
-
-        return () => errorRef.current.stopTimer();
-    }, []);
+    useFocusAndStopErrorEffect(inputRef, errorRef);
 
     function changeHandler(event) {
         let nextValue = event.target.value;
