@@ -5,8 +5,8 @@ import CreateCategoryModal, {toEndCategoryPlace} from '../modals/CreateCategoryM
 import ConfirmModal from '../modals/ConfirmModal/ConfirmModal';
 import RenameModal, {renameCategoryType, renameTaskType} from '../modals/RenameModal/RenameModal';
 import CreateTaskModal from '../modals/CreateTaskModal/CreateTaskModal';
+import MoveTaskModal from '../modals/MoveTaskModal/MoveTaskModal';
 import style from './CategoryList.module.scss';
-import MoveTaskModal from "../modals/MoveTaskModal/MoveTaskModal";
 
 const maxCategoryTitleLen = 40;
 const maxTaskTitleLen = 100;
