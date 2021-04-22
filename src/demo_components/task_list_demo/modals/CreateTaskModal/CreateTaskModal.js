@@ -4,8 +4,9 @@ import style from './CreateTaskModal.module.scss';
 
 function CreateTaskModal({maxLen, categoryList, defaultCategoryId, hideHandler, createHandler}) {
     let [value, setValue] = useState('');
-    let [radioValue, setRadioValue] = useState(defaultCategoryId || categoryList[0].id)
     let [error, setError] = useState(null);
+
+    let [radioValue, setRadioValue] = useState(defaultCategoryId || categoryList[0].id)
 
     let inputRef = useRef(null);
     let errorRef = useRef(new ErrorController(setError));
