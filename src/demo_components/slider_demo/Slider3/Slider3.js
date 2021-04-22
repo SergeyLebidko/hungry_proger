@@ -89,7 +89,7 @@ function Slider3({mode, imgLoadHandler}) {
     for (let item of items) {
         images.push(
             <img key={index}
-                 src={`/images/demo_components/slider_demo/${item}.jpg`}
+                 src={`./images/demo_components/slider_demo/${item}.jpg`}
                  onLoad={imgLoadHandler}
                  style={{zIndex: pos === index ? 1 : 0}}
             />

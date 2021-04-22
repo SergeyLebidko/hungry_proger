@@ -9,7 +9,7 @@ function Contacts({content, windowSize}) {
             <div>
                 {content === null ? '' : content.map((value, index) =>
                     <a href={value.url} key={index}>
-                        <img src={`/images/${value.logo}`} alt="contact_logo"/>
+                        <img src={`./images/${value.logo}`} alt="contact_logo"/>
                     </a>
                 )}
             </div>

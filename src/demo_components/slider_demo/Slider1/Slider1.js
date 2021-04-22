@@ -17,7 +17,7 @@ function Slider1({mode, imgLoadHandler}) {
     for (let item of items) {
         images.push(
             <img key={index}
-                 src={`/images/demo_components/slider_demo/${item}.jpg`}
+                 src={`./images/demo_components/slider_demo/${item}.jpg`}
                  style={{left: `${100 * index}%`}}
                  onLoad={imgLoadHandler}
             />

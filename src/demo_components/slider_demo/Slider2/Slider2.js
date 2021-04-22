@@ -30,7 +30,7 @@ function Slider2({mode, imgLoadHandler}) {
     for (let item of items) {
         images.push(
             <img key={`${index}_ribbon1`}
-                 src={`/images/demo_components/slider_demo/${item}.jpg`}
+                 src={`./images/demo_components/slider_demo/${item}.jpg`}
                  onLoad={imgLoadHandler}
                  className={style.ribbon1}
                  style={{top: `${-index * 100}%`}}
@@ -38,7 +38,7 @@ function Slider2({mode, imgLoadHandler}) {
         );
         images.push(
             <img key={`${index}_ribbon2`}
-                 src={`/images/demo_components/slider_demo/${item}.jpg`}
+                 src={`./images/demo_components/slider_demo/${item}.jpg`}
                  onLoad={imgLoadHandler}
                  className={style.ribbon2}
                  style={{top: `${index * 100}%`}}
@@ -46,7 +46,7 @@ function Slider2({mode, imgLoadHandler}) {
         );
         images.push(
             <img key={`${index}_ribbon3`}
-                 src={`/images/demo_components/slider_demo/${item}.jpg`}
+                 src={`./images/demo_components/slider_demo/${item}.jpg`}
                  onLoad={imgLoadHandler}
                  className={style.ribbon3}
                  style={{left: `${index * 100}%`}}

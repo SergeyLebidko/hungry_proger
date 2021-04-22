@@ -44,7 +44,7 @@ function Header({history, mode, imgLoadHandler}) {
     let images = [];
     for (let index = 1; index <= imgCount; index++) {
         images.push(
-            <img src={`/images/demo_components/slider_demo/header${index}.jpg`}
+            <img src={`./images/demo_components/slider_demo/header${index}.jpg`}
                  className={index === currentSlide ? style.visible : style.hide}
                  onLoad={imgLoadHandler}
                  key={index}

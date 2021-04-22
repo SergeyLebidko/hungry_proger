@@ -14,7 +14,7 @@ function AboutMe({content, history, windowSize}) {
                 <div className={style.separator}/>
             </div>
             <div className={style.content}>
-                <img src="/images/avatar.jpg" alt="avatar"/>
+                <img src="./images/avatar.jpg" alt="avatar"/>
                 <div>
                     {content === null ?
                         '' :
@@ -22,7 +22,7 @@ function AboutMe({content, history, windowSize}) {
                     }
                     <nav>
                         <SimpleButton text="Читать полностью" delay={0} action={() => history.push("/about_me")}/>
-                        <SimpleButton text="Моё резюме" delay={0} action={() => window.open('/content/resume.pdf', '_blank')}/>
+                        <SimpleButton text="Моё резюме" delay={0} action={() => window.open('./content/resume.pdf', '_blank')}/>
                     </nav>
                 </div>
             </div>

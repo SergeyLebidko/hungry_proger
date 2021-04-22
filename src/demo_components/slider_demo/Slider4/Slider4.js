@@ -94,11 +94,11 @@ function Slider4({mode, imgLoadHandler}) {
         images.push(
             <div key={index} className={style.wrap} style={{left: `${100 * index}%`}}>
                 <img className={style.outer_img_clear}
-                     src={`/images/demo_components/slider_demo/${item.file}.jpg`}
+                     src={`./images/demo_components/slider_demo/${item.file}.jpg`}
                      onLoad={imgLoadHandler}
                 />
                 <div className={style.hide}>
-                    <img src={`/images/demo_components/slider_demo/${item.file}.jpg`} onLoad={imgLoadHandler}/>
+                    <img src={`./images/demo_components/slider_demo/${item.file}.jpg`} onLoad={imgLoadHandler}/>
                     <h3>{item.title}</h3>
                 </div>
             </div>
@@ -109,9 +109,9 @@ function Slider4({mode, imgLoadHandler}) {
     let touchProps = createTouchSlideProps(prev, next);
 
     let leftArrow = hasLeftArrow ?
-        <div onClick={next}><img src={'/images/demo_components/slider_demo/l_arrow.svg'}/></div> : '';
+        <div onClick={next}><img src={'./images/demo_components/slider_demo/l_arrow.svg'}/></div> : '';
     let rightArrow = hasRightArrow ?
-        <div onClick={prev}><img src={'/images/demo_components/slider_demo/r_arrow.svg'}/></div> : '';
+        <div onClick={prev}><img src={'./images/demo_components/slider_demo/r_arrow.svg'}/></div> : '';
     let arrowBlock = <div className={style.arrow_block}>{leftArrow}{rightArrow}</div>
 
     return (

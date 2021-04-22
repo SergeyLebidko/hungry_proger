@@ -25,16 +25,16 @@ function Header({history}) {
     // Отслеживаем загрузку файла с изображением для фона Header'а
     useEffect(() => {
         let headerImg = document.createElement('img');
-        headerImg.src = '/images/demo_components/gallery_demo/back_header.png';
+        headerImg.src = './images/demo_components/gallery_demo/back_header.png';
         headerImg.onload = () => setHasImgLoad(true);
 
         return () => headerImg.remove();
     }, [])
 
-    let captionStyle = {backgroundImage: 'url(/images/demo_components/gallery_demo/back_header.png)'}
+    let captionStyle = {backgroundImage: 'url(./images/demo_components/gallery_demo/back_header.png)'}
     let containerStyle = {}
     if (hasImgLoad) Object.assign(containerStyle, {
-        backgroundImage: 'url(/images/demo_components/gallery_demo/header.jpg)',
+        backgroundImage: 'url(./images/demo_components/gallery_demo/header.jpg)',
         backgroundPosition: `${xPos}% ${yPos}%`
     });
 

@@ -21,8 +21,8 @@ function Card({item, clickHandler}) {
     if (pos === left_pos) containerClassName += (' ' + style.left_pos);
     if (pos === right_pos) containerClassName += (' ' + style.right_pos);
 
-    let filename1 = `/images/demo_components/gallery_demo/${item.file}1.jpg`;
-    let filename2 = `/images/demo_components/gallery_demo/${item.file}2.jpg`;
+    let filename1 = `./images/demo_components/gallery_demo/${item.file}1.jpg`;
+    let filename2 = `./images/demo_components/gallery_demo/${item.file}2.jpg`;
 
     let classForLeftControl;
     let classForRightControl;

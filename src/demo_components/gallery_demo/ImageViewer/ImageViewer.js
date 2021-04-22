@@ -9,7 +9,7 @@ function ImageViewer({filename, closeViewerHandler}) {
         setTimeout(() => closeViewerHandler(), 550);
     }
 
-    let containerStyle = {backgroundImage: 'url(/images/demo_components/gallery_demo/back_viewer.png)'}
+    let containerStyle = {backgroundImage: 'url(./images/demo_components/gallery_demo/back_viewer.png)'}
 
     let containerClassName = style.container;
     if (currentState === 'entry') containerClassName += (' ' + style.entry_viewer);
