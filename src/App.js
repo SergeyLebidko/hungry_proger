@@ -75,12 +75,12 @@ function App() {
     let [skillsDetail, setSkillsDetail] = useState(null);
 
     useEffect(() => {
-        axios.get('/content/about_me.txt').then(response => setAboutMeContent(response.data));
-        axios.get('/content/projects.txt').then(response => setProjectsContent(response.data));
-        axios.get('/content/skills.txt').then(response => setSkillsList(response.data));
-        axios.get('/content/contacts.txt').then(response => setContactsList(response.data));
-        axios.get('/content/skills_detail.txt').then(response => setSkillsDetail(response.data));
-        axios.get('/content/skills_detail.txt').then(response => setSkillsDetail(response.data));
+        axios.get('/hungry_proger/content/about_me.txt').then(response => setAboutMeContent(response.data));
+        axios.get('/hungry_proger/content/projects.txt').then(response => setProjectsContent(response.data));
+        axios.get('/hungry_proger/content/skills.txt').then(response => setSkillsList(response.data));
+        axios.get('/hungry_proger/content/contacts.txt').then(response => setContactsList(response.data));
+        axios.get('/hungry_proger/content/skills_detail.txt').then(response => setSkillsDetail(response.data));
+        axios.get('/hungry_proger/content/skills_detail.txt').then(response => setSkillsDetail(response.data));
     }, []);
 
     return (
