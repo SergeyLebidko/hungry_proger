@@ -53,3 +53,12 @@ export function useFocusAndStopErrorEffect(inputRef, errorRef) {
         return () => errorRef.current.stopTimer();
     });
 }
+
+// Функция инкапсулирует общее для модалок поведение при обработке пользовательского ввода
+export function getChangeHandler(valueSetter, maxLen) {
+    return event => {
+        let nextValue = event.target.value;
+        if (nextValue === ' ' || nextValue.length > maxLen) return;
+        valueSetter(nextValue);
+    }
+}

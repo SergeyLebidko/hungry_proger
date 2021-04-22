@@ -1,5 +1,5 @@
 import React, {useState, useRef} from 'react';
-import {ErrorController, getCategoryTitles, getTaskTitles, useFocusAndStopErrorEffect} from '../modalUtils';
+import {ErrorController, getCategoryTitles, getTaskTitles, useFocusAndStopErrorEffect, getChangeHandler} from '../modalUtils';
 import style from './RenameModal.module.scss';
 
 export const renameCategoryType = 'rc';
@@ -15,12 +15,6 @@ function RenameModal({startValue, maxLen, categoryList, modalType, hideHandler, 
     // Ставим фокус на поле ввода при монтировании компонента, при размонтировании - отключаем таймер показа ошибок
     useFocusAndStopErrorEffect(inputRef, errorRef);
 
-    function changeHandler(event) {
-        let nextValue = event.target.value;
-        if (nextValue === ' ' || nextValue.length > maxLen) return;
-        setValue(nextValue);
-    }
-
     function saveButtonClickHandler() {
         let finalValue = value.trim();
         if (errorRef.current.checkError(finalValue)) return;
@@ -30,7 +24,7 @@ function RenameModal({startValue, maxLen, categoryList, modalType, hideHandler, 
     return (
         <div className={style.container}>
             <div className={style.content}>
-                <input type={'text'} value={value} ref={inputRef} onChange={changeHandler}/>
+                <input type={'text'} value={value} ref={inputRef} onChange={getChangeHandler(setValue, maxLen)}/>
                 {error !== null ? <div className={style.error_block}>{error}</div> : ''}
                 <div className={style.button_block}>
                     <input type={'button'} value={'Сохранить'} className={style.yes_btn}

@@ -1,5 +1,5 @@
 import React, {useState, useRef} from 'react';
-import {ErrorController, getTaskTitles, useFocusAndStopErrorEffect} from '../modalUtils';
+import {ErrorController, getTaskTitles, useFocusAndStopErrorEffect, getChangeHandler} from '../modalUtils';
 import style from './CreateTaskModal.module.scss';
 
 function CreateTaskModal({maxLen, categoryList, defaultCategoryId, hideHandler, createHandler}) {
@@ -14,12 +14,6 @@ function CreateTaskModal({maxLen, categoryList, defaultCategoryId, hideHandler, 
     // Ставим фокус на поле ввода при монтировании компонента, при размонтировании - отключаем таймер показа ошибок
     useFocusAndStopErrorEffect(inputRef, errorRef);
 
-    function changeHandler(event) {
-        let nextValue = event.target.value;
-        if (nextValue === ' ' || nextValue.length > maxLen) return;
-        setValue(nextValue);
-    }
-
     function saveButtonHandler() {
         let finalValue = value.trim();
         if (errorRef.current.checkError(finalValue)) return;
@@ -29,7 +23,7 @@ function CreateTaskModal({maxLen, categoryList, defaultCategoryId, hideHandler, 
     return (
         <div className={style.container}>
             <div className={style.content}>
-                <input type={'text'} value={value} onChange={changeHandler} ref={inputRef}/>
+                <input type={'text'} value={value} onChange={getChangeHandler(setValue, maxLen)} ref={inputRef}/>
                 {error !== null ? <div className={style.error_block}>{error}</div> : ''}
                 <div className={style.radio_selector}>
                     <p>В какую категорию поместить задачу?</p>

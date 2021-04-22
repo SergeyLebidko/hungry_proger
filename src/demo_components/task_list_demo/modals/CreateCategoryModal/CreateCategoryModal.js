@@ -1,5 +1,5 @@
 import React, {useState, useRef} from 'react';
-import {ErrorController, getCategoryTitles, useFocusAndStopErrorEffect} from '../modalUtils';
+import {ErrorController, getCategoryTitles, useFocusAndStopErrorEffect, getChangeHandler} from '../modalUtils';
 import style from './CreateCategoryModal.module.scss';
 
 export const toEndCategoryPlace = 'to_end';
@@ -15,12 +15,6 @@ function CreateCategoryModal({maxLen, categoryList,  hideHandler, createHandler}
     // Ставим фокус на поле ввода при монтировании компонента, при размонтировании - отключаем таймер показа ошибок
     useFocusAndStopErrorEffect(inputRef, errorRef);
 
-    function changeHandler(event) {
-        let nextValue = event.target.value;
-        if (nextValue.length > maxLen || nextValue === ' ') return;
-        setValue(event.target.value);
-    }
-
     function createButtonHandler() {
         let title = value.trim();
         if (errorRef.current.checkError(title)) return;
@@ -30,7 +24,7 @@ function CreateCategoryModal({maxLen, categoryList,  hideHandler, createHandler}
     return (
         <div className={style.container}>
             <div className={style.modal}>
-                <input type={'text'} value={value} onChange={changeHandler} ref={inputRef}/>
+                <input type={'text'} value={value} onChange={getChangeHandler(setValue, maxLen)} ref={inputRef}/>
                 {error !== null ? <div className={style.error_block}>{error}</div> : ''}
                 {categoryList.length > 0 ?
                     <div className={style.radio_selector}>
