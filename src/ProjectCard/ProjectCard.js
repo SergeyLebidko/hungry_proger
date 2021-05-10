@@ -10,7 +10,8 @@ function ProjectCard({data}) {
                 {data.description}
             </p>
             <ul>
-                {data['tech_list'].map((value, index) => <li key={index}>{value}</li>)}
+                {data['tech_list'].map((value, index) => <li key={index}>{value}</li>) 
+                /* в чем необходимость обращения к полю объекта data через строку, почему не можем использовать data.tech_list? */}
             </ul>
         </div>
     );

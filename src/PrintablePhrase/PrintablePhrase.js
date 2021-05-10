@@ -12,7 +12,7 @@ function getPrintablePhraseData(store, pk) {
 }
 
 function PrintablePhrase({phrase, delay, pk}) {
-    let store = useContext(Context);
+    let store = useContext(Context); // не так нужно доставать данные из redux, есть соответствующие хуки в последних версиях
     let data = getPrintablePhraseData(store, pk);
 
     let [text, setText] = useState(data.text);

@@ -26,7 +26,7 @@ function SimpleButton({text, delay, action, pk}) {
 
         timeout = setTimeout(() => {
             if (opacity === 1) return;
-            interval = setInterval(() => {
+            interval = setInterval(() => { // это правильнее будет решить через css
                 opacity += 0.1;
                 if (opacity >= 1) {
                     opacity = 1
@@ -44,7 +44,7 @@ function SimpleButton({text, delay, action, pk}) {
     }, [text]);
 
     return (
-        <span className={style.simple_button} style={{opacity}} onClick={() => action()}>{text}</span>
+        <span className={style.simple_button} style={{opacity}} onClick={() => action()}>{text}</span> // почему не <button></button> ?
     );
 }
 

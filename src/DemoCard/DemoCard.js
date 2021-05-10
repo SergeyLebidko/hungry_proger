@@ -10,7 +10,7 @@ function DemoCard({title, href, history}) {
         }, 150);
     }
 
-    let titleStyle = title.length > 15 ? {fontSize: '1.7em'} : {};
+    let titleStyle = title.length > 15 ? {fontSize: '1.7em'} : {}; // есть ощущение, что эту проблему должен решать css, а не js
     return (
         <div className={style.demo_card} onClick={clickHandler}>
             <p style={titleStyle}>{title}</p>

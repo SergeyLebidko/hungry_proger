@@ -22,7 +22,7 @@ import {Container as ContextMenuDemoContainer} from './demo_components/context_m
 import {Container as SliderDemoContainer} from './demo_components/slider_demo/Container/Container';
 import {Container as TaskListDemoContainer} from './demo_components/task_list_demo/Container/Container';
 
-export const Context = React.createContext(store);
+export const Context = React.createContext(store); // вот это неправильное подключение redux, под капотом он делает почти тоже самое, посмотри как правильно подключать
 const DEMO_PATH = '/demo';
 const DEMO_DATA = [
     {
@@ -61,7 +61,7 @@ function App() {
     let [windowSize, setWindowSize] = useState({'windowWidth': window.innerWidth, 'windowHeight': window.innerHeight});
 
     let resizeTimeout = null;
-    window.addEventListener('resize', () => {
+    window.addEventListener('resize', () => {  // есть ощущение, что ты пытаешься через javascript решить то, что решается версткой, медиа-запросы и резиновая верстка должны решать этот вопрос
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {
             setWindowSize({'windowWidth': window.innerWidth, 'windowHeight': window.innerHeight});
@@ -75,9 +75,9 @@ function App() {
     let [skillsDetail, setSkillsDetail] = useState(null);
 
     useEffect(() => {
-        axios.get('./content/about_me.txt').then(response => setAboutMeContent(response.data));
-        axios.get('./content/projects.txt').then(response => setProjectsContent(response.data));
-        axios.get('./content/skills.txt').then(response => setSkillsList(response.data));
+        axios.get('./content/about_me.txt').then(response => setAboutMeContent(response.data)); // это явное переусложнение, тебе нужен контент, положи его в объект и импортируй 
+        axios.get('./content/projects.txt').then(response => setProjectsContent(response.data)); // import { AboutMe } from './content/about_me.js' и работай как с объектом
+        axios.get('./content/skills.txt').then(response => setSkillsList(response.data)); // строки с 71 по 84 не нужны и не будет дополнительной нагрузки на сеть и сервер, доп запросы не нужны
         axios.get('./content/contacts.txt').then(response => setContactsList(response.data));
         axios.get('./content/skills_detail.txt').then(response => setSkillsDetail(response.data));
         axios.get('./content/skills_detail.txt').then(response => setSkillsDetail(response.data));
@@ -96,7 +96,7 @@ function App() {
                 <Contacts windowSize={windowSize} content={contactsList}/>
             </Route>
             <Route exact path="/about_me">
-                {aboutMeContent === null ? <Redirect to="/"/> : <Article content={aboutMeContent} title="Обо мне"/>}
+                {aboutMeContent === null ? <Redirect to="/"/> : <Article content={aboutMeContent} title="Обо мне"/> /* вот тут проверка будет не нужна, если избавишься от подгрузки файлов выше */} 
             </Route>
             <Route exact path="/skills">
                 {aboutMeContent === null ? <Redirect to="/"/> : <Article content={skillsDetail} title="Технологии"/>}
