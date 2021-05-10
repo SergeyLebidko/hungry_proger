@@ -6,12 +6,22 @@ import style from './Article.module.scss';
 
 
 function Article({title, content, history}) {
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 0); // это действие действительно нужно делать каждый раз когда реакт вызовет эту функцию? или только при первом входе? или при изменении контента, кажется не хватает useEffect
 
     let headerElements = [];
-    content.header.map(
-        (value, index) => headerElements.push(<p key={index}>{parseText(value, style.dedicated)}</p>)
-    );
+    content.header.map( // если ничего не возвращаешь достаточно  forEach, но опять вопрос, эта функция будет срабатывать каждый раз когда реакт вызовет эту функцию, будет происходить перерендер
+        (value, index) => headerElements.push(<p key={index}>{parseText(value, style.dedicated)}</p>) // использовать в качестве key index очень не рекомендуется
+    ); // эту часть можно сразу перенести в 28 строку:
+
+    /*
+    
+    <div className={style.header}>
+        {
+             content.header.map((value) => headerElements.push(<p key={index}>{parseText(value, style.dedicated)}</p>)    
+        }
+    </div>
+    вот так, зачем промежуточные переменные?
+    */
 
     let bodyElements = [];
     content.body.map(
