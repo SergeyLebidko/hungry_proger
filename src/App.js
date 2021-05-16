@@ -1,7 +1,6 @@
 import React from 'react';
-import {useEffect, useState} from 'react';
-import {Switch, Route, Redirect} from 'react-router-dom';
-import axios from 'axios';
+import {useState} from 'react';
+import {Switch, Route} from 'react-router-dom';
 import TitleBlock from './TitleBlock/TitleBlock';
 import AboutMe from './AboutMe/AboutMe';
 import Contacts from './Contacts/Contacts';
