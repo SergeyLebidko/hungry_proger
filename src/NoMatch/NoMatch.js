@@ -1,7 +1,7 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
+import SimpleButton from '../SimpleButton/SimpleButton';
 import style from './NoMatch.module.scss';
-import SimpleButton from "../SimpleButton/SimpleButton";
 
 
 function NoMatch({location, history}) {

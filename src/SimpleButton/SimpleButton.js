@@ -44,7 +44,7 @@ function SimpleButton({text, delay, action, pk}) {
     }, [text]);
 
     return (
-        <span className={style.simple_button} style={{opacity}} onClick={() => action()}>{text}</span>
+        <button className={style.simple_button} style={{opacity}} onClick={() => action()}>{text}</button>
     );
 }
 
