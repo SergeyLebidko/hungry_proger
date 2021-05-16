@@ -16,10 +16,7 @@ function AboutMe({content, history, windowSize}) {
             <div className={style.content}>
                 <img src="./images/avatar.jpg" alt="avatar"/>
                 <div>
-                    {content === null ?
-                        '' :
-                        content.header.map((value, index) => <p key={index}>{parseText(value, style.dedicated)}</p>)
-                    }
+                    {content.header.map((value, index) => <p key={index}>{parseText(value, style.dedicated)}</p>)}
                     <nav>
                         <SimpleButton text="Читать полностью" delay={0} action={() => history.push("/about_me")}/>
                         <SimpleButton text="Моё резюме" delay={0} action={() => window.open('./content/resume.pdf', '_blank')}/>

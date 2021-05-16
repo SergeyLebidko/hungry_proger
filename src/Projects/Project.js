@@ -13,7 +13,7 @@ function Project({content, windowSize}) {
                 <div className={style.separator}/>
             </div>
             <div className={style.content}>
-                {content === null ? '' : content.map((value, index) => <ProjectCard key={index} data={value}/>)}
+                {content.map((value, index) => <ProjectCard key={index} data={value}/>)}
             </div>
             <div className={style.btn_block}>
                 <SimpleButton text="Больше проектов на github" delay={0} action={() => window.open('https://github.com/SergeyLebidko', '_blank')}/>

@@ -14,7 +14,7 @@ function Skills({content, history, windowSize}) {
             </div>
             <div className={style.content}>
                 <ul>
-                    {content === null ? '' : content.map((value, index) => <li key={index}>{value}</li>)}
+                    {content.map((value, index) => <li key={index}>{value}</li>)}
                 </ul>
                 <SimpleButton text="Подробнее" delay={0} action={() => history.push('/skills')}/>
             </div>

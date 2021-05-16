@@ -15,7 +15,7 @@ function Demos({content, windowSize}) {
                 <h3>
                     Страницы с примерами компонентов, написанных мной на React и jQuery
                 </h3>
-                {content === null ? '' : content.map((value, index) => <DemoCard key={index} {...value}/>)}
+                {content.map((value, index) => <DemoCard key={index} {...value}/>)}
             </div>
         </div>
     )
