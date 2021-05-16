@@ -1,1 +1,0 @@
-[{"url": "https://github.com/SergeyLebidko", "logo": "git_logo.png"}, {"url": "tg://resolve?domain=@sergeyler", "logo": "telegram_logo.png"}, {"url": "https://krasnodar.hh.ru/resume/7a068d12ff072536a70039ed1f514b58767550", "logo": "hh_logo.png"}, {"url": "mailto:sergeyler@gmail.com", "logo": "email_logo.png"}]
