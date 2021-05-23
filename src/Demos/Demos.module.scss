@@ -4,6 +4,7 @@
 .container {
   @extend %container;
   padding-top: 200px;
+  top: 100vmin;
 }
 
 .container > div {

@@ -6,7 +6,7 @@ import {parseText} from '../utils';
 
 
 function AboutMe({content, history, windowSize}) {
-    let inlineStyle = {top: `${windowSize.windowHeight}px`};
+    let inlineStyle = {}; // {top: `${windowSize.windowHeight}px`};
     return (
         <div className={style.container} style={inlineStyle}>
             <div>

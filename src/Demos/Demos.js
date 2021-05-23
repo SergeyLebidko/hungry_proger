@@ -4,7 +4,7 @@ import style from './Demos.module.scss';
 
 
 function Demos({content, windowSize}) {
-    let inlineStyle = {top: `${windowSize.windowHeight}px`};
+    let inlineStyle = {} // {top: `${windowSize.windowHeight}px`};
     return (
         <div className={style.container} style={inlineStyle}>
             <div>

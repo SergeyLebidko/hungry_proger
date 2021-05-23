@@ -5,7 +5,7 @@ import style from './Projects.module.scss';
 
 
 function Project({content, windowSize}) {
-    let inlineStyle = {top: `${windowSize.windowHeight}px`};
+    let inlineStyle = {} // {top: `${windowSize.windowHeight}px`};
     return (
         <div className={style.container} style={inlineStyle}>
             <div>

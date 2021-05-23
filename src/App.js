@@ -60,27 +60,17 @@ const DEMO_DATA = [
 ];
 
 function App() {
-    let [windowSize, setWindowSize] = useState({'windowWidth': window.innerWidth, 'windowHeight': window.innerHeight});
-
-    let resizeTimeout = null;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            setWindowSize({'windowWidth': window.innerWidth, 'windowHeight': window.innerHeight});
-        }, 600);
-    });
-
     return (
         <Switch>
             <Route exact path="/">
                 <HeaderCover/>
                 <HeaderCanvas/>
-                <TitleBlock windowSize={windowSize}/>
-                <AboutMe windowSize={windowSize} content={aboutMe}/>
-                <Skills windowSize={windowSize} content={skills}/>
-                <Demos windowSize={windowSize} content={DEMO_DATA}/>
-                <Project windowSize={windowSize} content={projects}/>
-                <Contacts windowSize={windowSize} content={contacts}/>
+                <TitleBlock/>
+                <AboutMe content={aboutMe}/>
+                <Skills content={skills}/>
+                <Demos content={DEMO_DATA}/>
+                <Project content={projects}/>
+                <Contacts content={contacts}/>
             </Route>
             <Route exact path="/about_me">
                 <Article content={aboutMe} title="Обо мне"/>
