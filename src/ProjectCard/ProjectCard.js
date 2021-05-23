@@ -10,7 +10,7 @@ function ProjectCard({data}) {
                 {data.description}
             </p>
             <ul>
-                {data['tech_list'].map((value, index) => <li key={index}>{value}</li>)}
+                {data.tech_list.map((value, index) => <li key={index}>{value}</li>)}
             </ul>
         </div>
     );
