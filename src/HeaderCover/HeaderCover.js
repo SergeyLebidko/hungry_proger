@@ -1,19 +1,12 @@
-import React, {useState, useEffect, useRef, useContext} from 'react';
-import {createGradient, searchData} from '../utils';
-import {Context} from '../App';
+import React, {useState, useEffect, useRef} from 'react';
+import {createGradient} from '../utils';
 import style from './HeaderCover.module.css';
-import {createSaveHeaderCoverAction, HEADER_COVER_DATA_FIELD} from '../store';
 
-const defaultData = {gradient1: createGradient(), gradient2: createGradient(), opacity: 1, delta: -0.025}
+import {connect} from 'react-redux';
+import {mapDispatchToProps, mapStateToProps} from '../store';
 
-function getHeaderCoverData(store, pk) {
-    let state = store.getState();
-    return searchData(state[HEADER_COVER_DATA_FIELD], pk, defaultData);
-}
-
-function HeaderCover({pk}) {
-    let store = useContext(Context);
-    let data = getHeaderCoverData(store, pk);
+function HeaderCover({pk, storedData, setData}) {
+    let data = storedData[pk] || {gradient1: createGradient(), gradient2: createGradient(), opacity: 1, delta: -0.025};
 
     let [gradient1, setGradient1] = useState(data.gradient1);
     let [gradient2, setGradient2] = useState(data.gradient2);
@@ -28,7 +21,7 @@ function HeaderCover({pk}) {
             opacity += delta;
 
             if (opacity <= 0) {
-                delta *= (-1);
+                delta = -delta;
                 let gradient = gradient2;
                 while (gradient === gradient2) {
                     gradient = createGradient();
@@ -39,7 +32,7 @@ function HeaderCover({pk}) {
             }
 
             if (opacity >= 1) {
-                delta *= (-1);
+                delta = -delta;
                 let gradient = gradient1;
                 while (gradient === gradient1) {
                     gradient = createGradient();
@@ -54,12 +47,12 @@ function HeaderCover({pk}) {
 
         return () => {
             clearInterval(interval);
-            store.dispatch(createSaveHeaderCoverAction(pk, _data.current));
+            setData(pk, _data.current);
         }
     }, []);
 
     let innerStyle1 = gradient1;
-    let innerStyle2  = Object.assign({}, gradient2, {opacity});
+    let innerStyle2 = Object.assign({}, gradient2, {opacity});
     return (
         <>
             <div className={style.cover1} style={innerStyle1}/>
@@ -68,4 +61,4 @@ function HeaderCover({pk}) {
     );
 }
 
-export default HeaderCover;
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderCover);

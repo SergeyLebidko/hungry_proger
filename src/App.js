@@ -1,5 +1,4 @@
 import React from 'react';
-import {useState} from 'react';
 import {Switch, Route} from 'react-router-dom';
 import TitleBlock from './TitleBlock/TitleBlock';
 import AboutMe from './AboutMe/AboutMe';
@@ -9,9 +8,10 @@ import Project from './Projects/Project';
 import Demos from './Demos/Demos';
 import Article from './Article/Article';
 import NoMatch from './NoMatch/NoMatch';
-import {store} from './store';
 import HeaderCover from './HeaderCover/HeaderCover';
 import HeaderCanvas from './HeaderCanvas/HeaderCanvas';
+import {Provider} from 'react-redux';
+import {store} from './store';
 
 // Импорты констант - контента
 import {aboutMe, contacts, projects, skills, skillsDetail} from './content';
@@ -24,7 +24,6 @@ import {Container as ContextMenuDemoContainer} from './demo_components/context_m
 import {Container as SliderDemoContainer} from './demo_components/slider_demo/Container/Container';
 import {Container as TaskListDemoContainer} from './demo_components/task_list_demo/Container/Container';
 
-export const Context = React.createContext(store);
 const DEMO_PATH = '/demo';
 const DEMO_DATA = [
     {
@@ -61,30 +60,32 @@ const DEMO_DATA = [
 
 function App() {
     return (
-        <Switch>
-            <Route exact path="/">
-                <HeaderCover/>
-                <HeaderCanvas/>
-                <TitleBlock/>
-                <AboutMe content={aboutMe}/>
-                <Skills content={skills}/>
-                <Demos content={DEMO_DATA}/>
-                <Project content={projects}/>
-                <Contacts content={contacts}/>
-            </Route>
-            <Route exact path="/about_me">
-                <Article content={aboutMe} title="Обо мне"/>
-            </Route>
-            <Route exact path="/skills">
-                <Article content={skillsDetail} title="Технологии"/>
-            </Route>
-            {DEMO_DATA.map(data => <Route exact path={`${DEMO_PATH}/${data.href}`} key={data.href}>
-                {data.component}
-            </Route>)}
-            <Route path="*">
-                <NoMatch/>
-            </Route>
-        </Switch>
+        <Provider store={store}>
+            <Switch>
+                <Route exact path="/">
+                    <HeaderCover pk="h_cover"/>
+                    <HeaderCanvas/>
+                    <TitleBlock/>
+                    <AboutMe content={aboutMe}/>
+                    <Skills content={skills}/>
+                    <Demos content={DEMO_DATA}/>
+                    <Project content={projects}/>
+                    <Contacts content={contacts}/>
+                </Route>
+                <Route exact path="/about_me">
+                    <Article content={aboutMe} title="Обо мне"/>
+                </Route>
+                <Route exact path="/skills">
+                    <Article content={skillsDetail} title="Технологии"/>
+                </Route>
+                {DEMO_DATA.map(data => <Route exact path={`${DEMO_PATH}/${data.href}`} key={data.href}>
+                    {data.component}
+                </Route>)}
+                <Route path="*">
+                    <NoMatch/>
+                </Route>
+            </Switch>
+        </Provider>
     );
 }
 

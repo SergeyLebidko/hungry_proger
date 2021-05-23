@@ -1,19 +1,11 @@
-import React, {useState, useEffect, useContext, useRef} from 'react'
-import {Context} from '../App';
+import React, {useState, useEffect, useRef} from 'react'
 import style from './PrintablePhrase.module.scss';
-import {searchData} from '../utils';
-import {PRINTABLE_PHRASE_DATA_FIELD, createSavePrintablePhraseAction} from '../store';
 
-const defaultData = {text: '', hasCursor: false};
+import {connect} from 'react-redux';
+import {mapDispatchToProps, mapStateToProps} from '../store';
 
-function getPrintablePhraseData(store, pk) {
-    let state = store.getState();
-    return searchData(state[PRINTABLE_PHRASE_DATA_FIELD], pk, defaultData);
-}
-
-function PrintablePhrase({phrase, delay, pk}) {
-    let store = useContext(Context);
-    let data = getPrintablePhraseData(store, pk);
+function PrintablePhrase({phrase, delay, pk, storedData, setData}) {
+    let data = storedData[pk] || {text: '', hasCursor: false};
 
     let [text, setText] = useState(data.text);
     let [hasCursor, setHasCursor] = useState(data.hasCursor);
@@ -42,7 +34,7 @@ function PrintablePhrase({phrase, delay, pk}) {
         return () => {
             clearTimeout(timeout);
             clearInterval(interval);
-            store.dispatch(createSavePrintablePhraseAction(pk, _data.current));
+            setData(pk, _data.current);
         };
     }, [phrase]);
 
@@ -54,4 +46,4 @@ function PrintablePhrase({phrase, delay, pk}) {
     );
 }
 
-export default PrintablePhrase;
+export default connect(mapStateToProps, mapDispatchToProps)(PrintablePhrase);

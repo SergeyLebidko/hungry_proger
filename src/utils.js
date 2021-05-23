@@ -32,14 +32,6 @@ export function createGradient() {
     return {backgroundImage: `linear-gradient(to ${hPos} ${vPos}, ${color1}, ${color2})`}
 }
 
-// Функция ищет в массиве объект с переданным ключом. Если не наход - возвращает объект по-умолчанию
-export function searchData(arr, pk, defaultData) {
-    for (let value of arr) {
-        if (value.pk === pk) return value.data;
-    }
-    return defaultData;
-}
-
 // Функция получает текст и оборачивает его в элементы React, учитывая при этом теги форматирования
 export function parseText(text, dedicatedClass) {
     let result = [];

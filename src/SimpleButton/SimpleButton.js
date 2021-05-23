@@ -1,19 +1,11 @@
-import React, {useState, useEffect, useContext, useRef} from 'react';
-import {Context} from '../App';
+import React, {useState, useEffect, useRef} from 'react';
 import style from './SimpleButton.module.scss';
-import {searchData} from "../utils";
-import {createSaveSimpleButtonAction, SIMPLE_BUTTON_DATA_FIELD} from '../store';
 
-const defaultData = {opacity: 0}
+import {connect} from 'react-redux';
+import {mapDispatchToProps, mapStateToProps} from '../store';
 
-function getSimpleButtonData(store, pk) {
-    let state = store.getState();
-    return searchData(state[SIMPLE_BUTTON_DATA_FIELD], pk, defaultData);
-}
-
-function SimpleButton({text, delay, action, pk}) {
-    let store = useContext(Context);
-    let data = getSimpleButtonData(store, pk)
+function SimpleButton({text, delay, action, pk, storedData, setData}) {
+    let data = storedData[pk] || {opacity: 0}
 
     let [opacity, setOpacity] = useState(data.opacity);
 
@@ -39,7 +31,7 @@ function SimpleButton({text, delay, action, pk}) {
         return () => {
             clearInterval(interval);
             clearTimeout(timeout);
-            store.dispatch(createSaveSimpleButtonAction(pk, _data.current));
+            setData(pk, _data.current);
         };
     }, [text]);
 
@@ -48,4 +40,4 @@ function SimpleButton({text, delay, action, pk}) {
     );
 }
 
-export default SimpleButton;
+export default connect(mapStateToProps, mapDispatchToProps)(SimpleButton);
