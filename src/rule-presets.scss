@@ -6,6 +6,11 @@
   padding-top: 50px;
   padding-bottom: 40px;
   z-index: 4;
+  top: 100vmin;
+
+  @media (orientation: portrait) {
+    top: 100vmax;
+  }
 }
 
 %header {

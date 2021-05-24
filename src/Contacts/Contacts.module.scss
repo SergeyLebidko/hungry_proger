@@ -9,6 +9,10 @@
   pointer-events: none;
   top: 100vmin;
 
+  @media (orientation: portrait) {
+    top: 100vmax;
+  }
+
   div {
     display: flex;
     justify-content: center;
