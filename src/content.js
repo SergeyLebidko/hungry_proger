@@ -114,11 +114,9 @@ export const projects = [
 export const skills = [
   "Python",
   "Django",
-  "JavaScript",
-  "jQuery",
-  "React",
   "HTML",
-  "CSS"
+  "CSS",
+  "React"
 ]
 
 export const contacts = [
