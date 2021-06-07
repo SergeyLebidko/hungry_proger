@@ -89,14 +89,13 @@ export const projects = [
     ]
   },
   {
-    "git": "https://github.com/SergeyLebidko/ReactTraining",
-    "title": "ReactTraining",
-    "description": "Учебный проект, в котором я обкатывал навыки создания различных React-компонетов и работы с CSS",
+    "git": "https://github.com/SergeyLebidko/LiteInventory",
+    "title": "LiteInventory",
+    "description": "Небольшой сервис для учета компьютерной и оргтехники",
     "tech_list": [
       "Python",
       "Django",
-      "React",
-      "CSS"
+      "DRF"
     ]
   },
   {

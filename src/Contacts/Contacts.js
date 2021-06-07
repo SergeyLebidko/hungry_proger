@@ -2,8 +2,8 @@ import React from 'react';
 import style from './Contacts.module.scss';
 
 
-function Contacts({content, windowSize}) {
-    let innerStyle = {} // {top: `${windowSize.windowHeight}px`};
+function Contacts({content}) {
+    let innerStyle = {}
     return (
         <div className={style.container} style={innerStyle}>
             <div>

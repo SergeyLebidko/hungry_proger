@@ -4,8 +4,8 @@ import SimpleButton from '../SimpleButton/SimpleButton';
 import style from './Skills.module.scss';
 
 
-function Skills({content, history, windowSize}) {
-    let inlineStyle = {} // {top: `${windowSize.windowHeight}px`};
+function Skills({content, history}) {
+    let inlineStyle = {}
     return (
         <div className={style.container} style={inlineStyle}>
             <div>

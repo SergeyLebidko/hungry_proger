@@ -5,8 +5,8 @@ import SimpleButton from '../SimpleButton/SimpleButton';
 import {parseText} from '../utils';
 
 
-function AboutMe({content, history, windowSize}) {
-    let inlineStyle = {}; // {top: `${windowSize.windowHeight}px`};
+function AboutMe({content, history}) {
+    let inlineStyle = {};
     return (
         <div className={style.container} style={inlineStyle}>
             <div>

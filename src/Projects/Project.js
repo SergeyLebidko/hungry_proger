@@ -4,8 +4,8 @@ import ProjectCard from '../ProjectCard/ProjectCard';
 import style from './Projects.module.scss';
 
 
-function Project({content, windowSize}) {
-    let inlineStyle = {} // {top: `${windowSize.windowHeight}px`};
+function Project({content}) {
+    let inlineStyle = {}
     return (
         <div className={style.container} style={inlineStyle}>
             <div>

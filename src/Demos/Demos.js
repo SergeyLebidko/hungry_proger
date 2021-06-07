@@ -3,8 +3,8 @@ import DemoCard from '../DemoCard/DemoCard';
 import style from './Demos.module.scss';
 
 
-function Demos({content, windowSize}) {
-    let inlineStyle = {} // {top: `${windowSize.windowHeight}px`};
+function Demos({content}) {
+    let inlineStyle = {}
     return (
         <div className={style.container} style={inlineStyle}>
             <div>
