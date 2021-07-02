@@ -99,6 +99,16 @@ export const projects = [
     ]
   },
   {
+    "git": "https://github.com/SergeyLebidko/soccer_stat",
+    "title": "Soccer Stat",
+    "description": "Небольшой сервис для просмотра футбольной статистики, основанный на бесплатном API сайта www.football-data.org",
+    "tech_list": [
+      "React",
+      "HTML",
+      "CSS"
+    ]
+  },
+  {
     "git": "https://github.com/SergeyLebidko/WhiteLinen",
     "title": "WhiteLinen",
     "description": "Проект простого сайта-визитки для небольшой дизайн-студии. Мой первый опыт в верстке лендинга",
