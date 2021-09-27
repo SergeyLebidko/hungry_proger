@@ -117,6 +117,26 @@ export const projects = [
       "CSS",
       "jQuery"
     ]
+  },
+  {
+    "git": "https://github.com/SergeyLebidko/need_for_drive",
+    "title": "Need for drive",
+    "description": "Сайт для сервиса каршеринга, разработанный в рамках практикума в компании SimbirSoft",
+    "tech_list": [
+      "React",
+      "Redux",
+      "React Router"
+    ]
+  },
+  {
+    "git": "https://github.com/SergeyLebidko/need_for_drive_admin",
+    "title": "NFD Admin",
+    "description": "Административная панель для сервиса каршеринга, разработанная в рамках практикума в компании SimbirSoft",
+    "tech_list": [
+      "React",
+      "Redux",
+      "React Router"
+    ]
   }
 ]
 
