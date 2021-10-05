@@ -1,9 +1,0 @@
-@import '../modals';
-
-.container {
-  @extend %radio_selector;
-
-  .additional_element{
-    color: gray;
-  }
-}
