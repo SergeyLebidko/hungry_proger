@@ -1,5 +1,5 @@
 import React from "react";
-import avatar from "../../../content/avatar.jpg";
+import avatar from "../../../content/main/avatar.jpg";
 import "./Main.scss";
 
 function Main(){
