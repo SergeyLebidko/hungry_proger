@@ -1,3 +1,5 @@
+@import "../../../styles/presets";
+
 .main {
   position: absolute;
   top: 0;
@@ -23,26 +25,31 @@
   }
 
   &__avatar {
-    width: 200px;
-    height: 200px;
+    width: 140px;
+    height: 140px;
     object-fit: cover;
     border-radius: 50%;
+    transition: all 150ms;
   }
 
   &__name {
     font-family: Roboto, 'sans-serif';
     font-weight: 300;
-    font-size: 2em;
+    font-size: 1.5em;
     margin-top: 1em;
     user-select: none;
+    text-align: center;
+    transition: all 150ms;
   }
 
   &__profession {
     font-family: Roboto, 'sans-serif';
     font-weight: 100;
-    font-size: 3em;
-    letter-spacing: 4px;
+    font-size: 2em;
+    letter-spacing: 0;
     user-select: none;
+    text-align: center;
+    transition: all 150ms;
   }
 
   &__more {
@@ -67,6 +74,42 @@
     &:active {
       transform: scale(0.95);
       box-shadow: none;
+    }
+  }
+}
+
+@media (min-width: $medium-start) and (max-width: $medium-end) {
+  .main {
+    &__avatar {
+      width: 170px;
+      height: 170px;
+    }
+
+    &__name {
+      font-size: 1.8em;
+    }
+
+    &__profession {
+      font-size: 2.1em;
+      letter-spacing: 3px;
+    }
+  }
+}
+
+@media (min-width: $large-start) {
+  .main {
+    &__avatar {
+      width: 200px;
+      height: 200px;
+    }
+
+    &__name {
+      font-size: 2.1em;
+    }
+
+    &__profession {
+      font-size: 2.4em;
+      letter-spacing: 6px;
     }
   }
 }
