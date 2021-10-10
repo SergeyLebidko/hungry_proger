@@ -7,17 +7,91 @@
   right: 0;
   bottom: 0;
 
-  background-image: url("../../../content/about/back1.jpg");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  &__cap {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7);
+  background-image: url("../../../content/back.png");
+
+  &__content {
+    font-family: Roboto, 'sans-serif';
+    font-weight: 300;
+    width: 60em;
+    padding: 1em;
+    display: flex;
+  }
+
+  &__text {
+    margin-right: 2em;
+
+    h1 {
+      font-family: Roboto, 'sans-serif';
+      font-weight: 500;
+      font-size: 1.5em;
+      border-bottom: 2px solid orangered;
+      margin-bottom: 1.5em;
+      padding-bottom: 0.5em;
+    }
+
+    p {
+      font-family: Roboto, 'sans-serif';
+      text-align: justify;
+    }
+
+    p + p {
+      margin-top: 0.5em;
+    }
+
+    button {
+      margin-top: 1em;
+      cursor: pointer;
+      border: 1px solid black;
+      border-radius: 3px;
+      padding: 5px 25px;
+      font-family: Roboto, 'sans-serif';
+      font-weight: 300;
+      font-size: 1.2em;
+      background-color: whitesmoke;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3);
+      transition: all 150ms;
+
+      &:hover {
+        color: white;
+        background-color: orangered;
+        border: 1px solid orangered;
+      }
+
+      &:active {
+        transform: scale(0.95);
+        box-shadow: none;
+      }
+    }
+  }
+
+  &__contacts {
+    h1 {
+      font-family: Roboto, 'sans-serif';
+      font-weight: 500;
+      font-size: 1.5em;
+      border-bottom: 2px solid orangered;
+      margin-bottom: 1.5em;
+      padding-bottom: 0.5em;
+    }
+
+    ul {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    svg {
+      width: 2em;
+      height: 2em;
+      cursor: pointer;
+      transition: all 150ms;
+
+      &:hover {
+        fill: orangered;
+      }
+    }
   }
 }
