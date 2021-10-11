@@ -3,3 +3,28 @@ $small-end: 768px;
 $medium-start: 769px;
 $medium-end: 1023px;
 $large-start: 1024px;
+
+// Общие стили
+.button {
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 5px 25px;
+  font-family: Roboto, 'sans-serif';
+  font-weight: 300;
+  font-size: 1.2em;
+  background-color: whitesmoke;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3);
+  transition: all 150ms;
+
+  &:hover {
+    color: white;
+    background-color: orangered;
+    border: 1px solid orangered;
+  }
+
+  &:active {
+    transform: scale(0.95);
+    box-shadow: none;
+  }
+}

@@ -10,7 +10,7 @@ function Main(){
             </div>
             <h1 className="main__name">Сергей Лебидко</h1>
             <h3 className="main__profession">React-разработчик</h3>
-            <button className="main__more">Узнать больше</button>
+            <button className="button main__more_button">Узнать больше</button>
         </div>
     );
 }

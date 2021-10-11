@@ -15,10 +15,11 @@
 
   padding: 0 4em;
 
-  li {
+  &__item {
     cursor: pointer;
     font-family: Roboto, 'sans-serif';
     text-transform: uppercase;
+    letter-spacing: 2px;
     transition: all 150ms;
 
     &:hover {
@@ -26,7 +27,7 @@
     }
   }
 
-  li + li {
+  &__item + &__item {
     margin-left: 1.5em;
   }
 }

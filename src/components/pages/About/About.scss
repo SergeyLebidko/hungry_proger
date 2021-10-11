@@ -21,17 +21,17 @@
     display: flex;
   }
 
+  &__text_title, &__contacts_title {
+    font-family: Roboto, 'sans-serif';
+    font-weight: 500;
+    font-size: 1.5em;
+    border-bottom: 2px solid orangered;
+    margin-bottom: 1.5em;
+    padding-bottom: 0.5em;
+  }
+
   &__text {
     margin-right: 2em;
-
-    h1 {
-      font-family: Roboto, 'sans-serif';
-      font-weight: 500;
-      font-size: 1.5em;
-      border-bottom: 2px solid orangered;
-      margin-bottom: 1.5em;
-      padding-bottom: 0.5em;
-    }
 
     p {
       font-family: Roboto, 'sans-serif';
@@ -41,46 +41,20 @@
     p + p {
       margin-top: 0.5em;
     }
+  }
 
-    button {
-      margin-top: 1em;
-      cursor: pointer;
-      border: 1px solid black;
-      border-radius: 3px;
-      padding: 5px 25px;
-      font-family: Roboto, 'sans-serif';
-      font-weight: 300;
-      font-size: 1.2em;
-      background-color: whitesmoke;
-      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3);
-      transition: all 150ms;
-
-      &:hover {
-        color: white;
-        background-color: orangered;
-        border: 1px solid orangered;
-      }
-
-      &:active {
-        transform: scale(0.95);
-        box-shadow: none;
-      }
-    }
+  &__resume_button {
+    margin-top: 1em;
   }
 
   &__contacts {
-    h1 {
-      font-family: Roboto, 'sans-serif';
-      font-weight: 500;
-      font-size: 1.5em;
-      border-bottom: 2px solid orangered;
-      margin-bottom: 1.5em;
-      padding-bottom: 0.5em;
-    }
-
     ul {
       display: flex;
       justify-content: space-between;
+    }
+
+    a {
+      color: black;
     }
 
     svg {
@@ -88,10 +62,6 @@
       height: 2em;
       cursor: pointer;
       transition: all 150ms;
-
-      &:hover {
-        fill: orangered;
-      }
     }
   }
 }

@@ -5,10 +5,10 @@ import "./Menu.scss";
 function Menu({toMain, toAbout}) {
     return (
         <ul className="menu">
-            <li onClick={toMain}>
+            <li className="menu__item" onClick={toMain}>
                 Главная
             </li>
-            <li onClick={toAbout}>
+            <li className="menu__item" onClick={toAbout}>
                 Обо мне
             </li>
         </ul>

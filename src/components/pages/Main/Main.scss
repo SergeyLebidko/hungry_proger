@@ -15,7 +15,7 @@
   background-image: url("../../../content/back.png");
 
   &__avatar_wrapper {
-    padding: 11px;
+    padding: 10px;
     border: 1px solid lightgrey;
     border-radius: 50%;
     background-color: white;
@@ -29,52 +29,29 @@
     height: 140px;
     object-fit: cover;
     border-radius: 50%;
+  }
+
+  &__name, &__profession {
+    font-family: Roboto, 'sans-serif';
+    user-select: none;
+    text-align: center;
     transition: all 150ms;
   }
 
   &__name {
-    font-family: Roboto, 'sans-serif';
     font-weight: 300;
     font-size: 1.5em;
     margin-top: 1em;
-    user-select: none;
-    text-align: center;
-    transition: all 150ms;
   }
 
   &__profession {
-    font-family: Roboto, 'sans-serif';
     font-weight: 100;
     font-size: 2em;
     letter-spacing: 0;
-    user-select: none;
-    text-align: center;
-    transition: all 150ms;
   }
 
-  &__more {
+  &__more_button {
     margin-top: 1em;
-    cursor: pointer;
-    border: 1px solid black;
-    border-radius: 3px;
-    padding: 5px 25px;
-    font-family: Roboto, 'sans-serif';
-    font-weight: 300;
-    font-size: 1.2em;
-    background-color: whitesmoke;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3);
-    transition: all 150ms;
-
-    &:hover {
-      color: white;
-      background-color: orangered;
-      border: 1px solid orangered;
-    }
-
-    &:active {
-      transform: scale(0.95);
-      box-shadow: none;
-    }
   }
 }
 

@@ -1,5 +1,6 @@
 import React from "react";
 import {FaGithub, MdEmail, FaTelegram} from "react-icons/all";
+import {GITHUB_HREF, MAIL_HREF, TELEGRAM_HREF} from "../../../constants/settings";
 import "./About.scss";
 
 function About() {
@@ -7,7 +8,7 @@ function About() {
         <div className="about">
             <div className="about__content">
                 <div className="about__text">
-                    <h1>Здравствуйте! Меня зовут Сергей и я начинающий разработчик</h1>
+                    <h1 className="about__text_title">Здравствуйте! Меня зовут Сергей и я начинающий разработчик</h1>
                     <p>
                         Я всегда интересовался компьютерной тематикой, работал в IT-сфере, занимался обслуживанием
                         парка компьютерной техники предприятий и сетевой инфраструктуры, вёл необходимую документацию.
@@ -32,19 +33,19 @@ function About() {
                         У меня уже более семидесяти реализованных собственных pet-проектов различной степени сложности,
                         которые я создавал по мере своего обучения и приобретения опыта.
                     </p>
-                    <button>Мое резюме</button>
+                    <button className="button about__resume_button">Мое резюме</button>
                 </div>
                 <div className="about__contacts">
-                    <h1>Контакты</h1>
+                    <h1 className="about__contacts_title">Контакты</h1>
                     <ul>
                         <li>
-                            <FaGithub/>
+                            <a href={GITHUB_HREF}><FaGithub/></a>
                         </li>
                         <li>
-                            <MdEmail/>
+                            <a href={MAIL_HREF}><MdEmail/></a>
                         </li>
                         <li>
-                            <FaTelegram/>
+                            <a href={TELEGRAM_HREF}><FaTelegram/></a>
                         </li>
                     </ul>
                 </div>
