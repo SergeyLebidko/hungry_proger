@@ -56,12 +56,24 @@
     a {
       color: black;
     }
+  }
 
-    svg {
-      width: 2em;
-      height: 2em;
-      cursor: pointer;
-      transition: all 150ms;
-    }
+  &__github_icon, &__mail_icon, &__telegram_icon {
+    width: 2em;
+    height: 2em;
+    cursor: pointer;
+    transition: all 150ms;
+  }
+
+  &__github_icon:hover {
+    fill: blueviolet;
+  }
+
+  &__mail_icon:hover {
+    fill: forestgreen;
+  }
+
+  &__telegram_icon:hover {
+    fill: dodgerblue;
   }
 }

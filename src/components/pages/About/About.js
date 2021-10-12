@@ -38,13 +38,19 @@ function About() {
                     <h1 className="about__contacts_title">Контакты</h1>
                     <ul>
                         <li>
-                            <a href={GITHUB_HREF}><FaGithub/></a>
+                            <a href={GITHUB_HREF}>
+                                <FaGithub className="about__github_icon"/>
+                            </a>
                         </li>
                         <li>
-                            <a href={MAIL_HREF}><MdEmail/></a>
+                            <a href={MAIL_HREF}>
+                                <MdEmail className="about__mail_icon"/>
+                            </a>
                         </li>
                         <li>
-                            <a href={TELEGRAM_HREF}><FaTelegram/></a>
+                            <a href={TELEGRAM_HREF}>
+                                <FaTelegram className="about__telegram_icon"/>
+                            </a>
                         </li>
                     </ul>
                 </div>
