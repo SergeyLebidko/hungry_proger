@@ -28,3 +28,19 @@ $large-start: 1024px;
     box-shadow: none;
   }
 }
+
+// Миксин для прокрутки
+@mixin scroll {
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: lightgray;
+  }
+
+  &:hover::-webkit-scrollbar-thumb {
+    background-color: gray;
+  }
+}

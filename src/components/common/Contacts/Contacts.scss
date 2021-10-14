@@ -1,0 +1,45 @@
+@import "../../../styles/presets";
+
+.contacts {
+  display: flex;
+
+  a {
+    color: black;
+  }
+
+  svg {
+    width: 2em;
+    height: 2em;
+  }
+
+  li + li {
+    margin-left: 0.5em;
+  }
+
+  &__github, &__mail, &__telegram {
+    transition: all 150ms;
+    color: rgb(100, 100, 100);
+
+    &:active {
+      transform: scale(0.8);
+    }
+  }
+
+  &__github {
+    &:hover {
+      color: darkviolet;
+    }
+  }
+
+  &__mail {
+    &:hover {
+      color: forestgreen;
+    }
+  }
+
+  &__telegram {
+    &:hover {
+      color: dodgerblue;
+    }
+  }
+}

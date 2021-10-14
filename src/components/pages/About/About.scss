@@ -7,73 +7,20 @@
   right: 0;
   bottom: 0;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   background-image: url("../../../content/back.png");
 
-  &__content {
-    font-family: Roboto, 'sans-serif';
-    font-weight: 300;
-    width: 60em;
-    padding: 1em;
+  overflow: auto;
+  @include scroll;
+
+  padding: 5em 1em 2em 1em;
+  transition: all 150ms;
+}
+
+@media (min-width: $medium-start) {
+  .about {
     display: flex;
-  }
-
-  &__text_title, &__contacts_title {
-    font-family: Roboto, 'sans-serif';
-    font-weight: 500;
-    font-size: 1.5em;
-    border-bottom: 2px solid orangered;
-    margin-bottom: 1.5em;
-    padding-bottom: 0.5em;
-  }
-
-  &__text {
-    margin-right: 2em;
-
-    p {
-      font-family: Roboto, 'sans-serif';
-      text-align: justify;
-    }
-
-    p + p {
-      margin-top: 0.5em;
-    }
-  }
-
-  &__resume_button {
-    margin-top: 1em;
-  }
-
-  &__contacts {
-    ul {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    a {
-      color: black;
-    }
-  }
-
-  &__github_icon, &__mail_icon, &__telegram_icon {
-    width: 2em;
-    height: 2em;
-    cursor: pointer;
-    transition: all 150ms;
-  }
-
-  &__github_icon:hover {
-    fill: blueviolet;
-  }
-
-  &__mail_icon:hover {
-    fill: forestgreen;
-  }
-
-  &__telegram_icon:hover {
-    fill: dodgerblue;
+    justify-content: center;
+    align-items: center;
+    padding: 2em 1em;
   }
 }

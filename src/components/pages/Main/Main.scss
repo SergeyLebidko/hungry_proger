@@ -8,11 +8,17 @@
   bottom: 0;
 
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 
   background-image: url("../../../content/back.png");
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
   &__avatar_wrapper {
     padding: 10px;
@@ -29,6 +35,7 @@
     height: 140px;
     object-fit: cover;
     border-radius: 50%;
+    transition: all 150ms;
   }
 
   &__name, &__profession {
