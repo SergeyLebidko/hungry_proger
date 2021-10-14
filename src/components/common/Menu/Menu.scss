@@ -17,6 +17,12 @@
 
   padding: 0 4em;
 
+  &__items {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
   &__item {
     cursor: pointer;
     font-family: Roboto, 'sans-serif';

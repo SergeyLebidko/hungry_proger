@@ -4,14 +4,16 @@ import "./Menu.scss";
 
 function Menu({toMain, toAbout}) {
     return (
-        <ul className="menu">
-            <li className="menu__item" onClick={toMain}>
-                Главная
-            </li>
-            <li className="menu__item" onClick={toAbout}>
-                Обо мне
-            </li>
-        </ul>
+        <div className="menu">
+            <ul className="menu__items">
+                <li className="menu__item" onClick={toMain}>
+                    Главная
+                </li>
+                <li className="menu__item" onClick={toAbout}>
+                    Обо мне
+                </li>
+            </ul>
+        </div>
     );
 }
 
