@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./Menu.scss";
 
-function Menu({toMain, toAbout}) {
+function Menu({toMain, toAbout, toSkills, toProjects}) {
     return (
         <div className="menu">
             <ul className="menu__items">
@@ -12,6 +12,12 @@ function Menu({toMain, toAbout}) {
                 <li className="menu__item" onClick={toAbout}>
                     Обо мне
                 </li>
+                <li className="menu__item" onClick={toSkills}>
+                    Технологии
+                </li>
+                <li className="menu__item" onClick={toProjects}>
+                    Мои проекты
+                </li>
             </ul>
         </div>
     );
@@ -19,7 +25,9 @@ function Menu({toMain, toAbout}) {
 
 Menu.propTypes = {
     toMain: PropTypes.func,
-    toAbout: PropTypes.func
+    toAbout: PropTypes.func,
+    toSkills: PropTypes.func,
+    toProjects: PropTypes.func
 }
 
 export default Menu;

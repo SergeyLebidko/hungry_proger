@@ -6,16 +6,20 @@ import "./App.scss";
 
 const MAIN_MODE = 'mm';
 const ABOUT_MODE = 'am';
+const SKILLS_MODE = 'sm';
+const PROJECTS_MODE = 'pm';
 
 function App() {
     const [mode, setMode] = useState(MAIN_MODE);
 
-    const switchToMain = () => setMode(MAIN_MODE);
-    const switchToAbout = () => setMode(ABOUT_MODE);
+    const toMain = () => setMode(MAIN_MODE);
+    const toAbout = () => setMode(ABOUT_MODE);
+    const toSkills = () => setMode(SKILLS_MODE);
+    const toProjects = () => setMode(PROJECTS_MODE);
 
     return (
         <div className="app">
-            <Menu toMain={switchToMain} toAbout={switchToAbout}/>
+            <Menu toMain={toMain} toAbout={toAbout} toSkills={toSkills} toProjects={toProjects}/>
             {mode === MAIN_MODE && <Main/>}
             {mode === ABOUT_MODE && <About/>}
         </div>
