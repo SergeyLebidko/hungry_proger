@@ -1,23 +1,27 @@
 import React from "react";
-import {SiJavascript, SiCss3, SiPython} from "react-icons/all";
+import {ReactComponent as JS} from "../../../content/js.svg";
+import {ReactComponent as Python} from "../../../content/python.svg";
+import {ReactComponent as CSS3} from "../../../content/css3.svg";
 import PropTypes from 'prop-types';
 import "./SkillCard.scss";
 
 function SkillCard({data}) {
     const ICON_SELECTOR = {
-        'JavaScript': <SiJavascript/>,
-        'Python': <SiPython/>,
-        'HTML/CSS': <SiCss3/>
+        'JavaScript': <JS/>,
+        'Python': <Python/>,
+        'HTML/CSS': <CSS3/>
     }
 
     return (
-        <div className="skill_card">
-            {ICON_SELECTOR[data.title]}
-            {data.title}
-            <ul>
+        <li className="skill_card">
+            <div className="skill_card__card_header">
+                {ICON_SELECTOR[data.title]}
+                <span>{data.title}</span>
+            </div>
+            <ul className="skill_card__tech_list">
                 {data.tech.map(val => <li key={val}>{val}</li>)}
             </ul>
-        </div>
+        </li>
     );
 }
 

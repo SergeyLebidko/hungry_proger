@@ -1,5 +1,48 @@
 @import "../../../styles/presets";
 
 .skill_card {
+  padding: 1em;
+  border-radius: 3px;
+  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.15);
+  border: 1px solid lightgrey;
+  background-color: white;
 
+  &__card_header {
+    display: flex;
+
+    svg {
+      width: 2em;
+      height: 2em;
+    }
+
+    span {
+      margin-left: 0.5em;
+      font-family: Roboto, 'sans-serif';
+      font-weight: 500;
+      font-size: 1.5em;
+    }
+  }
+
+  &__tech_list {
+    margin-top: 1em;
+    font-family: Roboto, 'sans-serif';
+    font-weight: 300;
+    font-size: 1.2em;
+
+    li {
+      border-left: none;
+      padding-left: 0;
+      cursor: pointer;
+      transition: all 150ms;
+
+      &:hover {
+        border-left: 4px solid orangered;
+        padding-left: 0.5em;
+      }
+    }
+
+    li + li {
+      margin-top: 6px;
+    }
+  }
 }

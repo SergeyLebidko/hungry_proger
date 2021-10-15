@@ -1,8 +1,9 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import avatar from "../../../content/avatar.jpg";
 import "./Main.scss";
 
-function Main() {
+function Main({toAbout}) {
     return (
         <section className="main">
             <div className="main__content">
@@ -11,10 +12,14 @@ function Main() {
                 </div>
                 <h1 className="main__name">Сергей Лебидко</h1>
                 <h3 className="main__profession">React-разработчик</h3>
-                <button className="button main__more_button">Узнать больше</button>
+                <button className="button main__more_button" onClick={toAbout}>Узнать больше</button>
             </div>
         </section>
     );
+}
+
+Main.propTypes = {
+    toAbout: PropTypes.func
 }
 
 export default Main;

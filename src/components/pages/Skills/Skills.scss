@@ -1,4 +1,5 @@
 @import "../../../styles/presets";
+@import "../../common/SkillCard/SkillCard";
 
 .skills {
   position: absolute;
@@ -9,7 +10,54 @@
 
   background-image: url("../../../content/back.png");
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 5em 1em 2em 1em;
+  overflow: auto;
+  @include scroll;
+
+  .section_header {
+    margin-bottom: 2em;
+  }
+
+  .skill_card {
+    margin: 1em 0 0 0;
+  }
+
+  &__content {
+    max-width: 55em;
+  }
+
+  &__description {
+    font-family: Roboto, 'sans-serif';
+    font-weight: 300;
+    text-align: justify;
+    margin-bottom: 2em;
+  }
+
+  &__skill_list {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+
+@media (min-width: $medium-start) {
+  .skills {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2em 1em;
+
+    .skill_card {
+      margin: 0;
+      flex: 1;
+    }
+
+    .skill_card + .skill_card {
+      margin-left: 1em;
+    }
+
+    &__skill_list {
+      flex-direction: row;
+    }
+  }
 }
