@@ -32,7 +32,7 @@ function About() {
                     которые я создавал по мере своего обучения и приобретения опыта.
                 </p>
                 <div className="about__links">
-                    <button className="button">
+                    <button className="linked_button">
                         <a href={RESUME_HREF} target="_blank" rel="noopener noreferrer">Мое резюме</a>
                     </button>
                     <Contacts/>

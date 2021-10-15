@@ -46,24 +46,6 @@
     align-items: center;
     margin-top: 3em;
   }
-
-  .button {
-    padding: 0;
-
-    a {
-      display: block;
-      padding: 5px 25px;
-      text-decoration: none;
-      color: black;
-      transition: all 150ms;
-    }
-
-    &:hover {
-      a {
-        color: white;
-      }
-    }
-  }
 }
 
 @media (min-width: $medium-start) {

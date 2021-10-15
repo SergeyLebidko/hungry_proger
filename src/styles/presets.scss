@@ -29,6 +29,41 @@ $large-start: 1024px;
   }
 }
 
+.linked_button {
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 0;
+  font-family: Roboto, 'sans-serif';
+  font-weight: 300;
+  font-size: 1.2em;
+  background-color: whitesmoke;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3);
+  transition: all 150ms;
+
+  a {
+    display: block;
+    padding: 5px 25px;
+    text-decoration: none;
+    color: black;
+    transition: all 150ms;
+  }
+
+  &:hover {
+    color: white;
+    background-color: orangered;
+    border: 1px solid orangered;
+
+    a {
+      color: white;
+    }
+  }
+
+  &:active {
+    transform: scale(0.95);
+    box-shadow: none;
+  }
+}
+
 // Миксин для прокрутки
 @mixin scroll {
   &::-webkit-scrollbar {
