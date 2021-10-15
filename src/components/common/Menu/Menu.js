@@ -4,7 +4,7 @@ import "./Menu.scss";
 
 function Menu({toMain, toAbout, toSkills, toProjects}) {
     return (
-        <div className="menu">
+        <nav className="menu">
             <ul className="menu__items">
                 <li className="menu__item" onClick={toMain}>
                     Главная
@@ -19,7 +19,7 @@ function Menu({toMain, toAbout, toSkills, toProjects}) {
                     Мои проекты
                 </li>
             </ul>
-        </div>
+        </nav>
     );
 }
 

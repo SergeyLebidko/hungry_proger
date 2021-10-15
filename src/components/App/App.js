@@ -20,13 +20,13 @@ function App() {
     const toProjects = () => setMode(PROJECTS_MODE);
 
     return (
-        <div className="app">
+        <main className="app">
             <Menu toMain={toMain} toAbout={toAbout} toSkills={toSkills} toProjects={toProjects}/>
             {mode === MAIN_MODE && <Main/>}
             {mode === ABOUT_MODE && <About/>}
             {mode === SKILLS_MODE && <Skills/>}
             {mode === PROJECTS_MODE && <Projects/>}
-        </div>
+        </main>
     );
 }
 

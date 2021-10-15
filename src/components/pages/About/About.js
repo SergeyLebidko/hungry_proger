@@ -5,7 +5,7 @@ import "./About.scss";
 
 function About() {
     return (
-        <div className="about">
+        <section className="about">
             <div className="about__content">
                 <h1 className="about__welcome">Здравствуйте! Меня зовут Сергей и я React-разработчик</h1>
                 <p>
@@ -38,7 +38,7 @@ function About() {
                     <Contacts/>
                 </div>
             </div>
-        </div>
+        </section>
     );
 }
 

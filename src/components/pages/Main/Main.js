@@ -4,7 +4,7 @@ import "./Main.scss";
 
 function Main() {
     return (
-        <div className="main">
+        <section className="main">
             <div className="main__content">
                 <div className="main__avatar_wrapper">
                     <img src={avatar} className="main__avatar"/>
@@ -13,7 +13,7 @@ function Main() {
                 <h3 className="main__profession">React-разработчик</h3>
                 <button className="button main__more_button">Узнать больше</button>
             </div>
-        </div>
+        </section>
     );
 }
 

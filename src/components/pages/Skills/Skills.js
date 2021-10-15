@@ -3,9 +3,9 @@ import "./Skills.scss";
 
 function Skills(){
     return (
-        <div className="skills">
+        <section className="skills">
             Навыки
-        </div>
+        </section>
     );
 }
 

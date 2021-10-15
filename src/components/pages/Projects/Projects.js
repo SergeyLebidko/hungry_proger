@@ -3,9 +3,9 @@ import "./Projects.scss";
 
 function Projects() {
     return (
-        <div className="projects">
+        <section className="projects">
             Проекты
-        </div>
+        </section>
     );
 }
 
