@@ -4,7 +4,7 @@ $medium-start: 769px;
 $medium-end: 1023px;
 $large-start: 1024px;
 
-// Общие стили
+// Общие стили для кнопок
 .button {
   cursor: pointer;
   border: 1px solid black;
@@ -29,6 +29,7 @@ $large-start: 1024px;
   }
 }
 
+// Общие стили для кнопок со ссылкой
 .linked_button {
   border: 1px solid black;
   border-radius: 3px;
@@ -64,7 +65,30 @@ $large-start: 1024px;
   }
 }
 
-// Миксин для прокрутки
+// Общие стили для заголовков разделов
+.section_header {
+  font-family: Roboto, 'sans-serif';
+  font-weight: 300;
+  font-size: 1.3em;
+  text-align: center;
+  padding-bottom: 0.5em;
+  border-bottom: 2px solid orangered;
+  transition: all 150ms;
+}
+
+@media (min-width: $medium-start) and (max-width: $medium-end) {
+  .section_header {
+    font-size: 1.5em;
+  }
+}
+
+@media (min-width: $large-start) {
+  .section_header {
+    font-size: 1.7em;
+  }
+}
+
+// Миксин для прокручиваемых элементов
 @mixin scroll {
   &::-webkit-scrollbar {
     width: 5px;
