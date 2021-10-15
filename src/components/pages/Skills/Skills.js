@@ -1,10 +1,12 @@
 import React from "react";
+import data from "../../../content/data.json";
+import SkillCard from "../../common/SkillCard/SkillCard";
 import "./Skills.scss";
 
-function Skills(){
+function Skills() {
     return (
         <section className="skills">
-            Навыки
+            {data.skills.map(skillData => <SkillCard key={skillData.title} data={skillData}/>)}
         </section>
     );
 }
