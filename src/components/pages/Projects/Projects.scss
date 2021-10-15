@@ -1,4 +1,5 @@
 @import "../../../styles/presets";
+@import "../../common/ProjectCard/ProjectCard";
 
 .projects {
   position: absolute;
@@ -9,7 +10,49 @@
 
   background-image: url("../../../content/back.png");
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 5em 1em 2em 1em;
+  overflow: auto;
+  @include scroll;
+
+  .section_header {
+    margin-bottom: 2em;
+  }
+
+  .project_card {
+    margin: 1em 0 0 0;
+  }
+
+  &__content {
+    max-width: 55em;
+  }
+
+  &__description {
+    font-family: Roboto, 'sans-serif';
+    font-weight: 300;
+    text-align: justify;
+    margin-bottom: 2em;
+  }
+
+  &__project_list {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (min-width: $medium-start) {
+  .projects {
+    display: flex;
+    justify-content: center;
+
+    .project_card {
+      width: 32.2%;
+    }
+
+    &__project_list {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding-bottom: 2em;
+    }
+  }
 }

@@ -1,0 +1,51 @@
+@import "../../../styles/presets";
+
+.project_card {
+  padding: 1em;
+  border-radius: 3px;
+  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.15);
+  border: 1px solid lightgrey;
+  background-color: white;
+
+  display: flex;
+  flex-direction: column;
+
+  &__title_link {
+    display: block;
+    margin-bottom: 1em;
+    text-decoration: none;
+    color: black;
+
+    font-family: Roboto, 'sans-serif';
+    font-weight: 500;
+    font-size: 1.5em;
+
+    transition: all 150ms;
+
+    &:hover {
+      color: orangered;
+    }
+  }
+
+  &__description {
+    margin-bottom: 2.5em;
+    font-family: Roboto, 'sans-serif';
+    font-weight: 300;
+    text-align: justify;
+  }
+
+  &__tech_list {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    margin-top: auto;
+
+    li {
+      font-family: Roboto, 'sans-serif';
+      font-weight: 100;
+    }
+
+    li:not(:last-child) {
+      margin-right: 0.5em;
+    }
+  }
+}
