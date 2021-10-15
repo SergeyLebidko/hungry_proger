@@ -1,4 +1,5 @@
 @import "../../../styles/presets";
+@import "../../common/MenuButton/MenuButton";
 
 .menu {
   position: absolute;
@@ -11,16 +12,14 @@
   background-color: white;
   border-bottom: 1px solid lightgrey;
 
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-
-  padding: 0 4em;
+  transition: all 150ms;
+  overflow: hidden;
+  padding: 0;
 
   &__items {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    position: absolute;
+    top: 5em;
+    left: 1em;
   }
 
   &__item {
@@ -36,6 +35,36 @@
   }
 
   &__item + &__item {
-    margin-left: 2em;
+    margin: 2em 0 0 0;
+  }
+}
+
+.opened_menu {
+  height: 100%;
+}
+
+@media (min-width: $medium-start) {
+  .menu {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 4em;
+
+    .menu_button {
+      display: none;
+    }
+
+    &__items {
+      position: static;
+      display: flex;
+    }
+
+    &__item + &__item {
+      margin: 0 0 0 2em;
+    }
+  }
+
+  .opened_menu {
+    height: 3em;
   }
 }
