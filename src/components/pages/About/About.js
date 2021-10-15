@@ -1,5 +1,6 @@
 import React from "react";
 import Contacts from "../../common/Contacts/Contacts";
+import {RESUME_HREF} from "../../../constants/settings";
 import "./About.scss";
 
 function About() {
@@ -31,7 +32,9 @@ function About() {
                     которые я создавал по мере своего обучения и приобретения опыта.
                 </p>
                 <div className="about__links">
-                    <button className="button about__resume_button">Мое резюме</button>
+                    <button className="button">
+                        <a href={RESUME_HREF} target="_blank" rel="noopener noreferrer">Мое резюме</a>
+                    </button>
                     <Contacts/>
                 </div>
             </div>

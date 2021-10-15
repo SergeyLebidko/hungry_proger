@@ -7,17 +7,17 @@ function Contacts() {
     return (
         <ul className="contacts">
             <li>
-                <a href={GITHUB_HREF}>
+                <a href={GITHUB_HREF} target="_blank" rel="noopener noreferrer">
                     <FaGithub className="contacts__github"/>
                 </a>
             </li>
             <li>
-                <a href={MAIL_HREF}>
+                <a href={MAIL_HREF} target="_blank" rel="noopener noreferrer">
                     <MdEmail className="contacts__mail"/>
                 </a>
             </li>
             <li>
-                <a href={TELEGRAM_HREF}>
+                <a href={TELEGRAM_HREF} target="_blank" rel="noopener noreferrer">
                     <FaTelegram className="contacts__telegram"/>
                 </a>
             </li>
