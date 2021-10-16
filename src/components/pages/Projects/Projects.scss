@@ -1,5 +1,6 @@
 @import "../../../styles/presets";
 @import "../../common/ProjectCard/ProjectCard";
+@import "../../common/ProjectsFilter/ProjectsFilter";
 
 .projects {
   position: absolute;
@@ -14,6 +15,10 @@
   padding: 8em 1em 5em 1em;
 
   .section_header {
+    margin-bottom: 2em;
+  }
+
+  .projects_filter {
     margin-bottom: 2em;
   }
 

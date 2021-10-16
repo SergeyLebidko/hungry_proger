@@ -1,9 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
 import data from "../../../content/data.json";
-import "./Projects.scss";
 import ProjectCard from "../../common/ProjectCard/ProjectCard";
+import ProjectsFilter from "../../common/ProjectsFilter/ProjectsFilter";
+import {extractProjectsTechList} from "../../../utils/utils";
+import "./Projects.scss";
 
 function Projects() {
+    const [projects] = useState(data.projects);
+    const [techFilter, setTechFilter] = useState(extractProjectsTechList(projects));
+
+    const getProjectHasShow = project => project.tech.filter(tech => techFilter.includes(tech)).length > 0;
+
     return (
         <section className="projects">
             <div className="projects__content">
@@ -12,8 +19,15 @@ function Projects() {
                     Здесь приведена для примера лишь небольшая часть из более чем семидесяти выполненных мной
                     в разное время pet-проектов.
                 </p>
+                <ProjectsFilter techList={extractProjectsTechList(projects)} setTechFilter={setTechFilter}/>
                 <ul className="projects__project_list">
-                    {data.projects.map(projectData => <ProjectCard key={projectData.title} data={projectData}/>)}
+                    {projects.filter(projectData => getProjectHasShow(projectData)).map(
+                        projectData =>
+                            <ProjectCard
+                                key={projectData.title}
+                                data={projectData}
+                            />
+                    )}
                 </ul>
             </div>
         </section>

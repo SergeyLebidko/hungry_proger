@@ -24,7 +24,7 @@ function Menu({mode, toMain, toAbout, toSkills, toProjects}) {
         DEST_SELECTOR[dest]();
     }
 
-    const getItemClasses = itemMode => classNames("menu__item", {"selected_item": itemMode === mode});
+    const getItemClasses = itemMode => classNames("menu__item", {"selected_menu_item": itemMode === mode});
 
     return (
         <nav className={menuClasses}>
