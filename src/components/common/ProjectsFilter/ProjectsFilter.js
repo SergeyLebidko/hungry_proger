@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import PropTypes from 'prop-types';
 import classNames from "classnames";
 import "./ProjectsFilter.scss";
@@ -7,25 +7,32 @@ function ProjectsFilter({techList, setFilter}) {
     const [all, setAll] = useState(true);
     const [items, setItems] = useState(techList.map(tech => ({select: false, tech})));
 
+    const selects = useCallback(({select}) => select, []);
+    const itemsNotSelects = useCallback(({tech}) => ({select: false, tech}), []);
+    const techs = useCallback(({tech}) => tech, []);
+
     useEffect(() => {
         if (all) {
-            setFilter(items.map(({tech}) => tech));
+            setFilter(items.map(techs));
         } else {
-            setFilter(items.filter(({select}) => select).map(({tech}) => tech));
+            setFilter(items.reduce((result, item) => item.select ? [item.tech, ...result] : result, []));
         }
     }, [all, items, setFilter]);
 
     const allClickHandler = () => {
         setAll(true);
-        setItems(items => items.map(({tech}) => ({select: false, tech})));
+        setItems(items => items.map(itemsNotSelects));
     };
 
     const itemClickHandler = tech => {
-        const nextItems = items.map(item => {
+        let nextItems = items.map(item => {
             if (item.tech !== tech) return item;
             return {select: !item.select, tech}
         });
-        setAll(!nextItems.some(({select}) => select));
+        if (nextItems.every(selects)) nextItems = nextItems.map(itemsNotSelects);
+        const nextAll = !nextItems.some(selects);
+
+        setAll(nextAll);
         setItems(nextItems);
     }
 
