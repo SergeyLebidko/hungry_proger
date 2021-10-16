@@ -9,7 +9,11 @@ function Projects() {
     const [projects] = useState(data.projects);
     const [techFilter, setTechFilter] = useState(extractProjectsTechList(projects));
 
-    const getProjectHasShow = project => project.tech.filter(tech => techFilter.includes(tech)).length > 0;
+    const hasShow = project => project.tech.filter(tech => techFilter.includes(tech)).length > 0;
+
+    const createCardList = () => projects.reduce(
+        (res, item) => hasShow(item) ? [...res, <ProjectCard key={item.title} data={item}/>] : res, []
+    );
 
     return (
         <section className="projects">
@@ -21,13 +25,7 @@ function Projects() {
                 </p>
                 <ProjectsFilter techList={extractProjectsTechList(projects)} setFilter={setTechFilter}/>
                 <ul className="projects__project_list">
-                    {projects.filter(projectData => getProjectHasShow(projectData)).map(
-                        projectData =>
-                            <ProjectCard
-                                key={projectData.title}
-                                data={projectData}
-                            />
-                    )}
+                    {createCardList()}
                 </ul>
             </div>
         </section>

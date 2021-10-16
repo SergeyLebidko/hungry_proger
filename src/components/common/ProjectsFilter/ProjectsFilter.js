@@ -8,20 +8,20 @@ function ProjectsFilter({techList, setFilter}) {
     const [items, setItems] = useState(techList.map(tech => ({select: false, tech})));
 
     const selects = useCallback(({select}) => select, []);
-    const itemsNotSelects = useCallback(({tech}) => ({select: false, tech}), []);
+    const itemsWithNotSelects = useCallback(({tech}) => ({select: false, tech}), []);
     const techs = useCallback(({tech}) => tech, []);
 
     useEffect(() => {
         if (all) {
             setFilter(items.map(techs));
         } else {
-            setFilter(items.reduce((result, item) => item.select ? [item.tech, ...result] : result, []));
+            setFilter(items.reduce((res, item) => item.select ? [item.tech, ...res] : res, []));
         }
     }, [all, items, setFilter]);
 
     const allClickHandler = () => {
         setAll(true);
-        setItems(items => items.map(itemsNotSelects));
+        setItems(items => items.map(itemsWithNotSelects));
     };
 
     const itemClickHandler = tech => {
@@ -29,7 +29,7 @@ function ProjectsFilter({techList, setFilter}) {
             if (item.tech !== tech) return item;
             return {select: !item.select, tech}
         });
-        if (nextItems.every(selects)) nextItems = nextItems.map(itemsNotSelects);
+        if (nextItems.every(selects)) nextItems = nextItems.map(itemsWithNotSelects);
         const nextAll = !nextItems.some(selects);
 
         setAll(nextAll);
