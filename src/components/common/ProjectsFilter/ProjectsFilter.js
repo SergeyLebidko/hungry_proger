@@ -3,30 +3,30 @@ import PropTypes from 'prop-types';
 import classNames from "classnames";
 import "./ProjectsFilter.scss";
 
-function ProjectsFilter({techList, setTechFilter}) {
+function ProjectsFilter({techList, setFilter}) {
     const [all, setAll] = useState(true);
-    const [selectorItems, setSelectorItems] = useState(techList.map(tech => ({select: false, tech})));
+    const [items, setItems] = useState(techList.map(tech => ({select: false, tech})));
 
     useEffect(() => {
         if (all) {
-            setTechFilter(selectorItems.map(({tech}) => tech));
+            setFilter(items.map(({tech}) => tech));
         } else {
-            setTechFilter(selectorItems.filter(({select}) => select).map(({tech}) => tech));
+            setFilter(items.filter(({select}) => select).map(({tech}) => tech));
         }
-    }, [all, selectorItems, setTechFilter]);
+    }, [all, items, setFilter]);
 
     const allClickHandler = () => {
         setAll(true);
-        setSelectorItems(items => items.map(({tech}) => ({select: false, tech})));
+        setItems(items => items.map(({tech}) => ({select: false, tech})));
     };
 
-    const techClickHandler = tech => {
-        const nextItems = selectorItems.map(item => {
+    const itemClickHandler = tech => {
+        const nextItems = items.map(item => {
             if (item.tech !== tech) return item;
             return {select: !item.select, tech}
         });
         setAll(!nextItems.some(({select}) => select));
-        setSelectorItems(nextItems);
+        setItems(nextItems);
     }
 
     const getItemClasses = select => classNames("projects_filter__item", {"selected_projects_filter_item": select});
@@ -34,9 +34,9 @@ function ProjectsFilter({techList, setTechFilter}) {
     return (
         <ul className="projects_filter">
             <li key="all" className={getItemClasses(all)} onClick={allClickHandler}>Все технологии</li>
-            {selectorItems.map(
+            {items.map(
                 ({tech, select}) =>
-                    <li key={tech} className={getItemClasses(select)} onClick={() => techClickHandler(tech)}>
+                    <li key={tech} className={getItemClasses(select)} onClick={() => itemClickHandler(tech)}>
                         {tech}
                     </li>
             )}
@@ -46,7 +46,7 @@ function ProjectsFilter({techList, setTechFilter}) {
 
 ProjectsFilter.propTypes = {
     techList: PropTypes.arrayOf(PropTypes.string),
-    setTechFilter: PropTypes.func
+    setFilter: PropTypes.func
 }
 
 export default ProjectsFilter;
