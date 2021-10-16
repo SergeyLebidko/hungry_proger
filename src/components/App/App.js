@@ -21,11 +21,11 @@ function App() {
 
     return (
         <main className="app">
-            <Menu toMain={toMain} toAbout={toAbout} toSkills={toSkills} toProjects={toProjects}/>
             {mode === MAIN_MODE && <Main toAbout={toAbout}/>}
             {mode === ABOUT_MODE && <About/>}
             {mode === SKILLS_MODE && <Skills/>}
             {mode === PROJECTS_MODE && <Projects/>}
+            <Menu toMain={toMain} toAbout={toAbout} toSkills={toSkills} toProjects={toProjects}/>
         </main>
     );
 }
