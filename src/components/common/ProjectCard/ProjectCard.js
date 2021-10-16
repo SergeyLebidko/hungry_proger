@@ -10,7 +10,7 @@ function ProjectCard({data}) {
             </a>
             <p className="project_card__description">{data.description}</p>
             <ul className="project_card__tech_list">
-                {data.tech.map(value => <li key={value}>{value}</li>)}
+                {data.tech.map(value => <li key={value} className="project_card__tech_label">{value}</li>)}
             </ul>
         </li>
     );
