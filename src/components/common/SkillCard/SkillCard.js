@@ -1,7 +1,7 @@
 import React from "react";
-import {ReactComponent as JS} from "../../../content/js.svg";
-import {ReactComponent as Python} from "../../../content/python.svg";
-import {ReactComponent as CSS3} from "../../../content/css3.svg";
+import {ReactComponent as JS} from "../../../content/icons/js.svg";
+import {ReactComponent as Python} from "../../../content/icons/python.svg";
+import {ReactComponent as CSS3} from "../../../content/icons/css3.svg";
 import PropTypes from 'prop-types';
 import "./SkillCard.scss";
 

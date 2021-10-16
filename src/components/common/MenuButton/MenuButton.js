@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import {ReactComponent as OneLine} from "../../../content/one_line.svg";
-import {ReactComponent as TwoLines} from "../../../content/two_lines.svg";
+import {ReactComponent as OneLine} from "../../../content/icons/one_line.svg";
+import {ReactComponent as TwoLines} from "../../../content/icons/two_lines.svg";
 import "./MenuButton.scss";
 
 function MenuButton({hasOpened, switchMenu}) {

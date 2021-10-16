@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import avatar from "../../../content/avatar.jpg";
+import avatar from "../../../content/images/avatar.jpg";
 import "./Main.scss";
 
 function Main({toAbout}) {
