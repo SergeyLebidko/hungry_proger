@@ -4,28 +4,38 @@ import classNames from "classnames";
 import "./ProjectsFilter.scss";
 
 function ProjectsFilter({techList, setTechFilter}) {
-    const [selectorItems, setSelectorItems] = useState(techList.map(tech => ({select: true, tech})));
+    const [all, setAll] = useState(true);
+    const [selectorItems, setSelectorItems] = useState(techList.map(tech => ({select: false, tech})));
 
     useEffect(() => {
-        setTechFilter(selectorItems.filter(({select}) => select).map(({tech}) => tech));
-    }, [selectorItems]);
+        if (all) {
+            setTechFilter(selectorItems.map(({tech}) => tech));
+        } else {
+            setTechFilter(selectorItems.filter(({select}) => select).map(({tech}) => tech));
+        }
+    }, [all, selectorItems, setTechFilter]);
 
-    const techClickHandler = tech => setSelectorItems(items =>
-        items.map(item => {
+    const allClickHandler = () => {
+        setAll(true);
+        setSelectorItems(items => items.map(({tech}) => ({select: false, tech})));
+    };
+
+    const techClickHandler = tech => {
+        setAll(false);
+        setSelectorItems(items => items.map(item => {
             if (item.tech !== tech) return item;
             return {select: !item.select, tech}
-        })
-    );
+        }));
+    }
+
+    const getItemClasses = select => classNames("projects_filter__item", {"selected_projects_filter_item": select});
 
     return (
         <ul className="projects_filter">
+            <li key="all" className={getItemClasses(all)} onClick={allClickHandler}>Все технологии</li>
             {selectorItems.map(
                 ({tech, select}) =>
-                    <li
-                        key={tech}
-                        className={classNames("projects_filter__item", {"selected_projects_filter_item": select})}
-                        onClick={() => techClickHandler(tech)}
-                    >
+                    <li key={tech} className={getItemClasses(select)} onClick={() => techClickHandler(tech)}>
                         {tech}
                     </li>
             )}
