@@ -21,11 +21,12 @@ function ProjectsFilter({techList, setTechFilter}) {
     };
 
     const techClickHandler = tech => {
-        setAll(false);
-        setSelectorItems(items => items.map(item => {
+        const nextItems = selectorItems.map(item => {
             if (item.tech !== tech) return item;
             return {select: !item.select, tech}
-        }));
+        });
+        setAll(!nextItems.some(({select}) => select));
+        setSelectorItems(nextItems);
     }
 
     const getItemClasses = select => classNames("projects_filter__item", {"selected_projects_filter_item": select});
