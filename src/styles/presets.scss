@@ -90,6 +90,8 @@ $large-start: 1024px;
 
 // Миксин для прокручиваемых элементов
 @mixin scroll {
+  overflow: auto;
+
   &::-webkit-scrollbar {
     width: 5px;
     height: 5px;
