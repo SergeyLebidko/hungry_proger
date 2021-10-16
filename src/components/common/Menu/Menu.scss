@@ -19,6 +19,7 @@
     position: absolute;
     top: 6em;
     left: 1em;
+    width: 80%;
   }
 
   &__item {
@@ -27,6 +28,7 @@
     text-transform: uppercase;
     letter-spacing: 2px;
     user-select: none;
+    border-bottom: 2px solid transparent;
     transition: all 300ms;
 
     &:hover {
@@ -43,6 +45,10 @@
   height: 100%;
 }
 
+.selected_item {
+  border-bottom: 2px solid orangered;
+}
+
 @media (min-width: $medium-start) {
   .menu {
     display: flex;
@@ -55,6 +61,7 @@
     }
 
     &__items {
+      width: initial;
       position: static;
       display: flex;
     }

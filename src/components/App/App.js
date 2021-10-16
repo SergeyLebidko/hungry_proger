@@ -4,12 +4,8 @@ import Main from "../pages/Main/Main";
 import About from "../pages/About/About";
 import Skills from "../pages/Skills/Skills";
 import Projects from "../pages/Projects/Projects";
+import {MAIN_MODE, ABOUT_MODE, SKILLS_MODE, PROJECTS_MODE} from "../../constants/settings";
 import "./App.scss";
-
-const MAIN_MODE = 'mm';
-const ABOUT_MODE = 'am';
-const SKILLS_MODE = 'sm';
-const PROJECTS_MODE = 'pm';
 
 function App() {
     const [mode, setMode] = useState(MAIN_MODE);
@@ -25,7 +21,7 @@ function App() {
             {mode === ABOUT_MODE && <About/>}
             {mode === SKILLS_MODE && <Skills/>}
             {mode === PROJECTS_MODE && <Projects/>}
-            <Menu toMain={toMain} toAbout={toAbout} toSkills={toSkills} toProjects={toProjects}/>
+            <Menu mode={mode} toMain={toMain} toAbout={toAbout} toSkills={toSkills} toProjects={toProjects}/>
         </main>
     );
 }

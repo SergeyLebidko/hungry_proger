@@ -2,9 +2,10 @@ import React, {useState} from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import MenuButton from "../MenuButton/MenuButton";
+import {MAIN_MODE, ABOUT_MODE, SKILLS_MODE, PROJECTS_MODE} from "../../../constants/settings";
 import "./Menu.scss";
 
-function Menu({toMain, toAbout, toSkills, toProjects}) {
+function Menu({mode, toMain, toAbout, toSkills, toProjects}) {
     const [hasOpened, setHasOpened] = useState(false);
 
     const menuClasses = classNames("menu", {"opened_menu": hasOpened});
@@ -12,10 +13,10 @@ function Menu({toMain, toAbout, toSkills, toProjects}) {
     const switchMenu = () => setHasOpened(oldVal => !oldVal);
 
     const DEST_SELECTOR = {
-        "main": toMain,
-        "about": toAbout,
-        "skills": toSkills,
-        "projects": toProjects
+        [MAIN_MODE]: toMain,
+        [ABOUT_MODE]: toAbout,
+        [SKILLS_MODE]: toSkills,
+        [PROJECTS_MODE]: toProjects
     }
 
     const switchMode = dest => {
@@ -23,20 +24,22 @@ function Menu({toMain, toAbout, toSkills, toProjects}) {
         DEST_SELECTOR[dest]();
     }
 
+    const getItemClasses = itemMode => classNames("menu__item", {"selected_item": itemMode === mode});
+
     return (
         <nav className={menuClasses}>
             <MenuButton hasOpened={hasOpened} switchMenu={switchMenu}/>
             <ul className="menu__items">
-                <li className="menu__item" onClick={() => switchMode("main")}>
+                <li className={getItemClasses(MAIN_MODE)} onClick={() => switchMode(MAIN_MODE)}>
                     Главная
                 </li>
-                <li className="menu__item" onClick={() => switchMode("about")}>
+                <li className={getItemClasses(ABOUT_MODE)} onClick={() => switchMode(ABOUT_MODE)}>
                     Обо мне
                 </li>
-                <li className="menu__item" onClick={() => switchMode("skills")}>
+                <li className={getItemClasses(SKILLS_MODE)} onClick={() => switchMode(SKILLS_MODE)}>
                     Технологии
                 </li>
-                <li className="menu__item" onClick={() => switchMode("projects")}>
+                <li className={getItemClasses(PROJECTS_MODE)} onClick={() => switchMode(PROJECTS_MODE)}>
                     Мои проекты
                 </li>
             </ul>
@@ -45,6 +48,7 @@ function Menu({toMain, toAbout, toSkills, toProjects}) {
 }
 
 Menu.propTypes = {
+    mode: PropTypes.string,
     toMain: PropTypes.func,
     toAbout: PropTypes.func,
     toSkills: PropTypes.func,
