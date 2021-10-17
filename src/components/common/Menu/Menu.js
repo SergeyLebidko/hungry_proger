@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import MenuButton from "../MenuButton/MenuButton";
+import ColorSwitcher from "../ColorSwitcher/ColorSwitcher";
 import {MAIN_MODE, ABOUT_MODE, SKILLS_MODE, PROJECTS_MODE} from "../../../constants/settings";
 import "./Menu.scss";
 
@@ -41,6 +42,9 @@ function Menu({mode, toMain, toAbout, toSkills, toProjects}) {
                 </li>
                 <li className={getItemClasses(PROJECTS_MODE)} onClick={() => switchMode(PROJECTS_MODE)}>
                     Мои проекты
+                </li>
+                <li className="menu__item">
+                    <ColorSwitcher/>
                 </li>
             </ul>
         </nav>

@@ -64,6 +64,7 @@
       width: initial;
       position: static;
       display: flex;
+      align-items: center;
     }
 
     &__item + &__item {

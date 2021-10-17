@@ -7,7 +7,7 @@
   right: 0;
   bottom: 0;
 
-  background-color: whitesmoke;
+  background-color: var(--back1);
 
   @include scroll;
   padding: 8em 1em 5em 1em;

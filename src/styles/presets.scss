@@ -4,6 +4,11 @@ $medium-start: 769px;
 $medium-end: 1023px;
 $large-start: 1024px;
 
+// Переменные для хранения цветов
+:root {
+  --back1: whitesmoke;
+}
+
 // Общие стили для кнопок
 .button {
   cursor: pointer;
