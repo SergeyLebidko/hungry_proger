@@ -8,8 +8,8 @@
   right: 0;
   height: 3em;
 
-  background-color: white;
-  border-bottom: 1px solid lightgrey;
+  background-color: var(--back2);
+  border-bottom: 1px solid var(--separator);
 
   transition: all 300ms;
   overflow: hidden;
@@ -26,6 +26,7 @@
     cursor: pointer;
     font-family: Roboto, 'sans-serif';
     text-transform: uppercase;
+    color: var(--text-color);
     letter-spacing: 2px;
     user-select: none;
     border-bottom: 2px solid transparent;

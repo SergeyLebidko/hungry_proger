@@ -13,10 +13,18 @@ export const L_COLORS = 'lc';
 export const D_COLORS = 'dc';
 
 export const COLOR_PRESETS = {
-    [L_COLORS]:{
-        '--back1': 'whitesmoke'
+    [L_COLORS]: {
+        '--back1': 'whitesmoke',
+        '--back2': 'white',
+        '--text-color': 'black',
+        '--border-color': 'black',
+        '--separator': 'lightgrey'
     },
-    [D_COLORS]:{
-        '--back1': 'rgb(50, 50, 50)'
+    [D_COLORS]: {
+        '--back1': 'rgb(50, 50, 60)',
+        '--back2': 'rgb(70, 70, 80)',
+        '--text-color': 'white',
+        '--border-color': 'white',
+        '--separator': 'dimgray'
     }
 }

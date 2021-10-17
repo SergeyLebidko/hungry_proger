@@ -3,7 +3,7 @@
 .color_switcher {
   width: 2.4em;
   height: 1.2em;
-  border: 2px solid black;
+  border: 2px solid var(--border-color);
   border-radius: 20px;
   overflow: hidden;
 
@@ -16,7 +16,6 @@
     top: 50%;
     transform: translateY(-50%);
     border-radius: 50%;
-    background-color: black;
     transition: all 200ms;
   }
 
@@ -27,8 +26,12 @@
 
 .light_colors {
   left: 3px;
+  background-color: var(--back2);
+  border: 2px solid var(--border-color);
 }
 
 .dark_colors {
   left: 19px;
+  background-color: var(--back1);
+  border: 2px solid var(--border-color);
 }

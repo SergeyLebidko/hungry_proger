@@ -5,9 +5,11 @@ $medium-end: 1023px;
 $large-start: 1024px;
 
 // Переменные для хранения цветов
-:root {
-  --back1: whitesmoke;
-}
+//:root {
+//  --back1: whitesmoke;
+//  --back2: white;
+//  --text-color: rgb(30, 30, 30);
+//}
 
 // Общие стили для кнопок
 .button {
@@ -76,6 +78,7 @@ $large-start: 1024px;
   font-weight: 300;
   font-size: 1.3em;
   text-align: center;
+  color: var(--text-color);
   padding-bottom: 0.5em;
   border-bottom: 2px solid orangered;
   transition: all 300ms;
