@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import PropTypes from 'prop-types';
-import classNames from "classnames";
+import ProjectFilterLabel from "../ProjectFilterLabel/ProjectFilterLabel";
 import "./ProjectFilter.scss";
 
 function ProjectFilter({techList, setFilteredValues}) {
@@ -28,15 +28,16 @@ function ProjectFilter({techList, setFilteredValues}) {
         setFlags(nextFlags);
     }
 
-    const getItemClasses = flag => classNames("project_filter__item", {"selected_project_filter_item": flag});
-
     return (
         <ul className="project_filter">
-            <li key="all" className={getItemClasses(all)} onClick={allClickHandler}>Все технологии</li>
+            <ProjectFilterLabel tech="Все технологии" hasSelected={all} clickHandler={allClickHandler}/>
             {techList.map((tech, index) =>
-                <li key={tech} className={getItemClasses(flags[index])} onClick={() => techClickHandler(tech)}>
-                    {tech}
-                </li>
+                <ProjectFilterLabel
+                    key={tech}
+                    tech={tech}
+                    hasSelected={flags[index]}
+                    clickHandler={() => techClickHandler(tech)}
+                />
             )}
         </ul>
     );
