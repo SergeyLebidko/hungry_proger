@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import TechLabel from "../TechLabel/TechLabel";
 import "./ProjectCard.scss";
 
 function ProjectCard({data}) {
@@ -10,7 +11,7 @@ function ProjectCard({data}) {
             </a>
             <p className="project_card__description">{data.description}</p>
             <ul className="project_card__tech_list">
-                {data.tech.map(value => <li key={value} className="project_card__tech_label">{value}</li>)}
+                {data.tech.map(tech => <TechLabel key={tech} tech={tech}/>)}
             </ul>
         </li>
     );
