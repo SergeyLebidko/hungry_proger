@@ -16,6 +16,7 @@
 
     path {
       transition: all $slow;
+      stroke: var(--text-color);
     }
   }
 }
@@ -27,17 +28,9 @@
 
   svg:nth-child(2) {
     transform: rotate(45deg);
-
-    path {
-      stroke: var(--accent);
-    }
   }
 
   svg:nth-child(3) {
     transform: rotate(-45deg);
-
-    path {
-      stroke: var(--accent);
-    }
   }
 }
