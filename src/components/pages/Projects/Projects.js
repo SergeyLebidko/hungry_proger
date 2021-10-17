@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import data from "../../../content/data.json";
 import ProjectCard from "../../common/ProjectCard/ProjectCard";
-import ProjectsFilter from "../../common/ProjectsFilter/ProjectsFilter";
+import ProjectFilter from "../../common/ProjectFilter/ProjectFilter";
 import {extractProjectsTechList} from "../../../utils/utils";
 import "./Projects.scss";
 
@@ -23,7 +23,7 @@ function Projects() {
                     Здесь приведена для примера лишь небольшая часть из более чем семидесяти выполненных мной
                     в разное время pet-проектов.
                 </p>
-                <ProjectsFilter techList={extractProjectsTechList(projects)} setFilteredValues={setTechFilter}/>
+                <ProjectFilter techList={extractProjectsTechList(projects)} setFilteredValues={setTechFilter}/>
                 <ul className="projects__project_list">
                     {createCardList()}
                 </ul>

@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 import PropTypes from 'prop-types';
 import classNames from "classnames";
-import "./ProjectsFilter.scss";
+import "./ProjectFilter.scss";
 
-function ProjectsFilter({techList, setFilteredValues}) {
+function ProjectFilter({techList, setFilteredValues}) {
     const [all, setAll] = useState(true);
     const [flags, setFlags] = useState(Array(techList.length).fill(false));
 
@@ -28,10 +28,10 @@ function ProjectsFilter({techList, setFilteredValues}) {
         setFlags(nextFlags);
     }
 
-    const getItemClasses = flag => classNames("projects_filter__item", {"selected_projects_filter_item": flag});
+    const getItemClasses = flag => classNames("project_filter__item", {"selected_project_filter_item": flag});
 
     return (
-        <ul className="projects_filter">
+        <ul className="project_filter">
             <li key="all" className={getItemClasses(all)} onClick={allClickHandler}>Все технологии</li>
             {techList.map((tech, index) =>
                 <li key={tech} className={getItemClasses(flags[index])} onClick={() => techClickHandler(tech)}>
@@ -42,9 +42,9 @@ function ProjectsFilter({techList, setFilteredValues}) {
     );
 }
 
-ProjectsFilter.propTypes = {
+ProjectFilter.propTypes = {
     techList: PropTypes.arrayOf(PropTypes.string),
     setFilteredValues: PropTypes.func
 }
 
-export default ProjectsFilter;
+export default ProjectFilter;

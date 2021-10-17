@@ -1,6 +1,6 @@
 @import "../../../styles/presets";
 @import "../../common/ProjectCard/ProjectCard";
-@import "../../common/ProjectsFilter/ProjectsFilter";
+@import "../../common/ProjectFilter/ProjectFilter";
 
 .projects {
   position: absolute;
@@ -18,7 +18,7 @@
     margin-bottom: 2em;
   }
 
-  .projects_filter {
+  .project_filter {
     margin-bottom: 2em;
   }
 

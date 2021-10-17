@@ -1,6 +1,6 @@
 @import "../../../styles/presets";
 
-.projects_filter {
+.project_filter {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -19,7 +19,7 @@
   }
 }
 
-.selected_projects_filter_item {
+.selected_project_filter_item {
   border: 1px solid dodgerblue;
   background-color: dodgerblue;
   color: white;
