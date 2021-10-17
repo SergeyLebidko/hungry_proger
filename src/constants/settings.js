@@ -14,17 +14,23 @@ export const D_COLORS = 'dc';
 
 export const COLOR_PRESETS = {
     [L_COLORS]: {
-        '--back1': 'whitesmoke',
-        '--back2': 'white',
-        '--text-color': 'black',
-        '--border-color': 'black',
-        '--separator': 'lightgrey'
+        '--back1': 'whitesmoke',                                 // Основной цвет фона
+        '--back2': 'white',                                      // Дополнительный цвет фона
+        '--text-color': 'black',                                 // Цвет текста
+        '--border-color': 'black',                               // Цвет границ
+        '--separator': 'lightgrey',                              // Цвет разделителей
+        '--icon-color': 'rgb(100, 100, 100)',                    // Цвет иконок до наведения
+        '--button-shadow': '0 2px 5px 0 rgba(0, 0, 0, 0.3)',     // Пресет теней для кнопок
+        '--card-shadow': '0 3px 10px 0 rgba(0, 0, 0, 0.15)',     // Пресет теней для карточек
     },
     [D_COLORS]: {
-        '--back1': 'rgb(50, 50, 60)',
-        '--back2': 'rgb(70, 70, 80)',
+        '--back1': 'rgb(60, 60, 70)',
+        '--back2': 'rgb(80, 80, 90)',
         '--text-color': 'white',
         '--border-color': 'white',
-        '--separator': 'dimgray'
+        '--separator': 'dimgray',
+        '--icon-color': 'rgb(240, 240, 240)',
+        '--button-shadow': '0 5px 10px 0 rgba(0, 0, 0, 0.6)',
+        '--card-shadow': '0 3px 10px 0 rgba(0, 0, 0, 0.8)',
     }
 }

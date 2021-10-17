@@ -18,7 +18,7 @@
 
   &__github, &__mail, &__telegram {
     transition: all 300ms;
-    fill: rgb(100, 100, 100);
+    fill: var(--icon-color);
 
     &:active {
       transform: scale(0.8);

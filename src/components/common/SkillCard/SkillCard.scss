@@ -3,9 +3,9 @@
 .skill_card {
   padding: 1em;
   border-radius: 3px;
-  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.15);
-  border: 1px solid lightgrey;
-  background-color: white;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--separator);
+  background-color: var(--back2);
 
   &__card_header {
     display: flex;
@@ -20,6 +20,7 @@
       font-family: Roboto, 'sans-serif';
       font-weight: 500;
       font-size: 1.5em;
+      color: var(--text-color);
     }
   }
 
@@ -33,7 +34,8 @@
       border-left: none;
       padding-left: 0;
       cursor: pointer;
-      transition: all 150ms;
+      color: var(--text-color);
+      transition: all $fast;
 
       &:hover {
         border-left: 4px solid orangered;

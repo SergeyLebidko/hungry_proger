@@ -8,7 +8,7 @@
   bottom: 0;
 
   background-color: var(--back1);
-  transition: all 200ms;
+  transition: all $slow;
 
   @include scroll;
   padding: 8em 1em 5em 1em;
@@ -32,6 +32,7 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    transition: all $slow;
   }
 
   &__avatar {
@@ -40,7 +41,7 @@
     object-fit: cover;
     border-radius: 50%;
     filter: saturate(135%);
-    transition: all 300ms;
+    transition: all $slow;
   }
 
   &__name, &__profession {
@@ -48,7 +49,7 @@
     user-select: none;
     text-align: center;
     color: var(--text-color);
-    transition: all 300ms;
+    transition: all $slow;
   }
 
   &__name {
