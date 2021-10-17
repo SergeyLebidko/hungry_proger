@@ -33,7 +33,7 @@
   &__pulsar {
     width: 2em;
     height: 2em;
-    background-color: orangered;
+    background-color: var(--accent);
     border-radius: 50%;
     animation-name: pulse;
     animation-duration: 500ms;

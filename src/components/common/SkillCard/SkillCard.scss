@@ -38,7 +38,7 @@
       transition: all $fast;
 
       &:hover {
-        border-left: 4px solid orangered;
+        border-left: 4px solid var(--accent);
         padding-left: 0.5em;
       }
     }

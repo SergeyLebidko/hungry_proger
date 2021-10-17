@@ -14,6 +14,7 @@ export const D_COLORS = 'dc';
 
 export const COLOR_PRESETS = {
     [L_COLORS]: {
+        '--accent': 'orangered',                                 // Цветовой акцент
         '--back1': 'whitesmoke',                                 // Основной цвет фона
         '--back2': 'white',                                      // Дополнительный цвет фона
         '--text-color': 'black',                                 // Цвет текста
@@ -24,6 +25,7 @@ export const COLOR_PRESETS = {
         '--card-shadow': '0 3px 10px 0 rgba(0, 0, 0, 0.15)',     // Пресет теней для карточек
     },
     [D_COLORS]: {
+        '--accent': 'orangered',
         '--back1': 'rgb(60, 60, 70)',
         '--back2': 'rgb(80, 80, 90)',
         '--text-color': 'white',
