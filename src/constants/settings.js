@@ -8,3 +8,15 @@ export const MAIN_MODE = 'mm';
 export const ABOUT_MODE = 'am';
 export const SKILLS_MODE = 'sm';
 export const PROJECTS_MODE = 'pm';
+
+export const L_COLORS = 'lc';
+export const D_COLORS = 'dc';
+
+export const COLOR_PRESETS = {
+    [L_COLORS]:{
+        '--back1': 'whitesmoke'
+    },
+    [D_COLORS]:{
+        '--back1': 'rgb(50, 50, 50)'
+    }
+}
