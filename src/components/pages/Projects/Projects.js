@@ -23,7 +23,7 @@ function Projects() {
                     Здесь приведена для примера лишь небольшая часть из более чем семидесяти выполненных мной
                     в разное время pet-проектов.
                 </p>
-                <ProjectsFilter techList={extractProjectsTechList(projects)} setFilter={setTechFilter}/>
+                <ProjectsFilter techList={extractProjectsTechList(projects)} setFilteredValues={setTechFilter}/>
                 <ul className="projects__project_list">
                     {createCardList()}
                 </ul>

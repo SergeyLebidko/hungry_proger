@@ -1,51 +1,42 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import PropTypes from 'prop-types';
 import classNames from "classnames";
 import "./ProjectsFilter.scss";
 
-function ProjectsFilter({techList, setFilter}) {
+function ProjectsFilter({techList, setFilteredValues}) {
     const [all, setAll] = useState(true);
-    const [items, setItems] = useState(techList.map(tech => ({select: false, tech})));
-
-    const selects = useCallback(({select}) => select, []);
-    const itemsWithNotSelects = useCallback(({tech}) => ({select: false, tech}), []);
-    const techs = useCallback(({tech}) => tech, []);
+    const [flags, setFlags] = useState(Array(techList.length).fill(false));
 
     useEffect(() => {
         if (all) {
-            setFilter(items.map(techs));
+            setFilteredValues(techList);
         } else {
-            setFilter(items.reduce((res, item) => item.select ? [item.tech, ...res] : res, []));
+            setFilteredValues(techList.filter((tech, index) => flags[index]));
         }
-    }, [all, items, setFilter]);
+    }, [all, flags, setFilteredValues]);
 
     const allClickHandler = () => {
         setAll(true);
-        setItems(items => items.map(itemsWithNotSelects));
-    };
-
-    const itemClickHandler = tech => {
-        let nextItems = items.map(item => {
-            if (item.tech !== tech) return item;
-            return {select: !item.select, tech}
-        });
-        if (nextItems.every(selects)) nextItems = nextItems.map(itemsWithNotSelects);
-        const nextAll = !nextItems.some(selects);
-
-        setAll(nextAll);
-        setItems(nextItems);
+        setFlags(Array(techList.length).fill(false));
     }
 
-    const getItemClasses = select => classNames("projects_filter__item", {"selected_projects_filter_item": select});
+    const techClickHandler = tech => {
+        let nextFlags = flags.map((flag, index) => techList[index] === tech ? !flag : flag);
+        const nextAll = !nextFlags.some(f => f) || nextFlags.every(f => f);
+        if (nextAll) nextFlags = Array(techList.length).fill(false);
+        setAll(nextAll);
+        setFlags(nextFlags);
+    }
+
+    const getItemClasses = flag => classNames("projects_filter__item", {"selected_projects_filter_item": flag});
 
     return (
         <ul className="projects_filter">
             <li key="all" className={getItemClasses(all)} onClick={allClickHandler}>Все технологии</li>
-            {items.map(
-                ({tech, select}) =>
-                    <li key={tech} className={getItemClasses(select)} onClick={() => itemClickHandler(tech)}>
-                        {tech}
-                    </li>
+            {techList.map((tech, index) =>
+                <li key={tech} className={getItemClasses(flags[index])} onClick={() => techClickHandler(tech)}>
+                    {tech}
+                </li>
             )}
         </ul>
     );
@@ -53,7 +44,7 @@ function ProjectsFilter({techList, setFilter}) {
 
 ProjectsFilter.propTypes = {
     techList: PropTypes.arrayOf(PropTypes.string),
-    setFilter: PropTypes.func
+    setFilteredValues: PropTypes.func
 }
 
 export default ProjectsFilter;
