@@ -23,6 +23,8 @@ export const COLOR_PRESETS = {
         '--icon-color': 'rgb(100, 100, 100)',                    // Цвет иконок до наведения
         '--button-shadow': '0 2px 5px 0 rgba(0, 0, 0, 0.3)',     // Пресет теней для кнопок
         '--card-shadow': '0 3px 10px 0 rgba(0, 0, 0, 0.15)',     // Пресет теней для карточек
+        '--thumb-color': 'lightgray',                            // Цвет скролла
+        '--thumb-hover-color': 'gray'                            // Цвет скролла при наведении на компонент
     },
     [D_COLORS]: {
         '--accent': 'orangered',
@@ -34,5 +36,7 @@ export const COLOR_PRESETS = {
         '--icon-color': 'rgb(240, 240, 240)',
         '--button-shadow': '0 5px 10px 0 rgba(0, 0, 0, 0.6)',
         '--card-shadow': '0 3px 10px 0 rgba(0, 0, 0, 0.8)',
+        '--thumb-color': 'rgb(90, 90, 100)',
+        '--thumb-hover-color': 'gray'
     }
 }

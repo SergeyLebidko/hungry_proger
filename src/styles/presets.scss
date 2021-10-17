@@ -105,10 +105,10 @@ $slow: 300ms;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: lightgray;
+    background-color: var(--thumb-color);
   }
 
   &:hover::-webkit-scrollbar-thumb {
-    background-color: gray;
+    background-color: var(--thumb-hover-color);
   }
 }
