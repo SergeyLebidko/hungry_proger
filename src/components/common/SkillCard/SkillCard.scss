@@ -6,6 +6,7 @@
   box-shadow: var(--card-shadow);
   border: 1px solid var(--separator);
   background-color: var(--back2);
+  transition: all $slow;
 
   &__card_header {
     display: flex;
@@ -22,6 +23,7 @@
       font-size: 1.5em;
       user-select: none;
       color: var(--text-color);
+      transition: all $slow;
     }
   }
 
@@ -37,7 +39,7 @@
       cursor: pointer;
       color: var(--text-color);
       user-select: none;
-      transition: all $fast;
+      transition: all $slow;
 
       &:hover {
         border-left: 4px solid var(--accent);
