@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import classNames from "classnames";
 import "./ColorSwitcher.scss";
 
@@ -7,6 +7,16 @@ const D_COLORS = 'dc';
 
 function ColorSwitcher() {
     const [mode, setMode] = useState(L_COLORS);
+
+    useEffect(() => {
+        const root = document.documentElement;
+        if (mode === L_COLORS) {
+            root.style.setProperty('--back1', 'whitesmoke');
+        }
+        if (mode === D_COLORS) {
+            root.style.setProperty('--back1', 'dimgray');
+        }
+    }, [mode]);
 
     const switchMode = () => setMode(oldMode => ({[D_COLORS]: L_COLORS, [L_COLORS]: D_COLORS}[oldMode]));
 

@@ -8,6 +8,7 @@
   bottom: 0;
 
   background-color: var(--back1);
+  transition: all 200ms;
 
   @include scroll;
   padding: 8em 1em 5em 1em;
