@@ -1,8 +1,72 @@
 @import "../../../styles/presets";
 
+@keyframes rise_from_right {
+  from {
+    left: 100vw;
+  }
+
+  to {
+    left: 0;
+  }
+}
+
+@keyframes leave_to_left {
+  from {
+    left: 0;
+  }
+
+  to {
+    left: -100vw;
+  }
+}
+
+@keyframes rise_from_left {
+  from {
+    left: -100vw;
+  }
+
+  to {
+    left: 0;
+  }
+}
+
+@keyframes leave_to_right {
+  from {
+    left: 0;
+  }
+
+  to {
+    left: 100vw;
+  }
+}
+
 .page_wrapper {
   position: absolute;
   top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+  z-index: 0;
+}
+
+.rise_from_right_wrapper, .leave_to_left_wrapper, .rise_from_left_wrapper, .leave_to_right_wrapper {
+  animation-duration: 1000ms;
+  animation-fill-mode: both;
+  z-index: 1;
+}
+
+.rise_from_right_wrapper {
+  animation-name: rise_from_right;
+}
+
+.leave_to_left_wrapper {
+  animation-name: leave_to_left;
+}
+
+.rise_from_left_wrapper {
+  animation-name: rise_from_left;
+}
+
+.leave_to_right_wrapper {
+  animation-name: leave_to_right;
 }

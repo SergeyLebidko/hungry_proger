@@ -1,22 +1,30 @@
 import React from "react";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./PageWrapper.scss";
 
-function PageWrapper({component, line}) {
-    let inline = {zIndex: 0, left: 0};
+const RISE_FROM_RIGHT = 'rfr';
+const LEAVE_TO_LEFT = 'ltl';
+const RISE_FROM_LEFT = 'rfl';
+const LEAVE_TO_RIGHT = 'ltr';
 
-    if (line !== null && line !== undefined) inline = {...inline, zIndex: 1, left: `${line}vw`};
-
-    return (
-        <div className="page_wrapper" style={inline}>
-            {component}
-        </div>
+function PageWrapper({component, display}) {
+    const wrapperClasses = classNames(
+        "page_wrapper",
+        {
+            "rise_from_right_wrapper": display === RISE_FROM_RIGHT,
+            "leave_to_left_wrapper": display === LEAVE_TO_LEFT,
+            "rise_from_left_wrapper": display === RISE_FROM_LEFT,
+            "leave_to_right_wrapper": display === LEAVE_TO_RIGHT
+        }
     );
+
+    return <div className={wrapperClasses}>{component}</div>;
 }
 
 PageWrapper.propTypes = {
     component: PropTypes.elementType,
-    line: PropTypes.number
+    display: PropTypes.string
 }
 
 export default PageWrapper;
