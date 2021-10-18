@@ -1,16 +1,13 @@
 import React, {useEffect, useState} from "react";
 import classNames from "classnames";
 import {L_COLORS, D_COLORS, COLOR_PRESETS} from "../../../constants/settings";
+import {applyPreset} from "../../../utils/utils";
 import "./ColorSwitcher.scss";
 
 function ColorSwitcher() {
     const [mode, setMode] = useState(L_COLORS);
 
-    useEffect(() => {
-        const root = document.documentElement;
-        const preset = COLOR_PRESETS[mode];
-        for (const key of Object.keys(preset)) root.style.setProperty(key, preset[key]);
-    }, [mode]);
+    useEffect(() => applyPreset(COLOR_PRESETS[mode]), [mode]);
 
     const switchMode = () => setMode(oldMode => ({[D_COLORS]: L_COLORS, [L_COLORS]: D_COLORS}[oldMode]));
 
