@@ -5,8 +5,6 @@ import About from "../pages/About/About";
 import Skills from "../pages/Skills/Skills";
 import Projects from "../pages/Projects/Projects";
 import PageWrapper, {
-    FRONT,
-    BACK,
     RISE_FROM_LEFT,
     RISE_FROM_RIGHT,
     LEAVE_TO_LEFT,
@@ -50,8 +48,6 @@ function App() {
                 if (wrapperMode === nextMode) return RISE_FROM_LEFT;
             }
         }
-        if (wrapperMode === mode) return FRONT;
-        return BACK;
     }
 
     const toMain = () => switchMode(MAIN_MODE);
@@ -61,10 +57,18 @@ function App() {
 
     return (
         <main className="app">
-            <PageWrapper display={getDisplay(MAIN_MODE)} component={<Main toAbout={toAbout}/>}/>
-            <PageWrapper display={getDisplay(ABOUT_MODE)} component={<About/>}/>
-            <PageWrapper display={getDisplay(SKILLS_MODE)} component={<Skills/>}/>
-            <PageWrapper display={getDisplay(PROJECTS_MODE)} component={<Projects/>}/>
+            {(mode === MAIN_MODE || nextMode === MAIN_MODE) &&
+            <PageWrapper display={getDisplay(MAIN_MODE)} component={<Main toAbout={toAbout}/>}/>}
+
+            {(mode === ABOUT_MODE || nextMode === ABOUT_MODE) &&
+            <PageWrapper display={getDisplay(ABOUT_MODE)} component={<About/>}/>}
+
+            {(mode === SKILLS_MODE || nextMode === SKILLS_MODE) &&
+            <PageWrapper display={getDisplay(SKILLS_MODE)} component={<Skills/>}/>}
+
+            {(mode === PROJECTS_MODE || nextMode === PROJECTS_MODE) &&
+            <PageWrapper display={getDisplay(PROJECTS_MODE)} component={<Projects/>}/>}
+
             <Menu mode={mode} toMain={toMain} toAbout={toAbout} toSkills={toSkills} toProjects={toProjects}/>
         </main>
     );
