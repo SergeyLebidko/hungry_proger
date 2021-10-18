@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useState} from 'react';
 import Menu from "../common/Menu/Menu";
 import Main from "../pages/Main/Main";
 import About from "../pages/About/About";
@@ -20,11 +20,6 @@ function App() {
     const [mode, setMode] = useState(MAIN_MODE);
     const [nextMode, setNextMode] = useState(null);
 
-    const getDirection = useCallback((cur, next) => {
-        const MODE_LIST = [MAIN_MODE, ABOUT_MODE, SKILLS_MODE, PROJECTS_MODE];
-        return MODE_LIST.indexOf(next) > MODE_LIST.indexOf(cur) ? TO_LEFT : TO_RIGHT;
-    }, []);
-
     const switchMode = required => {
         if (mode && nextMode) return;
         if (mode === required) return;
@@ -36,17 +31,19 @@ function App() {
         }, 500);
     }
 
-    const getDisplay = wrapperMode => {
-        if (nextMode) {
-            const direction = getDirection(mode, nextMode);
-            if (direction === TO_LEFT) {
-                if (wrapperMode === mode) return LEAVE_TO_LEFT;
-                if (wrapperMode === nextMode) return RISE_FROM_RIGHT;
-            }
-            if (direction === TO_RIGHT) {
-                if (wrapperMode === mode) return LEAVE_TO_RIGHT;
-                if (wrapperMode === nextMode) return RISE_FROM_LEFT;
-            }
+    const getWrapperDirection = wrapperMode => {
+        if (!nextMode) return;
+
+        const MODE_LIST = [MAIN_MODE, ABOUT_MODE, SKILLS_MODE, PROJECTS_MODE];
+        const direction = MODE_LIST.indexOf(nextMode) > MODE_LIST.indexOf(mode) ? TO_LEFT : TO_RIGHT;
+
+        if (direction === TO_LEFT) {
+            if (wrapperMode === mode) return LEAVE_TO_LEFT;
+            if (wrapperMode === nextMode) return RISE_FROM_RIGHT;
+        }
+        if (direction === TO_RIGHT) {
+            if (wrapperMode === mode) return LEAVE_TO_RIGHT;
+            if (wrapperMode === nextMode) return RISE_FROM_LEFT;
         }
     }
 
@@ -58,16 +55,16 @@ function App() {
     return (
         <main className="app">
             {(mode === MAIN_MODE || nextMode === MAIN_MODE) &&
-            <PageWrapper display={getDisplay(MAIN_MODE)} component={<Main toAbout={toAbout}/>}/>}
+            <PageWrapper direction={getWrapperDirection(MAIN_MODE)} component={<Main toAbout={toAbout}/>}/>}
 
             {(mode === ABOUT_MODE || nextMode === ABOUT_MODE) &&
-            <PageWrapper display={getDisplay(ABOUT_MODE)} component={<About/>}/>}
+            <PageWrapper direction={getWrapperDirection(ABOUT_MODE)} component={<About/>}/>}
 
             {(mode === SKILLS_MODE || nextMode === SKILLS_MODE) &&
-            <PageWrapper display={getDisplay(SKILLS_MODE)} component={<Skills/>}/>}
+            <PageWrapper direction={getWrapperDirection(SKILLS_MODE)} component={<Skills/>}/>}
 
             {(mode === PROJECTS_MODE || nextMode === PROJECTS_MODE) &&
-            <PageWrapper display={getDisplay(PROJECTS_MODE)} component={<Projects/>}/>}
+            <PageWrapper direction={getWrapperDirection(PROJECTS_MODE)} component={<Projects/>}/>}
 
             <Menu mode={mode} toMain={toMain} toAbout={toAbout} toSkills={toSkills} toProjects={toProjects}/>
         </main>
