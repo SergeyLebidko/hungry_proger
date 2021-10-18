@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import Menu from "../common/Menu/Menu";
 import Main from "../pages/Main/Main";
 import About from "../pages/About/About";
@@ -15,11 +15,17 @@ import PageWrapper, {
 import {MAIN_MODE, ABOUT_MODE, SKILLS_MODE, PROJECTS_MODE} from "../../constants/settings";
 import "./App.scss";
 
+const TO_LEFT = 'tl';
+const TO_RIGHT = 'tr';
+
 function App() {
     const [mode, setMode] = useState(MAIN_MODE);
     const [nextMode, setNextMode] = useState(null);
 
-    const MODE_LIST = [MAIN_MODE, ABOUT_MODE, SKILLS_MODE, PROJECTS_MODE];
+    const getDirection = useCallback((cur, next) => {
+        const MODE_LIST = [MAIN_MODE, ABOUT_MODE, SKILLS_MODE, PROJECTS_MODE];
+        return MODE_LIST.indexOf(next) > MODE_LIST.indexOf(cur) ? TO_LEFT : TO_RIGHT;
+    }, []);
 
     const switchMode = required => {
         if (mode && nextMode) return;
@@ -34,12 +40,12 @@ function App() {
 
     const getDisplay = wrapperMode => {
         if (nextMode) {
-            const direction = MODE_LIST.indexOf(nextMode) > MODE_LIST.indexOf(mode) ? 'l' : 'r';
-            if (direction === 'l') {
+            const direction = getDirection(mode, nextMode);
+            if (direction === TO_LEFT) {
                 if (wrapperMode === mode) return LEAVE_TO_LEFT;
                 if (wrapperMode === nextMode) return RISE_FROM_RIGHT;
             }
-            if (direction === 'r') {
+            if (direction === TO_RIGHT) {
                 if (wrapperMode === mode) return LEAVE_TO_RIGHT;
                 if (wrapperMode === nextMode) return RISE_FROM_LEFT;
             }
