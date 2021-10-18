@@ -8,7 +8,7 @@ export const LEAVE_TO_LEFT = 'ltl';
 export const RISE_FROM_LEFT = 'rfl';
 export const LEAVE_TO_RIGHT = 'ltr';
 
-function PageWrapper({component, direction}) {
+function PageWrapper({children, direction}) {
     const wrapperClasses = classNames(
         "page_wrapper",
         {
@@ -18,11 +18,11 @@ function PageWrapper({component, direction}) {
             "leave_to_right_wrapper": direction === LEAVE_TO_RIGHT
         });
 
-    return <div className={wrapperClasses}>{component}</div>;
+    return <div className={wrapperClasses}>{children}</div>;
 }
 
 PageWrapper.propTypes = {
-    component: PropTypes.object,
+    children: PropTypes.object,
     direction: PropTypes.string
 }
 

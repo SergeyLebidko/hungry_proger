@@ -52,17 +52,17 @@ function App() {
     const toSkills = () => switchMode(SKILLS_MODE);
     const toProjects = () => switchMode(PROJECTS_MODE);
 
-    const hasMain = () => mode === MAIN_MODE || nextMode === MAIN_MODE;
-    const hasAbout = () => mode === ABOUT_MODE || nextMode === ABOUT_MODE;
-    const hasSkills = () => mode === SKILLS_MODE || nextMode === SKILLS_MODE;
-    const hasProjects = () => mode === PROJECTS_MODE || nextMode === PROJECTS_MODE;
+    const hasMain = mode === MAIN_MODE || nextMode === MAIN_MODE;
+    const hasAbout = mode === ABOUT_MODE || nextMode === ABOUT_MODE;
+    const hasSkills = mode === SKILLS_MODE || nextMode === SKILLS_MODE;
+    const hasProjects = mode === PROJECTS_MODE || nextMode === PROJECTS_MODE;
 
     return (
         <main className="app">
-            {hasMain() && <PageWrapper direction={getDirection(MAIN_MODE)} component={<Main toAbout={toAbout}/>}/>}
-            {hasAbout() && <PageWrapper direction={getDirection(ABOUT_MODE)} component={<About/>}/>}
-            {hasSkills() && <PageWrapper direction={getDirection(SKILLS_MODE)} component={<Skills/>}/>}
-            {hasProjects() && <PageWrapper direction={getDirection(PROJECTS_MODE)} component={<Projects/>}/>}
+            {hasMain && <PageWrapper direction={getDirection(MAIN_MODE)}><Main toAbout={toAbout}/></PageWrapper>}
+            {hasAbout && <PageWrapper direction={getDirection(ABOUT_MODE)}><About/></PageWrapper>}
+            {hasSkills && <PageWrapper direction={getDirection(SKILLS_MODE)}><Skills/></PageWrapper>}
+            {hasProjects && <PageWrapper direction={getDirection(PROJECTS_MODE)}><Projects/></PageWrapper>}
             <Menu mode={mode} toMain={toMain} toAbout={toAbout} toSkills={toSkills} toProjects={toProjects}/>
         </main>
     );
