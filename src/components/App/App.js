@@ -6,6 +6,7 @@ import Skills from "../pages/Skills/Skills";
 import Projects from "../pages/Projects/Projects";
 import {MAIN_MODE, ABOUT_MODE, SKILLS_MODE, PROJECTS_MODE} from "../../constants/settings";
 import "./App.scss";
+import PageWrapper from "../common/PageWrapper/PageWrapper";
 
 function App() {
     const [mode, setMode] = useState(MAIN_MODE);
@@ -17,10 +18,10 @@ function App() {
 
     return (
         <main className="app">
-            {mode === MAIN_MODE && <Main toAbout={toAbout}/>}
-            {mode === ABOUT_MODE && <About/>}
-            {mode === SKILLS_MODE && <Skills/>}
-            {mode === PROJECTS_MODE && <Projects/>}
+            {mode === MAIN_MODE && <PageWrapper component={<Main toAbout={toAbout}/>}/>}
+            {mode === ABOUT_MODE && <PageWrapper component={<About/>}/>}
+            {mode === SKILLS_MODE && <PageWrapper component={<Skills/>}/>}
+            {mode === PROJECTS_MODE && <PageWrapper component={<Projects/>}/>}
             <Menu mode={mode} toMain={toMain} toAbout={toAbout} toSkills={toSkills} toProjects={toProjects}/>
         </main>
     );
