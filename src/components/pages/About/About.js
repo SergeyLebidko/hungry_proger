@@ -1,11 +1,11 @@
 import React from "react";
 import Contacts from "../../common/Contacts/Contacts";
-import {ABOUT_MODE, RESUME_HREF} from "../../../constants/settings";
-import "./About.scss";
+import {ABOUT_MODE, DEFAULT_ANIMATION_DELAY, RESUME_HREF} from "../../../constants/settings";
 import {useAnimation} from "../../../utils/hooks";
+import "./About.scss";
 
 function About() {
-    const buttonInline = useAnimation(ABOUT_MODE, "button_rise");
+    const buttonInline = useAnimation(ABOUT_MODE, "button_rise", DEFAULT_ANIMATION_DELAY + 100);
 
     return (
         <section className="about">
