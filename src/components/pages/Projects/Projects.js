@@ -4,6 +4,8 @@ import ProjectCard from "../../common/ProjectCard/ProjectCard";
 import ProjectFilter from "../../common/ProjectFilter/ProjectFilter";
 import {extractProjectsTechList} from "../../../utils/utils";
 import "./Projects.scss";
+import {useAnimationList} from "../../../utils/hooks";
+import {ANIMATION_TIMEOUT, PROJECTS_MODE} from "../../../constants/settings";
 
 function Projects() {
     const [projects] = useState(data.projects);
@@ -11,8 +13,15 @@ function Projects() {
 
     const hasShow = project => project.tech.filter(tech => techFilter.includes(tech)).length > 0;
 
+    const delays = Array(projects.length).fill(0).map((value, index) => ANIMATION_TIMEOUT + 100 * index);
+    const cardsInline = useAnimationList(PROJECTS_MODE, "card_rise", delays);
+
     const createCardList = () => projects.reduce(
-        (res, item) => hasShow(item) ? [...res, <ProjectCard key={item.title} data={item}/>] : res, []
+        (res, item, index) => hasShow(item) ?
+            [...res, <ProjectCard key={item.title} data={item} cardInline={cardsInline[index]}/>]
+            :
+            res,
+        []
     );
 
     return (

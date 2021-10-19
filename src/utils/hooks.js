@@ -18,7 +18,7 @@ export function useAnimationList(mode, animationName, delays) {
     const renderContext = useContext(renderCountContext);
     const renderCount = renderContext[mode];
 
-    if (renderCount > 1) return {};
+    if (renderCount > 1) return [];
 
     const result = [];
     for (const delay of delays) {

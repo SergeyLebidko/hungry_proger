@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import TechLabel from "../TechLabel/TechLabel";
 import "./ProjectCard.scss";
 
-function ProjectCard({data}) {
+function ProjectCard({data, cardInline={}}) {
     return (
-        <li className="project_card">
+        <li className="project_card" style={cardInline}>
             <a className="project_card__title_link" href={data.git} target="_blank" rel="noopener noreferrer">
                 {data.title}
             </a>
@@ -23,7 +23,8 @@ ProjectCard.propTypes = {
         title: PropTypes.string,
         description: PropTypes.string,
         tech: PropTypes.arrayOf(PropTypes.string)
-    })
+    }),
+    cardInline: PropTypes.object
 }
 
 export default ProjectCard;
