@@ -1,15 +1,20 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import data from "../../../content/data.json";
 import ProjectCard from "../../common/ProjectCard/ProjectCard";
 import ProjectFilter from "../../common/ProjectFilter/ProjectFilter";
 import {extractProjectsTechList} from "../../../utils/utils";
-import "./Projects.scss";
 import {useAnimationList} from "../../../utils/hooks";
 import {DEFAULT_ANIMATION_DELAY, PROJECTS_MODE} from "../../../constants/settings";
+import "./Projects.scss";
 
 function Projects() {
     const [projects] = useState(data.projects);
     const [techFilter, setTechFilter] = useState(extractProjectsTechList(projects));
+    const [alreadyFiltered, setAlreadyFiltered] = useState(false);
+
+    useEffect(() => {
+        if (techFilter.length < extractProjectsTechList(projects).length) setAlreadyFiltered(true);
+    }, [techFilter.length]);
 
     const hasShow = project => project.tech.filter(tech => techFilter.includes(tech)).length > 0;
 
@@ -18,7 +23,7 @@ function Projects() {
 
     const createCardList = () => projects.reduce(
         (res, item, index) => hasShow(item) ?
-            [...res, <ProjectCard key={item.title} data={item} cardInline={cardsInline[index]}/>]
+            [...res, <ProjectCard key={item.title} data={item} cardInline={alreadyFiltered ? {} : cardsInline[index]}/>]
             :
             res,
         []
