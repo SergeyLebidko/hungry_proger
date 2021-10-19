@@ -119,6 +119,21 @@ $slow: 300ms;
   }
 }
 
+// Анимация появления меток
+@keyframes label_rise {
+  0% {
+    transform: perspective(100px) rotateX(90deg);
+  }
+
+  80% {
+    transform: perspective(100px) rotateX(-20deg);
+  }
+
+  100% {
+    transform: perspective(0) rotateX(0);
+  }
+}
+
 // Миксин для прокручиваемых элементов
 @mixin scroll {
   overflow: auto;

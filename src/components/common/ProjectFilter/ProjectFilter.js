@@ -2,10 +2,15 @@ import React, {useEffect, useState} from "react";
 import PropTypes from 'prop-types';
 import ProjectFilterLabel from "../ProjectFilterLabel/ProjectFilterLabel";
 import "./ProjectFilter.scss";
+import {ANIMATION_TIMEOUT, PROJECTS_MODE} from "../../../constants/settings";
+import {useAnimationList} from "../../../utils/hooks";
 
 function ProjectFilter({techList, setFilteredValues}) {
     const [all, setAll] = useState(true);
     const [flags, setFlags] = useState(Array(techList.length).fill(false));
+
+    const delays = Array(flags.length + 1).fill(0).map((value, index) => ANIMATION_TIMEOUT + 50 * (index + 1));
+    const labelsInline = useAnimationList(PROJECTS_MODE, "label_rise", delays);
 
     useEffect(() => {
         if (all) {
@@ -30,13 +35,19 @@ function ProjectFilter({techList, setFilteredValues}) {
 
     return (
         <ul className="project_filter">
-            <ProjectFilterLabel tech="Все технологии" hasSelected={all} clickHandler={allClickHandler}/>
+            <ProjectFilterLabel
+                tech="Все технологии"
+                hasSelected={all}
+                clickHandler={allClickHandler}
+                labelInline={labelsInline[0]}
+            />
             {techList.map((tech, index) =>
                 <ProjectFilterLabel
                     key={tech}
                     tech={tech}
                     hasSelected={flags[index]}
                     clickHandler={() => techClickHandler(tech)}
+                    labelInline={labelsInline[index + 1]}
                 />
             )}
         </ul>
