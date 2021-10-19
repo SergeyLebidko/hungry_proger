@@ -18,7 +18,7 @@
   bottom: 0;
 
   background-color: var(--back1);
-  transition: all $slow;
+  transition: all $slow * 2;
 
   canvas {
     position: absolute;
