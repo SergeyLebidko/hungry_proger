@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
+import {SLIDE_TIMEOUT} from "../../../constants/settings";
 import "./PageWrapper.scss";
 
 export const RISE_FROM_RIGHT = 'rfr';
@@ -18,7 +19,9 @@ function PageWrapper({children, direction}) {
             "leave_to_right_wrapper": direction === LEAVE_TO_RIGHT
         });
 
-    return <div className={wrapperClasses}>{children}</div>;
+    const wrapperInline = direction ? {animationDuration: `${SLIDE_TIMEOUT}ms`} : {};
+
+    return <div className={wrapperClasses} style={wrapperInline}>{children}</div>;
 }
 
 PageWrapper.propTypes = {

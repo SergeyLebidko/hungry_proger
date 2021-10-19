@@ -10,7 +10,7 @@ import PageWrapper, {
     LEAVE_TO_LEFT,
     LEAVE_TO_RIGHT
 } from "../common/PageWrapper/PageWrapper";
-import {MAIN_MODE, ABOUT_MODE, SKILLS_MODE, PROJECTS_MODE} from "../../constants/settings";
+import {MAIN_MODE, ABOUT_MODE, SKILLS_MODE, PROJECTS_MODE, SLIDE_TIMEOUT} from "../../constants/settings";
 import "./App.scss";
 
 const TO_LEFT = 'tl';
@@ -28,7 +28,7 @@ function App() {
         setTimeout(() => {
             setMode(required);
             setNextMode(null);
-        }, 500);
+        }, SLIDE_TIMEOUT);
     }
 
     const getDirection = wrapperMode => {
