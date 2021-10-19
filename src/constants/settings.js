@@ -17,6 +17,11 @@ export const DEFAULT_ANIMATION_DELAY = 500;
 export const L_COLORS = 'lc';
 export const D_COLORS = 'dc';
 
+export const PARTICLE_COLOR_SELECTOR = {
+    [L_COLORS]: 'rgb(215, 215, 235)',
+    [D_COLORS]: 'rgb(90, 90, 100)'
+}
+
 class ColorController {
     constructor() {
         this.data = {

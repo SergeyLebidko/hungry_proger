@@ -1,5 +1,15 @@
 @import "../../../styles/presets";
 
+@keyframes canvas_rise {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 .background {
   position: absolute;
   top: 0;
@@ -9,4 +19,16 @@
 
   background-color: var(--back1);
   transition: all $slow;
+
+  canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    animation-name: canvas_rise;
+    animation-duration: $animation_duration * 12;
+    animation-fill-mode: backwards;
+  }
 }
