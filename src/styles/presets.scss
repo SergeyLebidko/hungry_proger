@@ -106,6 +106,19 @@ $slow: 300ms;
   }
 }
 
+// Анимация появления карточек
+@keyframes card_rise {
+  from {
+    transform: translateY(50px) scale(0.8);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
 // Миксин для прокручиваемых элементов
 @mixin scroll {
   overflow: auto;
