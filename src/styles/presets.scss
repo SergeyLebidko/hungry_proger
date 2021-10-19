@@ -17,8 +17,6 @@ $animation_duration: 500ms;
   border: 1px solid var(--border-color);
   border-radius: 3px;
   padding: 5px 25px;
-  font-family: Roboto, 'sans-serif';
-  font-weight: 300;
   font-size: 1.2em;
   color: var(--text-color);
   background-color: var(--back2);
@@ -42,8 +40,6 @@ $animation_duration: 500ms;
   border: 1px solid var(--border-color);
   border-radius: 3px;
   padding: 0;
-  font-family: Roboto, 'sans-serif';
-  font-weight: 300;
   font-size: 1.2em;
   background-color: var(--back2);
   box-shadow: var(--button-shadow);
@@ -75,8 +71,6 @@ $animation_duration: 500ms;
 
 // Общие стили для заголовков разделов
 .section_header {
-  font-family: Roboto, 'sans-serif';
-  font-weight: 300;
   font-size: 1.3em;
   text-align: center;
   color: var(--text-color);
