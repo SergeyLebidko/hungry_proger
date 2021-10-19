@@ -13,6 +13,11 @@ function ColorSwitcher() {
             return;
         }
         colorController.theme = mode;
+
+        const root = document.documentElement;
+        const event = new CustomEvent("switch_color", {detail: {mode}});
+        root.dispatchEvent(event);
+
     }, [mode]);
 
     const switchMode = () => setMode(oldMode => ({[D_COLORS]: L_COLORS, [L_COLORS]: D_COLORS}[oldMode]));
