@@ -1,9 +1,12 @@
 import React from "react";
 import Contacts from "../../common/Contacts/Contacts";
-import {RESUME_HREF} from "../../../constants/settings";
+import {ABOUT_MODE, RESUME_HREF} from "../../../constants/settings";
 import "./About.scss";
+import {useAnimation} from "../../../utils/hooks";
 
 function About() {
+    const buttonInline = useAnimation(ABOUT_MODE, "button_rise");
+
     return (
         <section className="about">
             <div className="about__content">
@@ -32,7 +35,7 @@ function About() {
                     которые я создавал по мере своего обучения и приобретения опыта.
                 </p>
                 <div className="about__links">
-                    <button className="linked_button">
+                    <button className="linked_button" style={buttonInline}>
                         <a href={RESUME_HREF} target="_blank" rel="noopener noreferrer">Мое резюме</a>
                     </button>
                     <Contacts/>
