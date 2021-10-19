@@ -14,22 +14,20 @@ export function useAnimation(mode, animationName, delay = null, duration = null)
     } : {};
 }
 
-export function useAnimationList(mode, animationName, delays, durations = null) {
+export function useAnimationList(mode, animationName, delays) {
     const renderContext = useContext(renderCountContext);
     const renderCount = renderContext[mode];
 
     if (renderCount > 1) return [];
 
     const result = [];
-    let index = 0;
     for (const delay of delays) {
         result.push({
             animationName,
-            animationDuration: durations !== null ? `${durations[index]}ms` : `${DEFAULT_ANIMATION_DURATION}ms`,
+            animationDuration: `${DEFAULT_ANIMATION_DURATION}ms`,
             animationDelay: `${delay}ms`,
             animationFillMode: 'backwards'
         });
-        index++;
     }
     return result;
 }
