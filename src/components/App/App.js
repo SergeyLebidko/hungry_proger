@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import Background from "../common/Background/Background";
 import Menu from "../common/Menu/Menu";
 import Main from "../pages/Main/Main";
 import About from "../pages/About/About";
@@ -69,6 +70,7 @@ function App() {
 
     return (
         <main className="app">
+            <Background/>
             <renderCountContext.Provider value={renderCount}>
                 {hasMain && <PageWrapper direction={getDirection(MAIN_MODE)}><Main toAbout={toAbout}/></PageWrapper>}
                 {hasAbout && <PageWrapper direction={getDirection(ABOUT_MODE)}><About/></PageWrapper>}

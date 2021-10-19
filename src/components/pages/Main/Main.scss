@@ -45,9 +45,6 @@
   right: 0;
   bottom: 0;
 
-  background-color: var(--back1);
-  transition: all $slow;
-
   @include scroll;
   padding: 8em 1em 5em 1em;
 
@@ -103,6 +100,14 @@
 
   &__more_button {
     margin-top: 1em;
+  }
+
+  &__canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
   }
 }
 
