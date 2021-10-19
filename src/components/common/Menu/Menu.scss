@@ -1,6 +1,16 @@
 @import "../../../styles/presets";
 @import "../../common/MenuButton/MenuButton";
 
+@keyframes menu_rise {
+  from {
+    top: -3em;
+  }
+
+  to {
+    top: 0;
+  }
+}
+
 .menu {
   position: absolute;
   top: 0;
@@ -14,6 +24,10 @@
   transition: all $slow;
   overflow: hidden;
   padding: 0;
+
+  animation-name: menu_rise;
+  animation-fill-mode: backwards;
+  animation-duration: $animation_duration;
 
   &__items {
     position: absolute;
