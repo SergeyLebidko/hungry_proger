@@ -4,6 +4,7 @@
       "title": "JavaScript",
       "tech": [
         "React",
+        "React Hooks",
         "Redux",
         "Thunk",
         "React Router",
