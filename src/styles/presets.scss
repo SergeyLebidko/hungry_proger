@@ -95,6 +95,17 @@ $slow: 300ms;
   }
 }
 
+// Анимация появления кнопок
+@keyframes button_rise {
+  from {
+    transform: perspective(100px) rotateX(90deg);
+  }
+
+  to {
+    transform: perspective(0) rotateX(0);
+  }
+}
+
 // Миксин для прокручиваемых элементов
 @mixin scroll {
   overflow: auto;

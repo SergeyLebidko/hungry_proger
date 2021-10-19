@@ -11,6 +11,7 @@ import PageWrapper, {
     LEAVE_TO_RIGHT
 } from "../common/PageWrapper/PageWrapper";
 import {MAIN_MODE, ABOUT_MODE, SKILLS_MODE, PROJECTS_MODE, SLIDE_TIMEOUT} from "../../constants/settings";
+import {renderCountContext} from "../../utils/contexts";
 import "./App.scss";
 
 const TO_LEFT = 'tl';
@@ -20,9 +21,18 @@ function App() {
     const [mode, setMode] = useState(MAIN_MODE);
     const [nextMode, setNextMode] = useState(null);
 
+    const [renderCount, setRenderCount] = useState({
+        [MAIN_MODE]: 1,
+        [ABOUT_MODE]: 0,
+        [SKILLS_MODE]: 0,
+        [PROJECTS_MODE]: 0
+    });
+
     const switchMode = required => {
         if (mode && nextMode) return;
         if (mode === required) return;
+
+        setRenderCount(oldValue => ({...oldValue, [required]: oldValue[required] + 1}));
 
         setNextMode(required);
         setTimeout(() => {
@@ -59,10 +69,12 @@ function App() {
 
     return (
         <main className="app">
-            {hasMain && <PageWrapper direction={getDirection(MAIN_MODE)}><Main toAbout={toAbout}/></PageWrapper>}
-            {hasAbout && <PageWrapper direction={getDirection(ABOUT_MODE)}><About/></PageWrapper>}
-            {hasSkills && <PageWrapper direction={getDirection(SKILLS_MODE)}><Skills/></PageWrapper>}
-            {hasProjects && <PageWrapper direction={getDirection(PROJECTS_MODE)}><Projects/></PageWrapper>}
+            <renderCountContext.Provider value={renderCount}>
+                {hasMain && <PageWrapper direction={getDirection(MAIN_MODE)}><Main toAbout={toAbout}/></PageWrapper>}
+                {hasAbout && <PageWrapper direction={getDirection(ABOUT_MODE)}><About/></PageWrapper>}
+                {hasSkills && <PageWrapper direction={getDirection(SKILLS_MODE)}><Skills/></PageWrapper>}
+                {hasProjects && <PageWrapper direction={getDirection(PROJECTS_MODE)}><Projects/></PageWrapper>}
+            </renderCountContext.Provider>
             <Menu mode={mode} toMain={toMain} toAbout={toAbout} toSkills={toSkills} toProjects={toProjects}/>
         </main>
     );
