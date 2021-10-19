@@ -1,5 +1,43 @@
 @import "../../../styles/presets";
 
+@keyframes avatar_rise {
+  0% {
+    transform: perspective(500px) rotateY(90deg);
+  }
+
+  80% {
+    transform: perspective(500px) rotateY(-35deg);
+  }
+
+  100% {
+    transform: perspective(0) rotateY(0);
+  }
+}
+
+@keyframes left_text_rise {
+  from {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes right_text_rise {
+  from {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
 .main {
   position: absolute;
   top: 0;

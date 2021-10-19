@@ -2,14 +2,14 @@ import React, {useEffect, useState} from "react";
 import PropTypes from 'prop-types';
 import ProjectFilterLabel from "../ProjectFilterLabel/ProjectFilterLabel";
 import "./ProjectFilter.scss";
-import {ANIMATION_TIMEOUT, PROJECTS_MODE} from "../../../constants/settings";
+import {DEFAULT_ANIMATION_DELAY, PROJECTS_MODE} from "../../../constants/settings";
 import {useAnimationList} from "../../../utils/hooks";
 
 function ProjectFilter({techList, setFilteredValues}) {
     const [all, setAll] = useState(true);
     const [flags, setFlags] = useState(Array(techList.length).fill(false));
 
-    const delays = Array(flags.length + 1).fill(0).map((value, index) => ANIMATION_TIMEOUT + 50 * (index + 1));
+    const delays = Array(flags.length + 1).fill(0).map((value, index) => DEFAULT_ANIMATION_DELAY + 50 * (index + 1));
     const labelsInline = useAnimationList(PROJECTS_MODE, "label_rise", delays);
 
     useEffect(() => {

@@ -10,7 +10,9 @@ export const SKILLS_MODE = 'sm';
 export const PROJECTS_MODE = 'pm';
 
 export const SLIDE_TIMEOUT = 500;
-export const ANIMATION_TIMEOUT = 500;
+
+export const DEFAULT_ANIMATION_DURATION = 500;
+export const DEFAULT_ANIMATION_DELAY = 500;
 
 export const L_COLORS = 'lc';
 export const D_COLORS = 'dc';

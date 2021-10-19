@@ -5,7 +5,7 @@ import ProjectFilter from "../../common/ProjectFilter/ProjectFilter";
 import {extractProjectsTechList} from "../../../utils/utils";
 import "./Projects.scss";
 import {useAnimationList} from "../../../utils/hooks";
-import {ANIMATION_TIMEOUT, PROJECTS_MODE} from "../../../constants/settings";
+import {DEFAULT_ANIMATION_DELAY, PROJECTS_MODE} from "../../../constants/settings";
 
 function Projects() {
     const [projects] = useState(data.projects);
@@ -13,7 +13,7 @@ function Projects() {
 
     const hasShow = project => project.tech.filter(tech => techFilter.includes(tech)).length > 0;
 
-    const delays = Array(projects.length).fill(0).map((value, index) => ANIMATION_TIMEOUT + 100 * index);
+    const delays = Array(projects.length).fill(0).map((value, index) => DEFAULT_ANIMATION_DELAY + 100 * index);
     const cardsInline = useAnimationList(PROJECTS_MODE, "card_rise", delays);
 
     const createCardList = () => projects.reduce(
