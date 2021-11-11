@@ -7,6 +7,7 @@
   box-shadow: var(--card-shadow);
   border: 1px solid var(--separator);
   background-color: var(--back2);
+  height: 16em;
   transition: all $slow;
 
   display: flex;
@@ -16,28 +17,40 @@
     margin: 5px 5px 0 0;
   }
 
-  &__title_link {
-    display: block;
-    margin-bottom: 1em;
-    text-decoration: none;
-    color: var(--text-color);
+  &__title_block {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 1rem;
 
-    font-weight: 500;
-    font-size: 1.7em;
-
-    transition: all $slow;
-
-    &:hover {
+    &:hover .project_card__title_number, &:hover .project_card__title_link {
       color: var(--accent);
     }
   }
 
+  &__title_number {
+    writing-mode: tb-rl;
+    transform: rotate(180deg);
+    border-left: 2px solid var(--accent);
+
+    transition: all $slow;
+  }
+
+  &__title_link {
+    text-decoration: none;
+    color: var(--text-color);
+    margin-left: 0.5rem;
+
+    font-weight: 500;
+    font-size: 1.5em;
+
+    transition: all $slow;
+  }
+
   &__description {
-    margin-bottom: 2.5em;
     color: var(--text-color);
     font-weight: 300;
     user-select: none;
-    text-align: justify;
     transition: all $slow;
   }
 

@@ -23,7 +23,7 @@ function Projects() {
 
     const createCardList = () => projects.reduce(
         (res, item, index) => hasShow(item) ?
-            [...res, <ProjectCard key={item.title} data={item} cardInline={alreadyFiltered ? {} : cardsInline[index]}/>]
+            [...res, <ProjectCard key={item.title} data={item} number={index + 1} cardInline={alreadyFiltered ? {} : cardsInline[index]}/>]
             :
             res,
         []
