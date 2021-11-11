@@ -31,6 +31,7 @@
   &__title_number {
     writing-mode: tb-rl;
     transform: rotate(180deg);
+    color: var(--text-color);
     border-left: 2px solid var(--accent);
 
     transition: all $slow;
