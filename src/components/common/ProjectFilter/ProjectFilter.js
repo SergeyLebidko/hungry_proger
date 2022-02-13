@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 import PropTypes from 'prop-types';
 import ProjectFilterLabel from "../ProjectFilterLabel/ProjectFilterLabel";
-import "./ProjectFilter.scss";
 import {DEFAULT_ANIMATION_DELAY, PROJECTS_MODE} from "../../../constants/settings";
 import {useAnimationList} from "../../../utils/hooks";
+import "./ProjectFilter.scss";
 
 function ProjectFilter({techList, setFilteredValues}) {
     const [all, setAll] = useState(true);
